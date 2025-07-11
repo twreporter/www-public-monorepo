@@ -4,8 +4,7 @@
     "packages/*"
   ],
   "scripts": {
-    "prepare": "husky install",
-    "postinstall": "yarn build:shared"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
