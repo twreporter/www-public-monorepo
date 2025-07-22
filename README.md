@@ -1,0 +1,3 @@
+ - [ ] add frontend build test (either at local or github action)
+ - [ ] add readme
+ - [ ] add lerna version
