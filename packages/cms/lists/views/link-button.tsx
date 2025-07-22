@@ -2,6 +2,7 @@ import type { controller } from '@keystone-6/core/fields/types/virtual/views'
 import type { FieldProps } from '@keystone-6/core/types'
 import { Button } from '@keystone-ui/button'
 import { FieldContainer, FieldLabel } from '@keystone-ui/fields'
+import React from 'react'
 
 export const Field = ({ value }: FieldProps<typeof controller>) => {
   if (typeof value === 'object' && value !== null) {

@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import type { controller } from '@keystone-6/core/fields/types/virtual/views'
 import type { FieldProps } from '@keystone-6/core/types'
 import { FieldContainer, FieldLabel } from '@keystone-ui/fields'
-import { useMemo } from 'react'
+import React, { useMemo } from 'react'
 import Editor from './Editor'
 
 const Box = styled.div`

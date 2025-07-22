@@ -3,6 +3,7 @@
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import styled from '@emotion/styled'
+import { jsx } from '@keystone-ui/core'
 import type { ReactNode } from 'react'
 
 type Props = {

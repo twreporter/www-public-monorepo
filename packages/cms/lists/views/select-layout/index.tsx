@@ -12,6 +12,7 @@ import {
   FieldDescription,
   FieldLabel,
 } from '@keystone-ui/fields'
+import React from 'react'
 
 const Container = styled.div`
   display: flex;

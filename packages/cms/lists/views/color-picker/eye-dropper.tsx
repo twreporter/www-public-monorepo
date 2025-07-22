@@ -1,3 +1,5 @@
+import React from 'react'
+
 export const isSupportEyeDropper =
   typeof window !== 'undefined' && 'EyeDropper' in window
 export type EyeDropperProps = {

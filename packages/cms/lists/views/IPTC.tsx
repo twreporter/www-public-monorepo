@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { FieldContainer, FieldLabel } from '@keystone-ui/fields'
+import React from 'react'
 
 const Table = styled.div`
   width: 100%;

@@ -6,12 +6,11 @@
  *
  */
 
-@import "https://fonts.googleapis.com/css?family=Reenie+Beanie";
+@import 'https://fonts.googleapis.com/css?family=Reenie+Beanie';
 
 body {
   margin: 0;
-  font-family:
-    system-ui, -apple-system, BlinkMacSystemFont, ".SFNSText-Regular",
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -298,9 +297,7 @@ i.prettier-error {
   z-index: 100;
   display: block;
   position: fixed;
-  box-shadow:
-    0 12px 28px 0 rgba(0, 0, 0, 0.2),
-    0 2px 4px 0 rgba(0, 0, 0, 0.1),
+  box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1),
     inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   border-radius: 8px;
   min-height: 40px;
@@ -512,11 +509,11 @@ i.prettier-error {
   transition: transform 0.2s;
 }
 
-.switch button[aria-checked="true"] {
+.switch button[aria-checked='true'] {
   background-color: rgb(24, 119, 242);
 }
 
-.switch button[aria-checked="true"] span {
+.switch button[aria-checked='true'] span {
   transform: translateX(20px);
 }
 
@@ -533,6 +530,7 @@ i.prettier-error {
     background-color: #ffdcdc;
   }
 }
+
 
 .ltr {
   text-align: left;
@@ -597,7 +595,7 @@ button.toolbar-item:disabled .chevron-down {
 }
 
 button.toolbar-item.active {
-  background-color: #eff3f6;
+  background-color: #EFF3F6;
 }
 
 button.toolbar-item.active i {

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { isDOMNode } from 'lexical'
-import { type ReactNode, useEffect, useRef } from 'react'
+import React, { type ReactNode, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 
 type ModalProps = {
