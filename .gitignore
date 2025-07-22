@@ -3,6 +3,9 @@ node_modules
 .eslintcache
 install-state.gz
 
+/.nx-cache
+/.nx
+
 # generated files
 packages/**/lib
 packages/**/dist
