@@ -19,7 +19,7 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "biome check --write --unsafe"
+      "biome check --write --unsafe --max-diagnostics 100"
     ]
   },
   "packageManager": "yarn@4.6.0"

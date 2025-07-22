@@ -1,4 +1,31 @@
 {
-  "name": "cms",
-  "version": "0.0.1"
+  "name": "www-cms",
+  "version": "0.0.8-beta.3",
+  "scripts": {
+    "dev": "keystone dev",
+    "start": "keystone start",
+    "build": "keystone build --no-prisma",
+    "db-migrate": "keystone prisma migrate deploy",
+    "postinstall": "keystone postinstall --fix",
+    "generate-migrate": "keystone prisma migrate dev"
+  },
+  "dependencies": {
+    "@dnd-kit/core": "^6.2.0",
+    "@dnd-kit/sortable": "^9.0.0",
+    "@emotion/css": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@graphql-tools/schema": "^10.0.16",
+    "@keystone-6/auth": "^8.0.0",
+    "@keystone-6/core": "^6.0.0",
+    "@keystone-6/fields-document": "^9.0.0",
+    "@lexical/react": "^0.23.0",
+    "@twreporter/core": "^1.24.1",
+    "exifreader": "^4.23.3",
+    "lodash": "^4.17.21",
+    "react-colorful": "^5.6.1",
+    "typescript": "^5.5.0"
+  },
+  "devDependencies": {
+    "husky": "^8.0.1"
+  }
 }
