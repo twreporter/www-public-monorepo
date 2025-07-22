@@ -1,7 +1,7 @@
 import type { controller } from '@keystone-6/core/fields/types/json/views'
 import type { FieldProps } from '@keystone-6/core/types'
 import { FieldContainer, FieldLabel } from '@keystone-ui/fields'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DnD } from '../../DragAndDrop'
 
 export type RelationshipInfo = {
@@ -28,7 +28,7 @@ export const Field = ({
 
   useEffect(() => {
     onChange(JSON.stringify(relationships))
-  }, [relationships])
+  }, [relationships, onChange])
 
   const relationshipsDndComponent = (
     <DnD items={relationships} setItems={setRelationships} />

@@ -11,7 +11,7 @@ import './Editor.css'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import type { EditorState } from 'lexical'
 import { $isTextNode, type DOMConversionMap, TextNode } from 'lexical'
-import { useMemo, useRef } from 'react'
+import React, { useMemo, useRef } from 'react'
 
 import { ToolbarContext } from './context/ToolbarContext'
 import TwreporterNodes from './nodes/TwreporterNodes'
@@ -106,7 +106,7 @@ export default function App({
   const initialValue = useRef(value)
   const initialEditorState = useMemo(
     () => (initialValue.current ? JSON.stringify(initialValue.current) : ''),
-    [initialValue.current]
+    []
   )
 
   return (

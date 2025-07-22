@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import type { HTMLInputTypeAttribute } from 'react'
+import React, { type HTMLInputTypeAttribute } from 'react'
 
 const Wrapper = styled.div`
   display: flex;

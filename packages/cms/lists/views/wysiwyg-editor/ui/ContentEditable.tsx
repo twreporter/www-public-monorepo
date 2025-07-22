@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
+import * as React from 'react'
 // utils
 import { desktopAndAbove } from '../utils/media-query'
 

@@ -15,6 +15,7 @@ import {
   type LexicalEditor,
   SELECTION_CHANGE_COMMAND,
 } from 'lexical'
+import * as React from 'react'
 import { type Dispatch, useCallback, useEffect, useState } from 'react'
 
 import {
@@ -227,7 +228,7 @@ export default function ToolbarPlugin({
         })
       })
     )
-  }, [$updateToolbar, activeEditor, editor, updateToolbarState])
+  }, [$updateToolbar, activeEditor, editor])
 
   const applyStyleText = useCallback(
     (styles: Record<string, string>, skipHistoryStack?: boolean) => {

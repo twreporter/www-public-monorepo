@@ -6,7 +6,7 @@
  *
  */
 import type { ElementFormatType } from 'lexical'
-import {
+import React, {
   createContext,
   type ReactNode,
   useCallback,

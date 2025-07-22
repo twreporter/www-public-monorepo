@@ -5,11 +5,11 @@ import styled from '@emotion/styled'
 import { gql, useMutation, useQuery } from '@keystone-6/core/admin-ui/apollo'
 import { PageContainer } from '@keystone-6/core/admin-ui/components'
 import { Button } from '@keystone-ui/button'
-import { Heading } from '@keystone-ui/core'
+import { Heading, jsx } from '@keystone-ui/core'
 import { FieldDescription, FieldLabel, MultiSelect } from '@keystone-ui/fields'
 import { AlertDialog } from '@keystone-ui/modals'
 import { useToasts } from '@keystone-ui/toast'
-import { type ReactNode, useEffect, useMemo, useState } from 'react'
+import { type ReactNod, useCallback, useEffect, useMemo, useState } from 'react'
 
 import { DnD } from '../../DragAndDrop'
 
@@ -158,16 +158,19 @@ const Latest = () => {
     refetchQueries: [queries.GET_LATEST],
   })
 
-  const getLatestPostDate = (posts: { publishedDate: string }[]) => {
-    if (!Array.isArray(posts) || posts.length === 0) {
-      return ''
-    }
+  const getLatestPostDate = useCallback(
+    (posts: { publishedDate: string }[]) => {
+      if (!Array.isArray(posts) || posts.length === 0) {
+        return ''
+      }
 
-    const firstPost = posts[0]
-    return firstPost?.publishedDate
-      ? new Date(firstPost.publishedDate).toLocaleDateString()
-      : ''
-  }
+      const firstPost = posts[0]
+      return firstPost?.publishedDate
+        ? new Date(firstPost.publishedDate).toLocaleDateString()
+        : ''
+    },
+    []
+  )
 
   const transformedTagsOptions: SelectOption[] = useMemo(
     () =>
@@ -188,7 +191,7 @@ const Latest = () => {
           ),
         }
       }) || [],
-    [tagsData]
+    [tagsData, getLatestPostDate]
   )
 
   const initialSelectedOptions: SelectOption[] = useMemo(
@@ -211,7 +214,7 @@ const Latest = () => {
           ),
         }
       }) || [],
-    [latestData]
+    [latestData, getLatestPostDate]
   )
 
   const [selectedOption, setSelectedOption] = useState<SelectOption[]>(

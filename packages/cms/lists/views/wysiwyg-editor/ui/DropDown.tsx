@@ -51,7 +51,7 @@ export function DropDownItem({
     if (ref?.current) {
       registerItem(ref)
     }
-  }, [ref, registerItem])
+  }, [registerItem])
 
   return (
     <button
@@ -83,7 +83,7 @@ function DropDownItems({
     (itemRef: React.RefObject<HTMLButtonElement>) => {
       setItems((prev) => (prev ? [...prev, itemRef] : [itemRef]))
     },
-    [setItems]
+    []
   )
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -183,7 +183,7 @@ export default function DropDown({
         window.innerWidth - dropDown.offsetWidth - 20
       )}px`
     }
-  }, [dropDownRef, buttonRef, showDropDown])
+  }, [showDropDown])
 
   useEffect(() => {
     const button = buttonRef.current
@@ -209,7 +209,7 @@ export default function DropDown({
         document.removeEventListener('click', handle)
       }
     }
-  }, [dropDownRef, buttonRef, showDropDown, stopCloseOnClickSelf])
+  }, [showDropDown, stopCloseOnClickSelf])
 
   useEffect(() => {
     const handleButtonPositionUpdate = () => {
@@ -231,7 +231,7 @@ export default function DropDown({
     return () => {
       document.removeEventListener('scroll', handleButtonPositionUpdate)
     }
-  }, [buttonRef, dropDownRef, showDropDown])
+  }, [showDropDown])
 
   return (
     <>

@@ -19,7 +19,7 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "biome check --write --unsafe --log-level error --max-diagnostics none "
+      "biome check --write --unsafe --max-diagnostics none --diagnostic-level error"
     ]
   },
   "packageManager": "yarn@4.6.0"

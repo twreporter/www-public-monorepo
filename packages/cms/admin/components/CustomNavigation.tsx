@@ -5,6 +5,7 @@ import {
   NavItem,
   NavigationContainer,
 } from '@keystone-6/core/admin-ui/components'
+import React from 'react'
 import { RoleEnum } from '../../lists/utils/access-control-list'
 
 export function CustomNavigation({

@@ -1,7 +1,7 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import ShortcutsPlugin from './plugins/ShortcutsPlugin'
 import ToolbarPlugin from './plugins/ToolbarPlugin'
 import ContentEditable from './ui/ContentEditable'

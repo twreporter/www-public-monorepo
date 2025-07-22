@@ -17,6 +17,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
 import styled from '@emotion/styled'
+import { jsx } from '@keystone-ui/core'
 import type { ReactNode, SetStateAction } from 'react'
 
 import { SortableItem } from './SortableItem'
