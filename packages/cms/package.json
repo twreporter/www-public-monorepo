@@ -1,6 +1,6 @@
 {
   "name": "www-cms",
-  "version": "0.0.8-beta.3",
+  "version": "0.0.8-beta.5",
   "scripts": {
     "dev": "keystone dev",
     "start": "keystone start",
@@ -24,9 +24,6 @@
     "lodash": "^4.17.21",
     "react-colorful": "^5.6.1",
     "typescript": "^5.5.0"
-  },
-  "devDependencies": {
-    "husky": "^8.0.1"
   },
   "installConfig": {
     "hoistingLimits": "workspaces"

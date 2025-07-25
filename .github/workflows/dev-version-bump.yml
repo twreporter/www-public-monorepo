@@ -1,0 +1,78 @@
+name: Dev Version Bump
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  version-bump:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.17.1'
+      
+      - name: Enable Corepack
+        run: corepack enable
+      
+      - name: Install dependencies
+        run: yarn install --immutable
+      
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+      
+      - name: Commit any uncommitted changes
+        run: |
+          # Check if there are any uncommitted changes
+          if ! git diff --quiet || ! git diff --cached --quiet; then
+            git add .
+            git commit -m "chore: commit changes before version bump" || true
+          fi
+      
+      - name: Bump version
+        run: |
+          echo "HEAD before version: $(git log -1 --pretty=format:%H)"
+          
+          # Set commit messages
+          PRERELEASE_COMMIT_HEAD="chore(release): publish prerelease"
+          
+          # Bump release version for dev branch (prerelease)
+          yarn lerna version \
+            --conventional-commits \
+            --preid beta \
+            --conventional-prerelease \
+            --include-merged-tags \
+            --message "$PRERELEASE_COMMIT_HEAD" \
+            --yes
+          
+          echo "HEAD after version: $(git log -1 --pretty=format:%H)"
+      
+      - name: Update yarn.lock and commit specific files
+        run: |
+          # Reinstall to update yarn.lock with new versions
+          yarn install --immutable-cache
+          
+          # Add only the files we want to commit
+          git add yarn.lock
+          git add package.json
+          git add packages/*/package.json
+          
+          # Check if there are staged changes to commit
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update yarn.lock and package.json files after version bump"
+          fi
+      
+      - name: Push changes back to dev
+        run: |
+          git push origin dev --follow-tags

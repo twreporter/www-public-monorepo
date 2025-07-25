@@ -1,16 +1,17 @@
 {
   "name": "www-public-monorepo",
-  "workspaces": {
-    "packages": [
-      "packages/cms",
-      "packages/frontend"
-    ]
-  },
+  "workspaces": [
+    "packages/cms",
+    "packages/frontend"
+  ],
   "scripts": {
     "prepare": "husky",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
-    "format": "biome format --write ."
+    "format": "biome format --write .",
+    "build:frontend": "yarn workspace www-frontend build",
+    "version:bump": "lerna version --conventional-commits --yes",
+    "postversion": "yarn install --immutable"
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.2",
