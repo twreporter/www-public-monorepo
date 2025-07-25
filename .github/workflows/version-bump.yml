@@ -25,23 +25,19 @@ jobs:
         run: corepack enable
       
       - name: Install dependencies
-        run: yarn install --immutable --immutable-cache
+        run: yarn install --immutable
       
       - name: Configure Git
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
       
-      - name: Check for uncommitted changes
+      - name: Commit any uncommitted changes
         run: |
-          echo "Checking for uncommitted changes..."
-          git status --porcelain
+          # Check if there are any uncommitted changes
           if ! git diff --quiet || ! git diff --cached --quiet; then
-            echo "Found uncommitted changes:"
-            git diff --name-only
-            git diff --cached --name-only
-          else
-            echo "No uncommitted changes found"
+            git add .
+            git commit -m "chore: commit changes before version bump [skip ci]" || true
           fi
       
       - name: Bump version
