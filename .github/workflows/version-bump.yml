@@ -25,12 +25,24 @@ jobs:
         run: corepack enable
       
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install --immutable --immutable-cache
       
       - name: Configure Git
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+      
+      - name: Check for uncommitted changes
+        run: |
+          echo "Checking for uncommitted changes..."
+          git status --porcelain
+          if ! git diff --quiet || ! git diff --cached --quiet; then
+            echo "Found uncommitted changes:"
+            git diff --name-only
+            git diff --cached --name-only
+          else
+            echo "No uncommitted changes found"
+          fi
       
       - name: Bump version
         run: |
@@ -50,14 +62,19 @@ jobs:
           
           echo "HEAD after version: $(git log -1 --pretty=format:%H)"
       
-      - name: Update yarn.lock
+      - name: Update yarn.lock and commit specific files
         run: |
-          yarn install --immutable --immutable-cache
+          # Reinstall to update yarn.lock with new versions
+          yarn install --immutable-cache
           
-          # Check if yarn.lock was updated
-          if ! git diff --quiet yarn.lock; then
-            git add yarn.lock
-            git commit -m "chore: update yarn.lock after version bump [skip ci]"
+          # Add only the files we want to commit
+          git add yarn.lock
+          git add package.json
+          git add packages/*/package.json
+          
+          # Check if there are staged changes to commit
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update yarn.lock and package.json files after version bump [skip ci]"
           fi
       
       - name: Push changes back to dev
