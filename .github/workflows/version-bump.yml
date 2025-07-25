@@ -1,0 +1,65 @@
+name: Version Bump
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  version-bump:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.17.1'
+      
+      - name: Enable Corepack
+        run: corepack enable
+      
+      - name: Install dependencies
+        run: yarn install --immutable
+      
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+      
+      - name: Bump version
+        run: |
+          echo "HEAD before version: $(git log -1 --pretty=format:%H)"
+          
+          # Set commit messages
+          PRERELEASE_COMMIT_HEAD="chore(release): publish prerelease [skip ci]"
+          
+          # Bump release version for dev branch (prerelease)
+          yarn lerna version \
+            --conventional-commits \
+            --preid beta \
+            --conventional-prerelease \
+            --include-merged-tags \
+            --message "$PRERELEASE_COMMIT_HEAD" \
+            --yes
+          
+          echo "HEAD after version: $(git log -1 --pretty=format:%H)"
+      
+      - name: Update yarn.lock
+        run: |
+          yarn install --immutable --immutable-cache
+          
+          # Check if yarn.lock was updated
+          if ! git diff --quiet yarn.lock; then
+            git add yarn.lock
+            git commit -m "chore: update yarn.lock after version bump [skip ci]"
+          fi
+      
+      - name: Push changes back to dev
+        run: |
+          git push origin dev --follow-tags
