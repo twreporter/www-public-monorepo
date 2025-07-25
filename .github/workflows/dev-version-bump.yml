@@ -1,4 +1,4 @@
-name: Version Bump
+name: Dev Version Bump
 
 on:
   push:
@@ -37,7 +37,7 @@ jobs:
           # Check if there are any uncommitted changes
           if ! git diff --quiet || ! git diff --cached --quiet; then
             git add .
-            git commit -m "chore: commit changes before version bump [skip ci]" || true
+            git commit -m "chore: commit changes before version bump" || true
           fi
       
       - name: Bump version
@@ -45,7 +45,7 @@ jobs:
           echo "HEAD before version: $(git log -1 --pretty=format:%H)"
           
           # Set commit messages
-          PRERELEASE_COMMIT_HEAD="chore(release): publish prerelease [skip ci]"
+          PRERELEASE_COMMIT_HEAD="chore(release): publish prerelease"
           
           # Bump release version for dev branch (prerelease)
           yarn lerna version \
@@ -70,7 +70,7 @@ jobs:
           
           # Check if there are staged changes to commit
           if ! git diff --cached --quiet; then
-            git commit -m "chore: update yarn.lock and package.json files after version bump [skip ci]"
+            git commit -m "chore: update yarn.lock and package.json files after version bump"
           fi
       
       - name: Push changes back to dev

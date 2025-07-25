@@ -1,17 +1,15 @@
 {
   "name": "www-public-monorepo",
-  "workspaces": {
-    "packages": [
-      "packages/cms",
-      "packages/frontend"
-    ]
-  },
+  "workspaces": [
+    "packages/cms",
+    "packages/frontend"
+  ],
   "scripts": {
     "prepare": "husky",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
-    "build:frontend": "yarn workspace frontend build",
+    "build:frontend": "yarn workspace www-frontend build",
     "version:bump": "lerna version --conventional-commits --yes",
     "postversion": "yarn install --immutable"
   },
@@ -26,10 +24,6 @@
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
       "biome check --write --unsafe --max-diagnostics none --diagnostic-level error"
-    ],
-    "packages/frontend/**/*.{js,ts,jsx,tsx,json}": [
-      "biome check --write --unsafe --max-diagnostics none --diagnostic-level error",
-      "yarn workspace frontend build"
     ]
   },
   "packageManager": "yarn@4.6.0"
