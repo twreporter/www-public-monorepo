@@ -3,7 +3,7 @@ import pino from 'pino'
 
 const releaseBranch = process.env.NEXT_PUBLIC_RELEASE_BRANCH
 const logging = new Logging()
-const log = logging.log(`${releaseBranch}-congress-dashboard-frontend`)
+const log = logging.log(`${releaseBranch}-new-dev-www-frontend`)
 
 const isProduction = process.env.NODE_ENV === 'production'
 
