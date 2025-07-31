@@ -1,0 +1,15 @@
+{
+  "name": "@twreporter/tailwind-config",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./postcss.config.js",
+  "exports": {
+    ".": "./shared-styles.css",
+    "./postcss": "./postcss.config.js"
+  },
+  "devDependencies": {
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11",
+    "autoprefixer": "^10.4.21"
+  }
+}
