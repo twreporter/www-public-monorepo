@@ -5,7 +5,7 @@ Tailwind CSS config for TW Reporter projects.
 ## Installation
 
 ```bash
-yarn install @twreporter/tailwind-config postcss tailwindcss autoprefixer
+yarn add @twreporter/tailwind-config postcss tailwindcss autoprefixer
 ```
 
 ## Usage

@@ -1,5 +1,8 @@
 {
   "name": "@twreporter/react-typescript-components",
+  "description": "React components using TypeScript and Tailwind CSS",
+  "author": "twreporter <developer@twreporter.org>",
+  "license": "MIT",
   "version": "0.0.1",
   "type": "commonjs",
   "main": "lib/index.js",
@@ -31,5 +34,10 @@
   },
   "files": [
     "lib"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twreporter/www-public-monorepo.git",
+    "directory": "packages/react-typescript-components"
+  }
 }

@@ -18,5 +18,10 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.11",
     "autoprefixer": "^10.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twreporter/www-public-monorepo.git",
+    "directory": "packages/tailwind-config"
   }
 }
