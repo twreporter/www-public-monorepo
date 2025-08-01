@@ -21,21 +21,29 @@ export const Topics: React.FC<TopicsProps> = ({ topics }) => {
     >
       <H1 className="text-gray-800">深度專題</H1>
       <Title2 className="pt-[24px]" title={'最新專題'} />
-      <div className="my-[24px]">
-        <div className="flex flex-col gap-2">
-          <h2>{topics[0].title}</h2>
-          <p>{topics[0].ogDescription}</p>
-        </div>
-      </div>
-      <Title2 title={'所有專題'} />
-      <div className="my-[24px]">
-        {topics.slice(1).map((topic) => (
-          <div key={topic.slug} className="flex flex-col gap-2">
-            <h2>{topic.title}</h2>
-            <p>{topic.ogDescription}</p>
+      {topics.length > 0 ? (
+        <div className="my-[24px]">
+          <div className="flex flex-col gap-2">
+            <h2>{topics[0].title}</h2>
+            <p>{topics[0].ogDescription}</p>
           </div>
-        ))}
-      </div>
+        </div>
+      ) : (
+        <div className="my-[24px] text-gray-500">No topics available.</div>
+      )}
+      {topics.length > 1 && (
+        <>
+          <Title2 title={'所有專題'} />
+          <div className="my-[24px]">
+            {topics.slice(1).map((topic) => (
+              <div key={topic.slug} className="flex flex-col gap-2">
+                <h2>{topic.title}</h2>
+                <p>{topic.ogDescription}</p>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   )
 }
