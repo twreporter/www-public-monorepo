@@ -1,8 +1,7 @@
 {
   "name": "www-public-monorepo",
   "workspaces": [
-    "packages/cms",
-    "packages/frontend"
+    "packages/*"
   ],
   "scripts": {
     "prepare": "husky",

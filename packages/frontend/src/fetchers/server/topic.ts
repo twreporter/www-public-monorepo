@@ -21,6 +21,7 @@ export type TopicData = {
   }[]
 }
 
+// TODO: need to add pageination support
 export const fetchTopics = async (): Promise<TopicData[]> => {
   const query = `
     query Topics($where: TopicWhereInput!, $orderBy: [TopicOrderByInput!]!) {
