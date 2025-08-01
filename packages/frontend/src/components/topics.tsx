@@ -9,7 +9,7 @@ type TopicsProps = {
   topics: TopicData[]
 }
 
-// TODO: componet & pageination
+// TODO: component & pagination
 export const Topics: React.FC<TopicsProps> = ({ topics }) => {
   return (
     <div
