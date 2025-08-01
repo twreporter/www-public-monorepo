@@ -5332,6 +5332,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@twreporter/tailwind-config@workspace:packages/tailwind-config"
   peerDependencies:
+    autoprefixer: ^10.4.0
     postcss: ^8.5.6
     tailwindcss: ^4.1.11
   languageName: unknown
@@ -5648,6 +5649,13 @@ __metadata:
   version: 2.0.11
   resolution: "@types/unist@npm:2.0.11"
   checksum: 10c0/24dcdf25a168f453bb70298145eb043cfdbb82472db0bc0b56d6d51cd2e484b9ed8271d4ac93000a80da568f2402e9339723db262d0869e2bf13bc58e081768d
+  languageName: node
+  linkType: hard
+
+"@types/uuid@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "@types/uuid@npm:10.0.0"
+  checksum: 10c0/9a1404bf287164481cb9b97f6bb638f78f955be57c40c6513b7655160beb29df6f84c915aaf4089a1559c216557dc4d2f79b48d978742d3ae10b937420ddac60
   languageName: node
   linkType: hard
 
@@ -14682,6 +14690,7 @@ __metadata:
     "@types/node": "npm:^22"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
+    "@types/uuid": "npm:^10.0.0"
     clsx: "npm:^2.1.1"
     next: "npm:15.3.5"
     pino: "npm:^9.7.0"
