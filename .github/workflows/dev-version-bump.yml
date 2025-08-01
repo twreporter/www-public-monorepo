@@ -40,39 +40,69 @@ jobs:
             git commit -m "chore: commit changes before version bump" || true
           fi
       
-      - name: Bump version
+      - name: Bump version for tailwind-config and react-typescript-components
         run: |
-          echo "HEAD before version: $(git log -1 --pretty=format:%H)"
-          
-          # Set commit messages
-          PRERELEASE_COMMIT_HEAD="chore(release): publish prerelease"
-          
-          # Bump release version for dev branch (prerelease)
           yarn lerna version \
             --conventional-commits \
             --preid beta \
             --conventional-prerelease \
             --include-merged-tags \
-            --message "$PRERELEASE_COMMIT_HEAD" \
-            --yes
-          
-          echo "HEAD after version: $(git log -1 --pretty=format:%H)"
-      
+            --message "chore(release): publish prerelease for tailwind-config & react-typescript-components" \
+            --yes \
+            --scope tailwind-config \
+            --scope react-typescript-components
+
+      - name: Publish tailwind-config if version bumped
+        id: publish_tailwind_config
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if git diff --name-only HEAD^ HEAD | grep -q "packages/tailwind-config/package.json"; then
+            cd packages/tailwind-config
+            npm publish --access public
+            cd ../..
+            echo "published=true" >> $GITHUB_OUTPUT
+          else
+            echo "published=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish react-typescript-components if version bumped
+        id: publish_react_typescript_components
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if git diff --name-only HEAD^ HEAD | grep -q "packages/react-typescript-components/package.json"; then
+            cd packages/react-typescript-components
+            npm publish --access public
+            cd ../..
+            echo "published=true" >> $GITHUB_OUTPUT
+          else
+            echo "published=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Bump version for cms and frontend after dependencies published
+        if: steps.publish_tailwind_config.outputs.published == 'true' || steps.publish_react_typescript_components.outputs.published == 'true'
+        run: |
+          yarn lerna version \
+            --conventional-commits \
+            --preid beta \
+            --conventional-prerelease \
+            --include-merged-tags \
+            --message "chore(release): publish prerelease for cms & frontend" \
+            --yes \
+            --scope cms \
+            --scope frontend
+
       - name: Update yarn.lock and commit specific files
         run: |
-          # Reinstall to update yarn.lock with new versions
           yarn install --immutable-cache
-          
-          # Add only the files we want to commit
           git add yarn.lock
           git add package.json
           git add packages/*/package.json
-          
-          # Check if there are staged changes to commit
           if ! git diff --cached --quiet; then
             git commit -m "chore: update yarn.lock and package.json files after version bump"
           fi
-      
+
       - name: Push changes back to dev
         run: |
           git push origin dev --follow-tags
