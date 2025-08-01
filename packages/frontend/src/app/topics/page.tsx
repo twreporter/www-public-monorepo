@@ -3,7 +3,7 @@ import { Topics } from '@/components/topics'
 // fetchers
 import { fetchTopics } from '@/fetchers/server/topic'
 // logger
-import { logger } from '@/utils/logger'
+import logger from '@/utils/logger'
 
 export default async function Page() {
   try {
