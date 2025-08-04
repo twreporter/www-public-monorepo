@@ -12,7 +12,8 @@
     "clean": "rm -rf lib",
     "build:styles": "tailwindcss -i ./src/styles.css -o ./lib/styles.css",
     "build:components": "tsup src/* --outDir lib",
-    "build": "yarn clean && yarn build:components && yarn build:styles"
+    "build": "yarn clean && yarn build:components && yarn build:styles",
+    "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
     "react": "^19.0.0",
