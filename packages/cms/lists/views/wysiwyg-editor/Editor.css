@@ -46,6 +46,25 @@ body {
   }
 }
 
+#lexical-editor.fullscreen {
+  z-index: 1000;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 80px 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  .editor-shell {
+    max-width: 1000px;
+  }
+
+  .editor-container {
+    height: 80vh;
+  }
+}
+
 .editor-shell {
   margin: 0 auto;
   border-radius: 2px;
@@ -255,6 +274,10 @@ i.superscript {
   background-image: url(images/icons/type-superscript.svg);
 }
 
+i.link {
+  background-image: url(images/icons/link.svg);
+}
+
 .icon.plus {
   background-image: url(images/icons/plus.svg);
 }
@@ -432,6 +455,22 @@ i.prettier-error {
 
 .icon.h6 {
   background-image: url(images/icons/type-h6.svg);
+}
+
+.icon.link-edit {
+  background-image: url(images/icons/pencil-fill.svg);
+}
+
+.icon.link-trash {
+  background-image: url(images/icons/trash.svg);
+}
+
+.icon.link-cancel {
+  background-image: url(images/icons/close.svg);
+}
+
+.icon.link-confirm {
+  background-image: url(images/icons/success-alt.svg);
 }
 
 .switches {

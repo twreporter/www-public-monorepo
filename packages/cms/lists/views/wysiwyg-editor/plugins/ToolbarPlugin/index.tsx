@@ -6,10 +6,13 @@ import {
   $patchStyleText,
 } from '@lexical/selection'
 import { $findMatchingParent, mergeRegister } from '@lexical/utils'
+import {$isLinkNode, TOGGLE_LINK_COMMAND} from '@lexical/link'
+
 import {
   $getSelection,
   $isRangeSelection,
   $isRootOrShadowRoot,
+  $isElementNode,
   COMMAND_PRIORITY_CRITICAL,
   FORMAT_TEXT_COMMAND,
   type LexicalEditor,
@@ -27,6 +30,8 @@ import DropDown, { DropDownItem } from '../../ui/DropDown'
 import DropdownColorPicker from '../../ui/DropdownColorPicker'
 import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts'
 import { clearFormatting, formatHeading, formatParagraph } from './utils'
+import { getSelectedNode } from '../../utils/getSelectedNode'
+import { sanitizeUrl } from '../../utils/url'
 
 function dropDownActiveClass(active: boolean) {
   if (active) {
@@ -102,9 +107,21 @@ const FullscreenBox = styled.div`
   }
 `
 
+const editorId = 'lexical-editor'
+const fullscreenClassname = 'fullscreen'
 function Fullscreen(): JSX.Element {
   const [isFull, setIsFull] = useState(false)
   const toggleFullscreen = () => {
+    if (!document) return
+    const editorElement = document.getElementById(editorId)
+    if (!editorElement) return
+
+    if (isFull) {
+      editorElement.classList.remove(fullscreenClassname)
+    } else {
+      editorElement.classList.add(fullscreenClassname)
+    }
+
     setIsFull(!isFull)
   }
 
@@ -119,10 +136,12 @@ export default function ToolbarPlugin({
   editor,
   activeEditor,
   setActiveEditor,
+  setIsLinkEditMode,
 }: {
   editor: LexicalEditor
   activeEditor: LexicalEditor
   setActiveEditor: Dispatch<LexicalEditor>
+  setIsLinkEditMode: Dispatch<boolean>
 }): JSX.Element {
   const [modal] = useModal()
   const [isEditable, setIsEditable] = useState(() => editor.isEditable())
@@ -148,6 +167,12 @@ export default function ToolbarPlugin({
       const elementDOM = activeEditor.getElementByKey(elementKey)
 
       updateToolbarState('isRTL', $isParentElementRTL(selection))
+
+      // Update links
+      const node = getSelectedNode(selection)
+      const parent = node.getParent()
+      const isLink = $isLinkNode(parent) || $isLinkNode(node)
+      updateToolbarState('isLink', isLink)
 
       if (elementDOM !== null) {
         const type = $isHeadingNode(element)
@@ -180,6 +205,24 @@ export default function ToolbarPlugin({
           'font-family',
           'Roboto Slab", "Noto Sans TC", sans-serif'
         )
+      )
+
+      let matchingParent
+      if ($isLinkNode(parent)) {
+        // If node is a link, we need to fetch the parent paragraph node to set format
+        matchingParent = $findMatchingParent(
+          node,
+          (parentNode) => $isElementNode(parentNode) && !parentNode.isInline(),
+        )
+      }
+      // If matchingParent is a valid node, pass it's format type
+      updateToolbarState(
+        'elementFormat',
+        $isElementNode(matchingParent)
+          ? matchingParent.getFormatType()
+          : $isElementNode(node)
+          ? node.getFormatType()
+          : parent?.getFormatType() || 'left',
       )
     }
     if ($isRangeSelection(selection)) {
@@ -259,6 +302,19 @@ export default function ToolbarPlugin({
     [applyStyleText]
   )
 
+  const insertLink = useCallback(() => {
+    if (!toolbarState.isLink) {
+      setIsLinkEditMode(true);
+      activeEditor.dispatchCommand(
+        TOGGLE_LINK_COMMAND,
+        sanitizeUrl('https://'),
+      )
+    } else {
+      setIsLinkEditMode(false);
+      activeEditor.dispatchCommand(TOGGLE_LINK_COMMAND, null)
+    }
+  }, [activeEditor, setIsLinkEditMode, toolbarState.isLink])
+
   return (
     <div className="toolbar">
       {toolbarState.blockType in blockTypeToBlockName &&
@@ -307,6 +363,17 @@ export default function ToolbarPlugin({
         aria-label={`Format text to underlined. Shortcut: ${SHORTCUTS.UNDERLINE}`}
       >
         <i className="format underline" />
+      </button>
+      <button
+        disabled={!isEditable}
+        onClick={insertLink}
+        className={
+          'toolbar-item spaced ' + (toolbarState.isLink ? 'active' : '')
+        }
+        aria-label="Insert link"
+        title={`Insert link (${SHORTCUTS.INSERT_LINK})`}
+        type="button">
+        <i className="format link" />
       </button>
       <DropdownColorPicker
         disabled={!isEditable}
