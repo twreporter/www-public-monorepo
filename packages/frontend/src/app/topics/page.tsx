@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 // components
 import { Topics } from '@/components/topics'
 // fetchers
