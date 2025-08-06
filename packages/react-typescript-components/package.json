@@ -3,7 +3,7 @@
   "description": "React components using TypeScript and Tailwind CSS",
   "author": "twreporter <developer@twreporter.org>",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.1.0-beta.0",
   "type": "commonjs",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
@@ -26,7 +26,7 @@
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.11",
     "@tailwindcss/postcss": "^4.1.11",
-    "@twreporter/tailwind-config": "0.0.1",
+    "@twreporter/tailwind-config": "^0.1.0-beta.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
