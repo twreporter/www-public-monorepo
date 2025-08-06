@@ -3,6 +3,7 @@ import type { controller } from '@keystone-6/core/fields/types/virtual/views'
 import type { FieldProps } from '@keystone-6/core/types'
 import { FieldContainer, FieldLabel } from '@keystone-ui/fields'
 import React, { useMemo } from 'react'
+// components
 import Editor from './Editor'
 
 const Box = styled.div`

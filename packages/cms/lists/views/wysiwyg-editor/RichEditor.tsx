@@ -13,7 +13,8 @@ export default function Editor(): JSX.Element {
   const [editor] = useLexicalComposerContext()
   const [activeEditor, setActiveEditor] = useState(editor)
   const [isLinkEditMode, setIsLinkEditMode] = useState<boolean>(false)
-  const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
+  const [floatingAnchorElem, setFloatingAnchorElem] =
+    useState<HTMLDivElement | null>(null)
 
   const onRef = (_floatingAnchorElem: HTMLDivElement) => {
     if (_floatingAnchorElem !== null) {

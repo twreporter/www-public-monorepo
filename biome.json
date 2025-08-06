@@ -40,7 +40,7 @@
       },
       "correctness": {
         "noUnusedImports": {
-          "level":"warn",
+          "level": "warn",
           "fix": "none"
         },
         "noUnusedVariables": "error"

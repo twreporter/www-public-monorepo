@@ -1,4 +1,7 @@
+import * as React from 'react'
+import { type Dispatch, useCallback, useEffect, useState } from 'react'
 import styled from '@emotion/styled'
+// lexical
 import { $isHeadingNode } from '@lexical/rich-text'
 import {
   $getSelectionStyleValueForProperty,
@@ -6,8 +9,7 @@ import {
   $patchStyleText,
 } from '@lexical/selection'
 import { $findMatchingParent, mergeRegister } from '@lexical/utils'
-import {$isLinkNode, TOGGLE_LINK_COMMAND} from '@lexical/link'
-
+import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link'
 import {
   $getSelection,
   $isRangeSelection,
@@ -18,20 +20,21 @@ import {
   type LexicalEditor,
   SELECTION_CHANGE_COMMAND,
 } from 'lexical'
-import * as React from 'react'
-import { type Dispatch, useCallback, useEffect, useState } from 'react'
-
+// context
 import {
   blockTypeToBlockName,
   useToolbarState,
 } from '../../context/ToolbarContext'
+// hook
 import useModal from '../../hooks/useModal'
-import DropDown, { DropDownItem } from '../../ui/DropDown'
-import DropdownColorPicker from '../../ui/DropdownColorPicker'
-import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts'
+// util
 import { clearFormatting, formatHeading, formatParagraph } from './utils'
 import { getSelectedNode } from '../../utils/getSelectedNode'
 import { sanitizeUrl } from '../../utils/url'
+// component
+import DropDown, { DropDownItem } from '../../ui/DropDown'
+import DropdownColorPicker from '../../ui/DropdownColorPicker'
+import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts'
 
 function dropDownActiveClass(active: boolean) {
   if (active) {
@@ -212,7 +215,7 @@ export default function ToolbarPlugin({
         // If node is a link, we need to fetch the parent paragraph node to set format
         matchingParent = $findMatchingParent(
           node,
-          (parentNode) => $isElementNode(parentNode) && !parentNode.isInline(),
+          (parentNode) => $isElementNode(parentNode) && !parentNode.isInline()
         )
       }
       // If matchingParent is a valid node, pass it's format type
@@ -221,8 +224,8 @@ export default function ToolbarPlugin({
         $isElementNode(matchingParent)
           ? matchingParent.getFormatType()
           : $isElementNode(node)
-          ? node.getFormatType()
-          : parent?.getFormatType() || 'left',
+            ? node.getFormatType()
+            : parent?.getFormatType() || 'left'
       )
     }
     if ($isRangeSelection(selection)) {
@@ -304,13 +307,10 @@ export default function ToolbarPlugin({
 
   const insertLink = useCallback(() => {
     if (!toolbarState.isLink) {
-      setIsLinkEditMode(true);
-      activeEditor.dispatchCommand(
-        TOGGLE_LINK_COMMAND,
-        sanitizeUrl('https://'),
-      )
+      setIsLinkEditMode(true)
+      activeEditor.dispatchCommand(TOGGLE_LINK_COMMAND, sanitizeUrl('https://'))
     } else {
-      setIsLinkEditMode(false);
+      setIsLinkEditMode(false)
       activeEditor.dispatchCommand(TOGGLE_LINK_COMMAND, null)
     }
   }, [activeEditor, setIsLinkEditMode, toolbarState.isLink])
@@ -372,7 +372,8 @@ export default function ToolbarPlugin({
         }
         aria-label="Insert link"
         title={`Insert link (${SHORTCUTS.INSERT_LINK})`}
-        type="button">
+        type="button"
+      >
         <i className="format link" />
       </button>
       <DropdownColorPicker

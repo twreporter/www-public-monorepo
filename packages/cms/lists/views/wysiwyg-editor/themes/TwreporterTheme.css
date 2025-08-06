@@ -72,7 +72,7 @@
   position: absolute;
 }
 .TwreporterTheme__blockCursor:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   top: -2px;
