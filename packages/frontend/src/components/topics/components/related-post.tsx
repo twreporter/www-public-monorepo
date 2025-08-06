@@ -56,4 +56,4 @@ const RelatedPost: React.FC<RelatedPostProps> = ({
   )
 }
 
-export default ReleatedPost
+export default RelatedPost
