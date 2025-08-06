@@ -38,7 +38,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/twreporter/www-public-monorepo.git",
+    "url": "git+https://github.com/twreporter/www-public-monorepo.git",
     "directory": "packages/react-typescript-components"
   }
 }
