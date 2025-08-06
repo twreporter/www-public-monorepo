@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.9](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.8...www-frontend@0.1.0-beta.9) (2025-08-06)
+
+
+### Bug Fixes
+
+* **frontend:** dynamic topics page ([a3c17d7](https://github.com/twreporter/www-public-monorepo/commit/a3c17d760d0cea2f5a272387ede51f48c73b16a2))
+
+
+
+
+
 # [0.1.0-beta.8](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.7...www-frontend@0.1.0-beta.8) (2025-08-06)
 
 
