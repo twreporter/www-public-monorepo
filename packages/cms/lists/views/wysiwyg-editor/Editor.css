@@ -6,11 +6,12 @@
  *
  */
 
-@import 'https://fonts.googleapis.com/css?family=Reenie+Beanie';
+@import "https://fonts.googleapis.com/css?family=Reenie+Beanie";
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular',
+  font-family:
+    system-ui, -apple-system, BlinkMacSystemFont, ".SFNSText-Regular",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -43,6 +44,25 @@ body {
     color: #333;
     display: inline-block;
     margin: 20px 0 0 0;
+  }
+}
+
+#lexical-editor.fullscreen {
+  z-index: 1000;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 80px 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  .editor-shell {
+    max-width: 1000px;
+  }
+
+  .editor-container {
+    height: 80vh;
   }
 }
 
@@ -255,6 +275,10 @@ i.superscript {
   background-image: url(images/icons/type-superscript.svg);
 }
 
+i.link {
+  background-image: url(images/icons/link.svg);
+}
+
 .icon.plus {
   background-image: url(images/icons/plus.svg);
 }
@@ -299,7 +323,9 @@ i.prettier-error {
   z-index: 100;
   display: block;
   position: fixed;
-  box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 12px 28px 0 rgba(0, 0, 0, 0.2),
+    0 2px 4px 0 rgba(0, 0, 0, 0.1),
     inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   border-radius: 8px;
   min-height: 40px;
@@ -434,6 +460,22 @@ i.prettier-error {
   background-image: url(images/icons/type-h6.svg);
 }
 
+.icon.link-edit {
+  background-image: url(images/icons/pencil-fill.svg);
+}
+
+.icon.link-trash {
+  background-image: url(images/icons/trash.svg);
+}
+
+.icon.link-cancel {
+  background-image: url(images/icons/close.svg);
+}
+
+.icon.link-confirm {
+  background-image: url(images/icons/success-alt.svg);
+}
+
 .switches {
   z-index: 6;
   position: fixed;
@@ -511,11 +553,11 @@ i.prettier-error {
   transition: transform 0.2s;
 }
 
-.switch button[aria-checked='true'] {
+.switch button[aria-checked="true"] {
   background-color: rgb(24, 119, 242);
 }
 
-.switch button[aria-checked='true'] span {
+.switch button[aria-checked="true"] span {
   transform: translateX(20px);
 }
 
@@ -532,7 +574,6 @@ i.prettier-error {
     background-color: #ffdcdc;
   }
 }
-
 
 .ltr {
   text-align: left;
@@ -597,7 +638,7 @@ button.toolbar-item:disabled .chevron-down {
 }
 
 button.toolbar-item.active {
-  background-color: #EFF3F6;
+  background-color: #eff3f6;
 }
 
 button.toolbar-item.active i {

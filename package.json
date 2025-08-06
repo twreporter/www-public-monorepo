@@ -1,9 +1,6 @@
 {
   "name": "www-public-monorepo",
-  "workspaces": [
-    "packages/cms",
-    "packages/frontend"
-  ],
+  "workspaces": ["packages/cms", "packages/frontend"],
   "scripts": {
     "prepare": "husky",
     "lint": "biome check .",
