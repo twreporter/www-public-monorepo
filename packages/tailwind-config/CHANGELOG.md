@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.3](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/tailwind-config@0.1.0-beta.0...@twreporter/tailwind-config@0.1.0-beta.3) (2025-08-06)
+
+
+### Bug Fixes
+
+* packages.json for npm ([d437606](https://github.com/twreporter/www-public-monorepo/commit/d437606def67eab33b0bb7fc890f35d5bc7b8312))
+
+
+
+
+
 # [0.1.0-beta.2](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/tailwind-config@0.1.0-beta.1...@twreporter/tailwind-config@0.1.0-beta.2) (2025-08-06)
 
 
