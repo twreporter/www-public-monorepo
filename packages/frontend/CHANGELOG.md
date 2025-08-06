@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.8](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.7...www-frontend@0.1.0-beta.8) (2025-08-06)
+
+
+### Bug Fixes
+
+* **frontend:** remove console log ([2661881](https://github.com/twreporter/www-public-monorepo/commit/26618818346a607549cab32ea5cbcacd3f622f96))
+
+
+
+
+
 # [0.1.0-beta.7](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.6...www-frontend@0.1.0-beta.7) (2025-08-06)
 
 
