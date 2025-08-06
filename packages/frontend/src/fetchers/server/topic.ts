@@ -4,8 +4,8 @@ export type TopicData = {
   slug: string
   title: string
   updatedAt: Date
-  ogDescription: string
-  heroImage: {
+  ogDescription?: string
+  heroImage?: {
     imageFile: {
       url: string
     }

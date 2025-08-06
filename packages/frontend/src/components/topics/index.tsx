@@ -1,9 +1,15 @@
+import clsx from 'clsx'
 // react-typescript-components
 import { H1 } from '@twreporter/react-typescript-components/lib/text/heading'
 import { Title2 } from '@twreporter/react-typescript-components/lib/title-bar'
-import clsx from 'clsx'
+// components
+import FirstTopic from '@/components/topics/components/first-topic'
+import TopicItem from '@/components/topics/components/topic-item'
 // types
 import type { TopicData } from '@/fetchers/server/topic'
+// utils
+import { formatDate } from '@/utils/date-formatters'
+import { getImageLink } from '@/utils/get-image-link'
 
 type TopicsProps = {
   topics: TopicData[]
@@ -14,19 +20,17 @@ export const Topics: React.FC<TopicsProps> = ({ topics }) => {
   return (
     <div
       className={clsx(
-        'flex w-full flex-col px-[24px] pt-[24px] pb-[64px] bg-gray-100',
-        'tablet:pt-[32px] tablet:pb-[120px]',
-        'desktop:pt-[64px]'
+        'flex flex-col mx-auto',
+        'tablet:w-[698px]',
+        'desktop:w-[922px]',
+        'hd:w-[1130px]'
       )}
     >
       <H1 className="text-gray-800">深度專題</H1>
       <Title2 className="pt-[24px]" title={'最新專題'} />
       {topics.length > 0 ? (
         <div className="my-[24px]">
-          <div className="flex flex-col gap-2">
-            <h2>{topics[0].title}</h2>
-            <p>{topics[0].ogDescription}</p>
-          </div>
+          <FirstTopic topic={topics[0]} />
         </div>
       ) : (
         <div className="my-[24px] text-gray-500">No topics available.</div>
@@ -36,10 +40,16 @@ export const Topics: React.FC<TopicsProps> = ({ topics }) => {
           <Title2 title={'所有專題'} />
           <div className="my-[24px]">
             {topics.slice(1).map((topic) => (
-              <div key={topic.slug} className="flex flex-col gap-2">
-                <h2>{topic.title}</h2>
-                <p>{topic.ogDescription}</p>
-              </div>
+              <TopicItem
+                key={topic.slug}
+                title={topic.title}
+                description={topic?.ogDescription || undefined}
+                slug={topic.slug}
+                imageUrl={
+                  topic.heroImage ? getImageLink(topic.heroImage) : undefined
+                }
+                lastUpdatedAt={formatDate(topic.updatedAt, 'YYYY.MM.DD')}
+              />
             ))}
           </div>
         </>
