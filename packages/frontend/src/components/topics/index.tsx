@@ -15,7 +15,7 @@ type TopicsProps = {
   topics: TopicData[]
 }
 
-// TODO: component & pagination
+// TODO: component & pagination & empty state
 export const Topics: React.FC<TopicsProps> = ({ topics }) => {
   return (
     <div

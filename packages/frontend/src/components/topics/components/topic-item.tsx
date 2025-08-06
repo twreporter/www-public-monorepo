@@ -58,10 +58,12 @@ const TopicItem: React.FC<TopicItemProps> = ({
             className="text-gray-900 py-[16px] font-bold"
             text={`最後更新 ${lastUpdatedAt}`}
           />
-          <P1
-            className={clsx('text-gray-900 hidden!', 'tablet:flex!')}
-            text={description}
-          />
+          {description ? (
+            <P1
+              className={clsx('text-gray-900 hidden!', 'tablet:flex!')}
+              text={description}
+            />
+          ) : null}
         </div>
       </div>
       <div className={clsx('flex mt-[12px]', 'tablet:hidden!')}>

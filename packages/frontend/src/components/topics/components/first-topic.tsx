@@ -25,7 +25,7 @@ const FirstTopic: React.FC<{ topic: TopicData }> = ({ topic }) => {
           'tablet:flex-row! tablet:justify-between'
         )}
       >
-        {topic.posts.length
+        {topic.posts.length > 0
           ? topic.posts.map((post) => {
               return (
                 <RelatedPost
