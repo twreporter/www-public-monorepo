@@ -10,7 +10,6 @@ export default async function Page() {
     const topics = await fetchTopics()
     return <Topics topics={topics} />
   } catch (error) {
-    console.log('error: ', error)
     logger.error('Error fetching topic data:', error)
     return <div>Failed to load topic data. Please try again later.</div>
   }
