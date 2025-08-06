@@ -1,4 +1,9 @@
-import type { JSX } from 'react'
+
+import * as React from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import type { JSX, Dispatch } from 'react'
+import { createPortal } from 'react-dom'
+// lexical
 import {
   $createLinkNode,
   $isAutoLinkNode,
@@ -12,23 +17,21 @@ import {
   $isLineBreakNode,
   $isNodeSelection,
   $isRangeSelection,
-  BaseSelection,
+  type BaseSelection,
   CLICK_COMMAND,
   COMMAND_PRIORITY_CRITICAL,
   COMMAND_PRIORITY_HIGH,
   COMMAND_PRIORITY_LOW,
   getDOMSelection,
   KEY_ESCAPE_COMMAND,
-  LexicalEditor,
+  type LexicalEditor,
   SELECTION_CHANGE_COMMAND,
 } from 'lexical'
-import { Dispatch, useCallback, useEffect, useRef, useState } from 'react'
-import * as React from 'react'
-import { createPortal } from 'react-dom'
-
+// util
 import { getSelectedNode } from '../../utils/getSelectedNode'
 import { setFloatingElemPositionForLinkEditor } from '../../utils/setFloatingElemPositionForLinkEditor'
 import { sanitizeUrl } from '../../utils/url'
+// component
 import {
   LinkEditorBox,
   LinkView,
@@ -38,6 +41,9 @@ import {
   ButtonCancel,
   ButtonConfirm,
 } from './style'
+
+// global var
+const defaultUrlPrefix = 'https://'
 
 function preventDefault(
   event: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLElement>
@@ -63,7 +69,7 @@ function FloatingLinkEditor({
   const editorRef = useRef<HTMLDivElement | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const [linkUrl, setLinkUrl] = useState('')
-  const [editedLinkUrl, setEditedLinkUrl] = useState('https://')
+  const [editedLinkUrl, setEditedLinkUrl] = useState(defaultUrlPrefix)
   const [lastSelection, setLastSelection] = useState<BaseSelection | null>(null)
 
   const $updateLinkEditor = useCallback(() => {
@@ -101,14 +107,13 @@ function FloatingLinkEditor({
     }
 
     const editorElem = editorRef.current
-    const nativeSelection = getDOMSelection(editor._window)
+    const rootElement = editor.getRootElement();
+    const nativeSelection = getDOMSelection(rootElement?.ownerDocument?.defaultView ?? window)
     const activeElement = document.activeElement
 
     if (editorElem === null) {
       return
     }
-
-    const rootElement = editor.getRootElement()
 
     if (selection !== null && rootElement !== null && editor.isEditable()) {
       let domRect: DOMRect | undefined
@@ -134,7 +139,7 @@ function FloatingLinkEditor({
         setFloatingElemPositionForLinkEditor(domRect, editorElem, anchorElem)
       }
       setLastSelection(selection)
-    } else if (!activeElement || activeElement.className !== 'link-input') {
+    } else if (!activeElement || !activeElement.classList.contains('link-input')) {
       if (rootElement !== null) {
         setFloatingElemPositionForLinkEditor(null, editorElem, anchorElem)
       }
@@ -265,7 +270,7 @@ function FloatingLinkEditor({
           }
         })
       }
-      setEditedLinkUrl('https://')
+      setEditedLinkUrl(defaultUrlPrefix)
       setIsLinkEditMode(false)
     }
   }
