@@ -14737,6 +14737,7 @@ __metadata:
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
     "@types/uuid": "npm:^10.0.0"
+    autoprefixer: "npm:^10.4.21"
     clsx: "npm:^2.1.1"
     next: "npm:15.3.5"
     pino: "npm:^9.7.0"
