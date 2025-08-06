@@ -1,6 +1,6 @@
 {
   "name": "www-frontend",
-  "version": "0.1.0-beta.3",
+  "version": "0.1.0-beta.4",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@google-cloud/logging": "^11.2.0",
-    "@twreporter/react-typescript-components": "^0.1.0-beta.3",
+    "@twreporter/react-typescript-components": "^0.1.0-beta.4",
     "clsx": "^2.1.1",
     "next": "15.3.5",
     "pino": "^9.7.0",
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",
-    "@twreporter/tailwind-config": "^0.1.0-beta.3",
+    "@twreporter/tailwind-config": "^0.1.0-beta.4",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
