@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.2](https://github.com/liruchen32/www-public-monorepo/compare/www-frontend@0.1.0-beta.1...www-frontend@0.1.0-beta.2) (2025-08-06)
+
+**Note:** Version bump only for package www-frontend
+
+
+
+
+
 # [0.1.0-beta.1](https://github.com/liruchen32/www-public-monorepo/compare/www-frontend@0.0.2-beta.1...www-frontend@0.1.0-beta.1) (2025-08-06)
 
 
