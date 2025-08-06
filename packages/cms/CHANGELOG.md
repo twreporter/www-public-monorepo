@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.1](https://github.com/liruchen32/www-public-monorepo/compare/www-cms@0.0.8-beta.5...www-cms@0.1.0-beta.1) (2025-08-06)
+
+
+### Bug Fixes
+
+* address review comments ([1fbc12e](https://github.com/liruchen32/www-public-monorepo/commit/1fbc12e6fedb2534add35173fd2bc2ea1a8de0ff))
+* **cms:** add scope for editor header ([40df8f0](https://github.com/liruchen32/www-public-monorepo/commit/40df8f080b430ae291415f3b0f8e775298da6964))
+
+
+### Features
+
+* **cms:** add link & fullscreen to lexical editor ([208d56d](https://github.com/liruchen32/www-public-monorepo/commit/208d56d5cc96d1e0692dfafc9c5eff29dfc0c1f8))
+
+
+
+
+
 # [0.1.0-beta.0](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.0.8-beta.7...www-cms@0.1.0-beta.0) (2025-08-06)
 
 
