@@ -54,6 +54,6 @@ export const formatDate = (
 
   return format.replace(
     /YYYY|YY|MM|M|DD|D|HH|H|mm|m|ss|s/g,
-    (match) => tokenMap[match]
+    (match) => tokenMap[match as keyof typeof tokenMap]
   )
 }
