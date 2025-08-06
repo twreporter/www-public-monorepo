@@ -12,7 +12,7 @@ type RelatedPostProps = {
   imageUrl?: string
   className?: string
 }
-const ReleatedPost: React.FC<RelatedPostProps> = ({
+const RelatedPost: React.FC<RelatedPostProps> = ({
   title,
   slug,
   imageUrl,
