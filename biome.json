@@ -70,6 +70,6 @@
   ],
   "assist": {
     "enabled": null,
-    "actions": { "source": { "organizeImports": "on" } }
+    "actions": { "source": { "organizeImports": "off" } }
   }
 }
