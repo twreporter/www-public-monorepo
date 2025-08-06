@@ -5372,11 +5372,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@twreporter/tailwind-config@npm:^0.1.0-beta.3, @twreporter/tailwind-config@workspace:packages/tailwind-config":
+"@twreporter/tailwind-config@npm:^0.1.0-beta.3":
+  version: 0.1.0-beta.3
+  resolution: "@twreporter/tailwind-config@npm:0.1.0-beta.3"
+  peerDependencies:
+    autoprefixer: ^10.4.0
+    postcss: ^8.5.6
+    tailwindcss: ^4.1.11
+  checksum: 10c0/4f125a6b1a4398caf79ff44d581858d521334ef11bfd8a541ba5ca399d34d5b555330c18751b8a123ea12ff6a41d6f802d6b56ed62b5c36296323f4c9d4f35bf
+  languageName: node
+  linkType: hard
+
+"@twreporter/tailwind-config@workspace:packages/tailwind-config":
   version: 0.0.0-use.local
   resolution: "@twreporter/tailwind-config@workspace:packages/tailwind-config"
   peerDependencies:
-    autoprefixer: ^10.4.0
+    autoprefixer: ^10.4.21
     postcss: ^8.5.6
     tailwindcss: ^4.1.11
   languageName: unknown
