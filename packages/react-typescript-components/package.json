@@ -1,0 +1,44 @@
+{
+  "name": "@twreporter/react-typescript-components",
+  "description": "React components using TypeScript and Tailwind CSS",
+  "author": "twreporter <developer@twreporter.org>",
+  "license": "MIT",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "lib/index.js",
+  "module": "lib/index.mjs",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf lib",
+    "build:styles": "tailwindcss -i ./src/styles.css -o ./lib/styles.css",
+    "build:components": "tsup src/* --outDir lib",
+    "build": "yarn clean && yarn build:components && yarn build:styles",
+    "prepublishOnly": "yarn build"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.11"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@twreporter/tailwind-config": "0.0.1",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
+    "tsup": "^8.5.0",
+    "typescript": "^5"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twreporter/www-public-monorepo.git",
+    "directory": "packages/react-typescript-components"
+  }
+}
