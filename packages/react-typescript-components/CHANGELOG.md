@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.5](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.4...@twreporter/react-typescript-components@0.1.0-beta.5) (2025-08-06)
+
+
+### Features
+
+* **react-typescript-components:** add tsup config ([9d2a7c0](https://github.com/twreporter/www-public-monorepo/commit/9d2a7c03ab91f542c736e434140251345f36db76))
+
+
+
+
+
 # [0.1.0-beta.4](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.3...@twreporter/react-typescript-components@0.1.0-beta.4) (2025-08-06)
 
 **Note:** Version bump only for package @twreporter/react-typescript-components

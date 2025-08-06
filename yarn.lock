@@ -5352,7 +5352,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@twreporter/react-typescript-components@npm:^0.1.0-beta.4, @twreporter/react-typescript-components@workspace:packages/react-typescript-components":
+"@twreporter/react-typescript-components@npm:^0.1.0-beta.5, @twreporter/react-typescript-components@workspace:packages/react-typescript-components":
   version: 0.0.0-use.local
   resolution: "@twreporter/react-typescript-components@workspace:packages/react-typescript-components"
   dependencies:
@@ -14731,7 +14731,7 @@ __metadata:
   dependencies:
     "@google-cloud/logging": "npm:^11.2.0"
     "@tailwindcss/postcss": "npm:^4.1.11"
-    "@twreporter/react-typescript-components": "npm:^0.1.0-beta.4"
+    "@twreporter/react-typescript-components": "npm:^0.1.0-beta.5"
     "@twreporter/tailwind-config": "npm:^0.1.0-beta.4"
     "@types/node": "npm:^22"
     "@types/react": "npm:^19"
