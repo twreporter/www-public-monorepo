@@ -40,17 +40,15 @@ jobs:
             git commit -m "chore: commit changes before version bump" || true
           fi
       
-      - name: Bump version for tailwind-config and react-typescript-components
+      - name: Bump version for all packages
         run: |
           yarn lerna version \
             --conventional-commits \
             --preid beta \
             --conventional-prerelease \
             --include-merged-tags \
-            --message "chore(release): publish prerelease for tailwind-config & react-typescript-components" \
-            --yes \
-            --scope tailwind-config \
-            --scope react-typescript-components
+            --message "chore(release): publish prerelease" \
+            --yes
 
       - name: Publish tailwind-config if version bumped
         id: publish_tailwind_config
@@ -79,19 +77,6 @@ jobs:
           else
             echo "published=false" >> $GITHUB_OUTPUT
           fi
-
-      - name: Bump version for cms and frontend after dependencies published
-        if: steps.publish_tailwind_config.outputs.published == 'true' || steps.publish_react_typescript_components.outputs.published == 'true'
-        run: |
-          yarn lerna version \
-            --conventional-commits \
-            --preid beta \
-            --conventional-prerelease \
-            --include-merged-tags \
-            --message "chore(release): publish prerelease for cms & frontend" \
-            --yes \
-            --scope cms \
-            --scope frontend
 
       - name: Update yarn.lock and commit specific files
         run: |
