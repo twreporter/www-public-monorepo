@@ -22,7 +22,6 @@ const ParagraphVariant = (variant: keyof typeof variantClass) => {
     text = '',
     weight = WEIGHT.normal,
     className = '',
-    children,
     ...props
   }) => (
     <p
@@ -35,7 +34,6 @@ const ParagraphVariant = (variant: keyof typeof variantClass) => {
       {...props}
     >
       {text}
-      {children}
     </p>
   )
   Component.displayName = variant

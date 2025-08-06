@@ -24,7 +24,6 @@ const HeadingVariant = (variant: keyof typeof variantClass) => {
     text = '',
     type = TYPE.default,
     className = '',
-    children,
     ...props
   }) => {
     const htmlTag = variant.toLowerCase() // 產生 'h1', 'h2', ...
@@ -40,10 +39,7 @@ const HeadingVariant = (variant: keyof typeof variantClass) => {
         ),
         ...props,
       },
-      <>
-        {text}
-        {children}
-      </>
+      text
     )
   }
   Component.displayName = variant
