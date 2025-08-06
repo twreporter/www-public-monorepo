@@ -50,10 +50,15 @@ jobs:
             --message "chore(release): publish prerelease" \
             --yes
 
+      - name: Authenticate to npm
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Publish tailwind-config if version bumped
         id: publish_tailwind_config
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           if git diff --name-only HEAD^ HEAD | grep -q "packages/tailwind-config/package.json"; then
             cd packages/tailwind-config
