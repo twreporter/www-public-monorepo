@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.8-beta.7](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.0.8-beta.6...www-cms@0.0.8-beta.7) (2025-08-06)
+
+
+### Bug Fixes
+
+* **cms:** add scope for editor header ([40df8f0](https://github.com/twreporter/www-public-monorepo/commit/40df8f080b430ae291415f3b0f8e775298da6964))
+
+
+
+
+
 ## 0.0.8-beta.6 (2025-07-25)
 
 **Note:** Version bump only for package www-cms
