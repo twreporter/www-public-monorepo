@@ -26,7 +26,7 @@ export const Topics: React.FC<TopicsProps> = ({ topics }) => {
         'hd:w-[1130px]'
       )}
     >
-      <H1 className="text-gray-800">深度專題</H1>
+      <H1 className="text-gray-800" text="深度專題" />
       <Title2 className="pt-[24px]" title={'最新專題'} />
       {topics.length > 0 ? (
         <div className="my-[24px]">
