@@ -12,7 +12,7 @@ export async function POST<T>(req: NextRequest) {
   const body = await req.json()
   const { query, variables } = body
   const requestId = uuidV4()
-  logger.info({ requestId, request: body }, 'incoming API request')
+  logger.info('incoming API request', { requestId, request: body })
 
   const bodyForKeystone: Body = { query }
   if (variables) {
@@ -24,14 +24,14 @@ export async function POST<T>(req: NextRequest) {
       JSON.stringify(bodyForKeystone),
       true
     )
-    logger.debug({ requestId, response }, 'keystone api response')
+    logger.debug('keystone api response', { requestId, response })
     return NextResponse.json(response)
   } catch (error) {
     let errMsg = ''
     if (error instanceof Error) {
       errMsg = error.message
     }
-    logger.error({ requestId, errMsg }, 'keystone api error')
+    logger.error('keystone api error', { requestId, errMsg })
     return NextResponse.json({ error: errMsg }, { status: 500 })
   }
 }
