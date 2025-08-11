@@ -13,9 +13,9 @@ export default async function Page() {
     return <Topics topics={topics} />
   } catch (error) {
     if (error instanceof Error) {
-      logger.error({ err: error }, 'Error fetching topic data')
+      logger.error('Error fetching topic data', { err: error })
     } else {
-      logger.error({ err: String(error) }, 'Error fetching topic data')
+      logger.error('Error fetching topic data', { err: String(error) })
     }
     return <div>Failed to load topic data. Please try again later.</div>
   }
