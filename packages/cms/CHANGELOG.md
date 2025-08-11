@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.3](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.2...www-cms@0.1.0-beta.3) (2025-08-11)
+
+
+### Bug Fixes
+
+* **cms:** post editor full screen height ([e89747c](https://github.com/twreporter/www-public-monorepo/commit/e89747c20b7b4e0ab1418d6f36816a8d64a8a893))
+* **cms:** post editor full screen padding ([ac8149c](https://github.com/twreporter/www-public-monorepo/commit/ac8149c7869a71d863441da6bb66b35e10434d3b))
+
+
+
+
+
 # [0.1.0-beta.2](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.0...www-cms@0.1.0-beta.2) (2025-08-06)
 
 **Note:** Version bump only for package www-cms
