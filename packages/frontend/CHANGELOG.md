@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.15](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.14...www-frontend@0.1.0-beta.15) (2025-08-11)
+
+
+### Bug Fixes
+
+* **frontend:** logger parameter order ([3dd0ebd](https://github.com/twreporter/www-public-monorepo/commit/3dd0ebd9e1cf5c058216881c86aaff025ba8f2e6))
+
+
+
+
+
 # [0.1.0-beta.14](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.13...www-frontend@0.1.0-beta.14) (2025-08-11)
 
 
