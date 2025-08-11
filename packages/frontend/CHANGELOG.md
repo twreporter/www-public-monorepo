@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.16](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.15...www-frontend@0.1.0-beta.16) (2025-08-11)
+
+
+### Bug Fixes
+
+* **frontend:** gcp pino logging ([5eb6f3b](https://github.com/twreporter/www-public-monorepo/commit/5eb6f3b189375719b2f469325361f8533926d1a8))
+
+
+
+
+
 # [0.1.0-beta.15](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.14...www-frontend@0.1.0-beta.15) (2025-08-11)
 
 

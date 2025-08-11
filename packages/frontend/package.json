@@ -1,6 +1,6 @@
 {
   "name": "www-frontend",
-  "version": "0.1.0-beta.15",
+  "version": "0.1.0-beta.16",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
