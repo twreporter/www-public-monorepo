@@ -15,10 +15,10 @@ const logger = pino({
   hooks: {
     logMethod(inputArgs, method) {
       const message = inputArgs[0]
-      const metadata = inputArgs[1] || {}
+      const metadata = inputArgs.length > 1 ? inputArgs[1] : undefined
       const entry = log.entry(
         { resource: { type: 'global' } },
-        { message, ...metadata }
+        metadata ? { message, ...metadata } : { message }
       )
 
       if (isProduction) {
