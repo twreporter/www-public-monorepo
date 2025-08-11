@@ -33,6 +33,12 @@ WORKDIR $APP_DIR
 
 COPY . $APP_DIR
 
+# Enable Corepack for Yarn version management
+RUN corepack enable
+
+# Set Yarn version to 4.6.0
+RUN corepack prepare yarn@4.6.0 --activate
+
 ## Install application dependencies
 RUN SKIP_BUILD_DEPS=true yarn install
 
