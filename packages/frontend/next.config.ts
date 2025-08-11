@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['dev-www-cms.twreporter.org'],
   },
+  serverExternalPackages: ['pino', 'pino-pretty'],
 }
 
 export default nextConfig
