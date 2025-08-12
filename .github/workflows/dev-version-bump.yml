@@ -27,6 +27,11 @@ jobs:
       
       - name: Install dependencies
         run: yarn install --immutable
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
       
       - name: Commit any uncommitted changes
         run: |
