@@ -28,11 +28,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
       
-      - name: Configure Git
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-      
       - name: Commit any uncommitted changes
         run: |
           # Check if there are any uncommitted changes
@@ -73,7 +68,7 @@ jobs:
       - name: Publish react-typescript-components if version bumped
         id: publish_react_typescript_components
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           if git diff --name-only HEAD^ HEAD | grep -q "packages/react-typescript-components/package.json"; then
             cd packages/react-typescript-components
