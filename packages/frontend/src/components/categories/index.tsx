@@ -64,12 +64,15 @@ const CategoryPage: FC<CategoryPageProps> = ({
     setPage(() => page + 1)
   }
   
-  const tabs = useMemo(() => subcategories.map((subcategory) => ({
-    text: subcategory.name,
-    link: `${INTERNAL_ROUTES.category}/${slug}/${subcategory.slug}`,
-    isExternal: false,
-  })), [subcategories, slug])
-  const activeTabIndex = useMemo(() => subcategories.findIndex((subcategory) => subcategory.slug === subcategorySlug), [subcategorySlug, subcategories])
+  const firstTab = useMemo(() => ({ text: '全部', link: `${INTERNAL_ROUTES.category}/${slug}`, isExternal: false}), [slug])
+  const tabs = useMemo(() => [firstTab].concat(
+    subcategories.map((subcategory) => ({
+      text: subcategory.name,
+      link: `${INTERNAL_ROUTES.category}/${slug}/${subcategory.slug}`,
+      isExternal: false,
+    })
+  )), [subcategories, slug, firstTab])
+  const activeTabIndex = useMemo(() => subcategorySlug ? subcategories.findIndex((subcategory) => subcategory.slug === subcategorySlug) + 1 : 0, [subcategorySlug, subcategories])
 
   return (
     <div className={containerClass}>
