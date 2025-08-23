@@ -6,7 +6,7 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   outDir: 'lib',
-  external: ['react', 'react-dom'],
+  external: ['next', 'react', 'react-dom'],
   target: 'esnext',
   treeshake: true,
 })
