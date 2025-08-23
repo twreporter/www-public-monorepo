@@ -4,6 +4,8 @@ import { SWRConfig, unstable_serialize } from 'swr'
 import { fetchTagWithFirstPagePost } from '@/fetchers/server/tag'
 // components
 import TagPage from '@/components/tags'
+// constants
+import { POSTS_PER_PAGE } from '@/constants'
 // utils
 import { tagPostsKey } from '@/fetchers/key'
 //import logger from "@/utils/logger"
@@ -17,7 +19,7 @@ export default async function Page({
   try {
     const tag = await fetchTagWithFirstPagePost({ slug })
     // for swr caching
-    const swrKey = tagPostsKey({ slug, take: 1, skip: 0 })
+    const swrKey = tagPostsKey({ slug, take: POSTS_PER_PAGE, skip: 0 })
 
     return (
       <SWRConfig

@@ -3,13 +3,8 @@ import useSWR, { type SWRConfiguration } from 'swr'
 import type { ArticleMeta } from '@/type/article'
 import type { PostMetaFromRes } from '@/fetchers/type'
 // utils
-import { getImageLink } from '@/utils/get-image-link'
 import { tagPostsKey } from '@/fetchers/key'
-// lodash
-import { get } from 'lodash'
-const _ = {
-  get,
-}
+import getPostMeta from '@/utils/get-post-meta'
 
 type TagDataFromRes = {
   slug: string
@@ -96,16 +91,7 @@ const fetchPostsOfATag = async (
     throw 'not found'
   }
 
-  return tag.posts.map(({ ogImage, subcategories, tags, ...rest }) => ({
-    image: ogImage ? { src: getImageLink(ogImage), alt: ogImage.name } : undefined,
-    category: _.get(subcategories, '[0].category.name', ''),
-    tags: tags.map(({ slug, ...rest}) => ({
-      slug,
-      selected: slug === tag.slug,
-      ...rest
-    })),
-    ...rest
-  }))
+  return tag.posts.map(getPostMeta)
 }
 
 const usePostsOfATag = (params: FetchPostsOfATagParams, options?: SWRConfiguration<ArticleMeta[]>) => {

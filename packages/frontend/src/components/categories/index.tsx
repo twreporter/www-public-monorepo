@@ -3,15 +3,18 @@
 import { type FC, useState, useMemo } from 'react'
 import clsx from 'clsx'
 // fetcher
-import usePostsOfATag from '@/fetchers/tag'
+import usePostsOfACategorySet from '@/fetchers/category'
 // components
 import ArticleCard from '@/components/article-card'
 import Pagination from '@/components/pagination'
 import Loading from '@/components/loading'
-// @twreporter
-import { Title1 } from '@twreporter/react-typescript-components/lib/title-bar'
+// type
+import type { Category } from '@/type/category'
 // constants
+import { INTERNAL_ROUTES } from '@/constants/routes'
 import { POSTS_PER_PAGE } from '@/constants'
+// @twreporter
+import { TitleTab } from '@twreporter/react-typescript-components/lib/title-bar'
 // lodash
 import { ceil } from 'lodash'
 const _ = {
@@ -30,22 +33,24 @@ const listClass = clsx(
   `grid grid-cols-1 tablet:grid-cols-2 gap-x-[20px] gap-y-[40px]`,
 )
 
-type TagPageProps = {
-  slug: string
-  name: string
+type CategoryPageProps = Category & {
+  subcategorySlug?: string
   totalPosts: number
 }
-const TagPage: FC<TagPageProps> = ({
+const CategoryPage: FC<CategoryPageProps> = ({
   slug,
+  subcategorySlug,
   name,
+  subcategories = [],
   totalPosts,
 }) => {
   const [page, setPage] = useState(1)
 
   const totalPage = useMemo(() => _.ceil(totalPosts/POSTS_PER_PAGE), [totalPosts])
-  const { posts, isLoading } = usePostsOfATag(
+  const { posts, isLoading } = usePostsOfACategorySet(
     {
       slug,
+      subcategorySlug,
       take: POSTS_PER_PAGE,
       skip: (page - 1)*POSTS_PER_PAGE
     },
@@ -58,10 +63,17 @@ const TagPage: FC<TagPageProps> = ({
   const handleClickNext = () => {
     setPage(() => page + 1)
   }
+  
+  const tabs = useMemo(() => subcategories.map((subcategory) => ({
+    text: subcategory.name,
+    link: `${INTERNAL_ROUTES.category}/${slug}/${subcategory.slug}`,
+    isExternal: false,
+  })), [subcategories, slug])
+  const activeTabIndex = useMemo(() => subcategories.findIndex((subcategory) => subcategory.slug === subcategorySlug), [subcategorySlug, subcategories])
 
   return (
     <div className={containerClass}>
-      <Title1 title={`# ${name}`} />
+      <TitleTab title={name} tabs={tabs} activeTabIndex={activeTabIndex}/>
       { posts.length === 0 && isLoading ? <Loading /> : (
         <div className={listClass}>
           { posts.map(({ slug, ...rest}) => <ArticleCard key={`meta-a-${slug}`} slug={slug} {...rest} />) }
@@ -78,4 +90,4 @@ const TagPage: FC<TagPageProps> = ({
   )
 }
 
-export default TagPage
+export default CategoryPage

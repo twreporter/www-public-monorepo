@@ -2,13 +2,10 @@ import { keystoneFetch } from '@/app/api/graphql/keystone'
 // type
 import type { ArticleMeta } from '@/type/article'
 import type { PostMetaFromRes } from '@/fetchers/type'
+// constants
+import { POSTS_PER_PAGE } from '@/constants'
 // utils
-import { getImageLink } from '@/utils/get-image-link'
-// lodash
-import { get } from 'lodash'
-const _ = {
-  get,
-}
+import getPostMeta from '@/utils/get-post-meta'
 
 type TagDataFromRes = {
   slug: string
@@ -32,7 +29,7 @@ export const fetchTagWithFirstPagePost = async ({
   slug,
 }: FetchTagParams): Promise<TagData> => {
   const query = `
-    query Query($where: TagWhereUniqueInput!, $take: Int, $skip: Int!, $orderBy: [PostOrderByInput!]!, $postsWhere2: PostWhereInput!) {
+    query Tag($where: TagWhereUniqueInput!, $take: Int, $skip: Int!, $orderBy: [PostOrderByInput!]!, $postsWhere2: PostWhereInput!) {
       tag(where: $where) {
         slug
         name
@@ -67,7 +64,7 @@ export const fetchTagWithFirstPagePost = async ({
     where: {
       slug,
     },
-    take: 1,
+    take: POSTS_PER_PAGE,
     skip: 0,
     orderBy: [
       {
@@ -96,16 +93,7 @@ export const fetchTagWithFirstPagePost = async ({
       name: tag.name,
       slug: tag.slug,
       postsCount: tag.postsCount,
-      posts: tag.posts.map(({ ogImage, subcategories, tags, ...rest }) => ({
-        image: ogImage ? { src: getImageLink(ogImage), alt: ogImage.name } : undefined,
-        category: _.get(subcategories, '[0].category.name', ''),
-        tags: tags.map(({ slug, ...rest}) => ({
-          slug,
-          selected: slug === tag.slug,
-          ...rest
-        })),
-        ...rest
-      }))
+      posts: tag.posts.map(getPostMeta)
     }
   } catch (err) {
     throw new Error(`Failed to fetch tag data, slug: ${slug}, err: ${err}`)
