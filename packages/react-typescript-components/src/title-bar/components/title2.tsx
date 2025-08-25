@@ -19,11 +19,13 @@ const Title2: React.FC<Title2Props> = ({
 }) => {
   return (
     <div className={clsx('flex justify-between flex-col', className)}>
-      <div className={clsx('flex items-baseline gap-[16px]')}>
-        <H5 className="text-gray-800" text={title} />
-        {subtitle ? <P2 className="text-gray-600" text={subtitle} /> : null}
+      <div className="flex flex-row justify-between">
+        <div className={clsx('flex items-baseline gap-[16px]')}>
+          <H5 className="text-gray-800" text={title} />
+          {subtitle ? <P2 className="text-gray-600" text={subtitle} /> : null}
+        </div>
+        {renderButton || null}
       </div>
-      {renderButton || null}
       <div
         className={clsx(
           'w-full h-[1px] bg-gray-800 mt-[8px]',

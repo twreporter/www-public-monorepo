@@ -51,6 +51,12 @@ const TitleTab: FC<TitleTabProps> = ({
           </div>
         ) : null
       }
+      <div
+        className={clsx(
+          'w-full h-[1px] bg-gray-300 mt-[0px]',
+          'desktop:mt-[0px]'
+        )}
+      />
     </div>
   )
 }

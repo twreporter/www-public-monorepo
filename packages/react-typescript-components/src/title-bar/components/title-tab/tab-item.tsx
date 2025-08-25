@@ -3,7 +3,7 @@ import type { FC } from 'react'
 // type
 import type { Tab } from './type'
 // component
-import CustomizedLink from '../../../customized-link'
+import { ExternalLink, InternalLink } from '../../../customized-link'
 import { TextButton } from '../../../button'
 
 type TabItemProps = Tab & {
@@ -18,12 +18,13 @@ const TabItem: FC<TabItemProps> = ({
   onClick,
   className = ''
 }) => {
+  const CustomizedLink = isExternal ? ExternalLink : InternalLink
   return (
     <button className={clsx(
       'flex shrink-0 mr-[24px] last:mr-0',
       className
     )} onClick={onClick} type="button">
-      <CustomizedLink to={link} isExternal={isExternal} >
+      <CustomizedLink to={link} >
         <TextButton
           text={text}
           active={isActive}

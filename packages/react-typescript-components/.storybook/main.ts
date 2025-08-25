@@ -20,6 +20,14 @@ const config: StorybookConfig = {
   "framework": {
     "name": getAbsolutePath('@storybook/react-vite'),
     "options": {}
-  }
+  },
+  async viteFinal(config) {
+    const { mergeConfig } = await import('vite')
+    return mergeConfig(config, {
+      define: {
+        "process.env": {}
+      }
+    })
+  },
 }
 export default config
