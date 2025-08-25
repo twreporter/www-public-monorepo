@@ -1,7 +1,10 @@
+import React, { useState } from 'react'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
+// official plugins
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
-import React, { useState } from 'react'
+import { ListPlugin } from '@lexical/react/LexicalListPlugin'
+// local plugins
 import ShortcutsPlugin from './plugins/ShortcutsPlugin'
 import ToolbarPlugin from './plugins/ToolbarPlugin'
 import LinkPlugin from './plugins/LinkPlugin'
@@ -21,6 +24,8 @@ export default function Editor(): JSX.Element {
       setFloatingAnchorElem(_floatingAnchorElem)
     }
   }
+
+  const listStrictIndent = false
 
   return (
     <>
@@ -46,14 +51,13 @@ export default function Editor(): JSX.Element {
           ErrorBoundary={LexicalErrorBoundary}
         />
         <LinkPlugin />
+        <ListPlugin hasStrictIndent={listStrictIndent} />
         {floatingAnchorElem && (
-          <>
-            <FloatingLinkEditorPlugin
-              anchorElem={floatingAnchorElem}
-              isLinkEditMode={isLinkEditMode}
-              setIsLinkEditMode={setIsLinkEditMode}
-            />
-          </>
+          <FloatingLinkEditorPlugin
+            anchorElem={floatingAnchorElem}
+            isLinkEditMode={isLinkEditMode}
+            setIsLinkEditMode={setIsLinkEditMode}
+          />
         )}
       </div>
     </>

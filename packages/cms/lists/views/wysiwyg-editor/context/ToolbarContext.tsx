@@ -1,10 +1,3 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 import type { ElementFormatType } from 'lexical'
 import React, {
   createContext,
@@ -67,6 +60,7 @@ const INITIAL_TOOLBAR_STATE = {
   isUppercase: false,
   isCapitalize: false,
   rootType: 'root' as keyof typeof rootTypeToRootName,
+  listStartNumber: null as number | null,
 }
 
 type ToolbarState = typeof INITIAL_TOOLBAR_STATE
