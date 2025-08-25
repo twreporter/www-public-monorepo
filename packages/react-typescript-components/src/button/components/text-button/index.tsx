@@ -24,7 +24,7 @@ type TextButtonProps = {
 const TextButton: FC<TextButtonProps> & {
   Size: typeof Size
   Style: typeof Style
-  THEME?: Theme
+  THEME: typeof THEME
 } = ({
   text,
   leftIconComponent,
@@ -94,6 +94,6 @@ const TextButton: FC<TextButtonProps> & {
 }
 TextButton.Size = Size
 TextButton.Style = Style
-//TextButton.THEME = THEME
+TextButton.THEME = THEME
 
 export default TextButton
