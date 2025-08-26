@@ -15,3 +15,5 @@ packages/**/dist
 
 .yarn
 .pnp*
+*storybook.log
+storybook-static

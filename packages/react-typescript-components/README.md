@@ -4,7 +4,7 @@ React components built with TypeScript and Tailwind CSS.
 
 ## Roadmap
 
-- [ ] add storybook
+- [X] add storybook
 - [ ] add test
 
 ## Installation
@@ -36,6 +36,16 @@ function App() {
 ```
 
 ## Development & Build
+
+### Storybook
+
+Run storybook on localhost
+
+```bash
+yarn storybook
+```
+
+### Build
 
 ```bash
 yarn build

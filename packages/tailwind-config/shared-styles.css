@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   /* Brand */
@@ -43,7 +43,7 @@
   --color-gray-black: #000000;
 
   /* Opacity colors */
-  --color-opacity-white-0: rgba(255, 255, 255, 0.0);
+  --color-opacity-white-0: rgba(255, 255, 255, 0);
   --color-opacity-white-02: rgba(255, 255, 255, 0.2);
   --color-opacity-white-05: rgba(255, 255, 255, 0.5);
   --color-opacity-white-08: rgba(255, 255, 255, 0.8);
@@ -71,9 +71,9 @@
   --color-pink-article-dark-pink: #ef7ede;
 
   /* Font families */
-  --font-title: 'merriweather', 'source-han-serif-tc', serif;
-  --font-default: 'Roboto Slab', 'Noto Sans TC', sans-serif, 'Tauhu Oo';
-  --font-default-fallback: 'Roboto Slab', sans-serif;
+  --font-title: "merriweather", "source-han-serif-tc", serif;
+  --font-default: "Roboto Slab", "Noto Sans TC", sans-serif, "Tauhu Oo";
+  --font-default-fallback: "Roboto Slab", sans-serif;
 
   /* Font weights */
   --font-weight-extra-light: 100;
