@@ -43,12 +43,12 @@ const TitleTab: FC<TitleTabProps> = ({
           )}
         >
           {tabs.map((tab, index) => {
-            tab.isActive = index === activeIndex
+            const tabProps = { ...tab, isActive: index === activeIndex }
             const handleClick = () => {
               setActiveIndex(index)
             }
             return (
-              <TabItem {...tab} key={`tab-${index}`} onClick={handleClick} />
+              <TabItem {...tabProps} key={`tab-${tab.text}-${index}`} onClick={handleClick} />
             )
           })}
         </div>
