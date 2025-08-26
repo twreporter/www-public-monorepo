@@ -8,7 +8,7 @@ import CategoryPage from '@/components/categories'
 import { POSTS_PER_PAGE } from '@/constants'
 // utils
 import { categoryPostsKey } from '@/fetchers/key'
-//import logger from "@/utils/logger"
+import logger from "@/utils/logger"
 
 export default async function Page({
   params,
@@ -49,7 +49,7 @@ export default async function Page({
       </SWRConfig>
     )
   } catch (error) {
-    console.error(error, 'Error fetching category data')
+    logger.error(error, 'Error fetching category data')
     return <div>Failed to load category data. Please try again later.</div>
   }
 }

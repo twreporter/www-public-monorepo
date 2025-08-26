@@ -8,7 +8,7 @@ import TagPage from '@/components/tags'
 import { POSTS_PER_PAGE } from '@/constants'
 // utils
 import { tagPostsKey } from '@/fetchers/key'
-//import logger from "@/utils/logger"
+import logger from "@/utils/logger"
 
 export default async function Page({
   params,
@@ -39,7 +39,7 @@ export default async function Page({
       </SWRConfig>
     )
   } catch (error) {
-    console.error(error, 'Error fetching tag data')
+    logger.error(error, 'Error fetching tag data')
     return <div>Failed to load tag data. Please try again later.</div>
   }
 }
