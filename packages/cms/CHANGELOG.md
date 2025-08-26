@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.6](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.5...www-cms@0.1.0-beta.6) (2025-08-26)
+
+
+### Bug Fixes
+
+* **cms:** format & remove redundant var ([2279066](https://github.com/twreporter/www-public-monorepo/commit/22790663f4f405ff8de4f71e89cf8d9522851ddf))
+
+
+### Features
+
+* **cms:** add numbered & bullet list ([2722468](https://github.com/twreporter/www-public-monorepo/commit/272246899c75f762e01b946dc03a6f8ada67ee25))
+
+
+
+
+
 # [0.1.0-beta.5](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.4...www-cms@0.1.0-beta.5) (2025-08-11)
 
 **Note:** Version bump only for package www-cms
