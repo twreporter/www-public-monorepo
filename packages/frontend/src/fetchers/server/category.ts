@@ -131,7 +131,7 @@ export const fetchCategoryWithFirstPagePost = async ({
       name: category.name,
       slug: category.slug,
       postsCount: category.postsCount,
-      posts: category.posts.map(getPostMeta),
+      posts: category.posts.map(getPostMeta()),
       subcategories: category.subcategories,
     }
   } catch (err) {

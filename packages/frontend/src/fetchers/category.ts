@@ -124,7 +124,7 @@ export const fetchPostsOfACategorySet = async (
     throw 'not found'
   }
 
-  return category.posts.map(getPostMeta)
+  return category.posts.map(getPostMeta())
 }
 
 const usePostsOfACategorySet = (

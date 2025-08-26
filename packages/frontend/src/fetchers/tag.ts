@@ -95,7 +95,7 @@ const fetchPostsOfATag = async (
     throw 'not found'
   }
 
-  return tag.posts.map(getPostMeta)
+  return tag.posts.map(getPostMeta(slug))
 }
 
 const usePostsOfATag = (

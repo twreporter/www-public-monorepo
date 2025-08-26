@@ -11,12 +11,19 @@ const _ = {
 
 type GetPostMetaFunc = (post: PostMetaFromRes) => ArticleMeta
 
-const getPostMeta: GetPostMetaFunc = ({ ogImage, subcategories, ...rest }) => ({
+const getPostMeta = (selectedTagSlug?: string):GetPostMetaFunc => {
+  return ({ ogImage, subcategories, tags, ...rest }) => ({
   image: ogImage
     ? { src: getImageLink(ogImage), alt: ogImage.name }
     : undefined,
   category: _.get(subcategories, '[0].category.name', ''),
+  tags: selectedTagSlug ? tags.map(({ slug, ...rest}) => ({
+    slug,
+    selected: slug === selectedTagSlug,
+    ...rest
+  })) : tags,
   ...rest,
-})
+  })
+}
 
 export default getPostMeta
