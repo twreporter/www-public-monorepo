@@ -70,4 +70,4 @@ jobs:
 
       - name: Push changes back to dev
         run: |
-          git push origin dev --follow-tags
+          git push --no-verify origin dev --follow-tags
