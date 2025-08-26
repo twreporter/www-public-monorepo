@@ -10,11 +10,7 @@ type Title1Props = {
   className?: string
 }
 
-const Title1: FC<Title1Props> = ({
-  title,
-  subtitle = '',
-  className = '',
-}) => {
+const Title1: FC<Title1Props> = ({ title, subtitle = '', className = '' }) => {
   return (
     <div className={clsx('flex justify-between flex-col', className)}>
       <div className={clsx('flex items-baseline gap-[16px]')}>

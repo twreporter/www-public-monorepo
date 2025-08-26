@@ -30,7 +30,7 @@ const containerClass = clsx(
 
 const listClass = clsx(
   'mt-[45px]',
-  `grid grid-cols-1 tablet:grid-cols-2 gap-x-[20px] gap-y-[40px]`,
+  `grid grid-cols-1 tablet:grid-cols-2 gap-x-[20px] gap-y-[40px]`
 )
 
 type CategoryPageProps = Category & {
@@ -46,15 +46,16 @@ const CategoryPage: FC<CategoryPageProps> = ({
 }) => {
   const [page, setPage] = useState(1)
 
-  const totalPage = useMemo(() => _.ceil(totalPosts/POSTS_PER_PAGE), [totalPosts])
-  const { posts, isLoading } = usePostsOfACategorySet(
-    {
-      slug,
-      subcategorySlug,
-      take: POSTS_PER_PAGE,
-      skip: (page - 1)*POSTS_PER_PAGE
-    },
-  ) // todo: error
+  const totalPage = useMemo(
+    () => _.ceil(totalPosts / POSTS_PER_PAGE),
+    [totalPosts]
+  )
+  const { posts, isLoading } = usePostsOfACategorySet({
+    slug,
+    subcategorySlug,
+    take: POSTS_PER_PAGE,
+    skip: (page - 1) * POSTS_PER_PAGE,
+  }) // todo: error
 
   const handleClickPrev = () => {
     setPage(() => page - 1)
@@ -63,23 +64,46 @@ const CategoryPage: FC<CategoryPageProps> = ({
   const handleClickNext = () => {
     setPage(() => page + 1)
   }
-  
-  const firstTab = useMemo(() => ({ text: '全部', link: `${INTERNAL_ROUTES.category}/${slug}`, isExternal: false}), [slug])
-  const tabs = useMemo(() => [firstTab].concat(
-    subcategories.map((subcategory) => ({
-      text: subcategory.name,
-      link: `${INTERNAL_ROUTES.category}/${slug}/${subcategory.slug}`,
+
+  const firstTab = useMemo(
+    () => ({
+      text: '全部',
+      link: `${INTERNAL_ROUTES.category}/${slug}`,
       isExternal: false,
-    })
-  )), [subcategories, slug, firstTab])
-  const activeTabIndex = useMemo(() => subcategorySlug ? subcategories.findIndex((subcategory) => subcategory.slug === subcategorySlug) + 1 : 0, [subcategorySlug, subcategories])
+    }),
+    [slug]
+  )
+  const tabs = useMemo(
+    () =>
+      [firstTab].concat(
+        subcategories.map((subcategory) => ({
+          text: subcategory.name,
+          link: `${INTERNAL_ROUTES.category}/${slug}/${subcategory.slug}`,
+          isExternal: false,
+        }))
+      ),
+    [subcategories, slug, firstTab]
+  )
+  const activeTabIndex = useMemo(
+    () =>
+      subcategorySlug
+        ? subcategories.findIndex(
+            (subcategory) => subcategory.slug === subcategorySlug
+          ) + 1
+        : 0,
+    [subcategorySlug, subcategories]
+  )
 
   return (
     <div className={containerClass}>
-      <TitleTab title={name} tabs={tabs} activeTabIndex={activeTabIndex}/>
-      { posts.length === 0 && isLoading ? <Loading /> : (
+      <TitleTab title={name} tabs={tabs} activeTabIndex={activeTabIndex} />
+      {posts.length === 0 && isLoading ? (
+        <Loading />
+      ) : (
         <div className={listClass}>
-          { posts.map(({ slug, ...rest}) => <ArticleCard key={`meta-a-${slug}`} slug={slug} {...rest} />) }
+          {posts.map(({ slug, ...rest }) => (
+            <ArticleCard key={`meta-a-${slug}`} slug={slug} {...rest} />
+          ))}
         </div>
       )}
       <Pagination

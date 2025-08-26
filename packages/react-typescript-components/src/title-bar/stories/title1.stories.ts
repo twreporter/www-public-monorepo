@@ -15,14 +15,14 @@ export const Basic: Story = {
     title: '標題',
     subtitle: '副標',
   },
-  parameters: { controls: { exclude: ['className'] }},
+  parameters: { controls: { exclude: ['className'] } },
 }
 
 export const TagBar: Story = {
   args: {
     title: '#報導者',
   },
-  parameters: { controls: { exclude: ['subtitle', 'className']}},
+  parameters: { controls: { exclude: ['subtitle', 'className'] } },
 }
 
 export const BookmarkBar: Story = {
@@ -30,5 +30,5 @@ export const BookmarkBar: Story = {
     title: '我的書籤',
     subtitle: '全部 55',
   },
-  parameters: { controls: { exclude: ['className'] }},
+  parameters: { controls: { exclude: ['className'] } },
 }

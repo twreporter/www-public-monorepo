@@ -18,7 +18,11 @@ type FetchCategoryParams = {
 }
 
 export const fetchPostsOfACategorySet = async (
-  key: readonly [string, 'CategoryPosts', { slug: string; subcategorySlug?: string; take: number; skip: number }]
+  key: readonly [
+    string,
+    'CategoryPosts',
+    { slug: string; subcategorySlug?: string; take: number; skip: number },
+  ]
 ): Promise<ArticleMeta[]> => {
   const [, , params] = key
   const { slug, subcategorySlug, take, skip } = params
@@ -85,15 +89,15 @@ export const fetchPostsOfACategorySet = async (
       state: {
         equals: 'published',
       },
-    }
+    },
   }
   if (subcategorySlug) {
     variables.postsWhere2.subcategories = {
       some: {
         slug: {
-          equals: subcategorySlug
-        }
-      }
+          equals: subcategorySlug,
+        },
+      },
     }
   }
 
@@ -108,7 +112,10 @@ export const fetchPostsOfACategorySet = async (
     }),
   })
 
-  if (!res.ok) throw new Error(`Failed to fetch category, slug: ${slug}, subcategory slug: ${subcategorySlug}`)
+  if (!res.ok)
+    throw new Error(
+      `Failed to fetch category, slug: ${slug}, subcategory slug: ${subcategorySlug}`
+    )
 
   const data = await res.json()
 
@@ -120,7 +127,10 @@ export const fetchPostsOfACategorySet = async (
   return category.posts.map(getPostMeta)
 }
 
-const usePostsOfACategorySet = (params: FetchCategoryParams, options?: SWRConfiguration<ArticleMeta[]>) => {
+const usePostsOfACategorySet = (
+  params: FetchCategoryParams,
+  options?: SWRConfiguration<ArticleMeta[]>
+) => {
   const key = params ? categoryPostsKey(params) : null
   const { data, isLoading, error } = useSWR<ArticleMeta[]>(
     key,

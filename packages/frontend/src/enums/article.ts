@@ -3,5 +3,5 @@ export enum Style {
   DEFAULT = 'article',
   PHOTO = 'article:v2:photo',
   INTERACTIVE = 'interactive',
-  EMBEDDED = 'article:v2:embedded'
+  EMBEDDED = 'article:v2:embedded',
 }

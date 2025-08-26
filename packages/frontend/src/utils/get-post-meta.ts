@@ -12,9 +12,11 @@ const _ = {
 type GetPostMetaFunc = (post: PostMetaFromRes) => ArticleMeta
 
 const getPostMeta: GetPostMetaFunc = ({ ogImage, subcategories, ...rest }) => ({
-  image: ogImage ? { src: getImageLink(ogImage), alt: ogImage.name } : undefined,
+  image: ogImage
+    ? { src: getImageLink(ogImage), alt: ogImage.name }
+    : undefined,
   category: _.get(subcategories, '[0].category.name', ''),
-  ...rest
+  ...rest,
 })
 
 export default getPostMeta

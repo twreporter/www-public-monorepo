@@ -75,7 +75,7 @@ export const fetchTagWithFirstPagePost = async ({
       state: {
         equals: 'published',
       },
-    }
+    },
   }
 
   try {
@@ -93,7 +93,7 @@ export const fetchTagWithFirstPagePost = async ({
       name: tag.name,
       slug: tag.slug,
       postsCount: tag.postsCount,
-      posts: tag.posts.map(getPostMeta)
+      posts: tag.posts.map(getPostMeta),
     }
   } catch (err) {
     throw new Error(`Failed to fetch tag data, slug: ${slug}, err: ${err}`)

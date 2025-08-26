@@ -13,13 +13,21 @@ import { categoryPostsKey } from '@/fetchers/key'
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string, subcategorySlug: string }>
+  params: Promise<{ slug: string; subcategorySlug: string }>
 }) {
   const { slug, subcategorySlug } = await params
   try {
-    const category = await fetchCategoryWithFirstPagePost({ slug, subcategorySlug })
+    const category = await fetchCategoryWithFirstPagePost({
+      slug,
+      subcategorySlug,
+    })
     // for swr caching
-    const swrKey = categoryPostsKey({ slug, subcategorySlug, take: POSTS_PER_PAGE, skip: 0 })
+    const swrKey = categoryPostsKey({
+      slug,
+      subcategorySlug,
+      take: POSTS_PER_PAGE,
+      skip: 0,
+    })
 
     return (
       <SWRConfig

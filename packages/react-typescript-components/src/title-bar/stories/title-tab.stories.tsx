@@ -20,7 +20,7 @@ export const Basic: Story = {
       { text: '子分類4', isExternal: true, link: 'https://www.google.com' },
       { text: '子分類5', isExternal: true, link: 'https://www.google.com' },
       { text: '子分類6', isExternal: true, link: 'https://www.google.com' },
-    ]
+    ],
   },
-  parameters: { controls: { exclude: ['className'] }},
+  parameters: { controls: { exclude: ['className'] } },
 }

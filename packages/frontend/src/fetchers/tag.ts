@@ -18,7 +18,11 @@ export type FetchPostsOfATagParams = {
 }
 
 const fetchPostsOfATag = async (
-  key: readonly [string, 'TagPosts', { slug: string; take: number; skip: number }]
+  key: readonly [
+    string,
+    'TagPosts',
+    { slug: string; take: number; skip: number },
+  ]
 ): Promise<ArticleMeta[]> => {
   const [, , params] = key
   const { slug, take, skip } = params
@@ -69,7 +73,7 @@ const fetchPostsOfATag = async (
       state: {
         equals: 'published',
       },
-    }
+    },
   }
 
   const res = await fetch(url, {
@@ -94,7 +98,10 @@ const fetchPostsOfATag = async (
   return tag.posts.map(getPostMeta)
 }
 
-const usePostsOfATag = (params: FetchPostsOfATagParams, options?: SWRConfiguration<ArticleMeta[]>) => {
+const usePostsOfATag = (
+  params: FetchPostsOfATagParams,
+  options?: SWRConfiguration<ArticleMeta[]>
+) => {
   const key = params ? tagPostsKey(params) : null
   const { data, isLoading, error } = useSWR<ArticleMeta[]>(
     key,

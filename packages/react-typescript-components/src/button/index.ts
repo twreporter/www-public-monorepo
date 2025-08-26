@@ -1,7 +1,5 @@
 import TextButton from './components/text-button'
 
-export {
-  TextButton,
-}
+export { TextButton }
 
 export default { TextButton }

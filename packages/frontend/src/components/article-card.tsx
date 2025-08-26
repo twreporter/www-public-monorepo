@@ -14,7 +14,10 @@ import { Style } from '@/enums/article'
 import { formatDate } from '@/utils/date-formatters'
 // @twreporter
 import { H3 } from '@twreporter/react-typescript-components/lib/text/heading'
-import { P1, P3 } from '@twreporter/react-typescript-components/lib/text/paragraph'
+import {
+  P1,
+  P3,
+} from '@twreporter/react-typescript-components/lib/text/paragraph'
 
 // style
 const containerClass = clsx(
@@ -22,14 +25,11 @@ const containerClass = clsx(
   'pb-[40px]'
 )
 
-const imageClass = clsx(
-  'w-full',
-  'object-cover',
-)
+const imageClass = clsx('w-full', 'object-cover')
 
 const textContainClass = clsx(
   'flex flex-col justify-center items-start',
-  'my-[12px] hd:m-[12px] desktop:m-[12px] tablet:m-[12px]',
+  'my-[12px] hd:m-[12px] desktop:m-[12px] tablet:m-[12px]'
 )
 
 const tagContainerClass = clsx(
@@ -73,33 +73,61 @@ const ArticleCard: FC<ArticleCardProps> = ({
   category,
   publishedDate,
   image,
-  tags
+  tags,
 }) => {
-  const path = style === Style.INTERACTIVE ? INTERNAL_ROUTES.interactiveArticle : INTERNAL_ROUTES.article
+  const path =
+    style === Style.INTERACTIVE
+      ? INTERNAL_ROUTES.interactiveArticle
+      : INTERNAL_ROUTES.article
   const link = `${path}/${encodeURIComponent(slug)}`
 
   return (
     <div className={containerClass}>
-      <Link href={link} className="hover:opacity-70 transition-opacity duration-200 ease-linear">
-        { image ? <ImageWithSkeleton className={imageClass} src={image.src} alt={image.alt || `hero image of ${slug}`} /> : null }
+      <Link
+        href={link}
+        className="hover:opacity-70 transition-opacity duration-200 ease-linear"
+      >
+        {image ? (
+          <ImageWithSkeleton
+            className={imageClass}
+            src={image.src}
+            alt={image.alt || `hero image of ${slug}`}
+          />
+        ) : null}
         <div className={textContainClass}>
-          { category ? <P3 className="text-brand-heavy pb-[10px]" text={category} /> : null }
-          <H3 className="text-gray-800 pb-[10px]" text={title} type={H3.Type.article} />
+          {category ? (
+            <P3 className="text-brand-heavy pb-[10px]" text={category} />
+          ) : null}
+          <H3
+            className="text-gray-800 pb-[10px]"
+            text={title}
+            type={H3.Type.article}
+          />
           <P1 className="text-gray-800" text={subtitle} />
-          { publishedDate ? <P3 className="text-gray-800 self-end pt-[16px]" text={formatDate(publishedDate, 'YYYY.MM.DD')} /> : null }
+          {publishedDate ? (
+            <P3
+              className="text-gray-800 self-end pt-[16px]"
+              text={formatDate(publishedDate, 'YYYY.MM.DD')}
+            />
+          ) : null}
         </div>
       </Link>
-      {
-        tags && tags.length > 0 ? (
-          <div className={tagContainerClass}>
-            { tags.map(({ slug, name, selected }) => (
-              <Link href={`${INTERNAL_ROUTES.tag}/${encodeURIComponent(slug)}`} key={`tag-${slug}`}>
-                <P3 className={getTagClass(selected)} text={name} weight={P3.Weight.bold} />
-              </Link>
-            ))}
-          </div>
-        ) : null
-      }
+      {tags && tags.length > 0 ? (
+        <div className={tagContainerClass}>
+          {tags.map(({ slug, name, selected }) => (
+            <Link
+              href={`${INTERNAL_ROUTES.tag}/${encodeURIComponent(slug)}`}
+              key={`tag-${slug}`}
+            >
+              <P3
+                className={getTagClass(selected)}
+                text={name}
+                weight={P3.Weight.bold}
+              />
+            </Link>
+          ))}
+        </div>
+      ) : null}
     </div>
   )
 }

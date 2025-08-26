@@ -16,21 +16,17 @@ export const Basic: Story = {
     title: 'RWD 標題',
     subtitle: '副標',
   },
-  parameters: { controls: { exclude: ['className'] }},
+  parameters: { controls: { exclude: ['className'] } },
 }
 
 export const WithButton: Story = {
   render: (args) => {
-    const buttonJSX = (
-      <TextButton
-        text="NOT RWD 按鈕"
-      />
-    )
+    const buttonJSX = <TextButton text="NOT RWD 按鈕" />
     return <Title2 {...args} renderButton={buttonJSX} />
   },
   args: {
     title: 'RWD 標題',
     subtitle: '副標',
   },
-  parameters: { controls: { exclude: ['className', 'renderButton'] }},
+  parameters: { controls: { exclude: ['className', 'renderButton'] } },
 }

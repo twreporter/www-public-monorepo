@@ -30,27 +30,29 @@ const TitleTab: FC<TitleTabProps> = ({
   return (
     <div className="flex flex-col w-full text-gray-800">
       <H1 text={title} />
-      {
-        tabs.length > 0 ? (
-          <div ref={ref} className={clsx(
+      {tabs.length > 0 ? (
+        <div
+          ref={ref}
+          className={clsx(
             'flex items-center',
             'overflow-x-scroll scrollbar:!w-0',
             {
-              '[mask-image:linear-gradient(to_left,rgba(241,241,241,0),#f1f1f1_48px)] [-webkit-mask-image:linear-gradient(to_left,rgba(241,241,241,0),#f1f1f1_48px)]': showGradientMask,
+              '[mask-image:linear-gradient(to_left,rgba(241,241,241,0),#f1f1f1_48px)] [-webkit-mask-image:linear-gradient(to_left,rgba(241,241,241,0),#f1f1f1_48px)]':
+                showGradientMask,
             }
-          )}>
-            {
-              tabs.map((tab, index) => {
-                tab.isActive = index === activeIndex
-                const handleClick = () => {
-                  setActiveIndex(index)
-                }
-                return <TabItem {...tab} key={`tab-${index}`} onClick={handleClick} />
-              })
+          )}
+        >
+          {tabs.map((tab, index) => {
+            tab.isActive = index === activeIndex
+            const handleClick = () => {
+              setActiveIndex(index)
             }
-          </div>
-        ) : null
-      }
+            return (
+              <TabItem {...tab} key={`tab-${index}`} onClick={handleClick} />
+            )
+          })}
+        </div>
+      ) : null}
       <div
         className={clsx(
           'w-full h-[1px] bg-gray-300 mt-[0px]',

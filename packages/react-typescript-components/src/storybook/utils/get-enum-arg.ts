@@ -27,7 +27,9 @@ export function getRadioArgFromEnum<E extends Record<string, string | number>>(
   defaultValue: E[keyof E]
 ): RadioArgEnum<E[keyof E]> {
   // Only keep "real" keys (filter numeric reverse mapping)
-  const keys = Object.keys(enumObject).filter((key) => Number.isNaN(Number(key)))
+  const keys = Object.keys(enumObject).filter((key) =>
+    Number.isNaN(Number(key))
+  )
 
   const mapping: Record<string, E[keyof E]> = {}
   keys.forEach((key) => {
@@ -35,7 +37,8 @@ export function getRadioArgFromEnum<E extends Record<string, string | number>>(
   })
 
   // Find the key corresponding to the default value
-  const defaultKey = keys.find((key) => enumObject[key as keyof E] === defaultValue) || keys[0]
+  const defaultKey =
+    keys.find((key) => enumObject[key as keyof E] === defaultValue) || keys[0]
 
   return {
     defaultValue: enumObject[defaultKey as keyof E],

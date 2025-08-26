@@ -16,15 +16,16 @@ const TabItem: FC<TabItemProps> = ({
   isExternal = false,
   isActive = false,
   onClick,
-  className = ''
+  className = '',
 }) => {
   const CustomizedLink = isExternal ? ExternalLink : InternalLink
   return (
-    <button className={clsx(
-      'flex shrink-0 mr-[24px] last:mr-0',
-      className
-    )} onClick={onClick} type="button">
-      <CustomizedLink to={link} >
+    <button
+      className={clsx('flex shrink-0 mr-[24px] last:mr-0', className)}
+      onClick={onClick}
+      type="button"
+    >
+      <CustomizedLink to={link}>
         <TextButton
           text={text}
           active={isActive}

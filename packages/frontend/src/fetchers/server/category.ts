@@ -15,7 +15,7 @@ const _ = {
 
 type CategoryDataFromRes = {
   name: string
-  slug: string,
+  slug: string
   postsCount: number
   posts: PostMetaFromRes[]
   subcategories: Subcategory[]
@@ -104,15 +104,15 @@ export const fetchCategoryWithFirstPagePost = async ({
       state: {
         equals: 'published',
       },
-    }
+    },
   }
   if (subcategorySlug) {
     variables.postsWhere2.subcategories = {
       some: {
         slug: {
-          equals: subcategorySlug
-        }
-      }
+          equals: subcategorySlug,
+        },
+      },
     }
   }
 

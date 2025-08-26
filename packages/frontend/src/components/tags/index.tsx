@@ -27,7 +27,7 @@ const containerClass = clsx(
 
 const listClass = clsx(
   'mt-[45px]',
-  `grid grid-cols-1 tablet:grid-cols-2 gap-x-[20px] gap-y-[40px]`,
+  `grid grid-cols-1 tablet:grid-cols-2 gap-x-[20px] gap-y-[40px]`
 )
 
 type TagPageProps = {
@@ -35,21 +35,18 @@ type TagPageProps = {
   name: string
   totalPosts: number
 }
-const TagPage: FC<TagPageProps> = ({
-  slug,
-  name,
-  totalPosts,
-}) => {
+const TagPage: FC<TagPageProps> = ({ slug, name, totalPosts }) => {
   const [page, setPage] = useState(1)
 
-  const totalPage = useMemo(() => _.ceil(totalPosts/POSTS_PER_PAGE), [totalPosts])
-  const { posts, isLoading } = usePostsOfATag(
-    {
-      slug,
-      take: POSTS_PER_PAGE,
-      skip: (page - 1)*POSTS_PER_PAGE
-    },
-  ) // todo: error
+  const totalPage = useMemo(
+    () => _.ceil(totalPosts / POSTS_PER_PAGE),
+    [totalPosts]
+  )
+  const { posts, isLoading } = usePostsOfATag({
+    slug,
+    take: POSTS_PER_PAGE,
+    skip: (page - 1) * POSTS_PER_PAGE,
+  }) // todo: error
 
   const handleClickPrev = () => {
     setPage(() => page - 1)
@@ -62,9 +59,13 @@ const TagPage: FC<TagPageProps> = ({
   return (
     <div className={containerClass}>
       <Title1 title={`# ${name}`} />
-      { posts.length === 0 && isLoading ? <Loading /> : (
+      {posts.length === 0 && isLoading ? (
+        <Loading />
+      ) : (
         <div className={listClass}>
-          { posts.map(({ slug, ...rest}) => <ArticleCard key={`meta-a-${slug}`} slug={slug} {...rest} />) }
+          {posts.map(({ slug, ...rest }) => (
+            <ArticleCard key={`meta-a-${slug}`} slug={slug} {...rest} />
+          ))}
         </div>
       )}
       <Pagination
