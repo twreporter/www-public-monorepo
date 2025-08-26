@@ -50,6 +50,6 @@ export default async function Page({
     )
   } catch (error) {
     logger.error(error, 'Error fetching category data')
-    return <div>Failed to load category data. Please try again later.</div>
+    return <div>Failed to load subcategory page data. Please try again later.</div>
   }
 }
