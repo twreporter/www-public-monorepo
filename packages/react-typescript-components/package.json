@@ -36,7 +36,9 @@
     "typescript": "^5",
     "vite": "^7.1.3"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/twreporter/www-public-monorepo.git",
