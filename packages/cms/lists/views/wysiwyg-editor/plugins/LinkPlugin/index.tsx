@@ -1,6 +1,6 @@
 import * as React from 'react'
 import type { JSX } from 'react'
-// lexical 
+// lexical
 import { LinkPlugin as LexicalLinkPlugin } from '@lexical/react/LexicalLinkPlugin'
 // util
 import { validateUrl } from '../../utils/url'

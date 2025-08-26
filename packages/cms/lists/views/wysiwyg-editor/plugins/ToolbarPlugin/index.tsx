@@ -8,17 +8,24 @@ import {
   $isParentElementRTL,
   $patchStyleText,
 } from '@lexical/selection'
-import { $findMatchingParent, mergeRegister } from '@lexical/utils'
+import {
+  $findMatchingParent,
+  mergeRegister,
+  $getNearestNodeOfType,
+} from '@lexical/utils'
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link'
+import { $isListNode, ListNode } from '@lexical/list'
 import {
   $getSelection,
   $isRangeSelection,
+  $isNodeSelection,
   $isRootOrShadowRoot,
   $isElementNode,
   COMMAND_PRIORITY_CRITICAL,
   FORMAT_TEXT_COMMAND,
-  type LexicalEditor,
   SELECTION_CHANGE_COMMAND,
+  type LexicalEditor,
+  type LexicalNode,
 } from 'lexical'
 // context
 import {
@@ -28,7 +35,13 @@ import {
 // hook
 import useModal from '../../hooks/useModal'
 // util
-import { clearFormatting, formatHeading, formatParagraph } from './utils'
+import {
+  clearFormatting,
+  formatHeading,
+  formatParagraph,
+  formatBulletList,
+  formatNumberedList,
+} from './utils'
 import { getSelectedNode } from '../../utils/getSelectedNode'
 import { sanitizeUrl } from '../../utils/url'
 // component
@@ -91,6 +104,26 @@ function BlockFormatDropDown({
         </div>
         <span className="shortcut">{SHORTCUTS.HEADING3}</span>
       </DropDownItem>
+      <DropDownItem
+        className={`item wide ${dropDownActiveClass(blockType === 'bullet')}`}
+        onClick={() => formatBulletList(editor, blockType)}
+      >
+        <div className="icon-text-container">
+          <i className="icon bullet-list" />
+          <span className="text">Bullet List</span>
+        </div>
+        <span className="shortcut">{SHORTCUTS.BULLET_LIST}</span>
+      </DropDownItem>
+      <DropDownItem
+        className={`item wide ${dropDownActiveClass(blockType === 'number')}`}
+        onClick={() => formatNumberedList(editor, blockType)}
+      >
+        <div className="icon-text-container">
+          <i className="icon numbered-list" />
+          <span className="text">Numbered List</span>
+        </div>
+        <span className="shortcut">{SHORTCUTS.NUMBERED_LIST}</span>
+      </DropDownItem>
     </DropDown>
   )
 }
@@ -135,6 +168,21 @@ function Fullscreen(): JSX.Element {
   )
 }
 
+function $findTopLevelElement(node: LexicalNode) {
+  let topLevelElement =
+    node.getKey() === 'root'
+      ? node
+      : $findMatchingParent(node, (e) => {
+          const parent = e.getParent()
+          return parent !== null && $isRootOrShadowRoot(parent)
+        })
+
+  if (topLevelElement === null) {
+    topLevelElement = node.getTopLevelElementOrThrow()
+  }
+  return topLevelElement
+}
+
 export default function ToolbarPlugin({
   editor,
   activeEditor,
@@ -149,6 +197,22 @@ export default function ToolbarPlugin({
   const [modal] = useModal()
   const [isEditable, setIsEditable] = useState(() => editor.isEditable())
   const { toolbarState, updateToolbarState } = useToolbarState()
+
+  const $handleHeadingNode = useCallback(
+    (selectedElement: LexicalNode) => {
+      const type = $isHeadingNode(selectedElement)
+        ? selectedElement.getTag()
+        : selectedElement.getType()
+
+      if (type in blockTypeToBlockName) {
+        updateToolbarState(
+          'blockType',
+          type as keyof typeof blockTypeToBlockName
+        )
+      }
+    },
+    [updateToolbarState]
+  )
 
   const $updateToolbar = useCallback(() => {
     const selection = $getSelection()
@@ -188,6 +252,23 @@ export default function ToolbarPlugin({
           )
         }
       }
+
+      if (elementDOM !== null) {
+        if ($isListNode(element)) {
+          const parentList = $getNearestNodeOfType<ListNode>(
+            anchorNode,
+            ListNode
+          )
+          const type = parentList
+            ? parentList.getListType()
+            : element.getListType()
+
+          updateToolbarState('blockType', type)
+        } else {
+          $handleHeadingNode(element)
+        }
+      }
+
       // Handle buttons
       updateToolbarState(
         'fontColor',
@@ -210,23 +291,25 @@ export default function ToolbarPlugin({
         )
       )
 
-      let matchingParent
+      let matchingParent: LexicalNode | null
       if ($isLinkNode(parent)) {
         // If node is a link, we need to fetch the parent paragraph node to set format
         matchingParent = $findMatchingParent(
           node,
           (parentNode) => $isElementNode(parentNode) && !parentNode.isInline()
         )
+        if (matchingParent) {
+          // If matchingParent is a valid node, pass it's format type
+          updateToolbarState(
+            'elementFormat',
+            $isElementNode(matchingParent)
+              ? matchingParent.getFormatType()
+              : $isElementNode(node)
+                ? node.getFormatType()
+                : parent?.getFormatType() || 'left'
+          )
+        }
       }
-      // If matchingParent is a valid node, pass it's format type
-      updateToolbarState(
-        'elementFormat',
-        $isElementNode(matchingParent)
-          ? matchingParent.getFormatType()
-          : $isElementNode(node)
-            ? node.getFormatType()
-            : parent?.getFormatType() || 'left'
-      )
     }
     if ($isRangeSelection(selection)) {
       // Update text format
@@ -243,7 +326,27 @@ export default function ToolbarPlugin({
       updateToolbarState('isUppercase', selection.hasFormat('uppercase'))
       updateToolbarState('isCapitalize', selection.hasFormat('capitalize'))
     }
-  }, [activeEditor, updateToolbarState])
+    if ($isNodeSelection(selection)) {
+      const nodes = selection.getNodes()
+      for (const selectedNode of nodes) {
+        const parentList = $getNearestNodeOfType<ListNode>(
+          selectedNode,
+          ListNode
+        )
+        if (parentList) {
+          const type = parentList.getListType()
+          updateToolbarState('blockType', type)
+        } else {
+          const selectedElement = $findTopLevelElement(selectedNode)
+          $handleHeadingNode(selectedElement)
+          // Update elementFormat for node selection (e.g., images)
+          if ($isElementNode(selectedElement)) {
+            updateToolbarState('elementFormat', selectedElement.getFormatType())
+          }
+        }
+      }
+    }
+  }, [activeEditor, updateToolbarState, $handleHeadingNode])
 
   useEffect(() => {
     return editor.registerCommand(
@@ -367,9 +470,7 @@ export default function ToolbarPlugin({
       <button
         disabled={!isEditable}
         onClick={insertLink}
-        className={
-          'toolbar-item spaced ' + (toolbarState.isLink ? 'active' : '')
-        }
+        className={`toolbar-item spaced ${toolbarState.isLink ? 'active' : ''}`}
         aria-label="Insert link"
         title={`Insert link (${SHORTCUTS.INSERT_LINK})`}
         type="button"

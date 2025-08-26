@@ -1,4 +1,3 @@
-
 import * as React from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { JSX, Dispatch } from 'react'
@@ -107,8 +106,10 @@ function FloatingLinkEditor({
     }
 
     const editorElem = editorRef.current
-    const rootElement = editor.getRootElement();
-    const nativeSelection = getDOMSelection(rootElement?.ownerDocument?.defaultView ?? window)
+    const rootElement = editor.getRootElement()
+    const nativeSelection = getDOMSelection(
+      rootElement?.ownerDocument?.defaultView ?? window
+    )
     const activeElement = document.activeElement
 
     if (editorElem === null) {
@@ -139,7 +140,10 @@ function FloatingLinkEditor({
         setFloatingElemPositionForLinkEditor(domRect, editorElem, anchorElem)
       }
       setLastSelection(selection)
-    } else if (!activeElement || !activeElement.classList.contains('link-input')) {
+    } else if (
+      !activeElement ||
+      !activeElement.classList.contains('link-input')
+    ) {
       if (rootElement !== null) {
         setFloatingElemPositionForLinkEditor(null, editorElem, anchorElem)
       }
