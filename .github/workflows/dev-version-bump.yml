@@ -46,7 +46,7 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Version and publish packages)
+      - name: Version and publish packages
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
