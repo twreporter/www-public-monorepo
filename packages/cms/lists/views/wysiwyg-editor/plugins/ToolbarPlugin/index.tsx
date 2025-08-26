@@ -8,7 +8,11 @@ import {
   $isParentElementRTL,
   $patchStyleText,
 } from '@lexical/selection'
-import { $findMatchingParent, mergeRegister, $getNearestNodeOfType } from '@lexical/utils'
+import {
+  $findMatchingParent,
+  mergeRegister,
+  $getNearestNodeOfType,
+} from '@lexical/utils'
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link'
 import { $isListNode, ListNode } from '@lexical/list'
 import {
@@ -102,7 +106,8 @@ function BlockFormatDropDown({
       </DropDownItem>
       <DropDownItem
         className={`item wide ${dropDownActiveClass(blockType === 'bullet')}`}
-        onClick={() => formatBulletList(editor, blockType)}>
+        onClick={() => formatBulletList(editor, blockType)}
+      >
         <div className="icon-text-container">
           <i className="icon bullet-list" />
           <span className="text">Bullet List</span>
@@ -111,7 +116,8 @@ function BlockFormatDropDown({
       </DropDownItem>
       <DropDownItem
         className={`item wide ${dropDownActiveClass(blockType === 'number')}`}
-        onClick={() => formatNumberedList(editor, blockType)}>
+        onClick={() => formatNumberedList(editor, blockType)}
+      >
         <div className="icon-text-container">
           <i className="icon numbered-list" />
           <span className="text">Numbered List</span>
@@ -167,14 +173,14 @@ function $findTopLevelElement(node: LexicalNode) {
     node.getKey() === 'root'
       ? node
       : $findMatchingParent(node, (e) => {
-          const parent = e.getParent();
-          return parent !== null && $isRootOrShadowRoot(parent);
-        });
+          const parent = e.getParent()
+          return parent !== null && $isRootOrShadowRoot(parent)
+        })
 
   if (topLevelElement === null) {
-    topLevelElement = node.getTopLevelElementOrThrow();
+    topLevelElement = node.getTopLevelElementOrThrow()
   }
-  return topLevelElement;
+  return topLevelElement
 }
 
 export default function ToolbarPlugin({
@@ -196,16 +202,16 @@ export default function ToolbarPlugin({
     (selectedElement: LexicalNode) => {
       const type = $isHeadingNode(selectedElement)
         ? selectedElement.getTag()
-        : selectedElement.getType();
+        : selectedElement.getType()
 
       if (type in blockTypeToBlockName) {
         updateToolbarState(
           'blockType',
-          type as keyof typeof blockTypeToBlockName,
-        );
+          type as keyof typeof blockTypeToBlockName
+        )
       }
     },
-    [updateToolbarState],
+    [updateToolbarState]
   )
 
   const $updateToolbar = useCallback(() => {
@@ -251,13 +257,13 @@ export default function ToolbarPlugin({
         if ($isListNode(element)) {
           const parentList = $getNearestNodeOfType<ListNode>(
             anchorNode,
-            ListNode,
-          );
+            ListNode
+          )
           const type = parentList
             ? parentList.getListType()
-            : element.getListType();
+            : element.getListType()
 
-          updateToolbarState('blockType', type);
+          updateToolbarState('blockType', type)
         } else {
           $handleHeadingNode(element)
         }
@@ -321,24 +327,21 @@ export default function ToolbarPlugin({
       updateToolbarState('isCapitalize', selection.hasFormat('capitalize'))
     }
     if ($isNodeSelection(selection)) {
-      const nodes = selection.getNodes();
+      const nodes = selection.getNodes()
       for (const selectedNode of nodes) {
         const parentList = $getNearestNodeOfType<ListNode>(
           selectedNode,
-          ListNode,
-        );
+          ListNode
+        )
         if (parentList) {
-          const type = parentList.getListType();
-          updateToolbarState('blockType', type);
+          const type = parentList.getListType()
+          updateToolbarState('blockType', type)
         } else {
-          const selectedElement = $findTopLevelElement(selectedNode);
+          const selectedElement = $findTopLevelElement(selectedNode)
           $handleHeadingNode(selectedElement)
           // Update elementFormat for node selection (e.g., images)
           if ($isElementNode(selectedElement)) {
-            updateToolbarState(
-              'elementFormat',
-              selectedElement.getFormatType(),
-            );
+            updateToolbarState('elementFormat', selectedElement.getFormatType())
           }
         }
       }
@@ -467,9 +470,7 @@ export default function ToolbarPlugin({
       <button
         disabled={!isEditable}
         onClick={insertLink}
-        className={
-          `toolbar-item spaced ${toolbarState.isLink ? 'active' : ''}`
-        }
+        className={`toolbar-item spaced ${toolbarState.isLink ? 'active' : ''}`}
         aria-label="Insert link"
         title={`Insert link (${SHORTCUTS.INSERT_LINK})`}
         type="button"
