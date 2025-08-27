@@ -13,6 +13,8 @@ import type { Category } from '@/type/category'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
 import { POSTS_PER_PAGE } from '@/constants'
+// style
+import { rwdContainerClass } from '@/styles/layout' 
 // @twreporter
 import { TitleTab } from '@twreporter/react-typescript-components/lib/title-bar'
 // lodash
@@ -22,12 +24,6 @@ const _ = {
 }
 
 // style
-const containerClass = clsx(
-  'min-h-screen w-full',
-  'px-[24px] mobile:pt-[24px] tablet:pt-[32px] desktop:pt-[64px]',
-  'pb-[120px]'
-)
-
 const listClass = clsx(
   'mt-[45px]',
   `grid grid-cols-1 tablet:grid-cols-2 gap-x-[20px] gap-y-[40px]`
@@ -95,7 +91,7 @@ const CategoryPage: FC<CategoryPageProps> = ({
   )
 
   return (
-    <div className={containerClass}>
+    <div className={clsx(rwdContainerClass)}>
       <TitleTab title={name} tabs={tabs} activeTabIndex={activeTabIndex} />
       {posts.length === 0 && isLoading ? (
         <Loading />

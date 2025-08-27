@@ -8,6 +8,8 @@ import usePostsOfATag from '@/fetchers/tag'
 import ArticleCard from '@/components/article-card'
 import Pagination from '@/components/pagination'
 import Loading from '@/components/loading'
+// style
+import { rwdContainerClass } from '@/styles/layout' 
 // @twreporter
 import { Title1 } from '@twreporter/react-typescript-components/lib/title-bar'
 // constants
@@ -19,12 +21,6 @@ const _ = {
 }
 
 // style
-const containerClass = clsx(
-  'min-h-screen w-full',
-  'px-[24px] mobile:pt-[24px] tablet:pt-[32px] desktop:pt-[64px]',
-  'pb-[120px]'
-)
-
 const listClass = clsx(
   'mt-[45px]',
   `grid grid-cols-1 tablet:grid-cols-2 gap-x-[20px] gap-y-[40px]`
@@ -57,7 +53,7 @@ const TagPage: FC<TagPageProps> = ({ slug, name, totalPosts }) => {
   }
 
   return (
-    <div className={containerClass}>
+    <div className={clsx(rwdContainerClass)}>
       <Title1 title={`# ${name}`} />
       {posts.length === 0 && isLoading ? (
         <Loading />
