@@ -8,6 +8,8 @@ import { Size, Style } from '../../enum'
 import type { Theme } from '../../constant'
 // constants
 import { THEME } from '../../constant'
+// utils
+import { getContainerTheme, getActiveContainerTheme, getDisabledContainerTheme } from './theme'
 
 type TextButtonProps = {
   text: string
@@ -38,9 +40,13 @@ const TextButton: FC<TextButtonProps> & {
   className = '',
 }) => {
   const TextJSX = useMemo(
-    () => (size === Size.S ? <P2 text={text} /> : <P1 text={text} />),
+    () => (size === Size.S ? <P2 text={text} weight={P2.Weight.bold} /> : <P1 text={text} weight={P1.Weight.bold} />),
     [size, text]
   )
+  const themeClass = useMemo(() => {
+    const themeFunc = disabled ? getDisabledContainerTheme : (active ? getActiveContainerTheme : getContainerTheme)
+    return themeFunc(theme, style)
+  }, [disabled, active, theme, style])
 
   return (
     <div
@@ -50,42 +56,7 @@ const TextButton: FC<TextButtonProps> & {
           'cursor-default': disabled,
           'cursor-pointer': !disabled,
         },
-        {
-          'text-gray-500 hover:text-gray-500':
-            disabled &&
-            (theme === THEME.photography || theme === THEME.transparent),
-          'text-gray-400 hover:text-gray-400':
-            disabled ||
-            (theme === THEME.photography &&
-              style === Style.LIGHT &&
-              !active &&
-              !disabled),
-          'text-gray-200 hover:text-supportive-pastel':
-            theme === THEME.photography && !active && !disabled,
-          'text-gray-300 hover:text-gray-400':
-            theme === THEME.photography &&
-            style === Style.LIGHT &&
-            active &&
-            !disabled,
-          'text-gray-white hover:text-supportive-pastel':
-            theme === THEME.photography &&
-            style === Style.DARK &&
-            active &&
-            !disabled,
-          'text-supportive-faded hover:text-supportive-pastel':
-            theme === THEME.photography &&
-            style === Style.BRAND &&
-            active &&
-            !disabled,
-          'text-gray-100 hover:text-gray-200':
-            theme === THEME.transparent && !active && !disabled,
-          'text-gray-white hover:text-gray-white':
-            theme === THEME.transparent && active && !disabled,
-          'text-gray-600 hover:text-brand-heavy':
-            theme === THEME.normal && !active && !disabled,
-          'text-brand-heavy hover:text-brand-heavy':
-            theme === THEME.normal && active && !disabled,
-        },
+        themeClass,
         className
       )}
     >
