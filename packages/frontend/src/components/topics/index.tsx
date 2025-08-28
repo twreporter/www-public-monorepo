@@ -38,7 +38,7 @@ export const Topics: React.FC<TopicsProps> = ({ topics }) => {
       {topics.length > 1 && (
         <>
           <Title2 title={'所有專題'} />
-          <div className="my-[24px]">
+          <div className="flex flex-col gap-[48px] my-[24px]">
             {topics.slice(1).map((topic) => (
               <TopicItem
                 key={topic.slug}
