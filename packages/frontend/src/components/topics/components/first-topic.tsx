@@ -11,7 +11,7 @@ import { getImageLink } from '@/utils/get-image-link'
 
 const FirstTopic: React.FC<{ topic: TopicData }> = ({ topic }) => {
   return (
-    <div className="flex flex-col gap-[16px]">
+    <div className="flex flex-col gap-[24px]">
       <TopicItem
         title={topic.title}
         description={topic?.ogDescription || undefined}
@@ -21,7 +21,7 @@ const FirstTopic: React.FC<{ topic: TopicData }> = ({ topic }) => {
       />
       <div
         className={clsx(
-          'flex flex-col gap-2',
+          'flex flex-col gap-[12px]',
           'tablet:flex-row! tablet:justify-between'
         )}
       >
@@ -30,8 +30,8 @@ const FirstTopic: React.FC<{ topic: TopicData }> = ({ topic }) => {
               return (
                 <RelatedPost
                   className={clsx(
-                    'py-[12px] px-[6px]',
-                    'not-last:border-b-[1px] not-last:border-gray-300'
+                    '[&:not(:last-child)]:border-b-[1px] [&:not(:last-child)]:border-gray-300 [&:not(:last-child)]:pb-[12px]',
+                    'tablet:[&:not(:last-child)]:pb-0'
                   )}
                   key={post.slug}
                   title={post.title}

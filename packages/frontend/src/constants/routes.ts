@@ -6,6 +6,7 @@ export const INTERNAL_ROUTES = {
   interactiveArticle: '/i',
   tag: '/tag',
   category: '/categories',
+  topics: '/topics',
 } as const
 
 export type InternalRoutes = ValuesOf<typeof INTERNAL_ROUTES>

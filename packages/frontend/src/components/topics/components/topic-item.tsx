@@ -8,6 +8,8 @@ import {
   P1,
   P2,
 } from '@twreporter/react-typescript-components/lib/text/paragraph'
+// constants
+import { INTERNAL_ROUTES } from '@/constants/routes'
 
 // TODO: handle image loading or no image
 export type TopicItemProps = {
@@ -28,7 +30,7 @@ const TopicItem: React.FC<TopicItemProps> = ({
 }) => {
   return (
     <Link
-      href={`/topics/${slug}`}
+      href={`${INTERNAL_ROUTES.topics}/${slug}`}
       className={clsx(
         'hover:opacity-70',
         'transition-opacity duration-200 ease-linear',
@@ -39,6 +41,7 @@ const TopicItem: React.FC<TopicItemProps> = ({
         <div
           className={clsx(
             'relative',
+            'flex-none',
             'w-[150px] h-[200px]',
             'tablet:w-[164px] tablet:h-[206px]'
           )}
