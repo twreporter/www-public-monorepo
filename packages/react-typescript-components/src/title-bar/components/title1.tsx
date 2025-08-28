@@ -19,7 +19,7 @@ const Title1: FC<Title1Props> = ({ title, subtitle = '', className = '' }) => {
       </div>
       <div
         className={clsx(
-          'w-full h-[1px] bg-gray-800 mt-[8px]',
+          'w-full h-[1px] bg-gray-300 mt-[8px]',
           'desktop:mt-[16px]'
         )}
       />

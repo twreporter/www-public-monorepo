@@ -22,9 +22,10 @@ export default function RootLayout({
         </header>
         <main
           className={clsx(
-            'w-full px-[24px] pt-[24px] bg-gray-100',
-            'tablet:pt-[32px]',
-            'desktop:pt-[64px]'
+            'w-full',
+            'flex justify-center',
+            'px-[24px] pt-[24px] tablet:pt-[32px] desktop:pt-[64px]',
+            'bg-gray-100'
           )}
         >
           {children}

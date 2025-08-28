@@ -13,7 +13,7 @@ import { Style } from '@/enums/article'
 // utils
 import { formatDate } from '@/utils/date-formatters'
 // @twreporter
-import { H3 } from '@twreporter/react-typescript-components/lib/text/heading'
+import { H4 } from '@twreporter/react-typescript-components/lib/text/heading'
 import {
   P1,
   P3,
@@ -98,10 +98,10 @@ const ArticleCard: FC<ArticleCardProps> = ({
           {category ? (
             <P3 className="text-brand-heavy pb-[10px]" text={category} />
           ) : null}
-          <H3
+          <H4
             className="text-gray-800 pb-[10px]"
             text={title}
-            type={H3.Type.article}
+            type={H4.Type.article}
           />
           <P1 className="text-gray-800" text={subtitle} />
           {publishedDate ? (
