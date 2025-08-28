@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.20](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.19...www-frontend@0.1.0-beta.20) (2025-08-28)
+
+
+### Bug Fixes
+
+* **frontend:** topics page layout defects ([249043a](https://github.com/twreporter/www-public-monorepo/commit/249043ad997ff9e5cece11466dc55dd360cbd08a))
+
+
+
+
+
 # [0.1.0-beta.19](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.18...www-frontend@0.1.0-beta.19) (2025-08-28)
 
 
