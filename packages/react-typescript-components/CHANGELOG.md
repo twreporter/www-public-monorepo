@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.7](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.6...@twreporter/react-typescript-components@0.1.0-beta.7) (2025-08-28)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** add theme utils ([a84da6b](https://github.com/twreporter/www-public-monorepo/commit/a84da6ba61ce56246809e754c1bd53a930e38cfc))
+
+
+
+
+
 # [0.1.0-beta.6](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.5...@twreporter/react-typescript-components@0.1.0-beta.6) (2025-08-26)
 
 
