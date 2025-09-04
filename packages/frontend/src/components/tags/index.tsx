@@ -44,6 +44,10 @@ const TagPage: FC<TagPageProps> = ({ slug, name, totalPosts }) => {
     skip: (page - 1) * POSTS_PER_PAGE,
   }) // todo: error
 
+  const handleClickPage = (selectedPage: number) => {
+    setPage(selectedPage)
+  }
+
   const handleClickPrev = () => {
     setPage(() => page - 1)
   }
@@ -68,6 +72,7 @@ const TagPage: FC<TagPageProps> = ({ slug, name, totalPosts }) => {
         className="w-full flex justify-center items-center"
         currentPage={page}
         totalPage={totalPage}
+        handleClickPage={handleClickPage}
         handleClickPrev={handleClickPrev}
         handleClickNext={handleClickNext}
       />
