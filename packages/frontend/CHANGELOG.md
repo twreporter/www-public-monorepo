@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.21](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.20...www-frontend@0.1.0-beta.21) (2025-09-08)
+
+
+### Bug Fixes
+
+* **frontend:** address copilot comment ([99721b4](https://github.com/twreporter/www-public-monorepo/commit/99721b4bc37cab9ba89b1a75f03b146f5e8fbcbe))
+* **frontend:** pagination style ([f82d69f](https://github.com/twreporter/www-public-monorepo/commit/f82d69f7abb5e5a2b468dfca2cf8313b3ab0db5f))
+* **frontend:** rwd style defect ([1f79a70](https://github.com/twreporter/www-public-monorepo/commit/1f79a7027d31c52b9c7e8eede0bbb8da7f33a204))
+
+
+
+
+
 # [0.1.0-beta.20](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.19...www-frontend@0.1.0-beta.20) (2025-08-28)
 
 
