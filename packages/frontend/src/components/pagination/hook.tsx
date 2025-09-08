@@ -139,7 +139,8 @@ export const useDesktopPages = (
       ]
     }
 
-    const startAt = currentPage - Math.floor(nOfCenterPages / 2) + 1
+    const centerOffset = Math.floor(nOfCenterPages / 2) + 1
+    const startAt = currentPage - centerOffset
     const length = nOfCenterPages
     return [
       ...leftMargin,
