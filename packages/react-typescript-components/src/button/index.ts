@@ -1,5 +1,6 @@
 import TextButton from './components/text-button'
+import IconButton from './components/icon-button'
 
-export { TextButton }
+export { TextButton, IconButton }
 
-export default { TextButton }
+export default { TextButton, IconButton }
