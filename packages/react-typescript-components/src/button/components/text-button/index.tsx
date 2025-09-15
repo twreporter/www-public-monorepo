@@ -3,13 +3,15 @@ import clsx from 'clsx'
 // components
 import { P1, P2 } from '../../../text/paragraph'
 // enums
-import { Size, Style } from '../../enum'
-// type
-import type { Theme } from '../../constant'
+import { SIZE, type Size, STYLE, type Style } from '../../enum'
 // constants
-import { THEME } from '../../constant'
+import { THEME, type Theme } from '../../../constants/theme'
 // utils
-import { getContainerTheme, getActiveContainerTheme, getDisabledContainerTheme } from './theme'
+import {
+  getContainerTheme,
+  getActiveContainerTheme,
+  getDisabledContainerTheme,
+} from './theme'
 
 type TextButtonProps = {
   text: string
@@ -24,27 +26,36 @@ type TextButtonProps = {
   className?: string
 }
 const TextButton: FC<TextButtonProps> & {
-  Size: typeof Size
-  Style: typeof Style
+  Size: typeof SIZE
+  Style: typeof STYLE
   THEME: typeof THEME
 } = ({
   text,
   leftIconComponent,
   rightIconComponent,
-  size = Size.S,
+  size = SIZE.s,
   theme = THEME.normal,
-  style = Style.DARK,
+  style = STYLE.dark,
   active = false,
   disabled = false,
   loading = false,
   className = '',
 }) => {
   const TextJSX = useMemo(
-    () => (size === Size.S ? <P2 text={text} weight={P2.Weight.bold} /> : <P1 text={text} weight={P1.Weight.bold} />),
+    () =>
+      size === SIZE.s ? (
+        <P2 text={text} weight={P2.Weight.bold} />
+      ) : (
+        <P1 text={text} weight={P1.Weight.bold} />
+      ),
     [size, text]
   )
   const themeClass = useMemo(() => {
-    const themeFunc = disabled ? getDisabledContainerTheme : (active ? getActiveContainerTheme : getContainerTheme)
+    const themeFunc = disabled
+      ? getDisabledContainerTheme
+      : active
+        ? getActiveContainerTheme
+        : getContainerTheme
     return themeFunc(theme, style)
   }, [disabled, active, theme, style])
 
@@ -76,8 +87,8 @@ const TextButton: FC<TextButtonProps> & {
             'inline-block absolute box-border animation-spin',
             'border-2 border-solid border-gray-400 border-t-gray-600 rounded-[50%]',
             {
-              'size-[18px]': size === Size.S,
-              'size-[24px]': size === Size.L,
+              'size-[18px]': size === SIZE.s,
+              'size-[24px]': size === SIZE.l,
             },
             {
               'opacity-0': !loading,
@@ -89,8 +100,8 @@ const TextButton: FC<TextButtonProps> & {
     </div>
   )
 }
-TextButton.Size = Size
-TextButton.Style = Style
+TextButton.Size = SIZE
+TextButton.Style = STYLE
 TextButton.THEME = THEME
 
 export default TextButton
