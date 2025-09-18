@@ -74,6 +74,7 @@
   --font-title: "merriweather", "source-han-serif-tc", serif;
   --font-default: "Roboto Slab", "Noto Sans TC", sans-serif, "Tauhu Oo";
   --font-default-fallback: "Roboto Slab", sans-serif;
+  --font-serif: "source-han-serif-tc", serif;
 
   /* Font weights */
   --font-weight-extra-light: 100;
