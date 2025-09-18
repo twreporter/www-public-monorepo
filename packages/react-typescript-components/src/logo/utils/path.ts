@@ -1,9 +1,13 @@
 import type { ReleaseBranch } from '../../constants/release-branch'
-import type { Logo, LogoType } from '../enum'
+import type { Logo, LogoType, LogoSymbolType } from '../enum'
 
 const baseGCSDir = 'https://www.twreporter.org/images/logo/'
 
-function selectLogoPath(logo: Logo, branch: ReleaseBranch, type: LogoType) {
+function selectLogoPath(
+  logo: Logo,
+  branch: ReleaseBranch,
+  type: LogoType | LogoSymbolType
+) {
   switch (logo) {
     case 'header': {
       const defaultPath = `${baseGCSDir}logo-header.${branch}.svg`
@@ -15,7 +19,7 @@ function selectLogoPath(logo: Logo, branch: ReleaseBranch, type: LogoType) {
         default: `${baseGCSDir}logo-footer.${branch}.svg`,
         white: `${baseGCSDir}logo-footer-white.${branch}.svg`,
       }
-      return path[type]
+      return path[type as LogoType]
     }
     case 'symbol': {
       const path = {

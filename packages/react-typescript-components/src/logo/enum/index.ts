@@ -15,3 +15,11 @@ export const LOGO_TYPE = {
 } as const
 
 export type LogoType = ValuesOf<typeof LOGO_TYPE>
+
+export const LOGO_SYMBOL_TYPE = {
+  default: 'default',
+  white: 'white',
+  black: 'black',
+} as const
+
+export type LogoSymbolType = ValuesOf<typeof LOGO_SYMBOL_TYPE>
