@@ -25,7 +25,7 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
   return (
     <div
       className={clsx(
-        `flex items-center justify-between z-[${ZIndex.topRow}] px-[16px] ${topRowBgColor}`,
+        `flex items-center justify-between ${ZIndex.topRow} px-[16px] ${topRowBgColor}`,
         toUseNarrow ? 'py-[16px]' : 'py-[24px]'
       )}
     >

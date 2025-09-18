@@ -40,7 +40,7 @@ const DesktopAndAbove: FC<DesktopAndAboveProps> = ({
         <Divider direction={Divider.Direction.horizontal} />
       </div>
       {/* channels */}
-      <div className={`z-[${ZIndex.channel}]`}>
+      <div className={`${ZIndex.channel}`}>
         <CSSTransition
           in={!toUseNarrow}
           nodeRef={channelRef}

@@ -1,8 +1,8 @@
 export const ZIndex = {
-  tabBarMobile: 10,
-  tabBarTablet: 3,
-  hamburger: 4,
-  header: 3,
-  topRow: 2,
-  channel: 1,
+  tabBarMobile: 'z-10',
+  tabBarTablet: 'z-3',
+  hamburger: 'z-4',
+  header: 'z-3',
+  topRow: 'z-2',
+  channel: 'z-1',
 } as const

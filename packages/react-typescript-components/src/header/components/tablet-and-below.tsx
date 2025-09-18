@@ -18,7 +18,7 @@ const TabletAndBelow: React.FC<TabletAndBelowProps> = ({
   return (
     <div
       className={clsx(
-        `flex items-center justify-between z-[${ZIndex.topRow}] py-[16px] ${topRowBgColor}`,
+        `flex items-center justify-between ${ZIndex.topRow} py-[16px] ${topRowBgColor}`,
         'desktop:hidden'
       )}
     >
