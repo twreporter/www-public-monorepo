@@ -2,12 +2,17 @@ import type React from 'react'
 import clsx from 'clsx'
 
 import { RELEASE_BRANCH, type ReleaseBranch } from '../constants/release-branch'
-import { ICON_TYPE, type IconType } from './enum'
+import {
+  ICON_TYPE,
+  type IconType,
+  ARROW_DIRECTION,
+  type ArrowDirection,
+} from './enum'
 
 const baseGCSDir = 'https://www.twreporter.org/assets/icon/'
 
 type IconProps = {
-  type: IconType
+  type?: IconType
   filename: string
   releaseBranch: ReleaseBranch
   className?: string
@@ -64,3 +69,17 @@ export const KidStar = (releaseBranch: ReleaseBranch) =>
   getIcon('kid_star', releaseBranch)
 export const Member = (releaseBranch: ReleaseBranch) =>
   getIcon('member', releaseBranch)
+export const Cross = (releaseBranch: ReleaseBranch) =>
+  getIcon('cross', releaseBranch)
+
+export const Arrow: React.FC<{
+  direction?: ArrowDirection
+  releaseBranch: ReleaseBranch
+}> & {
+  Direction: typeof ARROW_DIRECTION
+} = ({ direction = ARROW_DIRECTION.right, releaseBranch }) => {
+  const filename = `arrow_${direction}`
+  return <Icon filename={filename} releaseBranch={releaseBranch} />
+}
+
+Arrow.Direction = ARROW_DIRECTION
