@@ -7,6 +7,8 @@ import {
   type IconType,
   ARROW_DIRECTION,
   type ArrowDirection,
+  MEDIA_TYPE,
+  type MediaType,
 } from './enum'
 
 const baseGCSDir = 'https://www.twreporter.org/assets/icon/'
@@ -81,5 +83,22 @@ export const Arrow: React.FC<{
   const filename = `arrow_${direction}`
   return <Icon filename={filename} releaseBranch={releaseBranch} />
 }
-
 Arrow.Direction = ARROW_DIRECTION
+
+type SocialMediaProps = {
+  type?: IconType
+  mediaType: MediaType
+  releaseBranch: ReleaseBranch
+}
+export const SocialMedia: React.FC<SocialMediaProps> & {
+  Type: typeof ICON_TYPE
+  MediaType: typeof MEDIA_TYPE
+} = ({
+  type = Icon.Type.mask,
+  mediaType = MEDIA_TYPE.google,
+  releaseBranch = Icon.ReleaseBranch.master,
+}) => {
+  return <Icon filename={mediaType} type={type} releaseBranch={releaseBranch} />
+}
+SocialMedia.Type = ICON_TYPE
+SocialMedia.MediaType = MEDIA_TYPE
