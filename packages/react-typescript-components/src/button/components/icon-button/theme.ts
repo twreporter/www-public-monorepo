@@ -28,7 +28,7 @@ export const getPrimaryIconButtonTheme: ThemeFunc = (
     {
       'text-gray-white hover:text-supportive-pastel [&>svg]:bg-gray-white [&>svg]:hover:bg-supportive-pastel':
         theme === THEME.photography && !active,
-      'text-supportive-pastel hover:text-supportive-pastel [&>svg]:bg-suppportive-pastel [&>svg]:hover:bg-supportive-pastel':
+      'text-supportive-pastel hover:text-supportive-pastel [&>svg]:bg-supportive-pastel [&>svg]:hover:bg-supportive-pastel':
         theme === THEME.photography && active,
     },
     // transparent theme

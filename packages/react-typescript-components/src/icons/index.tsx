@@ -16,7 +16,7 @@ const baseGCSDir = 'https://www.twreporter.org/assets/icon/'
 type IconProps = {
   type?: IconType
   filename: string
-  releaseBranch: ReleaseBranch
+  releaseBranch?: ReleaseBranch
   className?: string
 }
 export const Icon: React.FC<IconProps> & {
@@ -24,15 +24,15 @@ export const Icon: React.FC<IconProps> & {
   ReleaseBranch: typeof RELEASE_BRANCH
 } = ({
   type = ICON_TYPE.mask,
-  filename = '',
+  filename,
   releaseBranch = RELEASE_BRANCH.master,
   className = '',
 }) => {
   const src = `${baseGCSDir}${releaseBranch}/${filename}.svg`
 
   if (type === ICON_TYPE.raw) {
-    // biome-ignore lint/performance/noImgElement: use next image later
     return (
+      // biome-ignore lint/performance/noImgElement: use next image later
       <img
         src={src}
         alt={filename}
@@ -45,7 +45,7 @@ export const Icon: React.FC<IconProps> & {
     <svg
       className={clsx('h-[24px] w-[24px] bg-gray-black mask-cover', className)}
       // tailwindcss seems not support dynamic values in mask-image
-      style={{ maskImage: `url(${src})` }}
+      style={{ maskImage: `url(${src})`, WebkitMaskImage: `url(${src})` }}
     />
   )
 }

@@ -2,7 +2,7 @@ import { useContext, useRef, type FC } from 'react'
 import clsx from 'clsx'
 import { CSSTransition } from 'react-transition-group'
 // context
-import { HeaderContext, HamburgerContext } from '../context'
+import { HeaderContext } from '../context'
 // constants
 import { ZIndex } from '../constants/z-index'
 import { ANIMATION } from '../constants/animation'
@@ -21,7 +21,6 @@ const DesktopAndAbove: FC<DesktopAndAboveProps> = ({
   logoType,
 }) => {
   const { toUseNarrow } = useContext(HeaderContext)
-  const { toggleHamburger } = useContext(HamburgerContext)
   const channelRef = useRef<HTMLDivElement>(null)
   return (
     <div className="hidden desktop:flex desktop:flex-col">
@@ -53,7 +52,7 @@ const DesktopAndAbove: FC<DesktopAndAboveProps> = ({
           unmountOnExit
         >
           <div ref={channelRef}>
-            <Channel onClickHambuger={toggleHamburger} />
+            <Channel />
           </div>
         </CSSTransition>
       </div>

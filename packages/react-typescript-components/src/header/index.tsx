@@ -58,7 +58,7 @@ const Header: FC<HeaderProps> = ({
   const currentY = useRef(0)
   const readyY = useRef(0)
   const isTransforming = useRef(false)
-  const transformTimer = useRef<NodeJS.Timeout>(null)
+  const transformTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const getScrollState = useCallback(
     (scrollTop: number, scrollDirection: 'up' | 'down') => {

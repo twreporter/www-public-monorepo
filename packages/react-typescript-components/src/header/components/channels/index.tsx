@@ -11,12 +11,8 @@ import { CHANNELS } from './constants'
 import { forClientSideRendering } from '../../../constants/request-origins'
 // lodash
 import map from 'lodash/map'
-import reduce from 'lodash/reduce'
-import concat from 'lodash/concat'
 const _ = {
   map,
-  reduce,
-  concat,
 }
 type ChannelItemProps = {
   link: {
@@ -25,7 +21,10 @@ type ChannelItemProps = {
   }
   label: string
 }
-const ChannelItem: FC<ChannelItemProps> = ({ link = {}, label = '' }) => {
+const ChannelItem: FC<ChannelItemProps> = ({
+  link = { href: '', target: '_self' },
+  label = '',
+}) => {
   const { theme } = useContext(HeaderContext)
   return (
     <div className={clsx('flex items-center', '[&>a]:no-underline')}>
@@ -48,7 +47,7 @@ const Channel = () => {
     <div className="flex flex-col items-center">
       <div className="flex items-center justify-between w-full px-[16px] py-[8px]">
         <IconButton
-          iconComponent={Hamburger('master')}
+          iconComponent={Hamburger(releaseBranch)}
           theme={theme}
           onClick={toggleHamburger}
         />

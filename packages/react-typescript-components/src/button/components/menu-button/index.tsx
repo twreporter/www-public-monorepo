@@ -25,7 +25,7 @@ const MenuButton: React.FC<MenuButtonProps> & { FontWeight: typeof WEIGHT } = ({
   className = '',
 }) => {
   return (
-    <div className={clsx('cusrsor-pointer', color, className)}>
+    <div className={clsx('cursor-pointer', color, className)}>
       <P1
         text={text}
         weight={fontWeight}

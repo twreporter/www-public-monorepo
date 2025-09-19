@@ -11,8 +11,8 @@ import { Search, KidStar, Member } from '../../../icons'
 import { IconButton } from '../../../button'
 
 export const Icons: React.FC<{
-  releaseBranch: ReleaseBranch
-  theme: Theme
+  releaseBranch?: ReleaseBranch
+  theme?: Theme
 }> = ({ releaseBranch = RELEASE_BRANCH.master, theme = THEME.normal }) => {
   return (
     <div className="ml-[24px] flex flex-row gap-[16px]">

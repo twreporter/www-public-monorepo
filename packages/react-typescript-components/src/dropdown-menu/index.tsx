@@ -52,7 +52,9 @@ const DropdownMenu: FC<DropdownMenuProps> = ({
               href={itme.to}
               target={itme.target}
               key={itme.label}
-              rel="noreferrer"
+              rel={
+                itme.target === '_blank' ? 'noopener noreferrer' : 'noreferrer'
+              }
             >
               <DropdownMenuItem label={itme.label} />
             </a>
