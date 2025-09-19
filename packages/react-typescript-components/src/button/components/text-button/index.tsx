@@ -84,7 +84,7 @@ const TextButton: FC<TextButtonProps> & {
         </div>
         <span
           className={clsx(
-            'inline-block absolute box-border animation-spin',
+            'inline-block absolute box-border animate-spin',
             'border-2 border-solid border-gray-400 border-t-gray-600 rounded-[50%]',
             {
               'size-[18px]': size === SIZE.s,
