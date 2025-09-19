@@ -24,7 +24,7 @@ export default function RootLayout({
             'w-full h-[3000px]',
             'flex justify-center',
             'px-[24px] pt-[24px] tablet:pt-[32px] desktop:pt-[64px]',
-            'bg-gray-white'
+            'bg-gray-100'
           )}
         >
           {children}

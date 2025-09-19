@@ -1,7 +1,7 @@
-import { defineConfig } from 'tsup'
+import { defineConfig } from 'tsdown'
 
 export default defineConfig({
-  format: ['cjs', 'esm'],
+  format: ['cjs', 'es'],
   dts: true,
   sourcemap: true,
   clean: true,
@@ -9,4 +9,5 @@ export default defineConfig({
   external: ['next', 'react', 'react-dom'],
   target: 'esnext',
   treeshake: true,
+  entry: 'src/*/*.{ts,tsx}',
 })

@@ -1,1 +1,3 @@
 @import "@twreporter/tailwind-config";
+
+@plugin 'tailwind-scrollbar';
