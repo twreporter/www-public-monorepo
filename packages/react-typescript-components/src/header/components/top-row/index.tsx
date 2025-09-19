@@ -1,7 +1,7 @@
 import { useContext, type FC } from 'react'
 import clsx from 'clsx'
 // context
-import { HeaderContext } from '../../context'
+import { HeaderContext, HamburgerContext } from '../../context'
 // constants
 import { ZIndex } from '../../constants/z-index'
 import { ANIMATION } from '../../constants/animation'
@@ -22,6 +22,7 @@ type TopRowProps = {
 }
 const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
   const { toUseNarrow, releaseBranch, theme } = useContext(HeaderContext)
+  const { toggleHamburger } = useContext(HamburgerContext)
   return (
     <div
       className={clsx(
@@ -38,7 +39,11 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
             toUseNarrow ? 'transition-delay-350' : 'transition-delay-0'
           )}
         >
-          <IconButton iconComponent={Hamburger(releaseBranch)} theme={theme} />
+          <IconButton
+            iconComponent={Hamburger(releaseBranch)}
+            theme={theme}
+            onClick={toggleHamburger}
+          />
         </div>
         {/* Logo */}
         <div

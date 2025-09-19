@@ -1,7 +1,7 @@
 import { useContext, type FC } from 'react'
 import clsx from 'clsx'
 // context
-import { HeaderContext } from '../../context'
+import { HeaderContext, HamburgerContext } from '../../context'
 // components
 import { IconButton, TextButton } from '../../../button'
 import { Hamburger } from '../../../icons'
@@ -41,15 +41,16 @@ const ChannelItem: FC<ChannelItemProps> = ({ link = {}, label = '' }) => {
   )
 }
 
-const Channel = ({ onClickHambuger }: { onClickHambuger: () => void }) => {
+const Channel = () => {
   const { releaseBranch, theme } = useContext(HeaderContext)
+  const { toggleHamburger } = useContext(HamburgerContext)
   return (
     <div className="flex flex-col items-center">
       <div className="flex items-center justify-between w-full px-[16px] py-[8px]">
         <IconButton
           iconComponent={Hamburger('master')}
           theme={theme}
-          onClick={onClickHambuger}
+          onClick={toggleHamburger}
         />
         {_.map(CHANNELS, (channel) => {
           return (
