@@ -12,8 +12,7 @@ import {
   selectHamburgerItemTheme,
 } from './utils/theme'
 // buttons
-import { IconButton } from '../button'
-import { MenuButton } from '../button'
+import { IconButton, MenuButton, PillButton } from '../button'
 // icons
 import { Cross } from '../icons'
 // logo
@@ -197,8 +196,21 @@ const HamburgerMenu: FC = () => {
           'tablet:flex'
         )}
       >
-        <div>訂閱電子報</div>
-        <div>贊助我們</div>
+        {/* TODO: add link */}
+        <PillButton
+          text="訂閱電子報"
+          theme={theme}
+          type={PillButton.Type.secondary}
+          size={PillButton.Size.l}
+          className="w-full justify-center"
+        />
+        <PillButton
+          text="贊助我們"
+          theme={theme}
+          type={PillButton.Type.primary}
+          size={PillButton.Size.l}
+          className="w-full justify-center"
+        />
       </div>
     </div>
   )

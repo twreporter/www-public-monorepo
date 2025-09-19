@@ -70,7 +70,7 @@ const PillButton: FC<PillButtonProps> & {
   return (
     <div
       className={clsx(
-        'w-fit flex items-center rounded-[40px] border-solid outline-[1.5px]',
+        'w-fit flex items-center rounded-[40px] border-solid border-[1.5px]',
         borderColor,
         color,
         padding,

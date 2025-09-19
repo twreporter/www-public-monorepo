@@ -9,7 +9,7 @@ import { ANIMATION } from '../../constants/animation'
 import { LogoHeader } from '../../../logo'
 import type { LogoType } from '../../../logo/enum'
 // buton
-import { IconButton } from '../../../button'
+import { IconButton, PillButton } from '../../../button'
 // components
 import { Icons } from './icons'
 import { Hamburger } from '../../../icons'
@@ -91,6 +91,7 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
       <div className="flex items-center">
         <div
           className={clsx(
+            'flex items-center gap-[16px]',
             `transition-opacity duration-${ANIMATION.step3Duration}`,
             toUseNarrow
               ? `transition-delay-${ANIMATION.step3Delay}`
@@ -99,7 +100,17 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
             toUseNarrow ? 'opacity-0' : 'opacity-100'
           )}
         >
-          actions
+          {/* TODO: add link */}
+          <PillButton
+            text="電子報"
+            theme={theme}
+            type={PillButton.Type.secondary}
+          />
+          <PillButton
+            text="贊助"
+            theme={theme}
+            type={PillButton.Type.primary}
+          />
         </div>
         {/* icons */}
         <Icons releaseBranch={releaseBranch} theme={theme} />
