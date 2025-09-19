@@ -14,6 +14,7 @@ type IconButtonProps = {
   disabled?: boolean
   active?: boolean
   className?: string
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 const IconButton: React.FC<IconButtonProps> & {
   Theme: typeof THEME
@@ -25,13 +26,14 @@ const IconButton: React.FC<IconButtonProps> & {
   disabled = false,
   active = false,
   className = '',
+  onClick = () => {},
 }) => {
   const themeClass =
     type === TYPE.primary
       ? getPrimaryIconButtonTheme(theme, active, disabled)
       : getSecondaryIconButtonTheme(theme, active, disabled)
   return (
-    <div
+    <button
       className={clsx(
         'flex',
         '[&>svg]:w-[24px] [&>svg]:h-[24px]',
@@ -39,9 +41,11 @@ const IconButton: React.FC<IconButtonProps> & {
         themeClass,
         className
       )}
+      onClick={disabled ? () => {} : onClick}
+      type="button"
     >
       {iconComponent}
-    </div>
+    </button>
   )
 }
 
