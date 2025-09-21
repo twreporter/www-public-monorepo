@@ -36,7 +36,7 @@ const HamburgerMenu: FC = () => {
   const { closeHamburgerMenu } = useContext(HamburgerContext)
 
   const menuTheme = theme === THEME.photography ? theme : THEME.normal
-  const { bgColor } = selectHamburgerMenuTheme(menuTheme)
+  const { bgColor, scrollBarColor } = selectHamburgerMenuTheme(menuTheme)
   const logoType = selectLogoType(menuTheme)
   const [activeKey, setActiveKey] = useState('')
   const LinkComponent = isLinkExternal ? ExternalLink : InternalLink
@@ -49,8 +49,10 @@ const HamburgerMenu: FC = () => {
         // reserveHeightForIos15 is 48px
         `pb-[calc(48px+48px)]`,
         'tablet:w-[320px] tablet:max-h-screen',
-        'desktop:w-[280px]'
-        // TODO: add scrollbar style
+        'desktop:w-[280px]',
+        scrollBarColor,
+        'scrollbar-w-1',
+        'scrollbar-thumb-rounded-xs'
       )}
     >
       {/* close icon */}
