@@ -42,7 +42,7 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
           className={clsx(
             toUseNarrow ? 'opacity-100' : 'opacity-0',
             `transition-opacity ${ANIMATION.step3Duration}`,
-            toUseNarrow ? 'transition-delay-350' : 'transition-delay-0'
+            toUseNarrow ? 'delay-350' : 'delay-0'
           )}
         >
           <IconButton
