@@ -8,13 +8,14 @@ import { Channels, CHANNEL_TYPE } from './constants/channels'
 import { SocialMedias } from './constants/social-media'
 import { HAMBURGER_MENU_ACION_LINKS } from '../header/constants/action-links'
 import { INTERNAL_LINKS } from '../constants/internal-links'
+import { EXTERNAL_LINKS } from '../constants/external-links'
 // utils
 import {
   selectHamburgerMenuTheme,
   selectHamburgerItemTheme,
 } from './utils/theme'
 // buttons
-import { IconButton, MenuButton, PillButton } from '../button'
+import { IconButton, MenuButton, PillButton, TextButton } from '../button'
 // icons
 import { Cross } from '../icons'
 // logo
@@ -93,9 +94,23 @@ const HamburgerMenu: FC = () => {
             className="h-[21px]"
           />
         </LinkComponent>
-        <div className="flex gap-[16px]">
-          <div>贊助</div>
-          <div>登入</div>
+        <div className="flex items-center gap-[16px]">
+          <LinkComponent to={EXTERNAL_LINKS.monthlyDonation}>
+            <PillButton
+              text="贊助"
+              theme={PillButton.Theme.normal}
+              type={PillButton.Type.primary}
+              style={PillButton.Style.brand}
+            />
+          </LinkComponent>
+          <LinkComponent to={INTERNAL_LINKS.account.index}>
+            <TextButton
+              text="登入"
+              theme={TextButton.Theme.normal}
+              style={TextButton.Style.dark}
+              size={TextButton.Size.s}
+            />
+          </LinkComponent>
         </div>
       </div>
       {/* mobile search bar */}
