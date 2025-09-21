@@ -12,7 +12,7 @@ const meta = {
   component: TextButton,
   argTypes: {
     size: getRadioArgFromEnum(TextButton.Size, TextButton.Size.s),
-    theme: getRadioArgFromObject(TextButton.THEME, TextButton.THEME.normal),
+    theme: getRadioArgFromObject(TextButton.Theme, TextButton.Theme.normal),
     style: getRadioArgFromEnum(TextButton.Style, TextButton.Style.dark),
   },
 } satisfies Meta<typeof TextButton>
@@ -24,7 +24,7 @@ export const Basic: Story = {
   args: {
     text: '文字',
     size: TextButton.Size.s,
-    theme: TextButton.THEME.normal,
+    theme: TextButton.Theme.normal,
     style: TextButton.Style.dark,
     active: false,
     disabled: false,

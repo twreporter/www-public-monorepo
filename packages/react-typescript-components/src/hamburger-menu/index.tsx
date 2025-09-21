@@ -67,14 +67,16 @@ const HamburgerMenu: FC = () => {
         />
       </div>
       {/* logo */}
-      <div
-        className={clsx(
-          'hidden justify-center [&>img]:h-[24px] [&>img]:w-[24px]',
-          'tablet:flex'
-        )}
-      >
-        <LogoSymbol type={logoType} releaseBranch={releaseBranch} />
-      </div>
+      <LinkComponent to={INTERNAL_LINKS.home}>
+        <div
+          className={clsx(
+            'hidden justify-center [&>img]:h-[24px] [&>img]:w-[24px]',
+            'tablet:flex'
+          )}
+        >
+          <LogoSymbol type={logoType} releaseBranch={releaseBranch} />
+        </div>
+      </LinkComponent>
       {/* mobile hamburger header */}
       <div
         className={clsx(

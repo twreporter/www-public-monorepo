@@ -5,11 +5,14 @@ import { HeaderContext } from '../context'
 // constants
 import { ZIndex } from '../constants/z-index'
 import { INTERNAL_LINKS } from '../../constants/internal-links'
+import { EXTERNAL_LINKS } from '../../constants/external-links'
 // logo
 import { LogoHeader } from '../../logo'
 import type { LogoType } from '../../logo/enum'
 // link
 import { ExternalLink, InternalLink } from '../../customized-link'
+// button
+import { PillButton, TextButton } from '../../button'
 
 type TabletAndBelowProps = {
   topRowBgColor: string
@@ -34,8 +37,22 @@ const TabletAndBelow: FC<TabletAndBelowProps> = ({
       </LinkComponent>
       {/* actions */}
       <div className="flex flex-row items-center gap-[24px]">
-        <div>贊助</div>
-        <div>登入</div>
+        <LinkComponent to={EXTERNAL_LINKS.monthlyDonation}>
+          <PillButton
+            text="贊助"
+            theme={PillButton.Theme.normal}
+            type={PillButton.Type.primary}
+            style={PillButton.Style.brand}
+          />
+        </LinkComponent>
+        <LinkComponent to={INTERNAL_LINKS.account.index}>
+          <TextButton
+            text="登入"
+            theme={TextButton.Theme.normal}
+            style={TextButton.Style.dark}
+            size={TextButton.Size.s}
+          />
+        </LinkComponent>
       </div>
     </div>
   )
