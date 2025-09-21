@@ -62,7 +62,7 @@ export const getFilledPillButtonTheme = (
       switch (style) {
         case STYLE.dark:
           return {
-            color: 'text-phote-dark',
+            color: 'text-photo-dark',
             bgColor: 'bg-gray-white',
             hoverColor: 'hover:text-photo-dark',
             hoverBgColor: 'hover:bg-gray-200',
@@ -73,8 +73,8 @@ export const getFilledPillButtonTheme = (
           }
         case STYLE.light:
           return {
-            color: 'text-phote-dark',
-            bgColor: 'bg-gray-gray300',
+            color: 'text-photo-dark',
+            bgColor: 'bg-gray-300',
             hoverColor: 'hover:text-photo-dark',
             hoverBgColor: 'hover:bg-gray-400',
             borderColor: 'border-gray-300',
@@ -84,12 +84,12 @@ export const getFilledPillButtonTheme = (
           }
         default:
           return {
-            color: 'text-phote-dark',
+            color: 'text-photo-dark',
             bgColor: 'bg-supportive-faded',
             hoverColor: 'hover:text-photo-dark',
             hoverBgColor: 'hover:bg-supportive-pastel',
             borderColor: 'border-supportive-faded',
-            svgBgColor: '[&>svg]:bg-phote-dark',
+            svgBgColor: '[&>svg]:bg-photo-dark',
             borderHoverColor: 'hover:border-supportive-pastel',
             svgHoverBgColor: 'hover:[&>svg]:bg-photo-dark',
           }
@@ -101,7 +101,7 @@ export const getFilledPillButtonTheme = (
             color: 'text-gray-800',
             bgColor: 'bg-gray-300',
             hoverColor: 'hover:text-gray-800',
-            hoverBgColor: 'hovver:bg-gray-400',
+            hoverBgColor: 'hover:bg-gray-400',
             borderColor: 'border-gray-300',
             svgBgColor: '[&>svg]:bg-gray-800',
             borderHoverColor: 'hover:border-gray-400',

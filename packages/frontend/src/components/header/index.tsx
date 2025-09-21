@@ -3,12 +3,12 @@ import { useState } from 'react'
 import Header from '@twreporter/react-typescript-components/lib/header'
 
 const UniversalHeader = () => {
-  const [isHamburgerMenuOpen, setIsHamurgerMenuOpen] = useState(false)
+  const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false)
   const toggleHamburger = () => {
-    setIsHamurgerMenuOpen(!isHamburgerMenuOpen)
+    setIsHamburgerMenuOpen(!isHamburgerMenuOpen)
   }
   const closeHamburgerMenu = () => {
-    setIsHamurgerMenuOpen(false)
+    setIsHamburgerMenuOpen(false)
   }
   const hamburgerContext = {
     isHamburgerMenuOpen,
