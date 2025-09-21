@@ -10,20 +10,24 @@ import { Arrow } from '../icons'
 import { selectHamburgerItemTheme } from '../hamburger-menu/utils/theme'
 // components
 import DropdownMenuItem from './dropdown-menu-item'
+// link
+import { ExternalLink, InternalLink } from '../customized-link'
+import type { LinkTarget } from '../customized-link/type'
 
 type DropdownMenuProps = {
   text?: string
   isActive?: boolean
-  dropdownItems: { label: string; to: string; target: string }[]
+  dropdownItems: { label: string; to: string; target: LinkTarget }[]
 }
 const DropdownMenu: FC<DropdownMenuProps> = ({
   text = '',
   isActive = false,
   dropdownItems = [],
 }) => {
-  const { theme, releaseBranch } = useContext(HeaderContext)
+  const { theme, releaseBranch, isLinkExternal } = useContext(HeaderContext)
   const { color, svgBgColor, hoverBgColor, activeBgColor } =
     selectHamburgerItemTheme(theme, isActive)
+  const LinkComponent = isLinkExternal ? ExternalLink : InternalLink
   return (
     <>
       <div
@@ -48,16 +52,9 @@ const DropdownMenu: FC<DropdownMenuProps> = ({
       >
         {dropdownItems.map((itme) => {
           return (
-            <a
-              href={itme.to}
-              target={itme.target}
-              key={itme.label}
-              rel={
-                itme.target === '_blank' ? 'noopener noreferrer' : 'noreferrer'
-              }
-            >
+            <LinkComponent to={itme.to} target={itme.target} key={itme.label}>
               <DropdownMenuItem label={itme.label} />
-            </a>
+            </LinkComponent>
           )
         })}
       </div>

@@ -31,7 +31,6 @@ type HeaderProps = {
   referrerPath: string
   hamburgerContext: HamburgerContextType
 }
-// TODO: check animation
 const Header: FC<HeaderProps> = ({
   releaseBranch,
   isLinkExternal,

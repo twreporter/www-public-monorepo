@@ -1,25 +1,31 @@
-import { MEDIA_TYPE } from '../../icons/enum'
+import { MEDIA_TYPE, type MediaType } from '../../icons/enum'
+import { EXTERNAL_LINKS } from '../../constants/external-links'
+import type { LinkTarget } from '../../customized-link/type'
 
-// TODO: use link from public constant
-export const SocialMedias = [
+type SocialMediaType = {
+  icon: MediaType
+  link: string
+  target: LinkTarget
+}
+export const SocialMedias: SocialMediaType[] = [
   {
     icon: MEDIA_TYPE.facebook,
-    link: 'https://www.facebook.com/twreporter/',
+    link: EXTERNAL_LINKS.facebook,
     target: '_blank',
   },
   {
     icon: MEDIA_TYPE.instagram,
-    link: 'https://www.instagram.com/twreporter/',
+    link: EXTERNAL_LINKS.instagram,
     target: '_blank',
   },
   {
     icon: MEDIA_TYPE.twitter,
-    link: 'https://twitter.com/tw_reporter_org',
+    link: EXTERNAL_LINKS.twitter,
     target: '_blank',
   },
   {
     icon: MEDIA_TYPE.youtube,
-    link: 'https://www.youtube.com/c/TwreporterOrg',
+    link: EXTERNAL_LINKS.youtube,
     target: '_blank',
   },
 ]

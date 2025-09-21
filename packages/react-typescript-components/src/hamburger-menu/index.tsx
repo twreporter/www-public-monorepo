@@ -6,6 +6,8 @@ import { HeaderContext, HamburgerContext } from '../header/context'
 import { THEME } from '../constants/theme'
 import { Channels, CHANNEL_TYPE } from './constants/channels'
 import { SocialMedias } from './constants/social-media'
+import { HAMBURGER_MENU_ACION_LINKS } from '../header/constants/action-links'
+import { INTERNAL_LINKS } from '../constants/internal-links'
 // utils
 import {
   selectHamburgerMenuTheme,
@@ -26,15 +28,18 @@ import { DropdownMenu } from '../dropdown-menu'
 import IconLink from './components/icon-link'
 import LightLink from './components/light-link'
 import SocialMedia from './components/social-media'
+// link
+import { ExternalLink, InternalLink } from '../customized-link'
 
 const HamburgerMenu: FC = () => {
-  const { theme, releaseBranch } = useContext(HeaderContext)
+  const { theme, releaseBranch, isLinkExternal } = useContext(HeaderContext)
   const { closeHamburgerMenu } = useContext(HamburgerContext)
 
   const menuTheme = theme === THEME.photography ? theme : THEME.normal
   const { bgColor } = selectHamburgerMenuTheme(menuTheme)
   const logoType = selectLogoType(menuTheme)
   const [activeKey, setActiveKey] = useState('')
+  const LinkComponent = isLinkExternal ? ExternalLink : InternalLink
 
   return (
     <div
@@ -77,13 +82,13 @@ const HamburgerMenu: FC = () => {
           'tablet:hidden'
         )}
       >
-        <a href="/" rel="noreferrer">
+        <LinkComponent to={INTERNAL_LINKS.home}>
           <LogoHeader
             type={logoType}
             releaseBranch={releaseBranch}
             className="h-[21px]"
           />
-        </a>
+        </LinkComponent>
         <div className="flex gap-[16px]">
           <div>贊助</div>
           <div>登入</div>
@@ -107,11 +112,10 @@ const HamburgerMenu: FC = () => {
             const { color, hoverBgColor, activeBgColor } =
               selectHamburgerItemTheme(theme)
             return (
-              <a
-                href={channel.to}
+              <LinkComponent
+                to={channel.to}
                 target={channel.target}
                 key={channel.label}
-                rel="noreferrer"
               >
                 <MenuButton
                   key={channel.label}
@@ -123,7 +127,7 @@ const HamburgerMenu: FC = () => {
                   paddingLeft={'pl-[32px]'}
                   paddingRight={'pr-[32px]'}
                 />
-              </a>
+              </LinkComponent>
             )
           }
           if (channel.type === CHANNEL_TYPE.divider) {
@@ -179,14 +183,13 @@ const HamburgerMenu: FC = () => {
       {/* social media */}
       <div className="flex flex-row gap-[16px] justify-center">
         {SocialMedias.map((socialMedia) => (
-          <a
-            href={socialMedia.link}
+          <LinkComponent
+            to={socialMedia.link}
             target={socialMedia.target}
-            rel="noreferrer noopener"
             key={socialMedia.icon}
           >
             <SocialMedia mediaType={socialMedia.icon} />
-          </a>
+          </LinkComponent>
         ))}
       </div>
       {/* action butoons */}
@@ -196,21 +199,16 @@ const HamburgerMenu: FC = () => {
           'tablet:flex'
         )}
       >
-        {/* TODO: add link */}
-        <PillButton
-          text="訂閱電子報"
-          theme={theme}
-          type={PillButton.Type.secondary}
-          size={PillButton.Size.l}
-          className="w-full justify-center"
-        />
-        <PillButton
-          text="贊助我們"
-          theme={theme}
-          type={PillButton.Type.primary}
-          size={PillButton.Size.l}
-          className="w-full justify-center"
-        />
+        {HAMBURGER_MENU_ACION_LINKS.map((link) => (
+          <LinkComponent to={link.to} target={link.target} key={link.label}>
+            <PillButton
+              text={link.label}
+              theme={theme}
+              type={link.type}
+              className="w-full justify-center"
+            />
+          </LinkComponent>
+        ))}
       </div>
     </div>
   )

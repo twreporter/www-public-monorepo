@@ -5,6 +5,8 @@ import { HeaderContext, HamburgerContext } from '../../context'
 // constants
 import { ZIndex } from '../../constants/z-index'
 import { ANIMATION } from '../../constants/animation'
+import { HEADER_ACTION_LINKS } from '../../constants/action-links'
+import { INTERNAL_LINKS } from '../../../constants/internal-links'
 // logo
 import { LogoHeader } from '../../../logo'
 import type { LogoType } from '../../../logo/enum'
@@ -15,14 +17,18 @@ import { Icons } from './icons'
 import { Hamburger } from '../../../icons'
 // utils
 import { selectSloganTheme } from '../../utils/theme'
+// link
+import { ExternalLink, InternalLink } from '../../../customized-link'
 
 type TopRowProps = {
   topRowBgColor: string
   logoType: LogoType
 }
 const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
-  const { toUseNarrow, releaseBranch, theme } = useContext(HeaderContext)
+  const { toUseNarrow, releaseBranch, theme, isLinkExternal } =
+    useContext(HeaderContext)
   const { toggleHamburger } = useContext(HamburgerContext)
+  const LinkComponent = isLinkExternal ? ExternalLink : InternalLink
   return (
     <div
       className={clsx(
@@ -54,8 +60,8 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
             toUseNarrow ? `${ANIMATION.step3Delay}` : 'delay-0'
           )}
         >
-          <a
-            href="/"
+          <LinkComponent
+            to={INTERNAL_LINKS.home}
             className={clsx(
               `transition-height ${ANIMATION.step3Duration}`,
               toUseNarrow ? `${ANIMATION.step3Delay}` : 'delay-0'
@@ -66,7 +72,7 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
               releaseBranch={releaseBranch}
               className={clsx(toUseNarrow ? 'h-[24px]' : 'h-[32px]')}
             />
-          </a>
+          </LinkComponent>
         </div>
         <div
           className={clsx(
@@ -92,17 +98,11 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
             toUseNarrow ? 'opacity-0' : 'opacity-100'
           )}
         >
-          {/* TODO: add link */}
-          <PillButton
-            text="電子報"
-            theme={theme}
-            type={PillButton.Type.secondary}
-          />
-          <PillButton
-            text="贊助"
-            theme={theme}
-            type={PillButton.Type.primary}
-          />
+          {HEADER_ACTION_LINKS.map((link) => (
+            <LinkComponent to={link.to} target={link.target} key={link.label}>
+              <PillButton text={link.label} theme={theme} type={link.type} />
+            </LinkComponent>
+          ))}
         </div>
         {/* icons */}
         <Icons releaseBranch={releaseBranch} theme={theme} />

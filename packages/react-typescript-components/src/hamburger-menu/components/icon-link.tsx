@@ -10,16 +10,20 @@ import { selectHamburgerFooterTheme } from '../utils/theme'
 import { Icon } from '../../icons'
 // text
 import { P2 } from '../../text/paragraph'
+// link
+import { ExternalLink, InternalLink } from '../../customized-link'
+import type { LinkTarget } from '../../customized-link/type'
 
 type IconLinkProps = {
   label: string
   icon: string
   to: string
-  target: string
+  target: LinkTarget
 }
 const IconLink: FC<IconLinkProps> = ({ label, icon, to, target }) => {
-  const { theme, releaseBranch } = useContext(HeaderContext)
+  const { theme, releaseBranch, isLinkExternal } = useContext(HeaderContext)
   const footerTheme = theme === THEME.transparent ? THEME.normal : theme
+  const LinkComponent = isLinkExternal ? ExternalLink : InternalLink
   const {
     color,
     hoverColor,
@@ -31,7 +35,7 @@ const IconLink: FC<IconLinkProps> = ({ label, icon, to, target }) => {
     svgActiveBgColor,
   } = selectHamburgerFooterTheme(footerTheme)
   return (
-    <a href={to} target={target} rel="noreferrer noopener">
+    <LinkComponent to={to} target={target}>
       <div
         className={clsx(
           'py-[8px] px-[32px] flex items-center',
@@ -49,7 +53,7 @@ const IconLink: FC<IconLinkProps> = ({ label, icon, to, target }) => {
         <Icon filename={icon} releaseBranch={releaseBranch} />
         <P2 text={label} />
       </div>
-    </a>
+    </LinkComponent>
   )
 }
 

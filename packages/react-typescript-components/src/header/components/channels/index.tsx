@@ -9,6 +9,9 @@ import Divider from '../../../divider'
 // constants
 import { CHANNELS } from './constants'
 import { forClientSideRendering } from '../../../constants/request-origins'
+// link
+import { ExternalLink, InternalLink } from '../../../customized-link'
+import type { LinkTarget } from '../../../customized-link/type'
 // lodash
 import map from 'lodash/map'
 const _ = {
@@ -17,7 +20,7 @@ const _ = {
 type ChannelItemProps = {
   link: {
     href: string
-    target: string
+    target: LinkTarget
   }
   label: string
 }
@@ -25,17 +28,18 @@ const ChannelItem: FC<ChannelItemProps> = ({
   link = { href: '', target: '_self' },
   label = '',
 }) => {
-  const { theme } = useContext(HeaderContext)
+  const { theme, isLinkExternal } = useContext(HeaderContext)
+  const LinkComponent = isLinkExternal ? ExternalLink : InternalLink
   return (
     <div className={clsx('flex items-center', '[&>a]:no-underline')}>
-      <a {...link}>
+      <LinkComponent to={link.href} target={link.target}>
         <TextButton
           text={label}
           size={TextButton.Size.l}
           theme={theme}
           style={TextButton.Style.dark}
         />
-      </a>
+      </LinkComponent>
     </div>
   )
 }
