@@ -35,7 +35,7 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
         <div
           className={clsx(
             toUseNarrow ? 'opacity-100' : 'opacity-0',
-            `transition-opacity duration-${ANIMATION.step3Duration}`,
+            `transition-opacity ${ANIMATION.step3Duration}`,
             toUseNarrow ? 'transition-delay-350' : 'transition-delay-0'
           )}
         >
@@ -48,21 +48,17 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
         {/* Logo */}
         <div
           className={clsx(
-            `flex items-center mr-[16px] transition-all duration-${ANIMATION.step3Duration}`,
+            `flex items-center mr-[16px] transition-all ${ANIMATION.step3Duration}`,
             toUseNarrow ? 'ml-[24px]' : 'ml-0',
             toUseNarrow ? 'translate-x-0' : '-translate-x-[24px]',
-            toUseNarrow
-              ? `transition-delay-${ANIMATION.step3Delay}`
-              : 'transition-delay-0'
+            toUseNarrow ? `${ANIMATION.step3Delay}` : 'delay-0'
           )}
         >
           <a
             href="/"
             className={clsx(
-              `transition-height duration-${ANIMATION.step3Duration}`,
-              toUseNarrow
-                ? `transition-delay-${ANIMATION.step3Delay}`
-                : 'transition-delay-0'
+              `transition-height ${ANIMATION.step3Duration}`,
+              toUseNarrow ? `${ANIMATION.step3Delay}` : 'delay-0'
             )}
           >
             <LogoHeader
@@ -74,11 +70,9 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
         </div>
         <div
           className={clsx(
-            `transition-opacity duration-${ANIMATION.step3Duration}`,
+            `transition-opacity ${ANIMATION.step3Duration}`,
             'flex items-center font-serif font-normal text-[14px]',
-            toUseNarrow
-              ? `transition-delay-${ANIMATION.step3Delay}`
-              : 'transition-delay-0',
+            toUseNarrow ? `${ANIMATION.step3Delay}` : 'delay-0',
             toUseNarrow ? 'pointer-events-none' : 'pointer-events-auto',
             toUseNarrow ? 'opacity-0' : 'opacity-100',
             selectSloganTheme(theme)
@@ -92,10 +86,8 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
         <div
           className={clsx(
             'flex items-center gap-[16px]',
-            `transition-opacity duration-${ANIMATION.step3Duration}`,
-            toUseNarrow
-              ? `transition-delay-${ANIMATION.step3Delay}`
-              : 'transition-delay-0',
+            `transition-opacity ${ANIMATION.step3Duration}`,
+            toUseNarrow ? `${ANIMATION.step3Delay}` : 'delay-0',
             toUseNarrow ? 'pointer-events-none' : 'pointer-events-auto',
             toUseNarrow ? 'opacity-0' : 'opacity-100'
           )}

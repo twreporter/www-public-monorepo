@@ -28,11 +28,9 @@ const DesktopAndAbove: FC<DesktopAndAboveProps> = ({
       {/* divider */}
       <div
         className={clsx(
-          `transition-opacity duration-[${ANIMATION.step2Duration}]`,
+          `transition-opacity ${ANIMATION.step2Duration}`,
           toUseNarrow ? 'opacity-0' : 'opacity-100',
-          toUseNarrow
-            ? 'transition-delay-0'
-            : `transition-delay-${ANIMATION.step2Delay}`
+          toUseNarrow ? 'delay-0' : `${ANIMATION.step2Delay}`
         )}
       >
         <Divider direction={Divider.Direction.horizontal} />
@@ -44,9 +42,9 @@ const DesktopAndAbove: FC<DesktopAndAboveProps> = ({
           nodeRef={channelRef}
           classNames={{
             enter: `opacity-0 -translate-y-full`,
-            enterActive: `transition-all ease-linear duration-${ANIMATION.step1Duration} delay-${ANIMATION.step2Delay} opacity-100 translate-y-0`,
+            enterActive: `transition-all ease-linear ${ANIMATION.step1Duration} ${ANIMATION.step2Delay} opacity-100 translate-y-0`,
             exit: `opacity-100 translate-y-0`,
-            exitActive: `transition-all ease-linear duration-${ANIMATION.step1Duration} -translate-y-full`,
+            exitActive: `transition-all ease-linear ${ANIMATION.step1Duration} -translate-y-full`,
           }}
           timeout={{ appear: 0, enter: 350, exit: 200 }}
           unmountOnExit
