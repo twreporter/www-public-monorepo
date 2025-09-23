@@ -3,7 +3,14 @@ import clsx from 'clsx'
 // text
 import { P1, P2 } from '../../../text/paragraph'
 // enums
-import { SIZE, type Size, STYLE, type Style, TYPE, type Type } from '../../enum'
+import {
+  SIZE,
+  type Size,
+  STYLE,
+  type Style,
+  TYPE,
+  type Type,
+} from '../../constants'
 // constants
 import { THEME, type Theme } from '../../../constants/theme'
 // theme

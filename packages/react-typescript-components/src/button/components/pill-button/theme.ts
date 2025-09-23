@@ -1,5 +1,5 @@
 import { THEME, type Theme } from '../../../constants/theme'
-import { STYLE, type Style } from '../../enum'
+import { STYLE, type Style } from '../../constants'
 
 export const getFilledPillButtonTheme = (
   theme: Theme,

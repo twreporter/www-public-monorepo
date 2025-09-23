@@ -3,7 +3,7 @@ import clsx from 'clsx'
 // constants
 import { THEME, type Theme } from '../../../constants/theme'
 // enums
-import { TYPE, type Type } from '../../enum'
+import { TYPE, type Type } from '../../constants'
 // theme
 import { getPrimaryIconButtonTheme, getSecondaryIconButtonTheme } from './theme'
 

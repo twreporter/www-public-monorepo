@@ -1,7 +1,7 @@
 import { INTERNAL_LINKS } from '../../constants/internal-links'
 import { EXTERNAL_LINKS } from '../../constants/external-links'
 import type { LinkTarget } from '../../customized-link/type'
-import { TYPE, type Type } from '../../button/enum'
+import { TYPE, type Type } from '../../button/constants'
 
 type ActionLink = {
   label: string
