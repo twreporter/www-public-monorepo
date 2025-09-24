@@ -1,4 +1,4 @@
-import type { ValuesOf } from '../../types'
+import type { ValuesOf } from '../types'
 
 export const TYPE = {
   default: 'default',

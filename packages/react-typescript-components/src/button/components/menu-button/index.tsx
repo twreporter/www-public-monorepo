@@ -2,7 +2,7 @@ import type React from 'react'
 import clsx from 'clsx'
 // P1
 import { P1 } from '../../../text/paragraph'
-import { WEIGHT, type Weight } from '../../../text/enum'
+import { WEIGHT, type Weight } from '../../../text/constants'
 
 type MenuButtonProps = {
   text: string

@@ -8,7 +8,7 @@ import { INTERNAL_LINKS } from '../../constants/internal-links'
 import { EXTERNAL_LINKS } from '../../constants/external-links'
 // logo
 import { LogoHeader } from '../../logo'
-import type { LogoType } from '../../logo/enum'
+import type { LogoType } from '../../logo/constants'
 // link
 import { ExternalLink, InternalLink } from '../../customized-link'
 // button

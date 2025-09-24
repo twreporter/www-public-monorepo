@@ -2,7 +2,7 @@
 import { THEME, type Theme } from '../../../constants/theme'
 // type
 import type { ClassArray } from 'clsx'
-// enum
+// constants
 import { STYLE, type Style } from '../../constants'
 
 type ThemeFunc = (theme: Theme, style?: Style) => ClassArray

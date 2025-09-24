@@ -6,7 +6,7 @@ import {
   RELEASE_BRANCH,
   type ReleaseBranch,
 } from '../../constants/release-branch'
-import { LOGO, LOGO_TYPE, type LogoType } from '../enum'
+import { LOGO, LOGO_TYPE, type LogoType } from '../constants'
 
 type LogoHeaderProps = {
   type: LogoType

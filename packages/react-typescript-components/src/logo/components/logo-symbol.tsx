@@ -6,7 +6,7 @@ import {
   RELEASE_BRANCH,
   type ReleaseBranch,
 } from '../../constants/release-branch'
-import { LOGO, LOGO_SYMBOL_TYPE, type LogoSymbolType } from '../enum'
+import { LOGO, LOGO_SYMBOL_TYPE, type LogoSymbolType } from '../constants'
 
 type LogoSymbolProps = {
   type: LogoSymbolType

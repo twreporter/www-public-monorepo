@@ -1,4 +1,4 @@
-import { MEDIA_TYPE, type MediaType } from '../../icons/enum'
+import { MEDIA_TYPE, type MediaType } from '../../icons/constants'
 import { EXTERNAL_LINKS } from '../../constants/external-links'
 import type { LinkTarget } from '../../customized-link/type'
 

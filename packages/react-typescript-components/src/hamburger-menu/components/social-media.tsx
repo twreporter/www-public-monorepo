@@ -5,7 +5,7 @@ import { HeaderContext } from '../../header/context'
 // icon
 import { SocialMedia as SocialMediaIcon } from '../../icons'
 // type
-import type { MediaType } from '../../icons/enum'
+import type { MediaType } from '../../icons/constants'
 // theme
 import { THEME } from '../../constants/theme'
 // button

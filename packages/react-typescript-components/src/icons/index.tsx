@@ -9,7 +9,7 @@ import {
   type ArrowDirection,
   MEDIA_TYPE,
   type MediaType,
-} from './enum'
+} from './constants'
 
 const baseGCSDir = 'https://www.twreporter.org/assets/icon/'
 

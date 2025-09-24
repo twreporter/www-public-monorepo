@@ -1,5 +1,5 @@
 import { THEME, type Theme } from '../../constants/theme'
-import { LOGO_TYPE } from '../../logo/enum'
+import { LOGO_TYPE } from '../../logo/constants'
 
 export const selectLogoType = (theme: Theme) => {
   switch (theme) {

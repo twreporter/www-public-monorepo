@@ -11,7 +11,7 @@ import TopRow from './top-row'
 import Channel from './channels'
 import Divider from '../../divider'
 // type
-import type { LogoType } from '../../logo/enum'
+import type { LogoType } from '../../logo/constants'
 type DesktopAndAboveProps = {
   topRowBgColor: string
   logoType: LogoType

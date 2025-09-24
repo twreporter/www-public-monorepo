@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 // utils
-import {
-  getRadioArgFromObject,
-  getRadioArgFromEnum,
-} from '../../storybook/utils/get-enum-arg'
+import { getRadioArgFromObject } from '../../storybook/utils/get-enum-arg'
 // components
 import TextButton from '../components/text-button'
 
@@ -11,9 +8,9 @@ const meta = {
   title: 'Button/TextButton',
   component: TextButton,
   argTypes: {
-    size: getRadioArgFromEnum(TextButton.Size, TextButton.Size.s),
+    size: getRadioArgFromObject(TextButton.Size, TextButton.Size.s),
     theme: getRadioArgFromObject(TextButton.Theme, TextButton.Theme.normal),
-    style: getRadioArgFromEnum(TextButton.Style, TextButton.Style.dark),
+    style: getRadioArgFromObject(TextButton.Style, TextButton.Style.dark),
   },
 } satisfies Meta<typeof TextButton>
 

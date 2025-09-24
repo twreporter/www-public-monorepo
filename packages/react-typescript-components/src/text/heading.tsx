@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import React from 'react'
-import { TYPE, type Type } from './enum'
+import { TYPE, type Type } from './constants'
 
 type HeadingProps = React.HTMLAttributes<HTMLHeadingElement> & {
   text?: string

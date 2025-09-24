@@ -9,7 +9,7 @@ import { HEADER_ACTION_LINKS } from '../../constants/action-links'
 import { INTERNAL_LINKS } from '../../../constants/internal-links'
 // logo
 import { LogoHeader } from '../../../logo'
-import type { LogoType } from '../../../logo/enum'
+import type { LogoType } from '../../../logo/constants'
 // buton
 import { IconButton, PillButton } from '../../../button'
 // components

@@ -1,5 +1,5 @@
 import type { ReleaseBranch } from '../../constants/release-branch'
-import type { Logo, LogoType, LogoSymbolType } from '../enum'
+import type { Logo, LogoType, LogoSymbolType } from '../constants'
 
 const baseGCSDir = 'https://www.twreporter.org/images/logo/'
 

@@ -1,7 +1,7 @@
 import type React from 'react'
 import clsx from 'clsx'
-// enum
-import { DIRECTION, type Direction } from './enum'
+// constants
+import { DIRECTION, type Direction } from './constants'
 
 type DividerProps = {
   direction?: Direction

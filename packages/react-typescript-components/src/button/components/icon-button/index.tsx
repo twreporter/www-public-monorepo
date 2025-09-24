@@ -2,7 +2,6 @@ import type React from 'react'
 import clsx from 'clsx'
 // constants
 import { THEME, type Theme } from '../../../constants/theme'
-// enums
 import { TYPE, type Type } from '../../constants'
 // theme
 import { getPrimaryIconButtonTheme, getSecondaryIconButtonTheme } from './theme'

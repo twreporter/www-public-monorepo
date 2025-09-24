@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import type React from 'react'
-import { WEIGHT, type Weight } from './enum'
+import { WEIGHT, type Weight } from './constants'
 
 type ParagraphProps = React.HTMLAttributes<HTMLParagraphElement> & {
   text?: string

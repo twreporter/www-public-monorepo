@@ -1,6 +1,6 @@
 import { THEME, type Theme } from '../../constants/theme'
 // logo
-import { LOGO_SYMBOL_TYPE } from '../../logo/enum'
+import { LOGO_SYMBOL_TYPE } from '../../logo/constants'
 
 export const selectHamburgerMenuTheme = (theme: Theme) => {
   switch (theme) {

@@ -2,7 +2,7 @@ import { useMemo, type FC } from 'react'
 import clsx from 'clsx'
 // text
 import { P1, P2 } from '../../../text/paragraph'
-// enums
+// constants
 import {
   SIZE,
   type Size,
@@ -11,7 +11,6 @@ import {
   TYPE,
   type Type,
 } from '../../constants'
-// constants
 import { THEME, type Theme } from '../../../constants/theme'
 // theme
 import { getFilledPillButtonTheme, getOutlinePillButtonTheme } from './theme'
