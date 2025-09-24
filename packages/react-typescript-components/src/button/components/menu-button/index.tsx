@@ -8,34 +8,22 @@ type MenuButtonProps = {
   text: string
   color: string
   fontWeight: Weight
-  hoverBgColor: string
-  activeBgColor: string
-  paddingLeft?: string
-  paddingRight?: string
   className?: string
+  p1ClassName?: string
 }
 const MenuButton: React.FC<MenuButtonProps> & { FontWeight: typeof WEIGHT } = ({
   text,
   color,
   fontWeight,
-  hoverBgColor,
-  activeBgColor,
-  paddingLeft = '',
-  paddingRight = '',
   className = '',
+  p1ClassName = '',
 }) => {
   return (
     <div className={clsx('cursor-pointer', color, className)}>
       <P1
         text={text}
         weight={fontWeight}
-        className={clsx(
-          'py-[8px]',
-          hoverBgColor,
-          activeBgColor,
-          paddingLeft,
-          paddingRight
-        )}
+        className={clsx('py-[8px]', p1ClassName)}
       />
     </div>
   )

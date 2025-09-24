@@ -141,10 +141,7 @@ const HamburgerMenu: FC = () => {
                   text={channel.label}
                   fontWeight={MenuButton.FontWeight.bold}
                   color={color}
-                  hoverBgColor={hoverBgColor}
-                  activeBgColor={activeBgColor}
-                  paddingLeft={'pl-[32px]'}
-                  paddingRight={'pr-[32px]'}
+                  p1ClassName={`${hoverBgColor} ${activeBgColor} pl-[32px] pr-[32px]`}
                 />
               </LinkComponent>
             )
