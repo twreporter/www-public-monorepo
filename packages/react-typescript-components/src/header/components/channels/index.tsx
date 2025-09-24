@@ -8,7 +8,6 @@ import { Hamburger } from '../../../icons'
 import Divider from '../../../divider'
 // constants
 import { CHANNELS } from './constants'
-import { forClientSideRendering } from '../../../constants/request-origins'
 // link
 import { ExternalLink, InternalLink } from '../../../customized-link'
 import type { LinkTarget } from '../../../customized-link/type'
@@ -30,6 +29,7 @@ const ChannelItem: FC<ChannelItemProps> = ({
 }) => {
   const { theme, isLinkExternal } = useContext(HeaderContext)
   const LinkComponent = isLinkExternal ? ExternalLink : InternalLink
+  console.log('link.href: ', link.href)
   return (
     <div className={clsx('flex items-center', '[&>a]:no-underline')}>
       <LinkComponent to={link.href} target={link.target}>
@@ -61,7 +61,7 @@ const Channel = () => {
               key={`channel-${channel.label}`}
               label={channel.label}
               link={{
-                href: `${forClientSideRendering[releaseBranch].main}/${channel.to}`,
+                href: channel.to,
                 target: channel.target,
               }}
             />
