@@ -26,9 +26,9 @@ export const getIconWithTextButtonTheme = (
     case `${THEME.photography}-active`:
       return {
         color: 'text-supportive-pastel',
-        hoverColor: 'hover:text-supprotive-pastel',
+        hoverColor: 'hover:text-supportive-pastel',
         svgBgColor: '[&>svg]:bg-supportive-pastel',
-        svgHoverBgColor: '[&>svg]:hover:supportive-pastel',
+        svgHoverBgColor: '[&>svg]:hover:bg-supportive-pastel',
       }
     case THEME.transparent:
       return {
