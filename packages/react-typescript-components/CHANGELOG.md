@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.9](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.8...@twreporter/react-typescript-components@0.1.0-beta.9) (2025-09-24)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** remove console log ([59a2bb9](https://github.com/twreporter/www-public-monorepo/commit/59a2bb95768deaca6824bb16a41a671e1ab5c8ea))
+* **react-typescript-components:** use relative path ([360d05a](https://github.com/twreporter/www-public-monorepo/commit/360d05a6b4ae17ef0dc2a244cb62103bd50c4a62))
+
+
+
+
+
 # [0.1.0-beta.8](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.7...@twreporter/react-typescript-components@0.1.0-beta.8) (2025-09-24)
 
 
