@@ -6,8 +6,11 @@ import { HeadingNode, QuoteNode } from '@lexical/rich-text'
 import { AutoLinkNode, LinkNode } from '@lexical/link'
 import { ListItemNode, ListNode } from '@lexical/list'
 // custom ondes
-import { AnnotatedTextNode, AnnotationContentNode, AnnotationNode } from '../plugins/AnnotationPlugin/nodes'
-
+import {
+  AnnotatedTextNode,
+  AnnotationContentNode,
+  AnnotationNode,
+} from '../plugins/AnnotationPlugin/nodes'
 
 const PlaygroundNodes: Array<Klass<LexicalNode>> = [
   HeadingNode,

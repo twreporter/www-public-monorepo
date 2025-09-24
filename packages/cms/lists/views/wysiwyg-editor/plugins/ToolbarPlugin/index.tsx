@@ -50,7 +50,10 @@ import DropDown, { DropDownItem } from '../../ui/DropDown'
 import DropdownColorPicker from '../../ui/DropdownColorPicker'
 import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts'
 // custom command
-import {ANNOTATION_ADD_COMMAND, ANNOTATION_REMOVE_COMMAND} from '../AnnotationPlugin/command'
+import {
+  ANNOTATION_ADD_COMMAND,
+  ANNOTATION_REMOVE_COMMAND,
+} from '../AnnotationPlugin/command'
 
 function dropDownActiveClass(active: boolean) {
   if (active) {

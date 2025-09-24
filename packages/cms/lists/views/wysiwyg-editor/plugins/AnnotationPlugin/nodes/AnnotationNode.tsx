@@ -8,43 +8,42 @@ import {
   type DOMConversionOutput,
   type SerializedElementNode,
   type Spread,
-  type DOMExportOutput
-} from 'lexical';
+  type DOMExportOutput,
+} from 'lexical'
 
 // type
 
 type SerializedAnnotationNode = Spread<
   {
-    open: boolean;
+    open: boolean
   },
   SerializedElementNode
->;
-
+>
 
 export function $convertDetailsElement(
-  domNode: HTMLDetailsElement,
+  domNode: HTMLDetailsElement
 ): DOMConversionOutput | null {
-  const isOpen = domNode.open !== undefined ? domNode.open : true;
-  const node = $createAnnotationNode(isOpen);
+  const isOpen = domNode.open !== undefined ? domNode.open : true
+  const node = $createAnnotationNode(isOpen)
   return {
     node,
-  };
+  }
 }
 
 export class AnnotationNode extends ElementNode {
   __open: boolean
 
   constructor(open: boolean, key?: NodeKey) {
-    super(key);
-    this.__open = open;
+    super(key)
+    this.__open = open
   }
 
   static getType() {
-    return 'annotation';
+    return 'annotation'
   }
 
   static clone(node: AnnotationNode): AnnotationNode {
-    return new AnnotationNode(node.__open, node.__key);
+    return new AnnotationNode(node.__open, node.__key)
   }
 
   isInline(): true {
@@ -52,23 +51,23 @@ export class AnnotationNode extends ElementNode {
   }
 
   createDOM(_config: EditorConfig, editor: LexicalEditor): HTMLElement {
-    const detailsDom = document.createElement('details');
-    detailsDom.open = this.__open;
+    const detailsDom = document.createElement('details')
+    detailsDom.open = this.__open
     detailsDom.addEventListener('toggle', () => {
-      const open = editor.getEditorState().read(() => this.getOpen());
+      const open = editor.getEditorState().read(() => this.getOpen())
       if (open !== detailsDom.open) {
-        editor.update(() => this.toggleOpen());
+        editor.update(() => this.toggleOpen())
       }
 
       if (open) {
         detailsDom.classList.add('open')
       } else {
         detailsDom.classList.remove('open')
-      } 
-    });
-    detailsDom.classList.add('Annotation__container');
+      }
+    })
+    detailsDom.classList.add('Annotation__container')
 
-    return detailsDom;
+    return detailsDom
   }
 
   updateDOM(prevNode: this, dom: HTMLDetailsElement): boolean {
@@ -88,27 +87,29 @@ export class AnnotationNode extends ElementNode {
         return {
           conversion: $convertDetailsElement,
           priority: 1,
-        };
+        }
       },
     }
   }
 
   exportDOM(): DOMExportOutput {
-    const element = document.createElement('details');
-    element.classList.add('Annotation__container');
-    element.setAttribute('open', this.__open.toString());
-    return {element};
+    const element = document.createElement('details')
+    element.classList.add('Annotation__container')
+    element.setAttribute('open', this.__open.toString())
+    return { element }
   }
 
   static importJSON(serializedNode: SerializedAnnotationNode): AnnotationNode {
-    return $createAnnotationNode(serializedNode.open).updateFromJSON(serializedNode)
+    return $createAnnotationNode(serializedNode.open).updateFromJSON(
+      serializedNode
+    )
   }
 
   exportJSON(): SerializedAnnotationNode {
     return {
       ...super.exportJSON(),
       open: this.__open,
-    };
+    }
   }
 
   getOpen(): boolean {
@@ -129,6 +130,8 @@ export function $createAnnotationNode(isOpen: boolean): AnnotationNode {
   return new AnnotationNode(isOpen)
 }
 
-export function $isAnnotationNode(node: LexicalNode | null | undefined): node is AnnotationNode {
+export function $isAnnotationNode(
+  node: LexicalNode | null | undefined
+): node is AnnotationNode {
   return node instanceof AnnotationNode
 }

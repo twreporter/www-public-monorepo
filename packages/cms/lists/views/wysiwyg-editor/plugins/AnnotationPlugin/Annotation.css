@@ -5,9 +5,10 @@
 
 .Annotation__text {
   color: #9f7544;
-  
-  &::marker, &::-webkit-details-marker {
-    content: '';
+
+  &::marker,
+  &::-webkit-details-marker {
+    content: "";
   }
 }
 

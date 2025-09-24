@@ -1,7 +1,7 @@
-import { type LexicalNode, DecoratorNode, type NodeKey } from 'lexical';
+import { type LexicalNode, DecoratorNode, type NodeKey } from 'lexical'
 import React, { type ReactNode, type FC } from 'react'
-import styled from '@emotion/styled';
-import { $isAnnotationNode } from './AnnotationNode';
+import styled from '@emotion/styled'
+import { $isAnnotationNode } from './AnnotationNode'
 
 // global var
 const annotationTextType = 'annotated-text'
@@ -58,11 +58,11 @@ const AnnotationText: FC<AnnotationTextProps> = ({ text }) => {
   )
 }
 
-export type SerializedAnnotatedTextNode =  {
+export type SerializedAnnotatedTextNode = {
   type: typeof annotationTextType
   version: 1
   text: string
-};
+}
 
 export class AnnotatedTextNode extends DecoratorNode<ReactNode> {
   __text: string
@@ -72,12 +72,12 @@ export class AnnotatedTextNode extends DecoratorNode<ReactNode> {
   }
 
   static clone(node: AnnotatedTextNode): AnnotatedTextNode {
-    return new AnnotatedTextNode(node.__text, node.__key);
+    return new AnnotatedTextNode(node.__text, node.__key)
   }
 
   constructor(text: string, key?: NodeKey) {
-    super(key);
-    this.__text = text;
+    super(key)
+    this.__text = text
   }
 
   createDOM(): HTMLElement {
@@ -86,13 +86,13 @@ export class AnnotatedTextNode extends DecoratorNode<ReactNode> {
       throw new Error('Expected parent node to be a AnnotationNode')
     }
 
-    const dom = document.createElement('summary');
-    dom.classList.add('Annotation__text');
-    return dom;
+    const dom = document.createElement('summary')
+    dom.classList.add('Annotation__text')
+    return dom
   }
 
   updateDOM() {
-    return false;
+    return false
   }
 
   decorate(): ReactNode {
@@ -100,9 +100,7 @@ export class AnnotatedTextNode extends DecoratorNode<ReactNode> {
   }
 
   static importJSON(serializedNode: SerializedAnnotatedTextNode) {
-    return new AnnotatedTextNode(
-      serializedNode.text
-    );
+    return new AnnotatedTextNode(serializedNode.text)
   }
 
   exportJSON(): SerializedAnnotatedTextNode {
@@ -110,7 +108,7 @@ export class AnnotatedTextNode extends DecoratorNode<ReactNode> {
       type: annotationTextType,
       version: 1,
       text: this.__text,
-    };
+    }
   }
 }
 
@@ -118,6 +116,8 @@ export function $createAnnotationTextNode(text: string): AnnotatedTextNode {
   return new AnnotatedTextNode(text)
 }
 
-export function $isAnnotationTextNode(node: LexicalNode | null | undefined): node is AnnotatedTextNode {
+export function $isAnnotationTextNode(
+  node: LexicalNode | null | undefined
+): node is AnnotatedTextNode {
   return node instanceof AnnotatedTextNode
 }
