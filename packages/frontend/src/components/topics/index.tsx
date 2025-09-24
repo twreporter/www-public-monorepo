@@ -1,3 +1,4 @@
+'use client'
 import clsx from 'clsx'
 // react-typescript-components
 import { H1 } from '@twreporter/react-typescript-components/lib/text/heading'

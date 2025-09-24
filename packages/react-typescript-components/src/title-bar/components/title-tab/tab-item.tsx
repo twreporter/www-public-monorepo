@@ -29,7 +29,7 @@ const TabItem: FC<TabItemProps> = ({
         <TextButton
           text={text}
           active={isActive}
-          size={TextButton.Size.L}
+          size={TextButton.Size.l}
           className="py-[16px]"
         />
       </CustomizedLink>

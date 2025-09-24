@@ -1,1 +1,6 @@
 @import "@twreporter/tailwind-config";
+
+@plugin 'tailwind-scrollbar' {
+    nocompatible: true;
+    preferredStrategy: 'pseudoelements';
+}

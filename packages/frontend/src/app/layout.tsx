@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import type { Metadata } from 'next'
+import Header from '@/components/header'
 
 // These styles apply to every route in the application
 import './globals.css'
@@ -17,15 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <header className="w-full flex items-center justify-center text-3xl py-2 bg-amber-600">
-          報導者
-        </header>
+        <Header />
         <main
           className={clsx(
-            'w-full',
+            'w-full h-[3000px]',
             'flex justify-center',
             'px-[24px] pt-[24px] tablet:pt-[32px] desktop:pt-[64px]',
-            'bg-gray-100'
+            'bg-gray-white'
           )}
         >
           {children}

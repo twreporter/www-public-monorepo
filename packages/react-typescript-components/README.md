@@ -53,6 +53,22 @@ yarn build
 
 The output files will be generated in the `lib/` directory.
 
+### Build tool change: tsup → tsdown
+
+We replaced tsup with tsdown for building this package due to intermittent memory crashes when generating type declarations with tsup (ERR_WORKER_OUT_OF_MEMORY). See: https://github.com/egoist/tsup/issues/920
+
+What changed
+
+- Components are built with tsdown (see `tsdown.config.ts`).
+- Scripts:
+  - `yarn build:components` runs tsdown.
+  - `yarn build` cleans, builds components, then builds Tailwind CSS to `lib/styles.css`.
+
+Impact
+
+- No breaking changes for consumers: we still ship ESM and CJS outputs in `lib/` with bundled `.d.ts` and sourcemaps.
+- For contributors: use `yarn build` or `yarn build:components`; tsup is no longer used.
+
 ## License
 
 MIT
