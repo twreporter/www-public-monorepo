@@ -73,6 +73,12 @@ export const Member = (releaseBranch: ReleaseBranch) =>
   getIcon('member', releaseBranch)
 export const Cross = (releaseBranch: ReleaseBranch) =>
   getIcon('cross', releaseBranch)
+export const Home = (releaseBranch: ReleaseBranch) =>
+  getIcon('home', releaseBranch)
+export const Topic = (releaseBranch: ReleaseBranch) =>
+  getIcon('topic', releaseBranch)
+export const Clock = (releaseBranch: ReleaseBranch) =>
+  getIcon('clock', releaseBranch)
 
 export const Arrow: React.FC<{
   direction?: ArrowDirection
