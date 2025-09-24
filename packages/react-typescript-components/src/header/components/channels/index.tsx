@@ -8,7 +8,6 @@ import { Hamburger } from '../../../icons'
 import Divider from '../../../divider'
 // constants
 import { CHANNELS } from './constants'
-import { forClientSideRendering } from '../../../constants/request-origins'
 // link
 import { ExternalLink, InternalLink } from '../../../customized-link'
 import type { LinkTarget } from '../../../customized-link/type'
@@ -61,7 +60,7 @@ const Channel = () => {
               key={`channel-${channel.label}`}
               label={channel.label}
               link={{
-                href: `${forClientSideRendering[releaseBranch].main}/${channel.to}`,
+                href: channel.to,
                 target: channel.target,
               }}
             />
