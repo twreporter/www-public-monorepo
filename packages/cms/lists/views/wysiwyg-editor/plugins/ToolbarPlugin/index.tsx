@@ -50,7 +50,7 @@ import DropDown, { DropDownItem } from '../../ui/DropDown'
 import DropdownColorPicker from '../../ui/DropdownColorPicker'
 import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts'
 // custom command
-import {ANNOTATION_ADD_COMMAND} from '../AnnotationPlugin/command'
+import {ANNOTATION_ADD_COMMAND, ANNOTATION_REMOVE_COMMAND} from '../AnnotationPlugin/command'
 
 function dropDownActiveClass(active: boolean) {
   if (active) {
@@ -425,10 +425,13 @@ export default function ToolbarPlugin({
     }
   }, [activeEditor, setIsLinkEditMode, toolbarState.isLink])
 
-  const addAnnotation = useCallback(() => {
-    // todo: selection annotaion / empty annotation
-    activeEditor.dispatchCommand(ANNOTATION_ADD_COMMAND, undefined)
-  }, [activeEditor])
+  const toggleAnnotation = useCallback(() => {
+    if (toolbarState.isAnnotated) {
+      activeEditor.dispatchCommand(ANNOTATION_REMOVE_COMMAND, undefined)
+    } else {
+      activeEditor.dispatchCommand(ANNOTATION_ADD_COMMAND, undefined)
+    }
+  }, [activeEditor, toolbarState])
 
   return (
     <div className="toolbar">
@@ -615,7 +618,7 @@ export default function ToolbarPlugin({
       </DropDown>
       <button
         disabled={!isEditable}
-        onClick={addAnnotation}
+        onClick={toggleAnnotation}
         className={`toolbar-item spaced ${toolbarState.isAnnotated ? 'active' : ''}`}
         aria-label="Add annotation"
         title={`Add annotation (${SHORTCUTS.ANNOTATION})`}
