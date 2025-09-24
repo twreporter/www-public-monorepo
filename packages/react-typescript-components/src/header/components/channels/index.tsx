@@ -29,7 +29,6 @@ const ChannelItem: FC<ChannelItemProps> = ({
 }) => {
   const { theme, isLinkExternal } = useContext(HeaderContext)
   const LinkComponent = isLinkExternal ? ExternalLink : InternalLink
-  console.log('link.href: ', link.href)
   return (
     <div className={clsx('flex items-center', '[&>a]:no-underline')}>
       <LinkComponent to={link.href} target={link.target}>
