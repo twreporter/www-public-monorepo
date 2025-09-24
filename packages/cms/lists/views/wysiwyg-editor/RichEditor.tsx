@@ -9,6 +9,8 @@ import ShortcutsPlugin from './plugins/ShortcutsPlugin'
 import ToolbarPlugin from './plugins/ToolbarPlugin'
 import LinkPlugin from './plugins/LinkPlugin'
 import FloatingLinkEditorPlugin from './plugins/FloatingLinkEditorPlugin'
+import AnnotationPlugin from './plugins/AnnotationPlugin'
+// components
 import ContentEditable from './ui/ContentEditable'
 
 export default function Editor(): JSX.Element {
@@ -59,6 +61,7 @@ export default function Editor(): JSX.Element {
             setIsLinkEditMode={setIsLinkEditMode}
           />
         )}
+        <AnnotationPlugin />
       </div>
     </>
   )

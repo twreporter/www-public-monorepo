@@ -1,0 +1,37 @@
+.Annotation__container {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.Annotation__text {
+  color: #9f7544;
+  
+  &::marker, &::-webkit-details-marker {
+    content: '';
+  }
+}
+
+.Annotation__container[open] .Annotation__indicator {
+  &::before {
+    transform: rotate(-45deg);
+  }
+
+  &::after {
+    transform: rotate(45deg);
+  }
+}
+
+.Annotation__content {
+  display: none;
+}
+
+.Annotation__container[open] .Annotation__content {
+  display: block;
+}
+
+.Annotation__content {
+  border-top: 1px solid #9f7544;
+  background-color: white;
+  padding: 25px 11px;
+  margin-bottom: 10px;
+}

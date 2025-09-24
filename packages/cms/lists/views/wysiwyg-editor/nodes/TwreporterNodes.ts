@@ -1,8 +1,13 @@
+// type
+import type { Klass, LexicalNode } from 'lexical'
+// official nodes
 import { OverflowNode } from '@lexical/overflow'
 import { HeadingNode, QuoteNode } from '@lexical/rich-text'
-import type { Klass, LexicalNode } from 'lexical'
 import { AutoLinkNode, LinkNode } from '@lexical/link'
 import { ListItemNode, ListNode } from '@lexical/list'
+// custom ondes
+import { AnnotatedTextNode, AnnotationContentNode, AnnotationNode } from '../plugins/AnnotationPlugin/nodes'
+
 
 const PlaygroundNodes: Array<Klass<LexicalNode>> = [
   HeadingNode,
@@ -12,6 +17,9 @@ const PlaygroundNodes: Array<Klass<LexicalNode>> = [
   LinkNode,
   ListItemNode,
   ListNode,
+  AnnotationNode,
+  AnnotatedTextNode,
+  AnnotationContentNode,
 ]
 
 export default PlaygroundNodes

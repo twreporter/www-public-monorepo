@@ -486,6 +486,10 @@ i.prettier-error {
   background-image: url(images/icons/list-ul.svg);
 }
 
+.icon.annotation {
+  background-image: url(images/icons/annotation.svg);
+}
+
 .switches {
   z-index: 6;
   position: fixed;

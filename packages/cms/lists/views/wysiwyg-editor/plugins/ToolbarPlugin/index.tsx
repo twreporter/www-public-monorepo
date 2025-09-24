@@ -44,10 +44,13 @@ import {
 } from './utils'
 import { getSelectedNode } from '../../utils/getSelectedNode'
 import { sanitizeUrl } from '../../utils/url'
+import { $isAnnotationNode } from '../AnnotationPlugin/nodes/AnnotationNode'
 // component
 import DropDown, { DropDownItem } from '../../ui/DropDown'
 import DropdownColorPicker from '../../ui/DropdownColorPicker'
 import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts'
+// custom command
+import {ANNOTATION_ADD_COMMAND} from '../AnnotationPlugin/command'
 
 function dropDownActiveClass(active: boolean) {
   if (active) {
@@ -241,6 +244,10 @@ export default function ToolbarPlugin({
       const isLink = $isLinkNode(parent) || $isLinkNode(node)
       updateToolbarState('isLink', isLink)
 
+      // update annotation
+      const isAnnotated = $isAnnotationNode(parent) || $isAnnotationNode(node)
+      updateToolbarState('isAnnotated', isAnnotated)
+
       if (elementDOM !== null) {
         const type = $isHeadingNode(element)
           ? element.getTag()
@@ -417,6 +424,11 @@ export default function ToolbarPlugin({
       activeEditor.dispatchCommand(TOGGLE_LINK_COMMAND, null)
     }
   }, [activeEditor, setIsLinkEditMode, toolbarState.isLink])
+
+  const addAnnotation = useCallback(() => {
+    // todo: selection annotaion / empty annotation
+    activeEditor.dispatchCommand(ANNOTATION_ADD_COMMAND, undefined)
+  }, [activeEditor])
 
   return (
     <div className="toolbar">
@@ -601,6 +613,16 @@ export default function ToolbarPlugin({
           <span className="shortcut">{SHORTCUTS.CLEAR_FORMATTING}</span>
         </DropDownItem>
       </DropDown>
+      <button
+        disabled={!isEditable}
+        onClick={addAnnotation}
+        className={`toolbar-item spaced ${toolbarState.isAnnotated ? 'active' : ''}`}
+        aria-label="Add annotation"
+        title={`Add annotation (${SHORTCUTS.ANNOTATION})`}
+        type="button"
+      >
+        <i className="format icon annotation" />
+      </button>
       <Divider />
       <button
         disabled={!isEditable}
