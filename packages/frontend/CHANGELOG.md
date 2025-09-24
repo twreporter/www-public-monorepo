@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.22](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.21...www-frontend@0.1.0-beta.22) (2025-09-24)
+
+
+### Bug Fixes
+
+* **frontend:** layout main bg color ([5f0ac9c](https://github.com/twreporter/www-public-monorepo/commit/5f0ac9cc0d6ccf7fe9151680aac4abd331713ef9))
+* **react-typescript-components:** address comments ([3eabe6b](https://github.com/twreporter/www-public-monorepo/commit/3eabe6bf5d230ab02d3277aca559e5bb282d0c76))
+
+
+### Features
+
+* **frontend:** use header from react typescript components ([e7bef95](https://github.com/twreporter/www-public-monorepo/commit/e7bef9551d406d1fce20c701db5634b58607331f))
+* **react-typescript-components:** use tsdown & tailwind toolbar ([93d04f7](https://github.com/twreporter/www-public-monorepo/commit/93d04f7bb21fe7b97b09cd31901eea2921dd78b2))
+
+
+
+
+
 # [0.1.0-beta.21](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.20...www-frontend@0.1.0-beta.21) (2025-09-08)
 
 

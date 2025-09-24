@@ -3,6 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.8](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.7...@twreporter/react-typescript-components@0.1.0-beta.8) (2025-09-24)
+
+
+### Bug Fixes
+
+* **frontend:** address comments ([161ea2c](https://github.com/twreporter/www-public-monorepo/commit/161ea2c810888b3bb8b7eeb17fea098ab1271192))
+* **react-typescript-components:** address comments ([3eabe6b](https://github.com/twreporter/www-public-monorepo/commit/3eabe6bf5d230ab02d3277aca559e5bb282d0c76))
+* **react-typescript-components:** address comments ([ed8508a](https://github.com/twreporter/www-public-monorepo/commit/ed8508acc3981264c0fa5c552b693ab31ce752f0))
+* **react-typescript-components:** animation class ([cebac03](https://github.com/twreporter/www-public-monorepo/commit/cebac03566c7a45d6aa38037d8e263ef9fd898b8))
+* **react-typescript-components:** delay className ([14a865d](https://github.com/twreporter/www-public-monorepo/commit/14a865d7cab6cc155acb31a7793d89d70a58721d))
+* **react-typescript-components:** menu button p1ClassName ([878ec68](https://github.com/twreporter/www-public-monorepo/commit/878ec683aa067d494e6d938a50aeb4073c0c3801))
+* **react-typescript-components:** rename enum to constants ([f0b5671](https://github.com/twreporter/www-public-monorepo/commit/f0b5671cff3f9315ade016e01b91b58ad6387fd5))
+
+
+### Features
+
+* **react-typescript-components:** constants theme and enum format ([6022cf2](https://github.com/twreporter/www-public-monorepo/commit/6022cf21f9f4476d418ac73db16489fbe5b07b6a))
+* **react-typescript-components:** cross and arrow icon ([ca3c7dc](https://github.com/twreporter/www-public-monorepo/commit/ca3c7dcbd6f53811d9e6d940ff61b933389ddf9f))
+* **react-typescript-components:** divider ([4f46cf6](https://github.com/twreporter/www-public-monorepo/commit/4f46cf66cb109672c2d98f422338104ce5a79495))
+* **react-typescript-components:** dropdown menu ([a7d046d](https://github.com/twreporter/www-public-monorepo/commit/a7d046d94eaad40d99b2c7de07a1a8645c5354cb))
+* **react-typescript-components:** external and internal constants link ([49c4eba](https://github.com/twreporter/www-public-monorepo/commit/49c4ebaa109912bb9a7dc3f4d607689c854ffc41))
+* **react-typescript-components:** hamburger menu ([daeecc0](https://github.com/twreporter/www-public-monorepo/commit/daeecc076b19768280bdc604648aa059ac7aca7d))
+* **react-typescript-components:** hamburger menu mobile header ([f5f9195](https://github.com/twreporter/www-public-monorepo/commit/f5f9195a2d22fd734057dbd818058b5707ad3d19))
+* **react-typescript-components:** hamburger menu scroll bar style ([1c06285](https://github.com/twreporter/www-public-monorepo/commit/1c062857ad3f7da76138fa1fdba1ec40ec7d9c4e))
+* **react-typescript-components:** header channels ([e631d40](https://github.com/twreporter/www-public-monorepo/commit/e631d402187e0d4b4967ad2274faa14940ceffa0))
+* **react-typescript-components:** header component ([c95f367](https://github.com/twreporter/www-public-monorepo/commit/c95f367d82fa311b7e64f61aea2ceb7e9f027566))
+* **react-typescript-components:** header context ([2ab176d](https://github.com/twreporter/www-public-monorepo/commit/2ab176dc2851c14a0acaa2c002252fecb102c46e))
+* **react-typescript-components:** header icon link ([3efad68](https://github.com/twreporter/www-public-monorepo/commit/3efad68a055d3a59b8583d556c93b56353aac0fa))
+* **react-typescript-components:** header icons ([1a7e0f0](https://github.com/twreporter/www-public-monorepo/commit/1a7e0f07b706679460b64bb32d312515f107dca7))
+* **react-typescript-components:** icon & release branch constants ([c5e7fc0](https://github.com/twreporter/www-public-monorepo/commit/c5e7fc04c2cadd35d09b79b99e56f07b9b401048))
+* **react-typescript-components:** icon button ([58764ac](https://github.com/twreporter/www-public-monorepo/commit/58764ac26294e2374085719b9e1c19d0ddcede12))
+* **react-typescript-components:** icon button onClick ([df8e549](https://github.com/twreporter/www-public-monorepo/commit/df8e549ad6385336648f0201aa5e67b6964918da))
+* **react-typescript-components:** logo header ([30bac01](https://github.com/twreporter/www-public-monorepo/commit/30bac017f9e6f4b936f3f2c505a66749150d1be7))
+* **react-typescript-components:** logo symbol ([884a80c](https://github.com/twreporter/www-public-monorepo/commit/884a80c62b30274e420312399b8580fe4d47789a))
+* **react-typescript-components:** media icon ([f3899b7](https://github.com/twreporter/www-public-monorepo/commit/f3899b7a3afb0b9c714b8202e1c76e5057a0f4a7))
+* **react-typescript-components:** menu button ([76e31b2](https://github.com/twreporter/www-public-monorepo/commit/76e31b27c52849d464c790053d501295143d5dae))
+* **react-typescript-components:** mobile header action button ([d653664](https://github.com/twreporter/www-public-monorepo/commit/d653664cd9c72f048e03d522c8f1878c12bde73e))
+* **react-typescript-components:** pill button ([5b8dbc1](https://github.com/twreporter/www-public-monorepo/commit/5b8dbc12bddb1a2e27cf75d398107d85c8d575b1))
+* **react-typescript-components:** request origins ([9093c1e](https://github.com/twreporter/www-public-monorepo/commit/9093c1efdc29d9c6551e479ae91a4e98c2985349))
+* **react-typescript-components:** rwd header components ([599e3c5](https://github.com/twreporter/www-public-monorepo/commit/599e3c51cfbb4fc9039ad32df4e4c57a9d5d20d5))
+* **react-typescript-components:** top row ([46f9b25](https://github.com/twreporter/www-public-monorepo/commit/46f9b25438f713b1eb7c91c80ac8c4736135c464))
+* **react-typescript-components:** update header z index ([0e14db4](https://github.com/twreporter/www-public-monorepo/commit/0e14db4479f2040ab9b4d37d5282cb42223628d7))
+* **react-typescript-components:** use hamburget context ([9b42081](https://github.com/twreporter/www-public-monorepo/commit/9b42081db033f56607e5bd863ca55e787d5ba9dc))
+* **react-typescript-components:** use pill button at header ([120e16b](https://github.com/twreporter/www-public-monorepo/commit/120e16b7a94b0edca15a56d68894c2a7256aaaec))
+* **react-typescript-components:** use tsdown & tailwind toolbar ([93d04f7](https://github.com/twreporter/www-public-monorepo/commit/93d04f7bb21fe7b97b09cd31901eea2921dd78b2))
+
+
+
+
+
 # [0.1.0-beta.7](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.6...@twreporter/react-typescript-components@0.1.0-beta.7) (2025-08-28)
 
 

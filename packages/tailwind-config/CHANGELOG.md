@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.6](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/tailwind-config@0.1.0-beta.5...@twreporter/tailwind-config@0.1.0-beta.6) (2025-09-24)
+
+**Note:** Version bump only for package @twreporter/tailwind-config
+
+
+
+
+
 # [0.1.0-beta.5](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/tailwind-config@0.1.0-beta.4...@twreporter/tailwind-config@0.1.0-beta.5) (2025-08-26)
 
 **Note:** Version bump only for package @twreporter/tailwind-config
