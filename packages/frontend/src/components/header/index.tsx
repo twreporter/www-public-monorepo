@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 import Header from '@twreporter/react-typescript-components/lib/header'
 
 const UniversalHeader = () => {
-  const pathame = usePathname()
+  const pathname = usePathname()
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false)
   const toggleHamburger = () => {
     setIsHamburgerMenuOpen(!isHamburgerMenuOpen)
@@ -23,7 +23,7 @@ const UniversalHeader = () => {
       releaseBranch="master"
       theme="normal"
       isLinkExternal={false}
-      pathname={pathame}
+      pathname={pathname}
       referrerPath=""
     />
   )
