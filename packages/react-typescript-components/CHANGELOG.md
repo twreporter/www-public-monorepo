@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.11](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.10...@twreporter/react-typescript-components@0.1.0-beta.11) (2025-09-25)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** hide search bar at desktop for hamburger menu ([1f57fd5](https://github.com/twreporter/www-public-monorepo/commit/1f57fd53fec75ec21c760dc699b27ff3d91b93ad))
+* **react-typescript-components:** remove tailwind-scrollbar dependency and update related components ([3952751](https://github.com/twreporter/www-public-monorepo/commit/3952751bd110b1ed6b2e531f13a6bf3683c5d1e0))
+
+
+
+
+
 # [0.1.0-beta.10](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.9...@twreporter/react-typescript-components@0.1.0-beta.10) (2025-09-25)
 
 
