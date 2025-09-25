@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.8](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.7...www-cms@0.1.0-beta.8) (2025-09-25)
+
+
+### Bug Fixes
+
+* **cms:** add remove annotation command ([c37454a](https://github.com/twreporter/www-public-monorepo/commit/c37454a29b0e6b26b18348ac2685d26199112ec1))
+* **cms:** address review comments ([aa2da6d](https://github.com/twreporter/www-public-monorepo/commit/aa2da6de87538b1ff3812e6ad566e9a5ee1982b1))
+* **cms:** apply formatter ([ec64dff](https://github.com/twreporter/www-public-monorepo/commit/ec64dfff8ab534bf52c5f1ac59f0fd9d1b06426c))
+
+
+### Features
+
+* **cms:** add lexical AnnotationPlugin ([47010c6](https://github.com/twreporter/www-public-monorepo/commit/47010c60a693287349cd68dd5b26b222831a8fd6))
+
+
+
+
+
 # [0.1.0-beta.7](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.6...www-cms@0.1.0-beta.7) (2025-08-26)
 
 **Note:** Version bump only for package www-cms

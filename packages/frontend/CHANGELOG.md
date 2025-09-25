@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.26](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.25...www-frontend@0.1.0-beta.26) (2025-09-25)
+
+
+### Bug Fixes
+
+* **frontend:** add `Roboto Slab` font ([1efa4ee](https://github.com/twreporter/www-public-monorepo/commit/1efa4ee636414fdf2e2c5eeedb23cd2a39862274))
+
+
+
+
+
 # [0.1.0-beta.25](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.24...www-frontend@0.1.0-beta.25) (2025-09-25)
 
 **Note:** Version bump only for package www-frontend
