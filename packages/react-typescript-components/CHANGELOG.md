@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.10](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.9...@twreporter/react-typescript-components@0.1.0-beta.10) (2025-09-25)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** address commenrs ([7623a2b](https://github.com/twreporter/www-public-monorepo/commit/7623a2b6e8e4f23134fcb6ee73d64d826f8932ac))
+* **react-typescript-components:** typo ([c88c170](https://github.com/twreporter/www-public-monorepo/commit/c88c1706c361204009498b8ee1067edf07efcdd1))
+
+
+### Features
+
+* **react-typescript-components:** icon with text button ([117bbfd](https://github.com/twreporter/www-public-monorepo/commit/117bbfd487a4af09d6264efa834a1591aead1044))
+* **react-typescript-components:** tab bar ([1a31b19](https://github.com/twreporter/www-public-monorepo/commit/1a31b19762b26ec349d994d21dd265245d26102a))
+
+
+
+
+
 # [0.1.0-beta.9](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.8...@twreporter/react-typescript-components@0.1.0-beta.9) (2025-09-24)
 
 
