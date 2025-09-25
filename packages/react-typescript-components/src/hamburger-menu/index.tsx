@@ -114,7 +114,7 @@ const HamburgerMenu: FC = () => {
           </LinkComponent>
         </div>
       </div>
-      {/* mobile search bar */}
+      {/* search bar (visible on mobile and tablet) */}
       <div className="px-[32px] pt-[24px] pb-[8px] desktop:hidden">
         <input
           type="text"
