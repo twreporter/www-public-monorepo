@@ -85,7 +85,7 @@ const HamburgerMenu: FC = () => {
       <div
         className={clsx(
           'flex items-center justify-between px-[24px] py-[16px]',
-          'desktop:hidden'
+          'tablet:hidden'
         )}
       >
         <LinkComponent to={INTERNAL_LINKS.home}>
@@ -115,7 +115,7 @@ const HamburgerMenu: FC = () => {
         </div>
       </div>
       {/* mobile search bar */}
-      <div className="px-[32px] pt-[24px] pb-[8px] tablet:hidden">
+      <div className="px-[32px] pt-[24px] pb-[8px] desktop:hidden">
         <input
           type="text"
           className={clsx(
