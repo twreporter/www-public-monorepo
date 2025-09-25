@@ -56,6 +56,8 @@ body {
   left: 0;
   padding: 0 20px;
   background-color: rgba(0, 0, 0, 0.2);
+  max-height: 100vh;
+  overflow-y: scroll;
 
   .editor-shell {
     max-width: 1000px;
@@ -484,6 +486,10 @@ i.prettier-error {
 .icon.bullet-list,
 .icon.bullet {
   background-image: url(images/icons/list-ul.svg);
+}
+
+.icon.annotation {
+  background-image: url(images/icons/annotation.svg);
 }
 
 .switches {

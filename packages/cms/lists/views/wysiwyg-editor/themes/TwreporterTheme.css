@@ -3,15 +3,6 @@
   margin: 0;
   position: relative;
 }
-.TwreporterTheme__h1 {
-  line-height: 125%;
-  font-size: 36px;
-  font-weight: 700;
-  @media (max-width: 1023px) {
-    font-size: 28px;
-  }
-  margin: 0;
-}
 .TwreporterTheme__h2 {
   line-height: 125%;
   font-size: 32px;
