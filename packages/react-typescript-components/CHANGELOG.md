@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.12](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.11...@twreporter/react-typescript-components@0.1.0-beta.12) (2025-09-25)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** address comments ([57e9963](https://github.com/twreporter/www-public-monorepo/commit/57e9963dc72706b1c74c2d677381f9a440fd5c1f))
+* **react-typescript-components:** hamburger menu search bar ([c32e22b](https://github.com/twreporter/www-public-monorepo/commit/c32e22bd6496c000be14170b6549a71d9c0109ae))
+
+
+
+
+
 # [0.1.0-beta.11](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.10...@twreporter/react-typescript-components@0.1.0-beta.11) (2025-09-25)
 
 
