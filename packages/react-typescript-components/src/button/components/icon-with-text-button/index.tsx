@@ -31,6 +31,12 @@ const IconWithTextButton: FC<IconWithTextButtonProps> & {
 }) => {
   const { color, hoverColor, svgBgColor, svgHoverBgColor } =
     getIconWithTextButtonTheme(theme, active, disabled)
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (disabled) {
+      return
+    }
+    onClick(e)
+  }
   return (
     <button
       className={clsx(
@@ -44,7 +50,7 @@ const IconWithTextButton: FC<IconWithTextButtonProps> & {
         className
       )}
       type="button"
-      onClick={disabled ? () => {} : onClick}
+      onClick={handleClick}
     >
       {iconComponent}
       <P4

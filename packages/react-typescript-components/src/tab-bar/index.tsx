@@ -66,6 +66,7 @@ const TabBar: FC<TabBarProps> = ({ className = '' }) => {
         className="flex justify-center flex-1"
         onClick={toggleHamburger}
         active={isHamburgerMenuOpen}
+        theme={iconTheme}
       />
     </div>
   )
