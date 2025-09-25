@@ -42,7 +42,7 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
           className={clsx(
             toUseNarrow ? 'opacity-100' : 'opacity-0',
             `transition-opacity ${ANIMATION.step3Duration}`,
-            toUseNarrow ? 'delay-350' : 'delay-0'
+            toUseNarrow ? 'delay-[350ms]' : 'delay-0'
           )}
         >
           <IconButton
@@ -60,17 +60,15 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
             toUseNarrow ? `${ANIMATION.step3Delay}` : 'delay-0'
           )}
         >
-          <LinkComponent
-            to={INTERNAL_LINKS.home}
-            className={clsx(
-              `transition-height ${ANIMATION.step3Duration}`,
-              toUseNarrow ? `${ANIMATION.step3Delay}` : 'delay-0'
-            )}
-          >
+          <LinkComponent to={INTERNAL_LINKS.home}>
             <LogoHeader
               type={logoType}
               releaseBranch={releaseBranch}
-              className={clsx(toUseNarrow ? 'h-[24px]' : 'h-[32px]')}
+              className={clsx(
+                `transition-height ${ANIMATION.step3Duration}`,
+                toUseNarrow ? `${ANIMATION.step3Delay}` : 'delay-0',
+                toUseNarrow ? 'h-[24px]' : 'h-[32px]'
+              )}
             />
           </LinkComponent>
         </div>

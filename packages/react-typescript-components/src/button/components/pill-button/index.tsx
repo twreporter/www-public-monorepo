@@ -98,9 +98,17 @@ const PillButton: FC<PillButtonProps> & {
             'opacity-100': !loading,
           })}
         >
-          <div className="flex items-center mr-[4px]">{leftIconComponent}</div>
+          {leftIconComponent ? (
+            <div className="flex items-center mr-[4px]">
+              {leftIconComponent}
+            </div>
+          ) : null}
           {TextJSX}
-          <div className="flex items-center ml-[4px]">{rightIconComponent}</div>
+          {rightIconComponent ? (
+            <div className="flex items-center ml-[4px]">
+              {rightIconComponent}
+            </div>
+          ) : null}
         </div>
         <span
           className={clsx(

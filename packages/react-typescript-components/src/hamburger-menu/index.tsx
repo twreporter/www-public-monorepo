@@ -51,9 +51,10 @@ const HamburgerMenu: FC = () => {
         `pb-[calc(48px+48px)]`,
         'tablet:w-[320px] tablet:max-h-screen',
         'desktop:w-[280px]',
-        scrollBarColor,
-        'scrollbar-w-1',
-        'scrollbar-thumb-rounded-xs'
+        '[&::-webkit-scrollbar]:w-[4px]',
+        '[&::-webkit-scrollbar]:bg-transparent',
+        '[&::-webkit-scrollbar-thumb]:rounded-[2px]',
+        scrollBarColor
       )}
     >
       {/* close icon */}
@@ -114,7 +115,7 @@ const HamburgerMenu: FC = () => {
         </div>
       </div>
       {/* mobile search bar */}
-      <div className="px-[32px] pt-[24px] pb-[8px]">
+      <div className="px-[32px] pt-[24px] pb-[8px] tablet:hidden">
         <input
           type="text"
           className={clsx(

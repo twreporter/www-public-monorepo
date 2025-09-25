@@ -7,12 +7,12 @@ export const selectHamburgerMenuTheme = (theme: Theme) => {
     case THEME.photography:
       return {
         bgColor: 'bg-photo-dark',
-        scrollBarColor: 'scrollbar-thumb-opacity-white-08',
+        scrollBarColor: '[&::-webkit-scrollbar-thumb]:bg-opacity-white-08',
       }
     default:
       return {
         bgColor: 'bg-gray-white',
-        scrollBarColor: 'scrollbar-thumb-opacity-black-02',
+        scrollBarColor: '[&::-webkit-scrollbar-thumb]:bg-opacity-black-02',
       }
   }
 }

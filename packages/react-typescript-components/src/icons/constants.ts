@@ -25,6 +25,7 @@ export const MEDIA_TYPE = {
   line: 'line',
   google: 'google',
   plurk: 'plurk',
+  threads: 'threads',
 } as const
 
 export type MediaType = ValuesOf<typeof MEDIA_TYPE>
