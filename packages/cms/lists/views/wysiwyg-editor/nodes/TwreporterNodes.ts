@@ -5,7 +5,7 @@ import { OverflowNode } from '@lexical/overflow'
 import { HeadingNode, QuoteNode } from '@lexical/rich-text'
 import { AutoLinkNode, LinkNode } from '@lexical/link'
 import { ListItemNode, ListNode } from '@lexical/list'
-// custom ondes
+// custom nodes
 import {
   AnnotatedTextNode,
   AnnotationContentNode,

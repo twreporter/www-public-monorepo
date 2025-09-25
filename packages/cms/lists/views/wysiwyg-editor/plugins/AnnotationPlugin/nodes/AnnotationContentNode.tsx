@@ -64,7 +64,7 @@ export class AnnotationContentNode extends ElementNode {
 
   exportDOM(): DOMExportOutput {
     const element = document.createElement('div')
-    element.classList.add('Collapsible__content')
+    element.classList.add('Annotation__content')
     element.setAttribute(annotationAttribute, 'true')
     return { element }
   }

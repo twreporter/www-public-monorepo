@@ -21,7 +21,7 @@ export function registerAnnotationPlugin(editor: LexicalEditor) {
       if ($isRangeSelection(selection)) {
         const selectedText = selection.getTextContent()
         const annotatedTextNode = new AnnotatedTextNode(selectedText)
-        const annotationContentNode = new AnnotationContentNode('')
+        const annotationContentNode = new AnnotationContentNode()
 
         const annotationNode = new AnnotationNode(false)
         annotationNode.append(annotatedTextNode)
