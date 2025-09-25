@@ -85,7 +85,7 @@ const HamburgerMenu: FC = () => {
       <div
         className={clsx(
           'flex items-center justify-between px-[24px] py-[16px]',
-          'tablet:hidden'
+          'desktop:hidden'
         )}
       >
         <LinkComponent to={INTERNAL_LINKS.home}>
