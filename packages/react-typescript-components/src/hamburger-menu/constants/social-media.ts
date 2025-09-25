@@ -19,8 +19,8 @@ export const SocialMedias: SocialMediaType[] = [
     target: '_blank',
   },
   {
-    icon: MEDIA_TYPE.twitter,
-    link: EXTERNAL_LINKS.twitter,
+    icon: MEDIA_TYPE.threads,
+    link: EXTERNAL_LINKS.threads,
     target: '_blank',
   },
   {

@@ -9,4 +9,5 @@ export const EXTERNAL_LINKS = {
   kidsReporter: 'https://kids.twreporter.org/',
   publicationAndMerchandise: 'https://twreporter.waca.ec/',
   lawmaker: 'https://lawmaker.twreporter.org/',
+  threads: 'https://www.threads.com/@twreporter',
 } as const
