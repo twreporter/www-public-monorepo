@@ -18,6 +18,8 @@ import {
 import { selectHeaderTheme, selectLogoType } from './utils/theme'
 // hamburger menu
 import HamburgerMenu from '../hamburger-menu'
+// tab bar
+import TabBar from '../tab-bar'
 
 const HIDE_HEADER_THRESHOLD = 8
 const TRANSFORM_HEADER_THRESHOLD = 40
@@ -176,20 +178,23 @@ const Header: FC<HeaderProps> = ({
         </header>
         <div
           className={clsx(
-            `fixed top-0 ${ZIndex.hamburger} transition-transform duration-300 ease-in-out`,
-            isHamburgerMenuOpen ? 'opacity-100' : 'opacity-0',
+            `fixed top-0 left-0 ${ZIndex.hamburger} transition-transform duration-300 ease-in-out`,
+            isHamburgerMenuOpen
+              ? 'translate-x-0 opacity-100'
+              : '-translate-x-full opacity-100',
             'tablet:-left-[320px]',
             isHamburgerMenuOpen
               ? 'tablet:translate-x-[320px] tablet:opacity-100'
-              : 'tablet:translate-x-0 tablet:opacity-100',
+              : 'tablet:-translate-x-[320px] tablet:opacity-100',
             'desktop:-left-[280px]',
             isHamburgerMenuOpen
               ? 'desktop:translate-x-[280px] desktop:opacity-100'
-              : 'desktop:translate-x-0 desktop:opacity-100'
+              : 'desktop:-translate-x-[280px] desktop:opacity-100'
           )}
         >
           <HamburgerMenu />
         </div>
+        <TabBar />
       </HamburgerContext>
     </HeaderContext>
   )

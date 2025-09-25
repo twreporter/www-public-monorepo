@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.24](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.23...www-frontend@0.1.0-beta.24) (2025-09-25)
+
+
+### Bug Fixes
+
+* **frontend:** typo ([261e227](https://github.com/twreporter/www-public-monorepo/commit/261e227ee60276a089b060ae592cca69798c389c))
+
+
+### Features
+
+* **frontend:** get pathname ([01263a3](https://github.com/twreporter/www-public-monorepo/commit/01263a35156a4b868952f4e1ecf93493a86fb265))
+
+
+
+
+
 # [0.1.0-beta.23](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.22...www-frontend@0.1.0-beta.23) (2025-09-24)
 
 **Note:** Version bump only for package www-frontend
