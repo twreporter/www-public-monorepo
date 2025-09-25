@@ -36,7 +36,7 @@ const TabletAndBelow: FC<TabletAndBelowProps> = ({
         <LogoHeader type={logoType} className="h-[21px]" />
       </LinkComponent>
       {/* actions */}
-      <div className="flex flex-row items-center gap-[24px]">
+      <div className="flex flex-row items-center gap-[16px]">
         <LinkComponent to={EXTERNAL_LINKS.monthlyDonation}>
           <PillButton
             text="贊助"
