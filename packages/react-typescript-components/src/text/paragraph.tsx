@@ -25,12 +25,7 @@ const ParagraphVariant = (variant: keyof typeof variantClass) => {
     ...props
   }) => (
     <p
-      className={clsx(
-        baseClass,
-        variantClass[variant],
-        `font-${weight}`,
-        className
-      )}
+      className={clsx(baseClass, variantClass[variant], weight, className)}
       {...props}
     >
       {text}
