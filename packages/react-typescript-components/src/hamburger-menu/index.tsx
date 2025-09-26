@@ -49,7 +49,7 @@ const HamburgerMenu: FC = () => {
         bgColor,
         // reserveHeightForIos15 is 48px
         `pb-[calc(48px+48px)]`,
-        'tablet:w-[320px] tablet:max-h-screen',
+        'tablet:w-[320px] tablet:max-h-screen tablet:pb-0',
         'desktop:w-[280px]',
         '[&::-webkit-scrollbar]:w-[4px]',
         '[&::-webkit-scrollbar]:bg-transparent',
@@ -223,6 +223,7 @@ const HamburgerMenu: FC = () => {
               theme={theme}
               type={link.type}
               className="w-full justify-center"
+              size={PillButton.Size.l}
             />
           </LinkComponent>
         ))}

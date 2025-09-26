@@ -155,7 +155,7 @@ const Header: FC<HeaderProps> = ({
       <HamburgerContext value={hamburgerContext}>
         <header
           className={clsx(
-            `w-full top-0 transition-transform duration-300 ${bgColor}`,
+            `w-full top-0 transition-transform duration-300 ${bgColor} z-10`,
             theme === THEME.transparent ? 'fixed' : 'sticky',
             hideHeader ? 'ease-in' : 'ease-out',
             hideHeader ? '-translate-y-full' : 'translate-y-0'
