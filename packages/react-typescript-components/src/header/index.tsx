@@ -20,6 +20,7 @@ import { selectHeaderTheme, selectLogoType } from './utils/theme'
 import HamburgerMenu from '../hamburger-menu'
 // tab bar
 import TabBar from '../tab-bar'
+import { useAuthStore, type AuthState } from './store/auth-store'
 
 const HIDE_HEADER_THRESHOLD = 8
 const TRANSFORM_HEADER_THRESHOLD = 40
@@ -41,8 +42,7 @@ const Header: FC<HeaderProps> = ({
   referrerPath,
   hamburgerContext,
 }) => {
-  const isAuthed = false
-
+  const isAuthed = useAuthStore((s: AuthState) => s.isAuthed)
   const { bgColor, topRowBgColor } = selectHeaderTheme(theme)
   const logoType = selectLogoType(theme)
 
@@ -50,9 +50,6 @@ const Header: FC<HeaderProps> = ({
 
   const [toUseNarrow, setToUseNarrow] = useState(false)
   const [hideHeader, setHideHeader] = useState(false)
-
-  // TODO: get isAuthed from redux
-  // const isAuthed = useSelector(state => _.get(state, 'auth.isAuthed', false))
 
   const lastKnownPageYOffset = useRef(0)
   const ticking = useRef(false)
@@ -155,7 +152,7 @@ const Header: FC<HeaderProps> = ({
       <HamburgerContext value={hamburgerContext}>
         <header
           className={clsx(
-            `w-full top-0 transition-transform duration-300 ${bgColor} z-10`,
+            `w-full top-0 transition-transform duration-300 ${bgColor} ${ZIndex.header}`,
             theme === THEME.transparent ? 'fixed' : 'sticky',
             hideHeader ? 'ease-in' : 'ease-out',
             hideHeader ? '-translate-y-full' : 'translate-y-0'
@@ -163,7 +160,7 @@ const Header: FC<HeaderProps> = ({
         >
           <div
             className={clsx(
-              `flex flex-col mx-auto px-[24px] ${ZIndex.header}`,
+              `flex flex-col mx-auto px-[24px]`,
               'tablet:px-[32px]',
               'desktop:px-[48px]',
               'hd:w-[1280px] hd:px-0'

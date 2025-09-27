@@ -17,7 +17,7 @@ import {
 // buttons
 import { IconButton, MenuButton, PillButton, TextButton } from '../button'
 // icons
-import { Cross } from '../icons'
+import { Cross, Member } from '../icons'
 // logo
 import { LogoSymbol, LogoHeader } from '../logo'
 // utils
@@ -33,7 +33,8 @@ import SocialMedia from './components/social-media'
 import { ExternalLink, InternalLink } from '../customized-link'
 
 const HamburgerMenu: FC = () => {
-  const { theme, releaseBranch, isLinkExternal } = useContext(HeaderContext)
+  const { theme, releaseBranch, isLinkExternal, isAuthed } =
+    useContext(HeaderContext)
   const { closeHamburgerMenu } = useContext(HamburgerContext)
 
   const menuTheme = theme === THEME.photography ? theme : THEME.normal
@@ -105,12 +106,16 @@ const HamburgerMenu: FC = () => {
             />
           </LinkComponent>
           <LinkComponent to={INTERNAL_LINKS.account.index}>
-            <TextButton
-              text="登入"
-              theme={TextButton.Theme.normal}
-              style={TextButton.Style.dark}
-              size={TextButton.Size.s}
-            />
+            {isAuthed ? (
+              <IconButton iconComponent={Member(releaseBranch)} />
+            ) : (
+              <TextButton
+                text="登入"
+                theme={TextButton.Theme.normal}
+                style={TextButton.Style.dark}
+                size={TextButton.Size.s}
+              />
+            )}
           </LinkComponent>
         </div>
       </div>

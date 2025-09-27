@@ -14,7 +14,7 @@ import { ExternalLink, InternalLink } from '../../customized-link'
 // button
 import { PillButton, TextButton, IconButton } from '../../button'
 // icon
-import { Arrow } from '../../icons'
+import { Arrow, Member } from '../../icons'
 // utils
 import { checkReferrer } from '../utils/links'
 // lodash
@@ -35,8 +35,14 @@ const TabletAndBelow: FC<TabletAndBelowProps> = ({
   topRowBgColor,
   logoType,
 }) => {
-  const { isLinkExternal, releaseBranch, theme, pathname, referrerPath } =
-    useContext(HeaderContext)
+  const {
+    isLinkExternal,
+    releaseBranch,
+    theme,
+    pathname,
+    referrerPath,
+    isAuthed,
+  } = useContext(HeaderContext)
   const LinkComponent = isLinkExternal ? ExternalLink : InternalLink
 
   const [currentClientWidth, setCurrentClientWidth] = useState(0)
@@ -116,12 +122,16 @@ const TabletAndBelow: FC<TabletAndBelowProps> = ({
           />
         </LinkComponent>
         <LinkComponent to={INTERNAL_LINKS.account.index}>
-          <TextButton
-            text="登入"
-            theme={TextButton.Theme.normal}
-            style={TextButton.Style.dark}
-            size={TextButton.Size.s}
-          />
+          {isAuthed ? (
+            <IconButton iconComponent={Member(releaseBranch)} />
+          ) : (
+            <TextButton
+              text="登入"
+              theme={TextButton.Theme.normal}
+              style={TextButton.Style.dark}
+              size={TextButton.Size.s}
+            />
+          )}
         </LinkComponent>
       </div>
     </div>
