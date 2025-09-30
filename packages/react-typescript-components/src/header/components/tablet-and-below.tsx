@@ -49,7 +49,7 @@ const TabletAndBelow: FC<TabletAndBelowProps> = ({
   useEffect(() => {
     const handleResize = _.throttle(() => {
       setCurrentClientWidth(document.body.clientWidth)
-    })
+    }, 200)
 
     handleResize()
     window.addEventListener('resize', handleResize)

@@ -1,12 +1,16 @@
+import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import Header from '..'
+// utils
+import { getRadioArgFromObject } from '../../storybook/utils/get-enum-arg'
+// constants
 import {
   RELEASE_BRANCH,
   type ReleaseBranch,
 } from '../../constants/release-branch'
 import { THEME, type Theme } from '../../constants/theme'
+// header
 import { HamburgerContext, type HamburgerContextType } from '../context'
-import { useState } from 'react'
+import Header from '..'
 
 type HeaderStoryArgs = {
   releaseBranch: ReleaseBranch
@@ -21,8 +25,8 @@ const meta = {
   title: 'Navigation/Header',
   component: Header,
   argTypes: {
-    theme: { control: 'radio', options: Object.values(THEME) },
-    releaseBranch: { control: 'radio', options: Object.values(RELEASE_BRANCH) },
+    theme: getRadioArgFromObject(THEME, THEME.normal),
+    releaseBranch: getRadioArgFromObject(RELEASE_BRANCH, RELEASE_BRANCH.master),
   },
   render: (args: HeaderStoryArgs) => {
     const [isOpen, setIsOpen] = useState(false)

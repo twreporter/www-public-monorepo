@@ -3,10 +3,11 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { getRadioArgFromObject } from '../../storybook/utils/get-enum-arg'
 // components
 import IconButton from '../components/icon-button'
-// icons (pick one existing icon for showcase)
-import { Cross } from '../../icons'
-import { THEME } from '../../constants/theme'
+// constants
 import { TYPE } from '../constants'
+import { RELEASE_BRANCH } from '../../constants/release-branch'
+// example icon
+import { Cross } from '../../icons'
 
 const meta = {
   title: 'Button/IconButton',
@@ -22,9 +23,9 @@ export default meta
 // create basic story
 export const Basic: StoryObj<typeof meta> = {
   args: {
-    iconComponent: Cross('master'),
-    theme: THEME.normal,
-    type: TYPE.primary,
+    iconComponent: Cross(RELEASE_BRANCH.master),
+    theme: IconButton.Theme.normal,
+    type: IconButton.Type.primary,
     disabled: false,
     active: false,
   },

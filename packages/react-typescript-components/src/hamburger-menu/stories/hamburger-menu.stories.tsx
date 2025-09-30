@@ -1,17 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import type { StoryContext } from '@storybook/react'
+// utils
+import { getRadioArgFromObject } from '../../storybook/utils/get-enum-arg'
+// constants
+import {
+  RELEASE_BRANCH,
+  type ReleaseBranch,
+} from '../../constants/release-branch'
+import { THEME, type Theme } from '../../constants/theme'
 import HamburgerMenu from '..'
 import {
   HeaderContext,
   HamburgerContext,
   type HamburgerContextType,
 } from '../../header/context'
-import { RELEASE_BRANCH } from '../../constants/release-branch'
-import { THEME } from '../../constants/theme'
-
-// Derive union types from THEME and RELEASE_BRANCH objects
-type Theme = (typeof THEME)[keyof typeof THEME]
-type ReleaseBranch = (typeof RELEASE_BRANCH)[keyof typeof RELEASE_BRANCH]
 
 interface StoryExtraArgs {
   theme: Theme
@@ -28,8 +30,8 @@ const meta = {
   title: 'Navigation/HamburgerMenu',
   component: HamburgerMenu,
   argTypes: {
-    theme: { control: 'radio', options: Object.values(THEME) },
-    releaseBranch: { control: 'radio', options: Object.values(RELEASE_BRANCH) },
+    theme: getRadioArgFromObject(THEME, THEME.normal),
+    releaseBranch: getRadioArgFromObject(RELEASE_BRANCH, RELEASE_BRANCH.master),
   },
   args: {
     theme: THEME.normal,
