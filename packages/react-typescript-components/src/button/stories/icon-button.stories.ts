@@ -4,7 +4,6 @@ import { getRadioArgFromObject } from '../../storybook/utils/get-enum-arg'
 // components
 import IconButton from '../components/icon-button'
 // constants
-import { TYPE } from '../constants'
 import { RELEASE_BRANCH } from '../../constants/release-branch'
 // example icon
 import { Cross } from '../../icons'
@@ -14,7 +13,7 @@ const meta = {
   component: IconButton,
   argTypes: {
     theme: getRadioArgFromObject(IconButton.Theme, IconButton.Theme.normal),
-    type: getRadioArgFromObject(TYPE, TYPE.primary),
+    type: getRadioArgFromObject(IconButton.Type, IconButton.Type.primary),
   },
 } satisfies Meta<typeof IconButton>
 
