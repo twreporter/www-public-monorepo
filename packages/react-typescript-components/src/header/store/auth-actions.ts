@@ -15,8 +15,7 @@ export async function fetchAccessToken(apiOrigin: string, cookieList?: string) {
   const jwt = res.data?.data?.jwt as string
   if (jwt) {
     const userInfo = decodePayload(jwt)
-    useAuthStore.getState().setToken(jwt)
-    useAuthStore.setState({ isAuthed: true })
+    useAuthStore.setState({ token: jwt, isAuthed: true })
     return { jwt, userInfo }
   }
   return null
