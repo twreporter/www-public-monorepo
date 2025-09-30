@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.28](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.27...www-frontend@0.1.0-beta.28) (2025-09-30)
+
+
+### Features
+
+* **frontend:** use previous hook and referrer ([b1026f0](https://github.com/twreporter/www-public-monorepo/commit/b1026f0ab30ab61fcc709f5fb6865aec41cb8fce))
+
+
+
+
+
 # [0.1.0-beta.27](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.26...www-frontend@0.1.0-beta.27) (2025-09-25)
 
 **Note:** Version bump only for package www-frontend
