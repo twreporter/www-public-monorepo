@@ -17,7 +17,7 @@ import {
 // buttons
 import { IconButton, MenuButton, PillButton, TextButton } from '../button'
 // icons
-import { Cross } from '../icons'
+import { Cross, Member } from '../icons'
 // logo
 import { LogoSymbol, LogoHeader } from '../logo'
 // utils
@@ -33,7 +33,8 @@ import SocialMedia from './components/social-media'
 import { ExternalLink, InternalLink } from '../customized-link'
 
 const HamburgerMenu: FC = () => {
-  const { theme, releaseBranch, isLinkExternal } = useContext(HeaderContext)
+  const { theme, releaseBranch, isLinkExternal, isAuthed } =
+    useContext(HeaderContext)
   const { closeHamburgerMenu } = useContext(HamburgerContext)
 
   const menuTheme = theme === THEME.photography ? theme : THEME.normal
@@ -49,7 +50,7 @@ const HamburgerMenu: FC = () => {
         bgColor,
         // reserveHeightForIos15 is 48px
         `pb-[calc(48px+48px)]`,
-        'tablet:w-[320px] tablet:max-h-screen',
+        'tablet:w-[320px] tablet:max-h-screen tablet:pb-0',
         'desktop:w-[280px]',
         '[&::-webkit-scrollbar]:w-[4px]',
         '[&::-webkit-scrollbar]:bg-transparent',
@@ -105,12 +106,16 @@ const HamburgerMenu: FC = () => {
             />
           </LinkComponent>
           <LinkComponent to={INTERNAL_LINKS.account.index}>
-            <TextButton
-              text="登入"
-              theme={TextButton.Theme.normal}
-              style={TextButton.Style.dark}
-              size={TextButton.Size.s}
-            />
+            {isAuthed ? (
+              <IconButton iconComponent={Member(releaseBranch)} />
+            ) : (
+              <TextButton
+                text="登入"
+                theme={TextButton.Theme.normal}
+                style={TextButton.Style.dark}
+                size={TextButton.Size.s}
+              />
+            )}
           </LinkComponent>
         </div>
       </div>
@@ -212,17 +217,23 @@ const HamburgerMenu: FC = () => {
       {/* action butoons */}
       <div
         className={clsx(
-          'hidden flex-col gap-[16px] px-[32px] pt-[40px] pb-[32px]',
-          'tablet:flex'
+          'flex flex-row gap-[16px] px-[32px] pt-[40px] pb-[32px]',
+          'tablet:flex-col'
         )}
       >
         {HAMBURGER_MENU_ACION_LINKS.map((link) => (
-          <LinkComponent to={link.to} target={link.target} key={link.label}>
+          <LinkComponent
+            to={link.to}
+            target={link.target}
+            key={link.label}
+            className="flex-1"
+          >
             <PillButton
               text={link.label}
               theme={theme}
               type={link.type}
               className="w-full justify-center"
+              size={PillButton.Size.l}
             />
           </LinkComponent>
         ))}

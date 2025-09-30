@@ -9,9 +9,10 @@ export const INTERNAL_LINKS = {
   topics: '/topics',
   search: '/search',
   about: '/about-us',
+  article: articlesBase,
   account: {
     index: accountBase,
-    donationPage: `${accountBase}/donation-history`,
+    donationHistoryPage: `${accountBase}/donation-history`,
     emailSubscription: `${accountBase}/email-subscription`,
     exclusiveOffers: `${accountBase}/exclusive-offers`,
   },

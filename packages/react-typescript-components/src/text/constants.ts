@@ -8,9 +8,9 @@ export const TYPE = {
 export type Type = ValuesOf<typeof TYPE>
 
 export const WEIGHT = {
-  extraLight: 'extra-light',
-  normal: 'normal',
-  bold: 'bold',
+  extraLight: 'font-extra-light',
+  normal: 'font-normal',
+  bold: 'font-bold',
 } as const
 
 export type Weight = ValuesOf<typeof WEIGHT>
