@@ -217,12 +217,17 @@ const HamburgerMenu: FC = () => {
       {/* action butoons */}
       <div
         className={clsx(
-          'hidden flex-col gap-[16px] px-[32px] pt-[40px] pb-[32px]',
-          'tablet:flex'
+          'flex flex-row gap-[16px] px-[32px] pt-[40px] pb-[32px]',
+          'tablet:flex-col'
         )}
       >
         {HAMBURGER_MENU_ACION_LINKS.map((link) => (
-          <LinkComponent to={link.to} target={link.target} key={link.label}>
+          <LinkComponent
+            to={link.to}
+            target={link.target}
+            key={link.label}
+            className="flex-1"
+          >
             <PillButton
               text={link.label}
               theme={theme}
