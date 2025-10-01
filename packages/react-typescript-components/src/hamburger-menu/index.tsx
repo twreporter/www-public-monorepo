@@ -46,7 +46,7 @@ const HamburgerMenu: FC = () => {
   return (
     <div
       className={clsx(
-        'w-screen h-screen overflow-scroll overscroll-contain',
+        'w-screen h-screen overflow-y-scroll overscroll-contain',
         bgColor,
         // reserveHeightForIos15 is 48px
         `pb-[calc(48px+48px)]`,
