@@ -107,7 +107,8 @@ const SearchBar: FC<SearchBarProps> & {
           // biome-ignore lint: allow autoFocus
           autoFocus={autoFocus}
           className={clsx(
-            'h-[24px] text-[14px] focus-visible:border-0 focus-visible:outline-0 focus-visible:border-transparent [&::-webkit-search-cancel-button]:hidden',
+            'h-[24px] text-[14px] focus-visible:border-0',
+            'focus-visible:outline-0 focus-visible:border-transparent [&::-webkit-search-cancel-button]:hidden',
             widthType === WIDTH_TYPE.stretch ? 'w-full' : 'w-fit',
             color,
             placeholderColor,
