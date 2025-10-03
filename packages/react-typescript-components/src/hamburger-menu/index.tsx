@@ -49,7 +49,7 @@ const HamburgerMenu: FC = () => {
     if (!window) {
       return
     }
-    window.location.href = `/search?q=${keywords}`
+    window.location.href = `${INTERNAL_LINKS.search}?q=${keywords}`
   }
 
   return (

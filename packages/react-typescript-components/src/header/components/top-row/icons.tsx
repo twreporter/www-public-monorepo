@@ -40,7 +40,7 @@ const SearchIcon = () => {
   const onSearch = (keywords: string) => {
     setSearchOpened(false)
     if (typeof window !== 'undefined') {
-      window.location.href = `/search?q=${encodeURIComponent(keywords)}`
+      window.location.href = `${INTERNAL_LINKS.search}?q=${encodeURIComponent(keywords)}`
     }
   }
 
