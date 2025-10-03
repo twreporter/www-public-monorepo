@@ -46,10 +46,10 @@ const HamburgerMenu: FC = () => {
   const LinkComponent = isLinkExternal ? ExternalLink : InternalLink
 
   const onSearch = (keywords: string) => {
-    if (!window) {
+    if (typeof window === 'undefined') {
       return
     }
-    window.location.href = `${INTERNAL_LINKS.search}?q=${keywords}`
+    window.location.href = `${INTERNAL_LINKS.search}?q=${encodeURIComponent(keywords)}`
   }
 
   return (

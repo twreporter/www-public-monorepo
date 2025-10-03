@@ -60,7 +60,7 @@ const Header: FC<HeaderProps> = ({
   const isTransforming = useRef(false)
   const transformTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const ousideRef = useOutsideClick(closeHamburgerMenu)
+  const outsideRef = useOutsideClick(closeHamburgerMenu)
 
   const getScrollState = useCallback(
     (scrollTop: number, scrollDirection: 'up' | 'down') => {
@@ -178,7 +178,7 @@ const Header: FC<HeaderProps> = ({
           </div>
         </header>
         <div
-          ref={ousideRef}
+          ref={outsideRef}
           className={clsx(
             `fixed top-0 left-0 ${ZIndex.hamburger} transition-transform duration-300 ease-in-out`,
             isHamburgerMenuOpen
