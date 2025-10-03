@@ -31,6 +31,14 @@ const IconButton: React.FC<IconButtonProps> & {
     type === TYPE.primary
       ? getPrimaryIconButtonTheme(theme, active, disabled)
       : getSecondaryIconButtonTheme(theme, active, disabled)
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (disabled) {
+      return
+    }
+    e.stopPropagation()
+    onClick(e)
+  }
   return (
     <button
       className={clsx(
@@ -40,7 +48,7 @@ const IconButton: React.FC<IconButtonProps> & {
         themeClass,
         className
       )}
-      onClick={disabled ? () => {} : onClick}
+      onClick={handleClick}
       type="button"
     >
       {iconComponent}

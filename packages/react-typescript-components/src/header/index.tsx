@@ -21,6 +21,8 @@ import HamburgerMenu from '../hamburger-menu'
 // tab bar
 import TabBar from '../tab-bar'
 import { useAuthStore, type AuthState } from './store/auth-store'
+// hook
+import { useOutsideClick } from '../hooks'
 
 const HIDE_HEADER_THRESHOLD = 8
 const TRANSFORM_HEADER_THRESHOLD = 40
@@ -46,7 +48,7 @@ const Header: FC<HeaderProps> = ({
   const { bgColor, topRowBgColor } = selectHeaderTheme(theme)
   const logoType = selectLogoType(theme)
 
-  const { isHamburgerMenuOpen } = hamburgerContext
+  const { isHamburgerMenuOpen, closeHamburgerMenu } = hamburgerContext
 
   const [toUseNarrow, setToUseNarrow] = useState(false)
   const [hideHeader, setHideHeader] = useState(false)
@@ -57,6 +59,8 @@ const Header: FC<HeaderProps> = ({
   const readyY = useRef(0)
   const isTransforming = useRef(false)
   const transformTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const ousideRef = useOutsideClick(closeHamburgerMenu)
 
   const getScrollState = useCallback(
     (scrollTop: number, scrollDirection: 'up' | 'down') => {
@@ -174,6 +178,7 @@ const Header: FC<HeaderProps> = ({
           </div>
         </header>
         <div
+          ref={ousideRef}
           className={clsx(
             `fixed top-0 left-0 ${ZIndex.hamburger} transition-transform duration-300 ease-in-out`,
             isHamburgerMenuOpen

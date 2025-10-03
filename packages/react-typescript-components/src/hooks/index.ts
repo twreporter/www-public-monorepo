@@ -1,4 +1,4 @@
-import useOutsideClick from './use-outside-click'
+import { useOutsideClick } from './use-outside-click'
 
 export { useOutsideClick }
 

@@ -27,7 +27,7 @@ const SearchIcon = () => {
   const closeSearchBox = () => {
     setSearchOpened(false)
   }
-  const ref = useOutsideClick<HTMLDivElement>(() => closeSearchBox())
+  const ref = useOutsideClick(closeSearchBox)
 
   const handleClickSearch = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()

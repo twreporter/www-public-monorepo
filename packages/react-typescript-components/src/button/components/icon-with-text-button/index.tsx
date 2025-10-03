@@ -35,6 +35,7 @@ const IconWithTextButton: FC<IconWithTextButtonProps> & {
     if (disabled) {
       return
     }
+    e.stopPropagation()
     onClick(e)
   }
   return (
