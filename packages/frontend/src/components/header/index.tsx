@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Header from '@twreporter/react-typescript-components/lib/header'
 // hooks
@@ -10,7 +10,7 @@ const UniversalHeader = () => {
   const prevLocation = usePrevious(pathname)
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false)
   const toggleHamburger = () => {
-    setIsHamburgerMenuOpen(!isHamburgerMenuOpen)
+    setIsHamburgerMenuOpen((v) => !v)
   }
   const closeHamburgerMenu = () => {
     setIsHamburgerMenuOpen(false)
