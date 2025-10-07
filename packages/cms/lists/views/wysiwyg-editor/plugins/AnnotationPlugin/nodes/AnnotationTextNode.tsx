@@ -14,8 +14,7 @@ const Indicator = styled.span`
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  border-width: 1px;
-  border-style: solid;
+  border: 1px solid #9f7544;
   position: relative;
   top: -1px;
 
