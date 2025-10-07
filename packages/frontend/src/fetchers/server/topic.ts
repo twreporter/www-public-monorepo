@@ -1,31 +1,18 @@
 import { keystoneFetch } from '@/app/api/graphql/keystone'
+import { TOPICS_PER_PAGE } from '@/constants'
+import type { TopicData } from '@/type/topic'
 
-export type TopicData = {
-  slug: string
-  title: string
-  updatedAt: Date
-  ogDescription?: string
-  heroImage?: {
-    imageFile: {
-      url: string
-    }
-  }
-  posts: {
-    slug: string
-    title: string
-    heroImage: {
-      imageFile: {
-        url: string
-      }
-    }
-  }[]
+type FetchTopicsData = {
+  topics: TopicData[]
+  topicsCount: number
 }
 
-// TODO: need to add pagination support
-export const fetchTopics = async (): Promise<TopicData[]> => {
+export const fetchTopics = async (
+  page: number = 1
+): Promise<FetchTopicsData> => {
   const query = `
-    query Topics($where: TopicWhereInput!, $orderBy: [TopicOrderByInput!]!) {
-      topics(where: $where, orderBy: $orderBy) {
+    query Topics($where: TopicWhereInput!, $orderBy: [TopicOrderByInput!]!, $take: Int, $skip: Int!) {
+      topics(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
         slug
         title
         updatedAt
@@ -45,8 +32,11 @@ export const fetchTopics = async (): Promise<TopicData[]> => {
           }
         }
       }
+      topicsCount(where: $where)
     }
   `
+
+  const skip = (page - 1) * TOPICS_PER_PAGE
 
   const variables = {
     where: {
@@ -54,6 +44,8 @@ export const fetchTopics = async (): Promise<TopicData[]> => {
         equals: 'published',
       },
     },
+    take: TOPICS_PER_PAGE,
+    skip,
     orderBy: [
       {
         updatedAt: 'desc',
@@ -62,11 +54,14 @@ export const fetchTopics = async (): Promise<TopicData[]> => {
   }
 
   try {
-    const data = await keystoneFetch<{ topics: TopicData[] }>(
-      JSON.stringify({ query, variables }),
-      false
-    )
-    return data?.data?.topics || []
+    const data = await keystoneFetch<{
+      topics: TopicData[]
+      topicsCount: number
+    }>(JSON.stringify({ query, variables }), false)
+    return {
+      topics: data?.data?.topics || [],
+      topicsCount: data?.data?.topicsCount ?? 0,
+    }
   } catch (err) {
     throw new Error(`Failed to fetch topics data, err: ${err}`)
   }
