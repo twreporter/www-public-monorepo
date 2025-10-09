@@ -29,7 +29,7 @@ export default async function Page({
           },
         }}
       >
-        <div className="px-[24px]">
+        <div className="px-[24px] w-fill">
           <TagPage
             slug={tag.slug}
             name={tag.name}
