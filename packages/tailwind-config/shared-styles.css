@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@plugin "./plugins/w-fill";
+
 @theme {
   /* Brand */
   --color-brand-faded: #f4c6c6;
@@ -86,3 +88,4 @@
   --breakpoint-desktop: 1024px;
   --breakpoint-hd: 1440px;
 }
+
