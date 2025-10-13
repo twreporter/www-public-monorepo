@@ -1,24 +1,24 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-import './Editor.css'
+import './style/Editor.css'
+import './style/icon.css'
 // lexical
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import type { EditorState } from 'lexical'
 import { $isTextNode, type DOMConversionMap, TextNode } from 'lexical'
 import React, { useMemo, useRef } from 'react'
-
-import { ToolbarContext } from './context/ToolbarContext'
+// nodes
 import TwreporterNodes from './nodes/TwreporterNodes'
-import { OnChangePlugin } from './plugins/OnChangePlugin'
-import Editor from './RichEditor'
+// configs
 import TwreporterTheme from './themes/TwreporterTheme'
+// contexts
+import { ToolbarContext } from './context/ToolbarContext'
+// plugins
+import { OnChangePlugin } from './plugins/OnChangePlugin'
+// components
+import Editor from './RichEditor'
+// utils
 import { parseAllowedColor } from './ui/ColorPicker'
+// styles
+import { StyleWrapper } from './style/style'
 
 function getExtraStyles(element: HTMLElement): string {
   // Parse styles from pasted input, but only if they match exactly the
@@ -110,16 +110,18 @@ export default function App({
   )
 
   return (
-    <LexicalComposer initialConfig={initialConfig}>
-      <ToolbarContext>
-        <div className="editor-shell">
-          <Editor />
-        </div>
-      </ToolbarContext>
-      <OnChangePlugin
-        onChange={onEditorStateChange}
-        initialEditorState={initialEditorState}
-      />
-    </LexicalComposer>
+    <StyleWrapper>
+      <LexicalComposer initialConfig={initialConfig}>
+        <ToolbarContext>
+          <div className="editor-shell">
+            <Editor />
+          </div>
+        </ToolbarContext>
+        <OnChangePlugin
+          onChange={onEditorStateChange}
+          initialEditorState={initialEditorState}
+        />
+      </LexicalComposer>
+    </StyleWrapper>
   )
 }
