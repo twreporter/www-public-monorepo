@@ -1,11 +1,16 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-
+import { useEffect } from 'react'
 import type { AdminConfig } from '@keystone-6/core/types'
 import { jsx } from '@keystone-ui/core'
 import { CustomNavigation } from './components/CustomNavigation'
 
 function CustomLogo() {
+  useEffect(() => {
+    const currentTitle = document.title
+    const newTitle = currentTitle.replace('Keystone', '報導者 CMS')
+    if (newTitle !== currentTitle) document.title = newTitle
+  })
   return <h3>報導者 CMS</h3>
 }
 
