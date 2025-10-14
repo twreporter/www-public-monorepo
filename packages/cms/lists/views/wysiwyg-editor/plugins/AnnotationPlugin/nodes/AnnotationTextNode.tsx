@@ -1,5 +1,6 @@
-import { type LexicalNode, DecoratorNode, type NodeKey } from 'lexical'
-import React, { type ReactNode, type FC } from 'react'
+import { type LexicalNode, DecoratorNode, type NodeKey, $getNodeByKey } from 'lexical'
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import React, { type ReactNode, type FC, useState, type MouseEvent } from 'react'
 import styled from '@emotion/styled'
 import { $isAnnotationNode } from './AnnotationNode'
 
@@ -44,15 +45,101 @@ const Indicator = styled.span`
     background-color: rgb(192, 150, 98);
   }
 `
+const EditText = styled.span`
+  margin-left: 4px;
+  cursor: pointer;
+  color: #9c9c9c;
+  &::after {
+    content: "+";
+    display: inline-flex;
+    width: 18px;
+    height: 18px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid #9c9c9c;
+  }
+`
+const Dialog = styled.div`
+  position: absolute;
+  background-color: white;
+  border: 1px solid #cdcdcd;
+  padding: 8px;
+`
+const Input = styled.input`
+  width: 200px;
+`
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+`
+const Button = styled.button`
+  border-radius: 4px;
+  border: 1px solid #cdcdcd;
+  padding: 4px;
+`
 
 type AnnotationTextProps = {
+  nodeKey: string
   text?: string
 }
-const AnnotationText: FC<AnnotationTextProps> = ({ text }) => {
+const AnnotationText: FC<AnnotationTextProps> = ({ nodeKey, text }) => {
+  const [editor] = useLexicalComposerContext()
+  const editable = editor.isEditable()
+
+  const [isOpenEdit, setIsOpenEditText] = useState(false)
+  const [value, setValue] = useState(text)
+
+  const openEditDialog = (e: MouseEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsOpenEditText(true)
+  }
+
+  const confirm = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    if (!value) {
+      alert('此欄位不可為空白')
+      return
+    }
+
+    editor.update(() => {
+      const node = $getNodeByKey(nodeKey) as any;
+      if (node) {
+        node.getWritable().__text = value;
+      }
+    })
+
+    setIsOpenEditText(false)
+    return
+  }
+
+  const cancel = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsOpenEditText(false)
+  }
+
   return (
     <>
       {text}
       <Indicator className="Annotation__indicator" />
+      {editable ? (
+        <EditText onClick={openEditDialog}>
+          {isOpenEdit ? (
+            <Dialog>
+              <Input type="text" value={value} onChange={(e) => { setValue(e.target.value)}} />
+              <ButtonGroup>
+                <Button type="button" onClick={cancel}>Cancel</Button>
+                <Button type="button" onClick={confirm}>Confirm</Button>
+              </ButtonGroup>
+            </Dialog>
+          ) : null}
+        </EditText>
+      ) : null}
     </>
   )
 }
@@ -95,7 +182,7 @@ export class AnnotatedTextNode extends DecoratorNode<ReactNode> {
   }
 
   decorate(): ReactNode {
-    return <AnnotationText text={this.__text} />
+    return <AnnotationText nodeKey={this.getKey()} text={this.__text} />
   }
 
   static importJSON(serializedNode: SerializedAnnotatedTextNode) {
@@ -108,6 +195,16 @@ export class AnnotatedTextNode extends DecoratorNode<ReactNode> {
       version: 1,
       text: this.__text,
     }
+  }
+
+  getText(): string {
+    const self = this.getLatest()
+    return self.__text
+  }
+
+  setText(text: string) {
+    const write = this.getWritable()
+    write.__text = text
   }
 }
 
