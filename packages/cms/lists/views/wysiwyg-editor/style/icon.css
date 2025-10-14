@@ -152,4 +152,16 @@
   i.annotation {
     background-image: url(../images/icons/annotation.svg);
   }
+
+  i.annotation-edit {
+    mask: url(../images/icons/annotation-edit.svg);
+  }
+
+  i.annotation-confirm {
+    mask: url(../images/icons/annotation-confirm.svg);
+  }
+
+  i.annotation-cancel {
+    mask: url(../images/icons/annotation-cancel.svg);
+  }
 }
