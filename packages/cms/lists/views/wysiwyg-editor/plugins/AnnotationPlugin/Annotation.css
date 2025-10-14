@@ -3,6 +3,10 @@
   flex-direction: column;
 }
 
+.Annotation__container[open] {
+  width: 100%;
+}
+
 .Annotation__text {
   color: #9f7544;
 
