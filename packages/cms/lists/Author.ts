@@ -1,5 +1,5 @@
 import { list } from '@keystone-6/core'
-import { relationship, text } from '@keystone-6/core/fields'
+import { relationship, text, json } from '@keystone-6/core/fields'
 import {
   allowAllRoles,
   allowRoles,
@@ -18,6 +18,15 @@ const listConfigurations = list({
     email: text(),
     title: text({
       label: '職稱',
+    }),
+    bio: json({
+      label: '簡介',
+      ui: {
+        views: './lists/views/wysiwyg-editor',
+        createView: { fieldMode: 'edit' },
+        listView: { fieldMode: 'hidden' },
+        itemView: { fieldMode: 'edit' },
+      },
     }),
     avatar: relationship({
       ref: 'Photo',
