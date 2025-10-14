@@ -1,10 +1,3 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 import { $createCodeNode } from '@lexical/code'
 import {
   INSERT_CHECK_LIST_COMMAND,
@@ -19,7 +12,7 @@ import {
   $isQuoteNode,
   type HeadingTagType,
 } from '@lexical/rich-text'
-import { $patchStyleText, $setBlocksType } from '@lexical/selection'
+import { $setBlocksType } from '@lexical/selection'
 import { $isTableSelection } from '@lexical/table'
 import { $getNearestBlockElementAncestorOrThrow } from '@lexical/utils'
 import {
@@ -27,129 +20,27 @@ import {
   $getSelection,
   $isRangeSelection,
   $isTextNode,
+  type RangeSelection,
   type LexicalEditor,
+  type BaseSelection,
 } from 'lexical'
+import { getSelectedNode } from '../../utils/getSelectedNode'
+import { $isAnnotationContentNode } from '../AnnotationPlugin/nodes/AnnotationContentNode'
 
-import {
-  DEFAULT_FONT_SIZE,
-  MAX_ALLOWED_FONT_SIZE,
-  MIN_ALLOWED_FONT_SIZE,
-} from '../../context/ToolbarContext'
-
-// eslint-disable-next-line no-shadow
-export enum UpdateFontSizeType {
-  increment = 1,
-  decrement,
-}
-
-/**
- * Calculates the new font size based on the update type.
- * @param currentFontSize - The current font size
- * @param updateType - The type of change, either increment or decrement
- * @returns the next font size
- */
-export const calculateNextFontSize = (
-  currentFontSize: number,
-  updateType: UpdateFontSizeType | null
-) => {
-  if (!updateType) {
-    return currentFontSize
+const canIUse = (selection: BaseSelection | null): boolean => {
+  if (!selection || !$isRangeSelection(selection)) {
+    return true
   }
 
-  let updatedFontSize: number = currentFontSize
-  switch (updateType) {
-    case UpdateFontSizeType.decrement:
-      switch (true) {
-        case currentFontSize > MAX_ALLOWED_FONT_SIZE:
-          updatedFontSize = MAX_ALLOWED_FONT_SIZE
-          break
-        case currentFontSize >= 48:
-          updatedFontSize -= 12
-          break
-        case currentFontSize >= 24:
-          updatedFontSize -= 4
-          break
-        case currentFontSize >= 14:
-          updatedFontSize -= 2
-          break
-        case currentFontSize >= 9:
-          updatedFontSize -= 1
-          break
-        default:
-          updatedFontSize = MIN_ALLOWED_FONT_SIZE
-          break
-      }
-      break
+  const node = getSelectedNode(selection as RangeSelection)
+  const parent = node.getParent()
 
-    case UpdateFontSizeType.increment:
-      switch (true) {
-        case currentFontSize < MIN_ALLOWED_FONT_SIZE:
-          updatedFontSize = MIN_ALLOWED_FONT_SIZE
-          break
-        case currentFontSize < 12:
-          updatedFontSize += 1
-          break
-        case currentFontSize < 20:
-          updatedFontSize += 2
-          break
-        case currentFontSize < 36:
-          updatedFontSize += 4
-          break
-        case currentFontSize <= 60:
-          updatedFontSize += 12
-          break
-        default:
-          updatedFontSize = MAX_ALLOWED_FONT_SIZE
-          break
-      }
-      break
-
-    default:
-      break
-  }
-  return updatedFontSize
-}
-
-/**
- * Patches the selection with the updated font size.
- */
-export const updateFontSizeInSelection = (
-  editor: LexicalEditor,
-  newFontSize: string | null,
-  updateType: UpdateFontSizeType | null
-) => {
-  const getNextFontSize = (prevFontSize: string | null): string => {
-    if (!prevFontSize) {
-      prevFontSize = `${DEFAULT_FONT_SIZE}px`
-    }
-    prevFontSize = prevFontSize.slice(0, -2)
-    const nextFontSize = calculateNextFontSize(Number(prevFontSize), updateType)
-    return `${nextFontSize}px`
+  if ($isAnnotationContentNode(node) || $isAnnotationContentNode(parent)) {
+    alert('註解內不支援此功能')
+    return false
   }
 
-  editor.update(() => {
-    if (editor.isEditable()) {
-      const selection = $getSelection()
-      if (selection !== null) {
-        $patchStyleText(selection, {
-          'font-size': newFontSize || getNextFontSize,
-        })
-      }
-    }
-  })
-}
-
-export const updateFontSize = (
-  editor: LexicalEditor,
-  updateType: UpdateFontSizeType,
-  inputValue: string
-) => {
-  if (inputValue !== '') {
-    const nextFontSize = calculateNextFontSize(Number(inputValue), updateType)
-    updateFontSizeInSelection(editor, `${String(nextFontSize)}px`, null)
-  } else {
-    updateFontSizeInSelection(editor, null, updateType)
-  }
+  return true
 }
 
 export const formatParagraph = (editor: LexicalEditor) => {
@@ -166,39 +57,65 @@ export const formatHeading = (
   blockType: string,
   headingSize: HeadingTagType
 ) => {
-  if (blockType !== headingSize) {
-    editor.update(() => {
-      const selection = $getSelection()
-      $setBlocksType(selection, () => $createHeadingNode(headingSize))
-    })
+  if (blockType === headingSize) {
+    return
   }
+
+  editor.update(() => {
+    const selection = $getSelection()
+    if (!canIUse(selection)) {
+      return
+    }
+    $setBlocksType(selection, () => $createHeadingNode(headingSize))
+  })
 }
 
 export const formatBulletList = (editor: LexicalEditor, blockType: string) => {
-  if (blockType !== 'bullet') {
-    editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined)
-  } else {
-    formatParagraph(editor)
-  }
+  editor.read(() => {
+    const selection = $getSelection()
+    if (!canIUse(selection)) {
+      return
+    }
+
+    if (blockType !== 'bullet') {
+      editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined)
+    } else {
+      formatParagraph(editor)
+    }
+  })
 }
 
 export const formatCheckList = (editor: LexicalEditor, blockType: string) => {
-  if (blockType !== 'check') {
-    editor.dispatchCommand(INSERT_CHECK_LIST_COMMAND, undefined)
-  } else {
-    formatParagraph(editor)
-  }
+  editor.read(() => {
+    const selection = $getSelection()
+    if (!canIUse(selection)) {
+      return
+    }
+
+    if (blockType !== 'check') {
+      editor.dispatchCommand(INSERT_CHECK_LIST_COMMAND, undefined)
+    } else {
+      formatParagraph(editor)
+    }
+  })
 }
 
 export const formatNumberedList = (
   editor: LexicalEditor,
   blockType: string
 ) => {
-  if (blockType !== 'number') {
-    editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined)
-  } else {
-    formatParagraph(editor)
-  }
+  editor.read(() => {
+    const selection = $getSelection()
+    if (!canIUse(selection)) {
+      return
+    }
+
+    if (blockType !== 'number') {
+      editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined)
+    } else {
+      formatParagraph(editor)
+    }
+  })
 }
 
 export const formatQuote = (editor: LexicalEditor, blockType: string) => {
