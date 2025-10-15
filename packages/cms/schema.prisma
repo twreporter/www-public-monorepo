@@ -104,6 +104,7 @@ model Author {
   name               String    @default("")
   email              String    @default("")
   title              String    @default("")
+  bio                Json?
   avatar             Photo?    @relation("Author_avatar", fields: [avatarId], references: [id])
   avatarId           Int?      @map("avatar")
   ogTitle            String    @default("")

@@ -572,6 +572,7 @@ type Author {
   name: String
   email: String
   title: String
+  bio: JSON
   avatar: Photo
   ogTitle: String
   ogDescription: String
@@ -622,6 +623,7 @@ input AuthorUpdateInput {
   name: String
   email: String
   title: String
+  bio: JSON
   avatar: PhotoRelateToOneForUpdateInput
   ogTitle: String
   ogDescription: String
@@ -641,6 +643,7 @@ input AuthorCreateInput {
   name: String
   email: String
   title: String
+  bio: JSON
   avatar: PhotoRelateToOneForCreateInput
   ogTitle: String
   ogDescription: String
