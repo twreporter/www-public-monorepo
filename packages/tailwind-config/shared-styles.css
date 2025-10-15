@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@plugin "./plugins/w-fill";
-
 @theme {
   /* Brand */
   --color-brand-faded: #f4c6c6;
