@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.9](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.8...www-cms@0.1.0-beta.9) (2025-10-15)
+
+
+### Features
+
+* **cms:** add author bio column ([a061172](https://github.com/twreporter/www-public-monorepo/commit/a061172186366a9a6f8c80530d89fb1a196d847d))
+* **cms:** update document title in CustomLogo component ([fb07167](https://github.com/twreporter/www-public-monorepo/commit/fb0716774346ea3dd38c067abbacf65bbe6f8d80))
+
+
+
+
+
 # [0.1.0-beta.8](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.7...www-cms@0.1.0-beta.8) (2025-09-25)
 
 
