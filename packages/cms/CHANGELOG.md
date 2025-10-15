@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.10](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.9...www-cms@0.1.0-beta.10) (2025-10-15)
+
+
+### Bug Fixes
+
+* **cms:** generate db migration ([8afd02f](https://github.com/twreporter/www-public-monorepo/commit/8afd02fc5592fda61fa22d660bd774288a8b9e0f))
+
+
+
+
+
 # [0.1.0-beta.9](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.8...www-cms@0.1.0-beta.9) (2025-10-15)
 
 
