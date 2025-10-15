@@ -29,7 +29,7 @@ export default async function Page({
           },
         }}
       >
-        <div className="px-[24px] w-fill">
+        <div className="px-[24px] w-[fill-available] w-[-webkit-fill-available] tablet:w-auto">
           <CategoryPage
             slug={category.slug}
             name={category.name}
