@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.31](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.30...www-frontend@0.1.0-beta.31) (2025-10-15)
+
+
+### Bug Fixes
+
+* **frontend:** styled defect in 375px viewport ([613df2d](https://github.com/twreporter/www-public-monorepo/commit/613df2d371ce830a1f5924de3f104856b2571e82))
+
+
+
+
+
 # [0.1.0-beta.30](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.29...www-frontend@0.1.0-beta.30) (2025-10-01)
 
 **Note:** Version bump only for package www-frontend
