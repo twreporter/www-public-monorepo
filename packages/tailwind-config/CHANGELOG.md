@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.8](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/tailwind-config@0.1.0-beta.7...@twreporter/tailwind-config@0.1.0-beta.8) (2025-10-15)
+
+
+### Bug Fixes
+
+* **tailwind-config:** remove `w-fill plugin ([d7d402b](https://github.com/twreporter/www-public-monorepo/commit/d7d402b7956e20f4dec0cd3728dce61acaa07488))
+
+
+
+
+
 # [0.1.0-beta.7](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/tailwind-config@0.1.0-beta.6...@twreporter/tailwind-config@0.1.0-beta.7) (2025-10-15)
 
 

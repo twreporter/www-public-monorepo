@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.32](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.31...www-frontend@0.1.0-beta.32) (2025-10-15)
+
+
+### Bug Fixes
+
+* **frontend:** apply fill-available on mobile only ([2dd9dca](https://github.com/twreporter/www-public-monorepo/commit/2dd9dca14236f1f24f988a4c634633d964c79494))
+
+
+
+
+
 # [0.1.0-beta.31](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.30...www-frontend@0.1.0-beta.31) (2025-10-15)
 
 
