@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.11](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.10...www-cms@0.1.0-beta.11) (2025-10-16)
+
+
+### Bug Fixes
+
+* **cms:** add `style` folder for lexical styling ([d15e663](https://github.com/twreporter/www-public-monorepo/commit/d15e6630ed7d190580eb73ee24aa7d42963ff486))
+* **cms:** add basic styles for twreporter theme ([956ccb7](https://github.com/twreporter/www-public-monorepo/commit/956ccb75f343c853c96b70e5f1ad1979f62a8d1b))
+* **cms:** add edit annotation text dialog ([d4ac9a9](https://github.com/twreporter/www-public-monorepo/commit/d4ac9a94d1d891cdf9f4bb8e0368a8bcaefe5db9))
+* **cms:** address comnment ([ff9ae05](https://github.com/twreporter/www-public-monorepo/commit/ff9ae0536fa7e17f2f04cafa488352e88eaf403c))
+* **cms:** annotation edit icon disappear when open ([5ca2257](https://github.com/twreporter/www-public-monorepo/commit/5ca225776b3a77a4480887fafb5e613728a022f1))
+* **cms:** css composition with styled component ([14332f8](https://github.com/twreporter/www-public-monorepo/commit/14332f84c47fb8daf958ba8c0ff415bea5b79062))
+* **cms:** disabled block feature in annotation ([0d2374f](https://github.com/twreporter/www-public-monorepo/commit/0d2374fc169e851ac3fda5250a8db8071a933be4))
+* **cms:** extend annotation width when open ([4674172](https://github.com/twreporter/www-public-monorepo/commit/4674172b453c4e66a39deb9ad93e6b10ff0bfd0f))
+* **cms:** style defects for Annotation ([d035571](https://github.com/twreporter/www-public-monorepo/commit/d035571bfb053547804c65d3485063bcba2a70d6))
+* **cms:** update ui of editing annotation ([189e772](https://github.com/twreporter/www-public-monorepo/commit/189e77241e0b3039d3dd56cab957a0a8f6a17162))
+
+
+
+
+
 # [0.1.0-beta.10](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.9...www-cms@0.1.0-beta.10) (2025-10-15)
 
 
