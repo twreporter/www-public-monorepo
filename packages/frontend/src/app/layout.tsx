@@ -21,7 +21,7 @@ export default function RootLayout({
         <Header />
         <main
           className={clsx(
-            'w-full h-[3000px]',
+            'w-full h-full',
             'flex justify-center',
             'pt-[24px] tablet:pt-[32px] desktop:pt-[64px]',
             'bg-gray-100'

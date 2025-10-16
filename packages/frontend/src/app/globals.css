@@ -1,3 +1,5 @@
 @import "tailwindcss";
 @import "@twreporter/tailwind-config";
-@import "@twreporter/react-typescript-components/lib/styles.css";
+/* https://tailwindcss.com/docs/detecting-classes-in-source-files#explicitly-registering-sources */
+@source "../../node_modules/@twreporter/react-typescript-components";
+@source "../../../react-typescript-components/src/**/*.{ts,tsx}";
