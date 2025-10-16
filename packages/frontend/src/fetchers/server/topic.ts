@@ -2,14 +2,7 @@ import { keystoneFetch } from '@/app/api/graphql/keystone'
 import { TOPICS_PER_PAGE } from '@/constants'
 import type { TopicData } from '@/type/topic'
 
-type FetchTopicsData = {
-  topics: TopicData[]
-  topicsCount: number
-}
-
-export const fetchTopics = async (
-  page: number = 1
-): Promise<FetchTopicsData> => {
+export const fetchTopics = async (page: number = 1): Promise<TopicData[]> => {
   const query = `
     query Topics($where: TopicWhereInput!, $orderBy: [TopicOrderByInput!]!, $take: Int, $skip: Int!) {
       topics(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
@@ -32,7 +25,6 @@ export const fetchTopics = async (
           }
         }
       }
-      topicsCount(where: $where)
     }
   `
 
@@ -54,15 +46,38 @@ export const fetchTopics = async (
   }
 
   try {
-    const data = await keystoneFetch<{
-      topics: TopicData[]
-      topicsCount: number
-    }>(JSON.stringify({ query, variables }), false)
-    return {
-      topics: data?.data?.topics || [],
-      topicsCount: data?.data?.topicsCount ?? 0,
-    }
+    const data = await keystoneFetch<{ topics: TopicData[] }>(
+      JSON.stringify({ query, variables }),
+      false
+    )
+    return data?.data?.topics || []
   } catch (err) {
     throw new Error(`Failed to fetch topics data, err: ${err}`)
+  }
+}
+
+export const fetchTopicsCount = async (): Promise<number> => {
+  const query = `
+    query TopicsCount($where: TopicWhereInput!) {
+      topicsCount(where: $where)
+    }
+  `
+
+  const variables = {
+    where: {
+      state: {
+        equals: 'published',
+      },
+    },
+  }
+
+  try {
+    const data = await keystoneFetch<{ topicsCount: number }>(
+      JSON.stringify({ query, variables }),
+      false
+    )
+    return data?.data?.topicsCount || 0
+  } catch (err) {
+    throw new Error(`Failed to fetch topics count, err: ${err}`)
   }
 }
