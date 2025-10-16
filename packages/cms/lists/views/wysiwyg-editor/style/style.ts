@@ -1,6 +1,11 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/css'
-import { mobileOnly, tabletOnly, desktopOnly, hdOnly } from '../utils/media-query'
+import {
+  mobileOnly,
+  tabletOnly,
+  desktopOnly,
+  hdOnly,
+} from '../utils/media-query'
 // @twreporter
 import { colorGrayscale } from '@twreporter/core/lib/constants/color'
 

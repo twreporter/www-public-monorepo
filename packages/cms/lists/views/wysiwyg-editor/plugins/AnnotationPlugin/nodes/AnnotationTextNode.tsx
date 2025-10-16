@@ -1,6 +1,17 @@
-import { type LexicalNode, DecoratorNode, type NodeKey, $getNodeByKey } from 'lexical'
+import {
+  type LexicalNode,
+  DecoratorNode,
+  type NodeKey,
+  $getNodeByKey,
+} from 'lexical'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import React, { type ReactNode, type FC, useState, type MouseEvent, ChangeEvent } from 'react'
+import React, {
+  type ReactNode,
+  type FC,
+  useState,
+  type MouseEvent,
+  ChangeEvent,
+} from 'react'
 import styled from '@emotion/styled'
 import { $isAnnotationNode } from './AnnotationNode'
 
@@ -149,9 +160,9 @@ const AnnotationText: FC<AnnotationTextProps> = ({ nodeKey, text }) => {
     }
 
     editor.update(() => {
-      const node = $getNodeByKey(nodeKey) as any;
+      const node = $getNodeByKey(nodeKey) as AnnotatedTextNode
       if (node) {
-        node.getWritable().__text = value;
+        node.getWritable().__text = value
       }
     })
 
@@ -238,9 +249,9 @@ export class AnnotatedTextNode extends DecoratorNode<ReactNode> {
   }
 
   willDestroyDOM(dom: HTMLElement) {
-    const summary = dom.querySelector('summary');
+    const summary = dom.querySelector('summary')
     if (summary && this.__handleKeyDown) {
-      summary.removeEventListener('keydown', this.__handleKeyDown);
+      summary.removeEventListener('keydown', this.__handleKeyDown)
     }
   }
 
