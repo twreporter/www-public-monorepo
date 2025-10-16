@@ -8,6 +8,8 @@ import { fetchTopics, fetchTopicsCount } from '@/fetchers/server/topic'
 import logger from '@/utils/logger'
 // constants
 import { TOPICS_PER_PAGE } from '@/constants'
+// utils
+import { pageParamParser } from '@/utils/page-param-parser'
 
 export default async function Page({
   searchParams,
@@ -16,15 +18,9 @@ export default async function Page({
 }) {
   try {
     const { page } = await searchParams
-    let pageNumber = page ? parseInt(page, 10) : 1
     const topicsCount = await fetchTopicsCount()
     const totalPages = Math.ceil(topicsCount / TOPICS_PER_PAGE)
-    if (totalPages < pageNumber) {
-      pageNumber = totalPages
-    }
-    if (pageNumber < 1) {
-      pageNumber = 1
-    }
+    const pageNumber = pageParamParser(page, totalPages)
     const topics = await fetchTopics(pageNumber)
     return (
       <Topics
