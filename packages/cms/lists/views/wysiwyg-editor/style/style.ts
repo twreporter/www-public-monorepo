@@ -1,10 +1,11 @@
 import styled from '@emotion/styled'
-import { css } from '@emotion/css'
+import { css } from '@emotion/react'
 import {
   mobileOnly,
   tabletOnly,
   desktopOnly,
   hdOnly,
+  tabletAndBelow,
 } from '../utils/media-query'
 // @twreporter
 import { colorGrayscale } from '@twreporter/core/lib/constants/color'
@@ -140,6 +141,24 @@ export const StyleWrapper = styled.div`
   .TwreporterTheme__h2, .TwreporterTheme__h3 {
     ${normalWidthCSS}
     margin: ${mockup.margin.normal};
+  }
+  
+  .TwreporterTheme__h2 {
+    line-height: 125%;
+    font-size: 32px;
+  
+    ${tabletAndBelow`
+      font-size: 24px;  
+    `}
+  }
+  
+  .TwreporterTheme__h3 {
+    line-height: 150%;
+    font-size: 28px;
+
+    ${tabletAndBelow`
+      font-size: 22px;  
+    `}
   }
 
   .TwreporterTheme__ul, TwreporterTheme__ol {
