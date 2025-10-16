@@ -104,7 +104,7 @@ const SearchBar: FC<SearchBarProps> & {
           value={keywords}
           onChange={onChange}
           onBlur={onBlur}
-          // biome-ignore lint: allow autoFocus
+          // biome-ignore lint/a11y/noAutofocus: autoFocus is intentionally used to focus the search input for better UX
           autoFocus={autoFocus}
           className={clsx(
             'h-[24px] text-[14px] focus-visible:border-0',

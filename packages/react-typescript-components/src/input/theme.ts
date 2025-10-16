@@ -10,7 +10,7 @@ export const selectThemeStyle = (theme: Theme) => {
         borderColor: 'border-supportive-pastel',
         color: 'text-gray-800',
         focusColor: 'focus:text-gray-800',
-        placeholderColor: '[&>placeholder]:text-gray-800',
+        placeholderColor: '[&::placeholder]:text-gray-800',
       }
     case THEME.transparent:
       return {
@@ -20,7 +20,7 @@ export const selectThemeStyle = (theme: Theme) => {
         borderColor: 'border-gray-600',
         color: 'text-gray-800',
         focusColor: 'focus:text-gray-800',
-        placeholderColor: '[&>placeholder]:text-gray-500',
+        placeholderColor: '[&::placeholder]:text-gray-500',
       }
     default:
       return {
@@ -30,7 +30,7 @@ export const selectThemeStyle = (theme: Theme) => {
         borderColor: 'border-gray-600',
         color: 'text-gray-800',
         focusColor: 'focus:text-gray-800',
-        placeholderColor: '[&>placeholder]:text-gray-500',
+        placeholderColor: '[&::placeholder]:text-gray-500',
       }
   }
 }
