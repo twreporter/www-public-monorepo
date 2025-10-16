@@ -15,12 +15,6 @@ import { Cross, Search } from '../../icons'
 // button
 import { IconButton } from '../../button'
 
-// lodash
-import get from 'lodash/get'
-const _ = {
-  get,
-}
-
 const defaultFunc = () => {}
 type SearchBarProps = {
   placeholder?: string
@@ -68,7 +62,7 @@ const SearchBar: FC<SearchBarProps> & {
     onSearch(keywords)
   }
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const input = _.get(e, 'target.value', '')
+    const input = e.currentTarget.value
     setKeywords(input)
   }
   const onReset = (e: FormEvent<HTMLFormElement>) => {

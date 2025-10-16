@@ -67,6 +67,7 @@ const SearchIcon = () => {
           theme={theme}
           onClose={closeSearchBox}
           onSearch={onSearch}
+          releaseBranch={releaseBranch}
         />
       </div>
     </div>
