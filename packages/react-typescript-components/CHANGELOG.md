@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.17](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.16...@twreporter/react-typescript-components@0.1.0-beta.17) (2025-10-16)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** address comments ([a64b755](https://github.com/twreporter/www-public-monorepo/commit/a64b755478a9f2bae1ab9bce04ec8bb201201c70))
+* **react-typescript-components:** address comments ([a10d454](https://github.com/twreporter/www-public-monorepo/commit/a10d454b4b9a7b50fa738974525b705f5dbe1dac))
+* **react-typescript-components:** address comments ([532b552](https://github.com/twreporter/www-public-monorepo/commit/532b5526084f262c5dcd6205487bf45e58f0ccec))
+* **react-typescript-components:** use INTERNAL_LINK for search link ([5ccafd0](https://github.com/twreporter/www-public-monorepo/commit/5ccafd07be8478fc2b81cd2e8361e2eac9f57b5f))
+
+
+### Features
+
+* **react-typescript-components:** hamburger menu search bar ([8ac16b6](https://github.com/twreporter/www-public-monorepo/commit/8ac16b6df20ac3cfa95f97cdb4eaef35a6ed39be))
+* **react-typescript-components:** outside click for search bar and hamburger menu ([e5cd518](https://github.com/twreporter/www-public-monorepo/commit/e5cd518269c24314a6915f6620132ac08a08d963))
+* **react-typescript-components:** search bar component ([815af7f](https://github.com/twreporter/www-public-monorepo/commit/815af7fe7abd90e9cc698f4e1a5f70d6e79da953))
+* **react-typescript-components:** search icon for header ([31c425c](https://github.com/twreporter/www-public-monorepo/commit/31c425c3b92604e544ff70c60cec41d8c25babf9))
+* **react-typescript-components:** useOutsideClick hook ([23ac80e](https://github.com/twreporter/www-public-monorepo/commit/23ac80ebf7070afb65b65e43f7218f5e5646e19a))
+
+
+
+
+
 # [0.1.0-beta.16](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.15...@twreporter/react-typescript-components@0.1.0-beta.16) (2025-10-15)
 
 **Note:** Version bump only for package @twreporter/react-typescript-components

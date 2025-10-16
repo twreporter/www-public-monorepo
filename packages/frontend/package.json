@@ -1,6 +1,6 @@
 {
   "name": "www-frontend",
-  "version": "0.1.0-beta.32",
+  "version": "0.1.0-beta.33",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -13,7 +13,7 @@
   "dependencies": {
     "@google-cloud/logging": "^11.2.0",
     "@google-cloud/pino-logging-gcp-config": "^1.1.0",
-    "@twreporter/react-typescript-components": "^0.1.0-beta.16",
+    "@twreporter/react-typescript-components": "^0.1.0-beta.17",
     "clsx": "^2.1.1",
     "lodash": "^4.17.21",
     "next": "15.3.5",

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.33](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.32...www-frontend@0.1.0-beta.33) (2025-10-16)
+
+
+### Bug Fixes
+
+* **frontend:** better toggle hamburger function ([040b7f1](https://github.com/twreporter/www-public-monorepo/commit/040b7f1b73730e6ffff0e73724e978599a3e99e5))
+* **frontend:** remove unused code ([a3a5916](https://github.com/twreporter/www-public-monorepo/commit/a3a5916abf5bf729823c434a233e69f52eb8bfc8))
+
+
+
+
+
 # [0.1.0-beta.32](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.31...www-frontend@0.1.0-beta.32) (2025-10-15)
 
 
