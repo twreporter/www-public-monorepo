@@ -43,7 +43,7 @@ const TabBar: FC<TabBarProps> = ({ className = '' }) => {
       )}
     >
       {_.map(TabBarItems(releaseBranch), (item) => {
-        const isActive = pathname === item.link
+        const isActive = !isHamburgerMenuOpen && pathname === item.link
         return (
           <LinkComponent
             key={item.text}

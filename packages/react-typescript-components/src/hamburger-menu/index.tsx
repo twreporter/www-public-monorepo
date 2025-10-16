@@ -31,6 +31,8 @@ import LightLink from './components/light-link'
 import SocialMedia from './components/social-media'
 // link
 import { ExternalLink, InternalLink } from '../customized-link'
+// search bar
+import { SearchBar } from '../input'
 
 const HamburgerMenu: FC = () => {
   const { theme, releaseBranch, isLinkExternal, isAuthed } =
@@ -42,6 +44,13 @@ const HamburgerMenu: FC = () => {
   const logoType = selectLogoType(menuTheme)
   const [activeKey, setActiveKey] = useState('')
   const LinkComponent = isLinkExternal ? ExternalLink : InternalLink
+
+  const onSearch = (keywords: string) => {
+    if (typeof window === 'undefined') {
+      return
+    }
+    window.location.href = `${INTERNAL_LINKS.search}?q=${encodeURIComponent(keywords)}`
+  }
 
   return (
     <div
@@ -121,13 +130,13 @@ const HamburgerMenu: FC = () => {
       </div>
       {/* search bar (visible on mobile and tablet) */}
       <div className="px-[32px] pt-[24px] pb-[8px] desktop:hidden">
-        <input
-          type="text"
-          className={clsx(
-            'w-full h-[40px] rounded-[20px] px-[16px]',
-            'focus:outline-none'
-          )}
-          placeholder="搜尋"
+        <SearchBar
+          onSearch={onSearch}
+          autoFocus={false}
+          widthType={SearchBar.WidthType.stretch}
+          placeholder="關鍵字搜尋"
+          theme={menuTheme}
+          releaseBranch={releaseBranch}
         />
       </div>
       {/* menu buttons */}

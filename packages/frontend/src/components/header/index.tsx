@@ -10,7 +10,7 @@ const UniversalHeader = () => {
   const prevLocation = usePrevious(pathname)
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false)
   const toggleHamburger = () => {
-    setIsHamburgerMenuOpen(!isHamburgerMenuOpen)
+    setIsHamburgerMenuOpen((v) => !v)
   }
   const closeHamburgerMenu = () => {
     setIsHamburgerMenuOpen(false)
