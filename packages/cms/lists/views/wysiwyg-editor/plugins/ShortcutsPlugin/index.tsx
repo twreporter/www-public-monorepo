@@ -30,14 +30,11 @@ import {
   formatNumberedList,
   formatParagraph,
   formatQuote,
-  UpdateFontSizeType,
-  updateFontSize,
 } from '../ToolbarPlugin/utils'
 import {
   isCapitalize,
   isCenterAlign,
   isClearFormatting,
-  isDecreaseFontSize,
   isFormatBulletList,
   isFormatCheckList,
   isFormatCode,
@@ -45,7 +42,6 @@ import {
   isFormatNumberedList,
   isFormatParagraph,
   isFormatQuote,
-  isIncreaseFontSize,
   isIndent,
   isInsertCodeBlock,
   isInsertLink,
@@ -135,20 +131,6 @@ export default function ShortcutsPlugin({
       } else if (isInsertCodeBlock(event)) {
         event.preventDefault()
         editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code')
-      } else if (isIncreaseFontSize(event)) {
-        event.preventDefault()
-        updateFontSize(
-          editor,
-          UpdateFontSizeType.increment,
-          toolbarState.fontSizeInputValue
-        )
-      } else if (isDecreaseFontSize(event)) {
-        event.preventDefault()
-        updateFontSize(
-          editor,
-          UpdateFontSizeType.decrement,
-          toolbarState.fontSizeInputValue
-        )
       } else if (isClearFormatting(event)) {
         event.preventDefault()
         clearFormatting(editor)
@@ -172,7 +154,6 @@ export default function ShortcutsPlugin({
     editor,
     toolbarState.isLink,
     toolbarState.blockType,
-    toolbarState.fontSizeInputValue,
     setIsLinkEditMode,
   ])
 

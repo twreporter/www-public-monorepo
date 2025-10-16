@@ -1,14 +1,4 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 import type { EditorThemeClasses } from 'lexical'
-
-import './TwreporterTheme.css'
 
 const theme: EditorThemeClasses = {
   blockCursor: 'TwreporterTheme__blockCursor',
@@ -40,6 +30,10 @@ const theme: EditorThemeClasses = {
     underline: 'TwreporterTheme__textUnderline',
     underlineStrikethrough: 'TwreporterTheme__textUnderlineStrikethrough',
     uppercase: 'TwreporterTheme__textUppercase',
+  },
+  list: {
+    ul: 'TwreporterTheme__ul',
+    ol: 'TwreporterTheme__ol',
   },
 }
 

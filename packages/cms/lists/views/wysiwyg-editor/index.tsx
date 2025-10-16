@@ -1,16 +1,10 @@
-import styled from '@emotion/styled'
 import type { controller } from '@keystone-6/core/fields/types/virtual/views'
 import type { FieldProps } from '@keystone-6/core/types'
 import { FieldContainer, FieldLabel } from '@keystone-ui/fields'
 import React, { useMemo } from 'react'
 // components
 import Editor from './Editor'
-
-const Box = styled.div`
-  background-color: #fafbfc;
-  border: 1px solid #e1e5e9;
-  border-radius: 6px;
-`
+import { LexicalBox } from './style/style'
 
 export const Field = ({
   value,
@@ -24,9 +18,9 @@ export const Field = ({
   return (
     <FieldContainer>
       <FieldLabel>{field.label}</FieldLabel>
-      <Box id="lexical-editor">
+      <LexicalBox id="lexical-editor">
         <Editor value={valueJSON} onChange={onChange} />
-      </Box>
+      </LexicalBox>
     </FieldContainer>
   )
 }

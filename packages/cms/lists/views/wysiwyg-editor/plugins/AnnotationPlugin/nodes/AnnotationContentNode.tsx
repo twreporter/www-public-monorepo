@@ -40,7 +40,7 @@ export class AnnotationContentNode extends ElementNode {
     }
 
     const dom = document.createElement('div')
-    dom.classList.add('Annotation__content')
+    dom.classList.add('TwreporterTheme__annotation', 'Annotation__content') // todo: read theme name from config
     return dom
   }
 

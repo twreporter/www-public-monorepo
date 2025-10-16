@@ -627,7 +627,7 @@ export default function ToolbarPlugin({
         title={`Add annotation (${SHORTCUTS.ANNOTATION})`}
         type="button"
       >
-        <i className="format icon annotation" />
+        <i className="format annotation" />
       </button>
       <Divider />
       <button
