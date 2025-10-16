@@ -71,7 +71,7 @@ export const formatHeading = (
 }
 
 export const formatBulletList = (editor: LexicalEditor, blockType: string) => {
-  editor.read(() => {
+  editor.update(() => {
     const selection = $getSelection()
     if (!canIUse(selection)) {
       return
@@ -86,7 +86,7 @@ export const formatBulletList = (editor: LexicalEditor, blockType: string) => {
 }
 
 export const formatCheckList = (editor: LexicalEditor, blockType: string) => {
-  editor.read(() => {
+  editor.update(() => {
     const selection = $getSelection()
     if (!canIUse(selection)) {
       return
@@ -104,7 +104,7 @@ export const formatNumberedList = (
   editor: LexicalEditor,
   blockType: string
 ) => {
-  editor.read(() => {
+  editor.update(() => {
     const selection = $getSelection()
     if (!canIUse(selection)) {
       return
