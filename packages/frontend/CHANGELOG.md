@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.34](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.33...www-frontend@0.1.0-beta.34) (2025-10-16)
+
+
+### Bug Fixes
+
+* **frontend:** add fetchTopicsCount ([13c0f58](https://github.com/twreporter/www-public-monorepo/commit/13c0f58031e37f24ef851ad8b101d96907d24ce8))
+* **frontend:** global css source ([975ac33](https://github.com/twreporter/www-public-monorepo/commit/975ac33f01e0644d6eb28a0d3e7e405f2a173fc5))
+* **frontend:** implement pagination and enhance topic fetching logic ([0769407](https://github.com/twreporter/www-public-monorepo/commit/07694073681920936ff72ae99b437c505af3699b))
+* **frontend:** refactor page number handling ([bd828fb](https://github.com/twreporter/www-public-monorepo/commit/bd828fb0e3f348c1be6ca6b0c7ac2acd0e22f833))
+* **frontend:** streamline page number validation logic ([2cd3405](https://github.com/twreporter/www-public-monorepo/commit/2cd34051222bb022b5dfaf3d2b0ea09d07dbdf0c))
+
+
+
+
+
 # [0.1.0-beta.33](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.32...www-frontend@0.1.0-beta.33) (2025-10-16)
 
 
