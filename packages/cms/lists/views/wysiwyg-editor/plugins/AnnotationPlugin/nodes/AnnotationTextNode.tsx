@@ -59,7 +59,7 @@ const Indicator = styled.span`
 const iconColor = '#6b7280'
 const iconColorHover = '#9f7544'
 const EditText = styled.span`
-  margin-left: 4px;
+  margin: 0 4px;
   cursor: pointer;
   display: inline-flex;
   width: 18px;
@@ -75,6 +75,8 @@ const EditText = styled.span`
   .annotation-edit {
     width: 18px;
     height: 18px;
+    position: absolute;
+    z-index: 2;
     mask-size: auto;
     mask-position: center !important;
     mask-repeat: no-repeat !important;
@@ -89,9 +91,9 @@ const EditText = styled.span`
   }
 `
 const Dialog = styled.div`
-  position: absolute;
+  position: relative;
   left: 0;
-  top: 30px;
+  top: 32px;
   background-color: white;
   border: 1px solid #cdcdcd;
   padding: 10px 8px;
