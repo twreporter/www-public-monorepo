@@ -18,11 +18,12 @@ export default async function Page({
     const { page } = await searchParams
     let pageNumber = page ? parseInt(page, 10) : 1
     const topicsCount = await fetchTopicsCount()
-    if (pageNumber > 1) {
-      const totalPages = Math.ceil(topicsCount / TOPICS_PER_PAGE)
-      if (totalPages < pageNumber) {
-        pageNumber = totalPages
-      }
+    const totalPages = Math.ceil(topicsCount / TOPICS_PER_PAGE)
+    if (totalPages < pageNumber) {
+      pageNumber = totalPages
+    }
+    if (pageNumber < 1) {
+      pageNumber = 1
     }
     const topics = await fetchTopics(pageNumber)
     return (
