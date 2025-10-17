@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.35](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.34...www-frontend@0.1.0-beta.35) (2025-10-17)
+
+**Note:** Version bump only for package www-frontend
+
+
+
+
+
 # [0.1.0-beta.34](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.33...www-frontend@0.1.0-beta.34) (2025-10-16)
 
 

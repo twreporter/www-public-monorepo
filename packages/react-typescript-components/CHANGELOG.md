@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.18](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.17...@twreporter/react-typescript-components@0.1.0-beta.18) (2025-10-17)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** use searchBarWidth for better flexibility ([2ccfec6](https://github.com/twreporter/www-public-monorepo/commit/2ccfec621933f3646da0a89406dbf3f8d5b3a558))
+
+
+
+
+
 # [0.1.0-beta.17](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.16...@twreporter/react-typescript-components@0.1.0-beta.17) (2025-10-16)
 
 
