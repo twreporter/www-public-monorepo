@@ -133,10 +133,10 @@ const HamburgerMenu: FC = () => {
         <SearchBar
           onSearch={onSearch}
           autoFocus={false}
-          widthType={SearchBar.WidthType.stretch}
           placeholder="關鍵字搜尋"
           theme={menuTheme}
           releaseBranch={releaseBranch}
+          searchBarWidth="w-full"
         />
       </div>
       {/* menu buttons */}

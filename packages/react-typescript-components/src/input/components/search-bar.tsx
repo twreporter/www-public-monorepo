@@ -7,7 +7,6 @@ import {
   RELEASE_BRANCH,
   type ReleaseBranch,
 } from '../../constants/release-branch'
-import { WIDTH_TYPE, type WidthType } from '../constants'
 // theme
 import { selectThemeStyle } from '../theme'
 // icons
@@ -24,12 +23,11 @@ type SearchBarProps = {
   onClose?: () => void
   handleBlur?: () => void
   autoFocus?: boolean
-  widthType?: WidthType
   className?: string
+  searchBarWidth?: string
 }
 const SearchBar: FC<SearchBarProps> & {
   Theme: typeof THEME
-  WidthType: typeof WIDTH_TYPE
 } = ({
   placeholder = '',
   theme = THEME.normal,
@@ -38,8 +36,8 @@ const SearchBar: FC<SearchBarProps> & {
   onClose = defaultFunc,
   handleBlur = defaultFunc,
   autoFocus = true,
-  widthType = WIDTH_TYPE.fit,
   className = '',
+  searchBarWidth = 'w-fit',
 }) => {
   const [keywords, setKeywords] = useState('')
   const [focus, setFocus] = useState(false)
@@ -72,11 +70,7 @@ const SearchBar: FC<SearchBarProps> & {
 
   return (
     <form
-      className={clsx(
-        'flex items-center',
-        widthType === WIDTH_TYPE.stretch ? 'w-full' : 'w-fit',
-        className
-      )}
+      className={clsx('flex items-center', className)}
       noValidate
       onSubmit={onSubmit}
       onReset={onReset}
@@ -85,8 +79,8 @@ const SearchBar: FC<SearchBarProps> & {
       <div
         className={clsx(
           'flex items-center py-[8px] px-[16px] rounded-[40px] border-[1px] border-solid gap-[8px]',
+          searchBarWidth,
           bgColor,
-          widthType === WIDTH_TYPE.stretch ? 'w-full' : 'w-fit',
           focus
             ? clsx(focusBgColor, borderColor, desktopBgColor)
             : 'border-transparent'
@@ -101,9 +95,8 @@ const SearchBar: FC<SearchBarProps> & {
           // biome-ignore lint/a11y/noAutofocus: autoFocus is intentionally used to focus the search input for better UX
           autoFocus={autoFocus}
           className={clsx(
-            'h-[24px] text-[14px] focus-visible:border-0',
+            'h-[24px] text-[14px] focus-visible:border-0 font-default w-[fill-available] w-[-webkit-fill-available]',
             'focus-visible:outline-0 focus-visible:border-transparent [&::-webkit-search-cancel-button]:hidden',
-            widthType === WIDTH_TYPE.stretch ? 'w-full' : 'w-fit',
             color,
             placeholderColor,
             focusColor
@@ -125,6 +118,5 @@ const SearchBar: FC<SearchBarProps> & {
   )
 }
 SearchBar.Theme = THEME
-SearchBar.WidthType = WIDTH_TYPE
 
 export default SearchBar
