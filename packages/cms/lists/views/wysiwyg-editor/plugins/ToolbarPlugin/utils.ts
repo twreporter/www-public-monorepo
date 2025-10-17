@@ -46,6 +46,9 @@ const canIUse = (selection: BaseSelection | null): boolean => {
 export const formatParagraph = (editor: LexicalEditor) => {
   editor.update(() => {
     const selection = $getSelection()
+    if (!canIUse(selection)) {
+      return
+    }
     if ($isRangeSelection(selection)) {
       $setBlocksType(selection, () => $createParagraphNode())
     }
