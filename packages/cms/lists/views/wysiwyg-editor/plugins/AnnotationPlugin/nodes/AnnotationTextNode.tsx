@@ -10,10 +10,10 @@ import React, {
   type FC,
   useState,
   type MouseEvent,
-  ChangeEvent,
+  type ChangeEvent,
 } from 'react'
 import styled from '@emotion/styled'
-import { $isAnnotationNode } from './AnnotationNode'
+import { $isAnnotationNode, AnnotationNode } from './AnnotationNode'
 
 // global var
 const annotationTextType = 'annotated-text'
@@ -58,8 +58,8 @@ const Indicator = styled.span`
 `
 const iconColor = '#6b7280'
 const iconColorHover = '#9f7544'
-const EditText = styled.span`
-  margin: 0 4px;
+const Button = styled.span`
+  margin-left: 4px;
   cursor: pointer;
   display: inline-flex;
   width: 18px;
@@ -71,8 +71,11 @@ const EditText = styled.span`
   border-style: solid;
   border-color: ${iconColor};
   vertical-align: middle;
+  &:last-child {
+    margin-right: 4px;
+  }
 
-  .annotation-edit {
+  i {
     width: 18px;
     height: 18px;
     position: absolute;
@@ -85,7 +88,7 @@ const EditText = styled.span`
 
   &:hover {
     border-color: ${iconColorHover};
-    .annotation-edit {  
+    i {  
       background-color: ${iconColorHover};
     }
   }
@@ -105,7 +108,7 @@ const Dialog = styled.div`
 const Input = styled.input`
   min-width: 200px;
 `
-const Button = styled.button`
+const DialogButton = styled.button`
   width: 18px;
   height: 18px;
   display: flex;
@@ -157,7 +160,7 @@ const AnnotationText: FC<AnnotationTextProps> = ({ nodeKey, text }) => {
     e.stopPropagation()
 
     if (!value) {
-      alert('此欄位不可為空白')
+      alert('此編輯欄位不可空白，請輸入內容。')
       return
     }
 
@@ -184,25 +187,42 @@ const AnnotationText: FC<AnnotationTextProps> = ({ nodeKey, text }) => {
     setValue(e.target.value)
   }
 
+  const deleteAnnotation = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    editor.update(() => {
+      const node = $getNodeByKey(nodeKey) as AnnotatedTextNode
+      const parent = node.getParent()
+      if (parent instanceof AnnotationNode) {
+        parent.remove()
+      }
+    })
+  }
+
   return (
     <>
       {text}
       <Indicator className="Annotation__indicator" />
       {editable ? (
-        <EditText onClick={openEditDialog}>
-          <i className="annotation-edit" />
-          {isOpenEdit ? (
-            <Dialog>
-              <Input type="text" value={value} onChange={updateValue} />
-              <Button type="button" onClick={cancel}>
-                <i className="annotation-cancel" />
-              </Button>
-              <Button type="button" onClick={confirm}>
-                <i className="annotation-confirm" />
-              </Button>
-            </Dialog>
-          ) : null}
-        </EditText>
+        <>
+          <Button onClick={openEditDialog}>
+            <i className="annotation-edit" />
+            {isOpenEdit ? (
+              <Dialog>
+                <Input type="text" value={value} onChange={updateValue} />
+                <DialogButton type="button" onClick={cancel}>
+                  <i className="annotation-cancel" />
+                </DialogButton>
+                <DialogButton type="button" onClick={confirm}>
+                  <i className="annotation-confirm" />
+                </DialogButton>
+              </Dialog>
+            ) : null}
+          </Button>
+          <Button onClick={deleteAnnotation}>
+            <i className="annotation-cancel" />
+          </Button>
+        </>
       ) : null}
     </>
   )
