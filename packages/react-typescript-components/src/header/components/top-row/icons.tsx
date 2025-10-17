@@ -68,6 +68,7 @@ const SearchIcon = () => {
           onClose={closeSearchBox}
           onSearch={onSearch}
           releaseBranch={releaseBranch}
+          searchBarWidth="w-[240px]"
         />
       </div>
     </div>

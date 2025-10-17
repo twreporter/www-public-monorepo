@@ -1,12 +1,5 @@
 import type { ValuesOf } from '../types'
 
-// for search-bar
-export const WIDTH_TYPE = {
-  fit: 'fit',
-  stretch: 'stretch',
-} as const
-export type WidthType = ValuesOf<typeof WIDTH_TYPE>
-
 // for text-field
 export const TEXT_ALIGN = {
   left: 'left',
