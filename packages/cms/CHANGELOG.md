@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.12](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.11...www-cms@0.1.0-beta.12) (2025-10-17)
+
+
+### Bug Fixes
+
+* **cms:** add delete annotation button ([6e5db3b](https://github.com/twreporter/www-public-monorepo/commit/6e5db3b583b3fbef35b2fc44f7f6c1c028a2a3cf))
+
+
+
+
+
 # [0.1.0-beta.11](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.10...www-cms@0.1.0-beta.11) (2025-10-16)
 
 
