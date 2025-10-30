@@ -25,7 +25,7 @@ type Story = StoryObj<typeof meta>
 
 export const HeaderLogo: Story = {
   args: {
-    type: LOGO_SYMBOL_TYPE.default,
+    type: LOGO_TYPE.default,
     releaseBranch: RELEASE_BRANCH.master,
   },
   render: (args) => (
@@ -35,7 +35,7 @@ export const HeaderLogo: Story = {
 
 export const FooterLogo: Story = {
   args: {
-    type: LOGO_SYMBOL_TYPE.default,
+    type: LOGO_TYPE.default,
     releaseBranch: RELEASE_BRANCH.master,
   },
   render: (args) => (
