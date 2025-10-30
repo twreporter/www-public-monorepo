@@ -5,4 +5,6 @@ export type CustomizedLinkProps = {
   target?: LinkTarget
   className?: string
   children?: React.ReactNode
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }

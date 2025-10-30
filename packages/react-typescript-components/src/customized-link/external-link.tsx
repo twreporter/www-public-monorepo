@@ -7,9 +7,17 @@ const ExternalLink: FC<ExternalLinkProps> = ({
   target = '_self',
   className = '',
   children,
+  onMouseEnter,
+  onMouseLeave,
 }) => {
   return (
-    <a href={to} target={target} className={className}>
+    <a
+      href={to}
+      target={target}
+      className={className}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       {children}
     </a>
   )
