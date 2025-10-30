@@ -1,6 +1,8 @@
 import clsx from 'clsx'
 import type { Metadata } from 'next'
+// components
 import Header from '@/components/header'
+import Footer from '@/components/footer'
 
 // These styles apply to every route in the application
 import './globals.css'
@@ -17,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="tracking-[0.4px] leading-[1.4px]">
         <Header />
         <main
           className={clsx(
@@ -29,9 +31,7 @@ export default function RootLayout({
         >
           {children}
         </main>
-        <footer className="w-full flex items-center justify-center text-sm py-2 bg-gray-600">
-          This is footer
-        </footer>
+        <Footer />
       </body>
     </html>
   )
