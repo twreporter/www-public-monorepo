@@ -22,46 +22,50 @@ model ReporterSystemUser {
 }
 
 model Post {
-  id                        Int                @id @default(autoincrement())
-  slug                      String             @unique @default("")
-  title                     String             @default("")
-  subtitle                  String             @default("")
-  state                     String?            @default("draft")
-  publishedDate             DateTime?
-  updatedDate               DateTime?
-  authors                   Author[]           @relation("Author_posts")
-  authorsJSON               Json?              @default("[]")
-  heroImage                 Photo?             @relation("Post_heroImage", fields: [heroImageId], references: [id])
-  heroImageId               Int?               @map("heroImage")
-  heroSize                  String?            @default("medium")
-  heroCaption               String             @default("")
-  content                   Json?
-  postFollowups             PostFollowup[]     @relation("Post_postFollowups")
-  subcategories             Subcategory[]      @relation("Post_subcategories")
-  subcategoriesOrderJson    Json?              @default("[]")
-  style                     String?            @default("default")
-  relatedTopics             Topic[]            @relation("Post_relatedTopics")
-  relatedTopicsOrderJson    Json?              @default("[]")
-  copyright                 String?            @default("copyrighted")
-  tags                      Tag[]              @relation("Post_tags")
-  tagsOrderJson             Json?              @default("[]")
-  relatedPosts              Post[]             @relation("Post_beenRelatedPosts")
-  relatedPostsOrderJson     Json?              @default("[]")
-  reviewWord                String             @default("")
-  ogTitle                   String             @default("")
-  ogDescription             String             @default("")
-  ogImage                   Photo?             @relation("Post_ogImage", fields: [ogImageId], references: [id])
-  ogImageId                 Int?               @map("ogImage")
-  pushNotifications         PushNotification[] @relation("PushNotification_post")
-  newPageTargetBlank        Boolean            @default(false)
-  isFeatured                Boolean            @default(false)
-  beenRelatedPosts          Post[]             @relation("Post_beenRelatedPosts")
-  beenRelatedPostsOrderJson Json?              @default("[]")
-  createdAt                 DateTime?          @default(now())
-  updatedAt                 DateTime?          @updatedAt
-  from_Topic_posts          Topic[]            @relation("Topic_posts")
-  from_Category_posts       Category[]         @relation("Category_posts")
-  from_Review_post          Review[]           @relation("Review_post")
+  id                             Int                    @id @default(autoincrement())
+  slug                           String                 @unique @default("")
+  title                          String                 @default("")
+  subtitle                       String                 @default("")
+  state                          String?                @default("draft")
+  publishedDate                  DateTime?
+  updatedDate                    DateTime?
+  authors                        Author[]               @relation("Author_posts")
+  authorsJSON                    Json?                  @default("[]")
+  heroImage                      Photo?                 @relation("Post_heroImage", fields: [heroImageId], references: [id])
+  heroImageId                    Int?                   @map("heroImage")
+  heroSize                       String?                @default("medium")
+  heroCaption                    String                 @default("")
+  content                        Json?
+  postFollowups                  PostFollowup[]         @relation("Post_postFollowups")
+  subcategories                  Subcategory[]          @relation("Post_subcategories")
+  subcategoriesOrderJson         Json?                  @default("[]")
+  style                          String?                @default("default")
+  relatedTopics                  Topic[]                @relation("Post_relatedTopics")
+  relatedTopicsOrderJson         Json?                  @default("[]")
+  copyright                      String?                @default("copyrighted")
+  tags                           Tag[]                  @relation("Post_tags")
+  tagsOrderJson                  Json?                  @default("[]")
+  relatedPosts                   Post[]                 @relation("Post_beenRelatedPosts")
+  relatedPostsOrderJson          Json?                  @default("[]")
+  reviewWord                     String                 @default("")
+  ogTitle                        String                 @default("")
+  ogDescription                  String                 @default("")
+  ogImage                        Photo?                 @relation("Post_ogImage", fields: [ogImageId], references: [id])
+  ogImageId                      Int?                   @map("ogImage")
+  pushNotifications              PushNotification[]     @relation("PushNotification_post")
+  newPageTargetBlank             Boolean                @default(false)
+  isFeatured                     Boolean                @default(false)
+  beenRelatedPosts               Post[]                 @relation("Post_beenRelatedPosts")
+  beenRelatedPostsOrderJson      Json?                  @default("[]")
+  postReadingBy                  User[]                 @relation("Post_postReadingBy")
+  createdAt                      DateTime?              @default(now())
+  updatedAt                      DateTime?              @updatedAt
+  from_Topic_posts               Topic[]                @relation("Topic_posts")
+  from_Category_posts            Category[]             @relation("Category_posts")
+  from_Review_post               Review[]               @relation("Review_post")
+  from_Bookmark_post             Bookmark[]             @relation("Bookmark_post")
+  from_PostReadingTime_post      PostReadingTime[]      @relation("PostReadingTime_post")
+  from_PostReadingFootprint_post PostReadingFootprint[] @relation("PostReadingFootprint_post")
 
   @@index([title])
   @@index([state])
@@ -251,6 +255,56 @@ model Review {
   postId Int?  @map("post")
   order  Int?
 
+  @@index([postId])
+}
+
+model User {
+  id                   Int                    @id @default(autoincrement())
+  twreporterID         String                 @default("")
+  bookmark             Bookmark[]             @relation("Bookmark_user")
+  postReading          Post[]                 @relation("Post_postReadingBy")
+  postReadingTime      PostReadingTime[]      @relation("PostReadingTime_user")
+  postReadingFootprint PostReadingFootprint[] @relation("PostReadingFootprint_user")
+  createdAt            DateTime?              @default(now())
+  updatedAt            DateTime?              @updatedAt
+
+  @@index([twreporterID])
+}
+
+model Bookmark {
+  id        Int       @id @default(autoincrement())
+  user      User?     @relation("Bookmark_user", fields: [userId], references: [id])
+  userId    Int?      @map("user")
+  post      Post?     @relation("Bookmark_post", fields: [postId], references: [id])
+  postId    Int?      @map("post")
+  createdAt DateTime? @default(now())
+
+  @@index([userId])
+  @@index([postId])
+}
+
+model PostReadingTime {
+  id      Int   @id @default(autoincrement())
+  user    User? @relation("PostReadingTime_user", fields: [userId], references: [id])
+  userId  Int?  @map("user")
+  post    Post? @relation("PostReadingTime_post", fields: [postId], references: [id])
+  postId  Int?  @map("post")
+  seconds Int   @default(0)
+
+  @@index([userId])
+  @@index([postId])
+}
+
+model PostReadingFootprint {
+  id        Int       @id @default(autoincrement())
+  user      User?     @relation("PostReadingFootprint_user", fields: [userId], references: [id])
+  userId    Int?      @map("user")
+  post      Post?     @relation("PostReadingFootprint_post", fields: [postId], references: [id])
+  postId    Int?      @map("post")
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+
+  @@index([userId])
   @@index([postId])
 }
 
