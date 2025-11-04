@@ -14,7 +14,7 @@ import { SocialLinks, InfoLinks, LinkButtonGroups } from './links'
 // button
 import { PillButton } from '../button'
 // link
-import { InternalLink } from '../customized-link'
+import { ExternalLink } from '../customized-link'
 
 type FooterProps = {
   releaseBranch: ReleaseBranch
@@ -56,14 +56,14 @@ const Footer: FC<FooterProps> = ({ releaseBranch }) => {
               />
             </div>
             {/* donation button */}
-            <InternalLink to={EXTERNAL_LINKS.monthlyDonation} target="_blank">
+            <ExternalLink to={EXTERNAL_LINKS.monthlyDonation} target="_blank">
               <PillButton
                 className="w-[280px]! justify-center!"
                 type={PillButton.Type.secondary}
                 size={PillButton.Size.l}
                 text={'贊助我們'}
               />
-            </InternalLink>
+            </ExternalLink>
           </div>
           {/* links content */}
           <div

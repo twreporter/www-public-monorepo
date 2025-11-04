@@ -39,7 +39,7 @@ export const getLinksGroups = (mainOrigin: string) => {
         target: '_blank' as LinkTarget,
       },
       {
-        slug: 'about',
+        slug: 'join',
         text: '加入我們',
         to: `${mainOrigin}${INTERNAL_LINKS.article}/hiring-job-description`,
         target: '_blank' as LinkTarget,
@@ -87,20 +87,20 @@ export const getLinksGroups = (mainOrigin: string) => {
     // third column
     [
       {
-        slug: 'subcribe-email',
+        slug: 'subscribe-email',
         text: '訂閱電子報',
         to: `${mainOrigin}${INTERNAL_LINKS.account.emailSubscription}`,
         target: '_blank' as LinkTarget,
         id: gtmId.newsletter,
       },
       {
-        slug: 'subcribe-podcast',
+        slug: 'subscribe-podcast',
         text: '訂閱 Podcast',
         to: 'https://solink.soundon.fm/twreporter-U7Q',
         target: '_blank' as LinkTarget,
       },
       {
-        slug: 'subcribe-RSS',
+        slug: 'subscribe-RSS',
         text: '訂閱 RSS',
         to: 'https://public.twreporter.org/rss/twreporter-rss.xml',
         target: '_blank' as LinkTarget,
@@ -112,7 +112,7 @@ export const getLinksGroups = (mainOrigin: string) => {
         target: '_blank' as LinkTarget,
       },
       {
-        slug: 'subcribe-telegram',
+        slug: 'subscribe-telegram',
         text: '訂閱Telegram',
         to: 'https://t.me/tw_reporter_org',
         target: '_blank' as LinkTarget,
