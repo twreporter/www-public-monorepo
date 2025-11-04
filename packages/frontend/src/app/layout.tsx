@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="tracking-[0.4px] leading-[1.4px]">
+      <body className="tracking-[0.4px] leading-[1.4]">
         <Header />
         <main
           className={clsx(
