@@ -162,7 +162,7 @@ const listConfigurations = list({
     hideCreate: denyRoles([RoleEnum.Owner, RoleEnum.Admin, RoleEnum.Editor]),
     hideDelete: denyRoles([RoleEnum.Owner, RoleEnum.Admin, RoleEnum.Editor]),
     listView: {
-      initialColumns: ['twreporterID', 'user', 'createdAt'],
+      initialColumns: ['twreporterID', 'createdAt'],
       initialSort: { field: 'twreporterID', direction: 'DESC' },
       pageSize: 50,
     },

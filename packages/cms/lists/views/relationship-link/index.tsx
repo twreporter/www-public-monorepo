@@ -1,4 +1,6 @@
 import styled from '@emotion/styled'
+import React from 'react'
+// type
 import type {
   CardValueComponent,
   CellComponent,
@@ -6,12 +8,13 @@ import type {
   FieldControllerConfig,
   FieldProps,
 } from '@keystone-6/core/types'
+// components
+import { CellContainer, CellLink } from '@keystone-6/core/admin-ui/components'
 import {
   FieldContainer,
   FieldDescription,
   FieldLabel,
 } from '@keystone-ui/fields'
-import React from 'react'
 
 const Container = styled.div`
   display: flex;
@@ -74,14 +77,14 @@ export const CardValue: CardValueComponent = ({ item, field }) => {
 
 export const controller = (
   config: FieldControllerConfig
-): FieldController<RelationshipLinkValue | RelationshipLinkValue> => {
+): FieldController<RelationshipLinkValue> => {
   return {
     path: config.path,
     label: config.label,
     description: config.description,
     graphqlSelection: config.path,
     defaultValue: null,
-    deserialize: (data) => data[config.path] ?? nul,
+    deserialize: (data) => data[config.path] ?? null,
     serialize: () => {},
   }
 }
