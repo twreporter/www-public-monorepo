@@ -10,6 +10,10 @@ import Review from './Review'
 import Subcategory from './Subcategory'
 import Tag from './Tag'
 import Topic from './Topic'
+import User from './User'
+import Bookmark from './Bookmark'
+import PostReadingTime from './PostReadingTime'
+import PostReadingFootprint from './PostReadingFootprint'
 
 export const listDefinition = {
   ReporterSystemUser,
@@ -24,4 +28,8 @@ export const listDefinition = {
   PushNotification,
   Latest,
   Review,
+  User,
+  Bookmark,
+  PostReadingTime,
+  PostReadingFootprint,
 }
