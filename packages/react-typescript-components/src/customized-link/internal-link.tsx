@@ -10,9 +10,17 @@ const InternalLink: FC<InternalLinkProps> = ({
   target = '_self',
   className = '',
   children,
+  onMouseEnter,
+  onMouseLeave,
 }) => {
   return (
-    <Link href={to} target={target} className={className}>
+    <Link
+      href={to}
+      target={target}
+      className={className}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       {children}
     </Link>
   )
