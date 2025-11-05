@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.13](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.12...www-cms@0.1.0-beta.13) (2025-11-05)
+
+
+### Bug Fixes
+
+* **cms:** address review comments ([58e71d1](https://github.com/twreporter/www-public-monorepo/commit/58e71d1d33f0812512c409327ebc13d543e0294e))
+
+
+### Features
+
+* **cms:** add member related lists ([a586b2e](https://github.com/twreporter/www-public-monorepo/commit/a586b2e34384d88335c67772618824b0637c9b2a))
+
+
+
+
+
 # [0.1.0-beta.12](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.11...www-cms@0.1.0-beta.12) (2025-10-17)
 
 
