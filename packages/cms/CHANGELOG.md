@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.14](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.13...www-cms@0.1.0-beta.14) (2025-11-05)
+
+
+### Bug Fixes
+
+* **cms:** address annotation style defects ([e3262a2](https://github.com/twreporter/www-public-monorepo/commit/e3262a2b7417fbcba465a118f5230c34dc0ef088))
+
+
+
+
+
 # [0.1.0-beta.13](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.12...www-cms@0.1.0-beta.13) (2025-11-05)
 
 
