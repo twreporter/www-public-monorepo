@@ -28,7 +28,6 @@ const Indicator = styled.span`
   border-radius: 50%;
   border: 1px solid #9f7544;
   position: relative;
-  top: -1px;
 
   &::before {
     content: "";
@@ -78,12 +77,15 @@ const Button = styled.span`
   i {
     width: 18px;
     height: 18px;
-    position: absolute;
     z-index: 2;
     mask-size: auto;
     mask-position: center !important;
     mask-repeat: no-repeat !important;
     background-color: ${iconColor};
+  }
+  
+  .annotation-edit {
+    position: absolute;
   }
 
   &:hover {
@@ -127,13 +129,13 @@ const DialogButton = styled.button`
     mask-size: auto;
     mask-position: center !important;
     mask-repeat: no-repeat !important;
-    background-color: ${iconColor};
+    background-color: ${iconColor} !important;
   }
 
   &:hover {
     border-color: ${iconColorHover};
     .annotation-confirm, .annotation-cancel {  
-      background-color: ${iconColorHover};
+      background-color: ${iconColorHover} !important;
     }
   }
 `
