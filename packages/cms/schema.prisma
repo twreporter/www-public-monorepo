@@ -236,6 +236,14 @@ model PushNotification {
   @@index([postId])
 }
 
+model Footer {
+  id                    Int    @id
+  fundraisingID         String @default("")
+  fundraisingDateString String @default("")
+  socialMediaLinks      Json?
+  footerLinks           Json?
+}
+
 model Latest {
   id    Int  @id @default(autoincrement())
   tag   Tag? @relation("Latest_tag", fields: [tagId], references: [id])

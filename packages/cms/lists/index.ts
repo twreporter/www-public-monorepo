@@ -10,6 +10,7 @@ import Review from './Review'
 import Subcategory from './Subcategory'
 import Tag from './Tag'
 import Topic from './Topic'
+import Footer from './Footer'
 
 export const listDefinition = {
   ReporterSystemUser,
@@ -22,6 +23,7 @@ export const listDefinition = {
   Tag,
   PostFollowup,
   PushNotification,
+  Footer,
   Latest,
   Review,
 }
