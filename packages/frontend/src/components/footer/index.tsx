@@ -22,8 +22,8 @@ const UniversalFooter = () => {
   return (
     <Footer
       releaseBranch={releaseBranch}
-      fundrasingId={footer.fundraisingID}
-      fundrasingDateString={footer.fundraisingDateString}
+      fundraisingId={footer.fundraisingID}
+      fundraisingDateString={footer.fundraisingDateString}
       socialMediaLinks={footer.socialMediaLinks || []}
       buttonLinks={footer.footerLinks || [[], [], []]}
     />
