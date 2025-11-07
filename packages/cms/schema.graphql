@@ -168,6 +168,8 @@ type Post {
   beenRelatedPostsCount(where: PostWhereInput! = {}): Int
   beenRelatedPostsOrderJson: JSON
   beenRelatedPostsOrdered(take: Int! = 12, skip: Int! = 0): [Post!]
+  postReadingBy(where: UserWhereInput! = {}, orderBy: [UserOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: UserWhereUniqueInput): [User!]
+  postReadingByCount(where: UserWhereInput! = {}): Int
   createdAt: DateTime
   updatedAt: DateTime
   preview: JSON
@@ -208,6 +210,7 @@ input PostWhereInput {
   newPageTargetBlank: BooleanFilter
   isFeatured: BooleanFilter
   beenRelatedPosts: PostManyRelationFilter
+  postReadingBy: UserManyRelationFilter
   createdAt: DateTimeNullableFilter
   updatedAt: DateTimeNullableFilter
 }
@@ -273,6 +276,12 @@ input BooleanFilter {
   not: BooleanFilter
 }
 
+input UserManyRelationFilter {
+  every: UserWhereInput
+  some: UserWhereInput
+  none: UserWhereInput
+}
+
 input PostOrderByInput {
   id: OrderDirection
   slug: OrderDirection
@@ -327,6 +336,7 @@ input PostUpdateInput {
   isFeatured: Boolean
   beenRelatedPosts: PostRelateToManyForUpdateInput
   beenRelatedPostsOrderJson: JSON
+  postReadingBy: UserRelateToManyForUpdateInput
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -386,6 +396,13 @@ input PushNotificationRelateToManyForUpdateInput {
   connect: [PushNotificationWhereUniqueInput!]
 }
 
+input UserRelateToManyForUpdateInput {
+  disconnect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  create: [UserCreateInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
 input PostUpdateArgs {
   where: PostWhereUniqueInput!
   data: PostUpdateInput!
@@ -424,6 +441,7 @@ input PostCreateInput {
   isFeatured: Boolean
   beenRelatedPosts: PostRelateToManyForCreateInput
   beenRelatedPostsOrderJson: JSON
+  postReadingBy: UserRelateToManyForCreateInput
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -466,6 +484,11 @@ input PostRelateToManyForCreateInput {
 input PushNotificationRelateToManyForCreateInput {
   create: [PushNotificationCreateInput!]
   connect: [PushNotificationWhereUniqueInput!]
+}
+
+input UserRelateToManyForCreateInput {
+  create: [UserCreateInput!]
+  connect: [UserWhereUniqueInput!]
 }
 
 type Photo {
@@ -1337,6 +1360,284 @@ input ReviewCreateInput {
   order: Int
 }
 
+type User {
+  id: ID!
+  twreporterID: String
+  bookmark(where: BookmarkWhereInput! = {}, orderBy: [BookmarkOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: BookmarkWhereUniqueInput): [Bookmark!]
+  bookmarkCount(where: BookmarkWhereInput! = {}): Int
+  postReading(where: PostWhereInput! = {}, orderBy: [PostOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PostWhereUniqueInput): [Post!]
+  postReadingCount(where: PostWhereInput! = {}): Int
+  postReadingCountView: JSON
+  postReadingTime(where: PostReadingTimeWhereInput! = {}, orderBy: [PostReadingTimeOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PostReadingTimeWhereUniqueInput): [PostReadingTime!]
+  postReadingTimeCount(where: PostReadingTimeWhereInput! = {}): Int
+  postReadingTimeView: JSON
+  postReadingFootprint(where: PostReadingFootprintWhereInput! = {}, orderBy: [PostReadingFootprintOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PostReadingFootprintWhereUniqueInput): [PostReadingFootprint!]
+  postReadingFootprintCount(where: PostReadingFootprintWhereInput! = {}): Int
+  postReadingFootprintView: JSON
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input UserWhereUniqueInput {
+  id: ID
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  id: IDFilter
+  twreporterID: StringFilter
+  bookmark: BookmarkManyRelationFilter
+  postReading: PostManyRelationFilter
+  postReadingTime: PostReadingTimeManyRelationFilter
+  postReadingFootprint: PostReadingFootprintManyRelationFilter
+  createdAt: DateTimeNullableFilter
+  updatedAt: DateTimeNullableFilter
+}
+
+input BookmarkManyRelationFilter {
+  every: BookmarkWhereInput
+  some: BookmarkWhereInput
+  none: BookmarkWhereInput
+}
+
+input PostReadingTimeManyRelationFilter {
+  every: PostReadingTimeWhereInput
+  some: PostReadingTimeWhereInput
+  none: PostReadingTimeWhereInput
+}
+
+input PostReadingFootprintManyRelationFilter {
+  every: PostReadingFootprintWhereInput
+  some: PostReadingFootprintWhereInput
+  none: PostReadingFootprintWhereInput
+}
+
+input UserOrderByInput {
+  id: OrderDirection
+  twreporterID: OrderDirection
+  createdAt: OrderDirection
+  updatedAt: OrderDirection
+}
+
+input UserUpdateInput {
+  twreporterID: String
+  bookmark: BookmarkRelateToManyForUpdateInput
+  postReading: PostRelateToManyForUpdateInput
+  postReadingTime: PostReadingTimeRelateToManyForUpdateInput
+  postReadingFootprint: PostReadingFootprintRelateToManyForUpdateInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input BookmarkRelateToManyForUpdateInput {
+  disconnect: [BookmarkWhereUniqueInput!]
+  set: [BookmarkWhereUniqueInput!]
+  create: [BookmarkCreateInput!]
+  connect: [BookmarkWhereUniqueInput!]
+}
+
+input PostReadingTimeRelateToManyForUpdateInput {
+  disconnect: [PostReadingTimeWhereUniqueInput!]
+  set: [PostReadingTimeWhereUniqueInput!]
+  create: [PostReadingTimeCreateInput!]
+  connect: [PostReadingTimeWhereUniqueInput!]
+}
+
+input PostReadingFootprintRelateToManyForUpdateInput {
+  disconnect: [PostReadingFootprintWhereUniqueInput!]
+  set: [PostReadingFootprintWhereUniqueInput!]
+  create: [PostReadingFootprintCreateInput!]
+  connect: [PostReadingFootprintWhereUniqueInput!]
+}
+
+input UserUpdateArgs {
+  where: UserWhereUniqueInput!
+  data: UserUpdateInput!
+}
+
+input UserCreateInput {
+  twreporterID: String
+  bookmark: BookmarkRelateToManyForCreateInput
+  postReading: PostRelateToManyForCreateInput
+  postReadingTime: PostReadingTimeRelateToManyForCreateInput
+  postReadingFootprint: PostReadingFootprintRelateToManyForCreateInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input BookmarkRelateToManyForCreateInput {
+  create: [BookmarkCreateInput!]
+  connect: [BookmarkWhereUniqueInput!]
+}
+
+input PostReadingTimeRelateToManyForCreateInput {
+  create: [PostReadingTimeCreateInput!]
+  connect: [PostReadingTimeWhereUniqueInput!]
+}
+
+input PostReadingFootprintRelateToManyForCreateInput {
+  create: [PostReadingFootprintCreateInput!]
+  connect: [PostReadingFootprintWhereUniqueInput!]
+}
+
+type Bookmark {
+  id: ID!
+  user: User
+  post: Post
+  createdAt: DateTime
+}
+
+input BookmarkWhereUniqueInput {
+  id: ID
+}
+
+input BookmarkWhereInput {
+  AND: [BookmarkWhereInput!]
+  OR: [BookmarkWhereInput!]
+  NOT: [BookmarkWhereInput!]
+  id: IDFilter
+  user: UserWhereInput
+  post: PostWhereInput
+  createdAt: DateTimeNullableFilter
+}
+
+input BookmarkOrderByInput {
+  id: OrderDirection
+  createdAt: OrderDirection
+}
+
+input BookmarkUpdateInput {
+  user: UserRelateToOneForUpdateInput
+  post: PostRelateToOneForUpdateInput
+  createdAt: DateTime
+}
+
+input UserRelateToOneForUpdateInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  disconnect: Boolean
+}
+
+input BookmarkUpdateArgs {
+  where: BookmarkWhereUniqueInput!
+  data: BookmarkUpdateInput!
+}
+
+input BookmarkCreateInput {
+  user: UserRelateToOneForCreateInput
+  post: PostRelateToOneForCreateInput
+  createdAt: DateTime
+}
+
+input UserRelateToOneForCreateInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
+type PostReadingTime {
+  id: ID!
+  user: User
+  post: Post
+  seconds: Int
+}
+
+input PostReadingTimeWhereUniqueInput {
+  id: ID
+}
+
+input PostReadingTimeWhereInput {
+  AND: [PostReadingTimeWhereInput!]
+  OR: [PostReadingTimeWhereInput!]
+  NOT: [PostReadingTimeWhereInput!]
+  id: IDFilter
+  user: UserWhereInput
+  post: PostWhereInput
+  seconds: IntFilter
+}
+
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: IntFilter
+}
+
+input PostReadingTimeOrderByInput {
+  id: OrderDirection
+  seconds: OrderDirection
+}
+
+input PostReadingTimeUpdateInput {
+  user: UserRelateToOneForUpdateInput
+  post: PostRelateToOneForUpdateInput
+  seconds: Int
+}
+
+input PostReadingTimeUpdateArgs {
+  where: PostReadingTimeWhereUniqueInput!
+  data: PostReadingTimeUpdateInput!
+}
+
+input PostReadingTimeCreateInput {
+  user: UserRelateToOneForCreateInput
+  post: PostRelateToOneForCreateInput
+  seconds: Int
+}
+
+type PostReadingFootprint {
+  id: ID!
+  user: User
+  post: Post
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input PostReadingFootprintWhereUniqueInput {
+  id: ID
+}
+
+input PostReadingFootprintWhereInput {
+  AND: [PostReadingFootprintWhereInput!]
+  OR: [PostReadingFootprintWhereInput!]
+  NOT: [PostReadingFootprintWhereInput!]
+  id: IDFilter
+  user: UserWhereInput
+  post: PostWhereInput
+  createdAt: DateTimeNullableFilter
+  updatedAt: DateTimeNullableFilter
+}
+
+input PostReadingFootprintOrderByInput {
+  id: OrderDirection
+  createdAt: OrderDirection
+  updatedAt: OrderDirection
+}
+
+input PostReadingFootprintUpdateInput {
+  user: UserRelateToOneForUpdateInput
+  post: PostRelateToOneForUpdateInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input PostReadingFootprintUpdateArgs {
+  where: PostReadingFootprintWhereUniqueInput!
+  data: PostReadingFootprintUpdateInput!
+}
+
+input PostReadingFootprintCreateInput {
+  user: UserRelateToOneForCreateInput
+  post: PostRelateToOneForCreateInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
@@ -1421,6 +1722,30 @@ type Mutation {
   updateReviews(data: [ReviewUpdateArgs!]!): [Review]
   deleteReview(where: ReviewWhereUniqueInput!): Review
   deleteReviews(where: [ReviewWhereUniqueInput!]!): [Review]
+  createUser(data: UserCreateInput!): User
+  createUsers(data: [UserCreateInput!]!): [User]
+  updateUser(where: UserWhereUniqueInput!, data: UserUpdateInput!): User
+  updateUsers(data: [UserUpdateArgs!]!): [User]
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteUsers(where: [UserWhereUniqueInput!]!): [User]
+  createBookmark(data: BookmarkCreateInput!): Bookmark
+  createBookmarks(data: [BookmarkCreateInput!]!): [Bookmark]
+  updateBookmark(where: BookmarkWhereUniqueInput!, data: BookmarkUpdateInput!): Bookmark
+  updateBookmarks(data: [BookmarkUpdateArgs!]!): [Bookmark]
+  deleteBookmark(where: BookmarkWhereUniqueInput!): Bookmark
+  deleteBookmarks(where: [BookmarkWhereUniqueInput!]!): [Bookmark]
+  createPostReadingTime(data: PostReadingTimeCreateInput!): PostReadingTime
+  createPostReadingTimes(data: [PostReadingTimeCreateInput!]!): [PostReadingTime]
+  updatePostReadingTime(where: PostReadingTimeWhereUniqueInput!, data: PostReadingTimeUpdateInput!): PostReadingTime
+  updatePostReadingTimes(data: [PostReadingTimeUpdateArgs!]!): [PostReadingTime]
+  deletePostReadingTime(where: PostReadingTimeWhereUniqueInput!): PostReadingTime
+  deletePostReadingTimes(where: [PostReadingTimeWhereUniqueInput!]!): [PostReadingTime]
+  createPostReadingFootprint(data: PostReadingFootprintCreateInput!): PostReadingFootprint
+  createPostReadingFootprints(data: [PostReadingFootprintCreateInput!]!): [PostReadingFootprint]
+  updatePostReadingFootprint(where: PostReadingFootprintWhereUniqueInput!, data: PostReadingFootprintUpdateInput!): PostReadingFootprint
+  updatePostReadingFootprints(data: [PostReadingFootprintUpdateArgs!]!): [PostReadingFootprint]
+  deletePostReadingFootprint(where: PostReadingFootprintWhereUniqueInput!): PostReadingFootprint
+  deletePostReadingFootprints(where: [PostReadingFootprintWhereUniqueInput!]!): [PostReadingFootprint]
   endSession: Boolean!
   authenticateReporterSystemUserWithPassword(email: String!, password: String!): ReporterSystemUserAuthenticationWithPasswordResult
   createInitialReporterSystemUser(data: CreateInitialReporterSystemUserInput!): ReporterSystemUserAuthenticationWithPasswordSuccess!
@@ -1486,6 +1811,18 @@ type Query {
   review(where: ReviewWhereUniqueInput!): Review
   reviews(where: ReviewWhereInput! = {}, orderBy: [ReviewOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ReviewWhereUniqueInput): [Review!]
   reviewsCount(where: ReviewWhereInput! = {}): Int
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput! = {}, orderBy: [UserOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: UserWhereUniqueInput): [User!]
+  usersCount(where: UserWhereInput! = {}): Int
+  bookmark(where: BookmarkWhereUniqueInput!): Bookmark
+  bookmarks(where: BookmarkWhereInput! = {}, orderBy: [BookmarkOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: BookmarkWhereUniqueInput): [Bookmark!]
+  bookmarksCount(where: BookmarkWhereInput! = {}): Int
+  postReadingTime(where: PostReadingTimeWhereUniqueInput!): PostReadingTime
+  postReadingTimes(where: PostReadingTimeWhereInput! = {}, orderBy: [PostReadingTimeOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PostReadingTimeWhereUniqueInput): [PostReadingTime!]
+  postReadingTimesCount(where: PostReadingTimeWhereInput! = {}): Int
+  postReadingFootprint(where: PostReadingFootprintWhereUniqueInput!): PostReadingFootprint
+  postReadingFootprints(where: PostReadingFootprintWhereInput! = {}, orderBy: [PostReadingFootprintOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PostReadingFootprintWhereUniqueInput): [PostReadingFootprint!]
+  postReadingFootprintsCount(where: PostReadingFootprintWhereInput! = {}): Int
   keystone: KeystoneMeta!
   authenticatedItem: AuthenticatedItem
 }

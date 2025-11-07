@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.36](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.35...www-frontend@0.1.0-beta.36) (2025-11-05)
+
+
+### Bug Fixes
+
+* **frontend:** address comments ([bc4fa4b](https://github.com/twreporter/www-public-monorepo/commit/bc4fa4b15aaf973b06f2c25de35f97dd29af1244))
+
+
+### Features
+
+* **frontend:** footer for components ([7b58cff](https://github.com/twreporter/www-public-monorepo/commit/7b58cff04f30446b78585b4a4d0ecc60821fb29c))
+
+
+
+
+
 # [0.1.0-beta.35](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.34...www-frontend@0.1.0-beta.35) (2025-10-17)
 
 **Note:** Version bump only for package www-frontend

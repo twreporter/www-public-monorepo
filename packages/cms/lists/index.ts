@@ -11,6 +11,10 @@ import Subcategory from './Subcategory'
 import Tag from './Tag'
 import Topic from './Topic'
 import Footer from './Footer'
+import User from './User'
+import Bookmark from './Bookmark'
+import PostReadingTime from './PostReadingTime'
+import PostReadingFootprint from './PostReadingFootprint'
 
 export const listDefinition = {
   ReporterSystemUser,
@@ -26,4 +30,8 @@ export const listDefinition = {
   Footer,
   Latest,
   Review,
+  User,
+  Bookmark,
+  PostReadingTime,
+  PostReadingFootprint,
 }

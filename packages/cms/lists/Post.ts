@@ -258,6 +258,15 @@ const listConfigurations = list({
         ...relationshipUtil.relationshipAndExtendedFields(beenRelatedPosts),
       },
     }),
+    postReadingBy: relationship({
+      ref: 'User.postReading',
+      many: true,
+      ui: {
+        itemView: {
+          fieldMode: 'hidden',
+        },
+      },
+    }),
     createdAt: CREATED_AT,
     updatedAt: UPDATED_AT,
     preview: virtual({

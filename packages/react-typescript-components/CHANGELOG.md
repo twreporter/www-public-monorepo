@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.19](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.18...@twreporter/react-typescript-components@0.1.0-beta.19) (2025-11-05)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** address comments ([d84f8da](https://github.com/twreporter/www-public-monorepo/commit/d84f8dab1eba105833e4019b0992ca1aff77b29f))
+* **react-typescript-components:** logo storybook type ([0b8beeb](https://github.com/twreporter/www-public-monorepo/commit/0b8beeb4da21c29f12a586e2c39017f8d5b6f13a))
+
+
+### Features
+
+* **react-typescript-components:** add footer components ([7fa3c0a](https://github.com/twreporter/www-public-monorepo/commit/7fa3c0a9258ac6036128e8ad9f9347e0fc9d8675))
+* **react-typescript-components:** add footer logo ([a25f83e](https://github.com/twreporter/www-public-monorepo/commit/a25f83eb7a7fce6002083a36297f7f4382cf78d2))
+* **react-typescript-components:** add onMouseEnter and onMouseLeave for customized link ([8be134d](https://github.com/twreporter/www-public-monorepo/commit/8be134d033bd089290b76350730f14ab90d3c02e))
+
+
+
+
+
 # [0.1.0-beta.18](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.17...@twreporter/react-typescript-components@0.1.0-beta.18) (2025-10-17)
 
 
