@@ -19,15 +19,15 @@ import type { LinkType, SocialMediaLink } from './types'
 
 type FooterProps = {
   releaseBranch: ReleaseBranch
-  fundrasingId: string
-  fundrasingDateString: string
+  fundraisingId: string
+  fundraisingDateString: string
   socialMediaLinks: SocialMediaLink[]
   buttonLinks: LinkType[][]
 }
 const Footer: FC<FooterProps> = ({
   releaseBranch,
-  fundrasingId,
-  fundrasingDateString,
+  fundraisingId,
+  fundraisingDateString,
   socialMediaLinks,
   buttonLinks,
 }) => {
@@ -100,7 +100,7 @@ const Footer: FC<FooterProps> = ({
           >
             <P3
               className="text-gray-600"
-              text={`衛部救字第${fundrasingId}號｜勸募期間 ${fundrasingDateString}`}
+              text={`衛部救字第${fundraisingId}號｜勸募期間 ${fundraisingDateString}`}
             />
             <div className="hidden desktop:flex">
               <P3 className="text-gray-600" text="｜" />
