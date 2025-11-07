@@ -4,7 +4,7 @@ import type React from 'react'
 import RelatedPost from '@/components/topics/components/related-post'
 import TopicItem from '@/components/topics/components/topic-item'
 // types
-import type { TopicData } from '@/type/topic'
+import type { TopicData } from '@/types/topic'
 // utils
 import { formatDate } from '@/utils/date-formatters'
 import { getImageLink } from '@/utils/get-image-link'

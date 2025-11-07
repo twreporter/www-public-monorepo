@@ -10,7 +10,7 @@ import FirstTopic from '@/components/topics/components/first-topic'
 import TopicItem from '@/components/topics/components/topic-item'
 import Pagination from '@/components/pagination'
 // types
-import type { TopicData } from '@/type/topic'
+import type { TopicData } from '@/types/topic'
 // utils
 import { formatDate } from '@/utils/date-formatters'
 import { getImageLink } from '@/utils/get-image-link'

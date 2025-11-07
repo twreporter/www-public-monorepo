@@ -1,8 +1,8 @@
 import { keystoneFetch } from '@/app/api/graphql/keystone'
 // type
-import type { ArticleMeta } from '@/type/article'
+import type { ArticleMeta } from '@/types/article'
 import type { PostMetaFromRes } from '@/fetchers/type'
-import type { Category, Subcategory } from '@/type/category'
+import type { Category, Subcategory } from '@/types/category'
 // constants
 import { POSTS_PER_PAGE } from '@/constants'
 // utils

@@ -1,6 +1,6 @@
 import useSWR, { type SWRConfiguration } from 'swr'
 // type
-import type { ArticleMeta } from '@/type/article'
+import type { ArticleMeta } from '@/types/article'
 import type { PostMetaFromRes } from '@/fetchers/type'
 // utils
 import getPostMeta from '@/utils/get-post-meta'

@@ -1,6 +1,6 @@
 import { keystoneFetch } from '@/app/api/graphql/keystone'
 // type
-import type { ArticleMeta } from '@/type/article'
+import type { ArticleMeta } from '@/types/article'
 import type { PostMetaFromRes } from '@/fetchers/type'
 // constants
 import { POSTS_PER_PAGE } from '@/constants'
