@@ -1,4 +1,4 @@
-import type { Image } from '@/type/image'
+import type { Image } from '@/types/image'
 import type { Style } from '@/enums/article'
 
 export type Tag = {

@@ -1,6 +1,6 @@
 // type
 import type { PostMetaFromRes } from '@/fetchers/type'
-import type { ArticleMeta } from '@/type/article'
+import type { ArticleMeta } from '@/types/article'
 // utils
 import { getImageLink } from '@/utils/get-image-link'
 // lodash
@@ -11,18 +11,20 @@ const _ = {
 
 type GetPostMetaFunc = (post: PostMetaFromRes) => ArticleMeta
 
-const getPostMeta = (selectedTagSlug?: string):GetPostMetaFunc => {
+const getPostMeta = (selectedTagSlug?: string): GetPostMetaFunc => {
   return ({ ogImage, subcategories, tags, ...rest }) => ({
-  image: ogImage
-    ? { src: getImageLink(ogImage), alt: ogImage.name }
-    : undefined,
-  category: _.get(subcategories, '[0].category.name', ''),
-  tags: selectedTagSlug ? tags.map(({ slug, ...rest}) => ({
-    slug,
-    selected: slug === selectedTagSlug,
-    ...rest
-  })) : tags,
-  ...rest,
+    image: ogImage
+      ? { src: getImageLink(ogImage), alt: ogImage.name }
+      : undefined,
+    category: _.get(subcategories, '[0].category.name', ''),
+    tags: selectedTagSlug
+      ? tags.map(({ slug, ...rest }) => ({
+          slug,
+          selected: slug === selectedTagSlug,
+          ...rest,
+        }))
+      : tags,
+    ...rest,
   })
 }
 
