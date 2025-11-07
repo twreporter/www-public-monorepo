@@ -6,20 +6,31 @@ import { P2, P3 } from '../text/paragraph'
 import Divider from '../divider'
 // constants
 import type { ReleaseBranch } from '../constants/release-branch'
-import { FUNDRAISING_ID } from './constants'
 import { EXTERNAL_LINKS } from '../constants/external-links'
 // components
 import Logo from './logo'
-import { SocialLinks, InfoLinks, LinkButtonGroups } from './links'
+import { SocialLinks, StaticLinks, LinkButtonGroups } from './links'
 // button
 import { PillButton } from '../button'
 // link
 import { ExternalLink } from '../customized-link'
+// types
+import type { LinkType, SocialMediaLink } from './types'
 
 type FooterProps = {
   releaseBranch: ReleaseBranch
+  fundrasingId: string
+  fundrasingDateString: string
+  socialMediaLinks: SocialMediaLink[]
+  buttonLinks: LinkType[][]
 }
-const Footer: FC<FooterProps> = ({ releaseBranch }) => {
+const Footer: FC<FooterProps> = ({
+  releaseBranch,
+  fundrasingId,
+  fundrasingDateString,
+  socialMediaLinks,
+  buttonLinks,
+}) => {
   return (
     <footer className={clsx('w-full bg-gray-white')}>
       <div
@@ -69,7 +80,10 @@ const Footer: FC<FooterProps> = ({ releaseBranch }) => {
           <div
             className={clsx('flex mb-[16px] gap-[16px]', 'desktop:gap-[24px]')}
           >
-            <LinkButtonGroups releaseBranch={releaseBranch} />
+            <LinkButtonGroups
+              releaseBranch={releaseBranch}
+              linksGroups={buttonLinks}
+            />
           </div>
         </div>
         <Divider className="w-full my-[24px]" />
@@ -84,14 +98,17 @@ const Footer: FC<FooterProps> = ({ releaseBranch }) => {
           <div
             className={clsx('flex flex-col items-center', 'desktop:flex-row')}
           >
-            <P3 className="text-gray-600" text={FUNDRAISING_ID} />
+            <P3
+              className="text-gray-600"
+              text={`衛部救字第${fundrasingId}號｜勸募期間 ${fundrasingDateString}`}
+            />
             <div className="hidden desktop:flex">
               <P3 className="text-gray-600" text="｜" />
-              <InfoLinks releaseBranch={releaseBranch} />
+              <StaticLinks releaseBranch={releaseBranch} />
               <P3 className="text-gray-600" text="｜" />
             </div>
             <div className="flex desktop:hidden">
-              <InfoLinks releaseBranch={releaseBranch} />
+              <StaticLinks releaseBranch={releaseBranch} />
             </div>
             <P3
               className="text-gray-600"
@@ -99,7 +116,7 @@ const Footer: FC<FooterProps> = ({ releaseBranch }) => {
             />
           </div>
           {/* social links */}
-          <SocialLinks releaseBranch={releaseBranch} />
+          <SocialLinks releaseBranch={releaseBranch} links={socialMediaLinks} />
         </div>
       </div>
     </footer>
