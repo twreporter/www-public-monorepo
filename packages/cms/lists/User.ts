@@ -23,13 +23,11 @@ const listConfigurations = list({
       label: 'Post Reading Count',
       ref: 'Post.postReadingBy',
       many: true,
-      /* todo: remove comment after testing
-        ui: {
-          itemView: {
-            fieldMode: 'hidden',
-          }
+      ui: {
+        itemView: {
+          fieldMode: 'hidden',
         }
-      */
+      }
     }),
     postReadingCountView: virtual({
       label: 'Post Reading Count',
@@ -118,7 +116,7 @@ const listConfigurations = list({
       },
     }),
     postReadingFootprintView: virtual({
-      label: 'Post Reading Time',
+      label: 'Post Reading FootPrint',
       field: graphql.field({
         type: graphql.JSON,
         async resolve(item, _args, context) {
