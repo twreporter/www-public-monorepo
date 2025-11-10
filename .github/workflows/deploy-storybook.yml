@@ -1,0 +1,138 @@
+name: Deploy Storybook to GitHub Pages
+
+on:
+  push:
+    branches:
+      - dev
+      - staging
+      - release
+    paths:
+      - 'packages/react-typescript-components/**'
+      - '.github/workflows/deploy-storybook.yml'
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment per environment
+concurrency:
+  group: "pages-${{ github.ref_name }}"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.17.1'
+      
+      - name: Enable Corepack
+        run: corepack enable
+      
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Determine environment and base path
+        id: env
+        run: |
+          case "${{ github.ref_name }}" in
+            dev)
+              echo "environment=dev" >> $GITHUB_OUTPUT
+              echo "base_path=/www-public-monorepo/dev" >> $GITHUB_OUTPUT
+              echo "subdirectory=dev" >> $GITHUB_OUTPUT
+              ;;
+            staging)
+              echo "environment=staging" >> $GITHUB_OUTPUT
+              echo "base_path=/www-public-monorepo/staging" >> $GITHUB_OUTPUT
+              echo "subdirectory=staging" >> $GITHUB_OUTPUT
+              ;;
+            release)
+              echo "environment=production" >> $GITHUB_OUTPUT
+              echo "base_path=/www-public-monorepo" >> $GITHUB_OUTPUT
+              echo "subdirectory=." >> $GITHUB_OUTPUT
+              ;;
+            *)
+              echo "Unknown branch: ${{ github.ref_name }}"
+              exit 1
+              ;;
+          esac
+
+      - name: Build Storybook
+        working-directory: packages/react-typescript-components
+        env:
+          # This tells Storybook where it will be hosted
+          STORYBOOK_BASE_PATH: ${{ steps.env.outputs.base_path }}
+        run: |
+          yarn build-storybook --output-dir ../../storybook-static
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages-repo
+          # Create the branch if it doesn't exist
+          fetch-depth: 0
+
+      - name: Prepare deployment directory
+        run: |
+          # Create gh-pages branch if it doesn't exist
+          if ! git ls-remote --heads origin gh-pages | grep -q gh-pages; then
+            echo "Creating gh-pages branch..."
+            cd gh-pages-repo
+            git checkout --orphan gh-pages
+            git rm -rf .
+            echo "# Storybook Deployments" > README.md
+            echo "" >> README.md
+            echo "- [Development](./dev/)" >> README.md
+            echo "- [Staging](./staging/)" >> README.md
+            echo "- [Production](./)" >> README.md
+            git add README.md
+            git config user.name "GitHub Action"
+            git config user.email "action@github.com"
+            git commit -m "Initialize gh-pages branch"
+            git push origin gh-pages
+            cd ..
+          fi
+
+          # Copy built storybook to the appropriate subdirectory
+          if [ "${{ steps.env.outputs.subdirectory }}" = "." ]; then
+            # Production goes to root, but preserve subdirectories
+            mkdir -p gh-pages-repo/dev gh-pages-repo/staging
+            rsync -av --delete --exclude=dev --exclude=staging storybook-static/ gh-pages-repo/
+          else
+            # Dev/Staging goes to subdirectory
+            mkdir -p gh-pages-repo/${{ steps.env.outputs.subdirectory }}
+            rsync -av --delete storybook-static/ gh-pages-repo/${{ steps.env.outputs.subdirectory }}/
+          fi
+
+      - name: Deploy to GitHub Pages
+        working-directory: gh-pages-repo
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add .
+          
+          if git diff --staged --quiet; then
+            echo "No changes to deploy"
+          else
+            git commit -m "Deploy ${{ steps.env.outputs.environment }} storybook from ${{ github.sha }}"
+            git push origin gh-pages
+          fi
+
+      - name: Output deployment URL
+        run: |
+          if [ "${{ steps.env.outputs.subdirectory }}" = "." ]; then
+            echo "🚀 Storybook deployed to: https://twreporter.github.io/www-public-monorepo/"
+          else
+            echo "🚀 Storybook deployed to: https://twreporter.github.io/www-public-monorepo/${{ steps.env.outputs.subdirectory }}/"
+          fi

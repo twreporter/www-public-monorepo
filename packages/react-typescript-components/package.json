@@ -12,7 +12,10 @@
     "build": "yarn clean && yarn build:components && yarn build:styles",
     "prepublishOnly": "yarn build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "build-storybook:dev": "STORYBOOK_BASE_PATH=/www-public-monorepo/dev storybook build --output-dir ../../storybook-static-dev",
+    "build-storybook:staging": "STORYBOOK_BASE_PATH=/www-public-monorepo/staging storybook build --output-dir ../../storybook-static-staging",
+    "build-storybook:prod": "STORYBOOK_BASE_PATH=/www-public-monorepo storybook build --output-dir ../../storybook-static-prod"
   },
   "peerDependencies": {
     "react": "^19.0.0",
