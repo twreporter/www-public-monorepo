@@ -97,7 +97,7 @@ export const LinkButtonGroups = ({
               key={indexofLink}
               to={link.link}
               target="_blank"
-              id={link.gtmID}
+              id={link.id}
             >
               <P2
                 className="text-gray-600 hover:text-gray-800"
