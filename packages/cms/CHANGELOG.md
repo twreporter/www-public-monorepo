@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.17](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.16...www-cms@0.1.0-beta.17) (2025-11-10)
+
+
+### Bug Fixes
+
+* **cms:** typo & remove test comments ([90bf9a5](https://github.com/twreporter/www-public-monorepo/commit/90bf9a557cbd2ae4134f43aabf2960342bf3d9fe))
+
+
+
+
+
 # [0.1.0-beta.16](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.15...www-cms@0.1.0-beta.16) (2025-11-10)
 
 
