@@ -30,7 +30,7 @@ const listConfigurations = list({
     label: 'Post Reading Time',
     listView: {
       initialColumns: ['post', 'user', 'seconds'],
-      initialSort: { field: 'post', direction: 'DESC' },
+      initialSort: { field: 'seconds', direction: 'DESC' },
       pageSize: 50,
     },
   },
