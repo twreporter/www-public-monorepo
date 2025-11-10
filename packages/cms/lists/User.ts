@@ -23,11 +23,13 @@ const listConfigurations = list({
       label: 'Post Reading Count',
       ref: 'Post.postReadingBy',
       many: true,
+/* todo: remove comment after testing
       ui: {
         itemView: {
           fieldMode: 'hidden',
         }
       }
+*/
     }),
     postReadingCountView: virtual({
       label: 'Post Reading Count',
