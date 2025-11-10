@@ -30,7 +30,7 @@ import { SortableItem } from '../../DragAndDrop/SortableItem'
 type FooterLink = {
   text: string
   link: string
-  gtmID?: string
+  id?: string
 }
 
 type FooterLinksColumn = FooterLink[]
@@ -117,7 +117,7 @@ const EmptyState = styled.div`
 const footerLinkTemplate: FooterLink = {
   text: '',
   link: '',
-  gtmID: '',
+  id: '',
 }
 
 const NewLinkForm = memo(
@@ -125,7 +125,7 @@ const NewLinkForm = memo(
     footerLink: FooterLink
     onTextChange: (e: ChangeEvent<HTMLInputElement>) => void
     onLinkChange: (e: ChangeEvent<HTMLInputElement>) => void
-    onGtmIDChange: (e: ChangeEvent<HTMLInputElement>) => void
+    onIdChange: (e: ChangeEvent<HTMLInputElement>) => void
     onAdd: () => void
     isDisabled: boolean
     isAddDisabled: boolean
@@ -134,7 +134,7 @@ const NewLinkForm = memo(
       footerLink,
       onTextChange,
       onLinkChange,
-      onGtmIDChange,
+      onIdChange,
       onAdd,
       isDisabled,
       isAddDisabled,
@@ -161,8 +161,8 @@ const NewLinkForm = memo(
         <GtmInput_Container>
           <TextInput
             placeholder="GTM ID（選填）"
-            onChange={onGtmIDChange}
-            value={footerLink.gtmID || ''}
+            onChange={onIdChange}
+            value={footerLink.id || ''}
             disabled={isDisabled}
           />
         </GtmInput_Container>
@@ -180,7 +180,7 @@ const FooterLinkComponent = memo(
     index: number
     onTextChange: (index: number, text: string) => void
     onLinkChange: (index: number, link: string) => void
-    onGtmIDChange: (index: number, gtmID: string) => void
+    onIdChange: (index: number, id: string) => void
     onDelete: (index: number) => void
     showDragHandle?: boolean
     isDisabled?: boolean
@@ -190,7 +190,7 @@ const FooterLinkComponent = memo(
       index,
       onTextChange,
       onLinkChange,
-      onGtmIDChange,
+      onIdChange,
       onDelete,
       showDragHandle = false,
       isDisabled = false,
@@ -210,11 +210,11 @@ const FooterLinkComponent = memo(
       [index, onLinkChange]
     )
 
-    const handleGtmIDChange = useCallback(
+    const handleIdChange = useCallback(
       (e: ChangeEvent<HTMLInputElement>) => {
-        onGtmIDChange(index, e.target.value)
+        onIdChange(index, e.target.value)
       },
-      [index, onGtmIDChange]
+      [index, onIdChange]
     )
 
     const handleDelete = useCallback(() => {
@@ -243,8 +243,8 @@ const FooterLinkComponent = memo(
         <GtmInput_Container>
           <TextInput
             placeholder="GTM ID（選填）"
-            onChange={handleGtmIDChange}
-            value={footerLink.gtmID || ''}
+            onChange={handleIdChange}
+            value={footerLink.id || ''}
             disabled={isDisabled}
           />
         </GtmInput_Container>
@@ -261,6 +261,12 @@ export const Field = ({
   value,
   onChange,
 }: FieldProps<typeof controller>) => {
+  /*
+    display for links group
+    | first column | second column | third column |
+    | XXXX         | XXXX          | XXX          |
+    | XXXXX        | XXXXXX        | XX           |
+  */
   const parseFooterLinks = (
     val: string | null | undefined
   ): FooterLinksColumn[] => {
@@ -388,8 +394,8 @@ export const Field = ({
     [onChange]
   )
 
-  const onUpdateLinkGtmID = useCallback(
-    (columnIndex: number, linkIndex: number, gtmID: string) => {
+  const onUpdateLinkId = useCallback(
+    (columnIndex: number, linkIndex: number, id: string) => {
       if (onChange) {
         setColumns((prevColumns) => {
           const newColumns = [...prevColumns]
@@ -397,7 +403,7 @@ export const Field = ({
             newColumns[columnIndex] = [...newColumns[columnIndex]]
             newColumns[columnIndex][linkIndex] = {
               ...newColumns[columnIndex][linkIndex],
-              gtmID,
+              id,
             }
             onChange(JSON.stringify(newColumns))
           }
@@ -436,13 +442,13 @@ export const Field = ({
     []
   )
 
-  const onUpdateNewLinkGtmID = useCallback(
+  const onUpdateNewLinkId = useCallback(
     (columnIndex: number, e: ChangeEvent<HTMLInputElement>) => {
       setNewLinks((prevNewLinks) => {
         const updatedNewLinks = [...prevNewLinks]
         updatedNewLinks[columnIndex] = {
           ...updatedNewLinks[columnIndex],
-          gtmID: e.target.value,
+          id: e.target.value,
         }
         return updatedNewLinks
       })
@@ -509,8 +515,8 @@ export const Field = ({
                       onLinkChange={(idx, url) =>
                         onUpdateLinkUrl(columnIndex, idx, url)
                       }
-                      onGtmIDChange={(idx, gtmID) =>
-                        onUpdateLinkGtmID(columnIndex, idx, gtmID)
+                      onIdChange={(idx, id) =>
+                        onUpdateLinkId(columnIndex, idx, id)
                       }
                       onDelete={(idx) => onDeleteLink(columnIndex, idx)}
                       isDisabled={true}
@@ -527,7 +533,7 @@ export const Field = ({
             footerLink={newLink}
             onTextChange={(e) => onUpdateNewLinkText(columnIndex, e)}
             onLinkChange={(e) => onUpdateNewLinkUrl(columnIndex, e)}
-            onGtmIDChange={(e) => onUpdateNewLinkGtmID(columnIndex, e)}
+            onIdChange={(e) => onUpdateNewLinkId(columnIndex, e)}
             onAdd={() => onAddNewLink(columnIndex)}
             isDisabled={false}
             isAddDisabled={isAddDisabled}
