@@ -264,8 +264,8 @@ const listConfigurations = list({
       ui: {
         itemView: {
           fieldMode: 'hidden',
-        }
-      }
+        },
+      },
     }),
     createdAt: CREATED_AT,
     updatedAt: UPDATED_AT,

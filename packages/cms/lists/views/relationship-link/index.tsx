@@ -32,7 +32,7 @@ type RelationshipLinkValue = {
 export const Field = ({
   field,
   value,
-}: FieldProps<typeof controller> & { value: RelationshipLinkValue}) => {
+}: FieldProps<typeof controller> & { value: RelationshipLinkValue }) => {
   if (!value) {
     return (
       <FieldContainer>
@@ -49,8 +49,10 @@ export const Field = ({
         {field.description}
       </FieldDescription>
       <Container>
-        { summary ? (<div>{summary}</div>) : null }
-        <a href={link.url} target="_self">{link.desc}</a>
+        {summary ? <div>{summary}</div> : null}
+        <a href={link.url} target="_self">
+          {link.desc}
+        </a>
       </Container>
     </FieldContainer>
   )

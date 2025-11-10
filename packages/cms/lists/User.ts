@@ -23,13 +23,13 @@ const listConfigurations = list({
       label: 'Post Reading Count',
       ref: 'Post.postReadingBy',
       many: true,
-/* todo: remove comment after testing
-      ui: {
-        itemView: {
-          fieldMode: 'hidden',
+      /* todo: remove comment after testing
+        ui: {
+          itemView: {
+            fieldMode: 'hidden',
+          }
         }
-      }
-*/
+      */
     }),
     postReadingCountView: virtual({
       label: 'Post Reading Count',
@@ -38,15 +38,15 @@ const listConfigurations = list({
         async resolve(item, _args, context) {
           const count = await context.query.User.findOne({
             where: { id: String(item.id) },
-            query: 'postReadingCount'
+            query: 'postReadingCount',
           })
           const relationshipQueryUrl = `/posts?!postReadingBy_matches="${item.id}"`
           return {
             summary: `總共有 ${count.postReadingCount} 筆`,
             link: {
               url: relationshipQueryUrl,
-              desc: 'View related Posts'
-            }
+              desc: 'View related Posts',
+            },
           }
         },
       }),
@@ -61,7 +61,7 @@ const listConfigurations = list({
         listView: {
           fieldMode: 'hidden',
         },
-      }
+      },
     }),
     postReadingTime: relationship({
       label: 'Post Reading Time',
@@ -70,8 +70,8 @@ const listConfigurations = list({
       ui: {
         itemView: {
           fieldMode: 'hidden',
-        }
-      }
+        },
+      },
     }),
     postReadingTimeView: virtual({
       label: 'Post Reading Time',
@@ -79,8 +79,8 @@ const listConfigurations = list({
         type: graphql.JSON,
         async resolve(item, _args, context) {
           const data = await context.query.PostReadingTime.findMany({
-            where: { user: { id: { equals: String(item.id) }}},
-            query: 'seconds'
+            where: { user: { id: { equals: String(item.id) } } },
+            query: 'seconds',
           })
           const count = data.length
           const seconds = data.reduce((acc, time) => acc + time.seconds, 0)
@@ -89,8 +89,8 @@ const listConfigurations = list({
             summary: `總共有 ${count} 筆、閱讀了 ${seconds} 秒`,
             link: {
               url: relationshipQueryUrl,
-              desc: 'View related Post Reading Time'
-            }
+              desc: 'View related Post Reading Time',
+            },
           }
         },
       }),
@@ -105,7 +105,7 @@ const listConfigurations = list({
         listView: {
           fieldMode: 'hidden',
         },
-      }
+      },
     }),
     postReadingFootprint: relationship({
       label: 'Post Reading FootPrint',
@@ -114,8 +114,8 @@ const listConfigurations = list({
       ui: {
         itemView: {
           fieldMode: 'hidden',
-        }
-      }
+        },
+      },
     }),
     postReadingFootprintView: virtual({
       label: 'Post Reading Time',
@@ -123,15 +123,15 @@ const listConfigurations = list({
         type: graphql.JSON,
         async resolve(item, _args, context) {
           const count = await context.query.PostReadingFootprint.count({
-            where: { user: { id: { equals: String(item.id) }}},
+            where: { user: { id: { equals: String(item.id) } } },
           })
           const relationshipQueryUrl = `/post-reading-footprints?!user_matches="${item.id}"`
           return {
             summary: `總共有 ${count} 筆`,
             link: {
               url: relationshipQueryUrl,
-              desc: 'View related Post Reading Footprint'
-            }
+              desc: 'View related Post Reading Footprint',
+            },
           }
         },
       }),
@@ -146,7 +146,7 @@ const listConfigurations = list({
         listView: {
           fieldMode: 'hidden',
         },
-      }
+      },
     }),
     createdAt: CREATED_AT,
     updatedAt: UPDATED_AT,

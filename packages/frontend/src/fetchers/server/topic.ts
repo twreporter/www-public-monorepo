@@ -1,6 +1,6 @@
 import { keystoneFetch } from '@/app/api/graphql/keystone'
 import { TOPICS_PER_PAGE } from '@/constants'
-import type { TopicData } from '@/type/topic'
+import type { TopicData } from '@/types/topic'
 
 export const fetchTopics = async (page: number = 1): Promise<TopicData[]> => {
   const query = `

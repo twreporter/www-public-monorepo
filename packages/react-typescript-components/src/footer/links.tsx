@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import { P2, P3 } from '../text/paragraph'
 // constants
 import type { ReleaseBranch } from '../constants/release-branch'
-import { getSocialMediaLinks, getLinksGroups } from './constants'
 import { forClientSideRendering } from '../constants/request-origins'
 // button
 import { IconButton } from '../button'
@@ -11,6 +10,8 @@ import { IconButton } from '../button'
 import { ExternalLink } from '../customized-link'
 // icon
 import { SocialMedia } from '../icons'
+// types
+import type { LinkType, SocialMediaLink } from './types'
 // lodash
 import map from 'lodash/map'
 const _ = {
@@ -19,10 +20,11 @@ const _ = {
 
 export const SocialLinks = ({
   releaseBranch,
+  links,
 }: {
   releaseBranch: ReleaseBranch
+  links: SocialMediaLink[]
 }) => {
-  const links = getSocialMediaLinks()
   return (
     <div className="flex gap-[16px]">
       {_.map(links, (link) => {
@@ -30,7 +32,7 @@ export const SocialLinks = ({
           <SocialMedia mediaType={link.icon} releaseBranch={releaseBranch} />
         )
         return (
-          <ExternalLink key={link.slug} to={link.to} target={link.target}>
+          <ExternalLink key={link.icon} to={link.link} target="_blank">
             <IconButton iconComponent={iconComponent} />
           </ExternalLink>
         )
@@ -39,7 +41,7 @@ export const SocialLinks = ({
   )
 }
 
-export const InfoLinks = ({
+export const StaticLinks = ({
   releaseBranch,
 }: {
   releaseBranch: ReleaseBranch
@@ -75,12 +77,11 @@ export const InfoLinks = ({
 }
 
 export const LinkButtonGroups = ({
-  releaseBranch,
+  linksGroups,
 }: {
   releaseBranch: ReleaseBranch
+  linksGroups: LinkType[][]
 }) => {
-  const mainOrigin = forClientSideRendering[releaseBranch].main
-  const linksGroups = getLinksGroups(mainOrigin)
   return _.map(linksGroups, (links, indexofGroup) => {
     return (
       <div
@@ -92,7 +93,12 @@ export const LinkButtonGroups = ({
       >
         {_.map(links, (link, indexofLink) => {
           return (
-            <ExternalLink key={indexofLink} to={link.to} target="_blank">
+            <ExternalLink
+              key={indexofLink}
+              to={link.link}
+              target="_blank"
+              id={link.id}
+            >
               <P2
                 className="text-gray-600 hover:text-gray-800"
                 text={link.text}

@@ -1225,6 +1225,52 @@ input PostRelateToOneForCreateInput {
   connect: PostWhereUniqueInput
 }
 
+type Footer {
+  id: ID!
+  fundraisingID: String
+  fundraisingDateString: String
+  socialMediaLinks: JSON
+  footerLinks: JSON
+}
+
+input FooterWhereUniqueInput {
+  id: ID
+}
+
+input FooterWhereInput {
+  AND: [FooterWhereInput!]
+  OR: [FooterWhereInput!]
+  NOT: [FooterWhereInput!]
+  id: IDFilter
+  fundraisingID: StringFilter
+  fundraisingDateString: StringFilter
+}
+
+input FooterOrderByInput {
+  id: OrderDirection
+  fundraisingID: OrderDirection
+  fundraisingDateString: OrderDirection
+}
+
+input FooterUpdateInput {
+  fundraisingID: String
+  fundraisingDateString: String
+  socialMediaLinks: JSON
+  footerLinks: JSON
+}
+
+input FooterUpdateArgs {
+  where: FooterWhereUniqueInput! = {id: 1}
+  data: FooterUpdateInput!
+}
+
+input FooterCreateInput {
+  fundraisingID: String
+  fundraisingDateString: String
+  socialMediaLinks: JSON
+  footerLinks: JSON
+}
+
 type Latest {
   id: ID!
   tag: Tag
@@ -1658,6 +1704,12 @@ type Mutation {
   updatePushNotifications(data: [PushNotificationUpdateArgs!]!): [PushNotification]
   deletePushNotification(where: PushNotificationWhereUniqueInput!): PushNotification
   deletePushNotifications(where: [PushNotificationWhereUniqueInput!]!): [PushNotification]
+  createFooter(data: FooterCreateInput!): Footer
+  createFooters(data: [FooterCreateInput!]!): [Footer]
+  updateFooter(where: FooterWhereUniqueInput! = {id: 1}, data: FooterUpdateInput!): Footer
+  updateFooters(data: [FooterUpdateArgs!]!): [Footer]
+  deleteFooter(where: FooterWhereUniqueInput! = {id: 1}): Footer
+  deleteFooters(where: [FooterWhereUniqueInput!]!): [Footer]
   createLatest(data: LatestCreateInput!): Latest
   createLatests(data: [LatestCreateInput!]!): [Latest]
   updateLatest(where: LatestWhereUniqueInput!, data: LatestUpdateInput!): Latest
@@ -1750,6 +1802,9 @@ type Query {
   pushNotification(where: PushNotificationWhereUniqueInput!): PushNotification
   pushNotifications(where: PushNotificationWhereInput! = {}, orderBy: [PushNotificationOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PushNotificationWhereUniqueInput): [PushNotification!]
   pushNotificationsCount(where: PushNotificationWhereInput! = {}): Int
+  footer(where: FooterWhereUniqueInput! = {id: 1}): Footer
+  footers(where: FooterWhereInput! = {id: {equals: 1}}, orderBy: [FooterOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: FooterWhereUniqueInput): [Footer!]
+  footersCount(where: FooterWhereInput! = {id: {equals: 1}}): Int
   latest(where: LatestWhereUniqueInput!): Latest
   latests(where: LatestWhereInput! = {}, orderBy: [LatestOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: LatestWhereUniqueInput): [Latest!]
   latestsCount(where: LatestWhereInput! = {}): Int

@@ -6,8 +6,8 @@ import { INTERNAL_ROUTES } from '@/constants/routes'
 // components
 import ImageWithSkeleton from '@/components/image-with-skeleton'
 // type
-import type { Tag } from '@/type/article'
-import type { Image } from '@/type/image'
+import type { Tag } from '@/types/article'
+import type { Image } from '@/types/image'
 // enum
 import { Style } from '@/enums/article'
 // utils

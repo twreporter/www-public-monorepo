@@ -9,12 +9,12 @@ import ArticleCard from '@/components/article-card'
 import Pagination from '@/components/pagination'
 import Loading from '@/components/loading'
 // type
-import type { Category } from '@/type/category'
+import type { Category } from '@/types/category'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
 import { POSTS_PER_PAGE } from '@/constants'
 // style
-import { rwdContainerClass } from '@/styles/layout' 
+import { rwdContainerClass } from '@/styles/layout'
 // @twreporter
 import { TitleTab } from '@twreporter/react-typescript-components/lib/title-bar'
 // lodash

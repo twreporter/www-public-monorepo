@@ -1,4 +1,4 @@
-import type { Tag } from '@/type/article'
+import type { Tag } from '@/types/article'
 import type { Style } from '@/enums/article'
 
 export type FetchBySlugParams = {
