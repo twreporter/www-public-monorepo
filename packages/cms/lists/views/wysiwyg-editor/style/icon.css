@@ -164,4 +164,8 @@
   i.annotation-cancel {
     mask: url(../images/icons/annotation-cancel.svg);
   }
+
+  i.annotation-delete {
+    mask: url(../images/icons/annotation-trash.svg);
+  }
 }

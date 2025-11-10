@@ -222,7 +222,7 @@ const AnnotationText: FC<AnnotationTextProps> = ({ nodeKey, text }) => {
             ) : null}
           </Button>
           <Button onClick={deleteAnnotation}>
-            <i className="annotation-cancel" />
+            <i className="annotation-delete" />
           </Button>
         </>
       ) : null}
