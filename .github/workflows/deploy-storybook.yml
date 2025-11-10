@@ -75,34 +75,43 @@ jobs:
         run: |
           yarn build-storybook --output-dir ../../storybook-static
 
+      - name: Check if gh-pages branch exists
+        id: check_branch
+        run: |
+          if git ls-remote --heads origin gh-pages | grep -q gh-pages; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create gh-pages branch if it doesn't exist
+        if: steps.check_branch.outputs.exists == 'false'
+        run: |
+          echo "Creating gh-pages branch..."
+          git checkout --orphan gh-pages
+          git rm -rf .
+          echo "# Storybook Deployments" > README.md
+          echo "" >> README.md
+          echo "- [Development](./dev/)" >> README.md
+          echo "- [Staging](./staging/)" >> README.md
+          echo "- [Production](./)" >> README.md
+          git add README.md
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git commit -m "Initialize gh-pages branch"
+          git push origin gh-pages
+          # Go back to the original branch
+          git checkout ${{ github.ref_name }}
+
       - name: Checkout gh-pages branch
         uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: gh-pages-repo
-          # Create the branch if it doesn't exist
           fetch-depth: 0
 
       - name: Prepare deployment directory
         run: |
-          # Create gh-pages branch if it doesn't exist
-          if ! git ls-remote --heads origin gh-pages | grep -q gh-pages; then
-            echo "Creating gh-pages branch..."
-            cd gh-pages-repo
-            git checkout --orphan gh-pages
-            git rm -rf .
-            echo "# Storybook Deployments" > README.md
-            echo "" >> README.md
-            echo "- [Development](./dev/)" >> README.md
-            echo "- [Staging](./staging/)" >> README.md
-            echo "- [Production](./)" >> README.md
-            git add README.md
-            git config user.name "GitHub Action"
-            git config user.email "action@github.com"
-            git commit -m "Initialize gh-pages branch"
-            git push origin gh-pages
-            cd ..
-          fi
 
           # Copy built storybook to the appropriate subdirectory
           if [ "${{ steps.env.outputs.subdirectory }}" = "." ]; then
