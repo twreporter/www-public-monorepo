@@ -21,15 +21,15 @@ type FooterProps = {
   releaseBranch: ReleaseBranch
   fundraisingId: string
   fundraisingDateString: string
-  socialMediaLinks: SocialMediaLink[]
-  buttonLinks: LinkType[][]
+  socialMediaLinks?: SocialMediaLink[]
+  buttonLinks?: LinkType[][]
 }
 const Footer: FC<FooterProps> = ({
   releaseBranch,
   fundraisingId,
   fundraisingDateString,
-  socialMediaLinks,
-  buttonLinks,
+  socialMediaLinks = [],
+  buttonLinks = [],
 }) => {
   return (
     <footer className={clsx('w-full bg-gray-white')}>
@@ -100,7 +100,7 @@ const Footer: FC<FooterProps> = ({
           >
             <P3
               className="text-gray-600"
-              text={`衛部救字第${fundraisingId}號｜勸募期間 ${fundraisingDateString}`}
+              text={`衛部救字第 ${fundraisingId} 號｜勸募期間 ${fundraisingDateString}`}
             />
             <div className="hidden desktop:flex">
               <P3 className="text-gray-600" text="｜" />
