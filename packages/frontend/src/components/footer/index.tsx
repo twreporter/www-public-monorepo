@@ -24,8 +24,8 @@ const UniversalFooter = () => {
       releaseBranch={releaseBranch}
       fundraisingId={footer.fundraisingID}
       fundraisingDateString={footer.fundraisingDateString}
-      socialMediaLinks={footer.socialMediaLinks || []}
-      buttonLinks={footer.footerLinks || [[], [], []]}
+      socialMediaLinks={footer.socialMediaLinks}
+      buttonLinks={footer.footerLinks}
     />
   )
 }
