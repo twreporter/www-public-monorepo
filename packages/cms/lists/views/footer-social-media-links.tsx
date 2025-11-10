@@ -198,7 +198,7 @@ export const Field = ({
   }
 
   const onAddNewLink = () => {
-    if (onChange && newLink.link.trim()) {
+    if (onChange && newLink.link.trim() && newLink.icon.trim()) {
       const newLinks = [...socialMediaLinks, newLink]
       setSocialMediaLinks(newLinks)
       onChange(JSON.stringify(newLinks))
@@ -216,7 +216,12 @@ export const Field = ({
   }
 
   const onUpdateLinkIcon = (index: number, icon: string) => {
-    if (onChange && index >= 0 && index < socialMediaLinks.length) {
+    if (
+      onChange &&
+      index >= 0 &&
+      index < socialMediaLinks.length &&
+      icon.trim()
+    ) {
       const newLinks = [...socialMediaLinks]
       newLinks[index] = {
         ...newLinks[index],
@@ -228,7 +233,12 @@ export const Field = ({
   }
 
   const onUpdateLinkUrl = (index: number, link: string) => {
-    if (onChange && index >= 0 && index < socialMediaLinks.length) {
+    if (
+      onChange &&
+      index >= 0 &&
+      index < socialMediaLinks.length &&
+      link.trim()
+    ) {
       const newLinks = [...socialMediaLinks]
       newLinks[index] = {
         ...newLinks[index],
