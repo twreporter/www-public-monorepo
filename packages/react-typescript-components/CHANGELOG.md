@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.20](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.19...@twreporter/react-typescript-components@0.1.0-beta.20) (2025-11-10)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** address comment ([b80098b](https://github.com/twreporter/www-public-monorepo/commit/b80098b5bb16feffd73d94626feba897dd18eab5))
+* **react-typescript-components:** address comment ([d65ba25](https://github.com/twreporter/www-public-monorepo/commit/d65ba25080d5c31446b1b51dc40a0ddf064fa6c8))
+* **react-typescript-components:** typo ([7db4353](https://github.com/twreporter/www-public-monorepo/commit/7db435317d32e9f92d8cb3dc0fe7ed81009d1023))
+
+
+### Features
+
+* **react-typescript-components:** footer links from props ([a04a6bf](https://github.com/twreporter/www-public-monorepo/commit/a04a6bf5caf2f56f5887c2aac035f4ecd1cefab5))
+
+
+
+
+
 # [0.1.0-beta.19](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.18...@twreporter/react-typescript-components@0.1.0-beta.19) (2025-11-05)
 
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.16](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.15...www-cms@0.1.0-beta.16) (2025-11-10)
+
+
+### Bug Fixes
+
+* **cms:** address comment ([fca1320](https://github.com/twreporter/www-public-monorepo/commit/fca1320fa7af4635db9ec8a86de2bad81e006a75))
+* **cms:** gtmID => Id ([81f4ebd](https://github.com/twreporter/www-public-monorepo/commit/81f4ebd92dd41622d30d94d8dd1eb36a25502239))
+* **cms:** remove unused file ([ff14e6c](https://github.com/twreporter/www-public-monorepo/commit/ff14e6c54308bc7f0e7a465eda417b31bbd84153))
+
+
+### Features
+
+* **cms:** add footer cms ([c8d90f8](https://github.com/twreporter/www-public-monorepo/commit/c8d90f8b4344c8003a0b43fc51f97285eb9988e6))
+
+
+
+
+
 # [0.1.0-beta.15](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.14...www-cms@0.1.0-beta.15) (2025-11-10)
 
 
