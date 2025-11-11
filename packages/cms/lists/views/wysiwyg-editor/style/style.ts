@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
+// utils
 import {
   mobileOnly,
   tabletOnly,
@@ -8,7 +9,7 @@ import {
   tabletAndBelow,
 } from '../utils/media-query'
 // @twreporter
-import { colorGrayscale } from '@twreporter/core/lib/constants/color'
+import { colorGrayscale, colorSupportive } from '@twreporter/core/lib/constants/color'
 
 export const LexicalBox = styled.div`
   background-color: #fafbfc;
@@ -22,17 +23,19 @@ export const LexicalBox = styled.div`
     position: fixed;
     top: 0;
     left: 0;
-    padding: 0 20px;
+    padding: 0;
     background-color: ${colorGrayscale.gray100};
     max-height: 100vh;
     overflow-y: scroll;
 
-    .editor-shell {
-      max-width: 1000px;
+    .toolbar {
+      position: fixed;
+      width: 100%;
     }
 
     .editor-container {
       height: 100vh;
+      padding-top: 36px;
     }
   }
 `
@@ -95,9 +98,9 @@ export const StyleWrapper = styled.div`
   .editor-shell {
     margin: 0 auto;
     border-radius: 2px;
-    max-width: 1100px;
+    max-width: 100%;
     position: relative;
-    line-height: 1.7;
+    line-height: 1.8;
     font-weight: 400;
   }
 
@@ -136,6 +139,22 @@ export const StyleWrapper = styled.div`
     margin: ${mockup.margin.normal};
     font-size: 18px;
     position: relative;
+    line-height: 2.11;
+    letter-spacing: 0.6px;
+    color: ${colorGrayscale.gray800};
+
+    /* line break */
+    white-space: pre-wrap;
+  }
+  
+  .TwreporterTheme__link {
+    cursor: pointer;
+    text-decoration: none;
+    color: ${colorSupportive.heavy};
+    border-bottom: 1px solid ${colorGrayscale.gray300};
+    &:hover {
+      border-color: ${colorSupportive.heavy};
+    }
   }
 
   .TwreporterTheme__h2, .TwreporterTheme__h3 {
@@ -164,6 +183,7 @@ export const StyleWrapper = styled.div`
   .TwreporterTheme__ul, TwreporterTheme__ol {
     ${normalWidthCSS}
     margin: ${mockup.margin.normal};
+    font-size: 18px;
   }
 
   .TwreporterTheme__annotation {
@@ -222,4 +242,5 @@ export const StyleWrapper = styled.div`
   .TwreporterTheme__textCapitalize {
     text-transform: capitalize;
   }
+
 `
