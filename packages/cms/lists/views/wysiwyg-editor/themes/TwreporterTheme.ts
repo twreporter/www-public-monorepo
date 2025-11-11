@@ -35,6 +35,7 @@ const theme: EditorThemeClasses = {
     ul: 'TwreporterTheme__ul',
     ol: 'TwreporterTheme__ol',
   },
+  link: 'TwreporterTheme__link',
 }
 
 export default theme
