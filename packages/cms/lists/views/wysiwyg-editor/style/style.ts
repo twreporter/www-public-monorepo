@@ -187,8 +187,10 @@ export const StyleWrapper = styled.div`
   }
 
   .TwreporterTheme__annotation {
-    ${normalWidthCSS}
-    margin: ${mockup.margin.normal};
+    .Annotation__content {
+      ${normalWidthCSS}
+      margin: 0 auto 10px auto;
+    }
   }
 
   .TwreporterTheme__audio {

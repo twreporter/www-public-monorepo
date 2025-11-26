@@ -1,6 +1,7 @@
 .Annotation__container {
-  display: inline-flex;
+  display: ruby;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .Annotation__container[open] {
@@ -35,7 +36,7 @@
 }
 
 .Annotation__content {
-  border-top: 1px solid #9f7544;
+  border-top: 2px solid #9f7544;
   background-color: white;
   padding: 25px 11px;
   margin-bottom: 10px;

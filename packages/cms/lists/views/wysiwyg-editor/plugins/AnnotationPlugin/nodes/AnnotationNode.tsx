@@ -65,7 +65,7 @@ export class AnnotationNode extends ElementNode {
         detailsDom.classList.remove('open')
       }
     })
-    detailsDom.classList.add('Annotation__container')
+    detailsDom.classList.add('TwreporterTheme__annotation', 'Annotation__container') // todo: read theme name from config
 
     return detailsDom
   }
