@@ -7,6 +7,7 @@ import {
   desktopOnly,
   hdOnly,
   tabletAndBelow,
+  tabletAndAbove,
 } from '../utils/media-query'
 // @twreporter
 import { colorGrayscale, colorSupportive } from '@twreporter/core/lib/constants/color'
@@ -26,11 +27,13 @@ export const LexicalBox = styled.div`
     padding: 0;
     background-color: ${colorGrayscale.gray100};
     max-height: 100vh;
+    max-width: 100vw;
     overflow-y: scroll;
 
     .toolbar {
       position: fixed;
       width: 100%;
+      max-width: 100vw;
     }
 
     .editor-container {
@@ -86,6 +89,13 @@ const normalWidthCSS = css`
   `}
 `
 
+const paragraphTextCSS = css`
+  font-size: 18px;
+  position: relative;
+  line-height: 2.11;
+  letter-spacing: 0.6px;
+`
+
 const mockup = {
   margin: {
     extend: '60px auto',
@@ -132,15 +142,16 @@ export const StyleWrapper = styled.div`
     background-color: ${colorGrayscale.gray100};
     color: ${colorGrayscale.gray800};
     font-family: "Roboto Slab", "Noto Sans TC", sans-serif;
+
+    & > div {
+      padding: 0;
+    }
   }
 
   .TwreporterTheme__paragraph {
     ${normalWidthCSS}
+    ${paragraphTextCSS}
     margin: ${mockup.margin.normal};
-    font-size: 18px;
-    position: relative;
-    line-height: 2.11;
-    letter-spacing: 0.6px;
     color: ${colorGrayscale.gray800};
 
     /* line break */
@@ -150,8 +161,10 @@ export const StyleWrapper = styled.div`
   .TwreporterTheme__link {
     cursor: pointer;
     text-decoration: none;
-    color: ${colorSupportive.heavy};
     border-bottom: 1px solid ${colorGrayscale.gray300};
+    span {
+      color: ${colorSupportive.heavy} !important;
+    }
     &:hover {
       border-color: ${colorSupportive.heavy};
     }
@@ -182,8 +195,21 @@ export const StyleWrapper = styled.div`
 
   .TwreporterTheme__ul, TwreporterTheme__ol {
     ${normalWidthCSS}
+    ${paragraphTextCSS}
     margin: ${mockup.margin.normal};
     font-size: 18px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    ${tabletAndAbove`
+      padding: 0!important;  
+    `}
+
+    li {
+      margin: 0 0 1em 3em;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
   .TwreporterTheme__annotation {
