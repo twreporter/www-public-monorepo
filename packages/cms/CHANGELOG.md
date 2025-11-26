@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.20](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.19...www-cms@0.1.0-beta.20) (2025-11-26)
+
+
+### Bug Fixes
+
+* **cms:** fix twreporter theme ([1e5d263](https://github.com/twreporter/www-public-monorepo/commit/1e5d263a544d5e2bc1682073e5f6a602b239e1be))
+* **cms:** use ruby display for annotation ([10a1ce6](https://github.com/twreporter/www-public-monorepo/commit/10a1ce6c72d4327a7799c2713031b0d46b69786f))
+
+
+
+
+
 # [0.1.0-beta.19](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.18...www-cms@0.1.0-beta.19) (2025-11-11)
 
 
