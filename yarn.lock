@@ -2473,14 +2473,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@google-cloud/logging@npm:^11.2.0":
-  version: 11.2.0
-  resolution: "@google-cloud/logging@npm:11.2.0"
+"@google-cloud/logging@npm:^11.2.1":
+  version: 11.2.1
+  resolution: "@google-cloud/logging@npm:11.2.1"
   dependencies:
     "@google-cloud/common": "npm:^5.0.0"
     "@google-cloud/paginator": "npm:^5.0.0"
     "@google-cloud/projectify": "npm:^4.0.0"
-    "@google-cloud/promisify": "npm:^4.0.0"
+    "@google-cloud/promisify": "npm:4.0.0"
     "@opentelemetry/api": "npm:^1.7.0"
     arrify: "npm:^2.0.1"
     dot-prop: "npm:^6.0.0"
@@ -2493,7 +2493,7 @@ __metadata:
     pumpify: "npm:^2.0.1"
     stream-events: "npm:^1.0.5"
     uuid: "npm:^9.0.0"
-  checksum: 10c0/9a6a17c23809afbc5f69aac12361108ea2211ab5a2e5b515d169a30fcd96a45f37c681d37016f975fc7b492481a047183820c1d91788992c54e8ff504ac0a6d3
+  checksum: 10c0/637041a509716180c99a69e8966b89797dbdaeb13ecf23082fcb18a0a7703232dbc8af721d90dad15113f78bce1c92546af8edcf419b07e3d2139e33bdfc3086
   languageName: node
   linkType: hard
 
@@ -2507,15 +2507,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@google-cloud/pino-logging-gcp-config@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@google-cloud/pino-logging-gcp-config@npm:1.1.0"
+"@google-cloud/pino-logging-gcp-config@npm:^1.3.0":
+  version: 1.3.1
+  resolution: "@google-cloud/pino-logging-gcp-config@npm:1.3.1"
   dependencies:
-    "@google-cloud/logging": "npm:^11.2.0"
+    "@google-cloud/logging": "npm:^11.2.1"
     eventid: "npm:^2.0.1"
-    google-gax: "npm:^4.6.1"
-    pino: "npm:^9.7.0"
-  checksum: 10c0/8ca19beaa1fffd15e098947640a90b22e2ef3148beff936bc26ec40079f4e5d5161495f55eca9ed7b67b9516b69f36801c036ab70ec0b69695efd21ad3dca5b9
+    pino: "npm:^10.1.0"
+  checksum: 10c0/60b31c748ba9a01fee6d06f767d5f662baedc453b96d0d12ccc5cb4375bcb4e268919cc64d7dbb9ea1a3c3002c23f378f6425adcdfba79abaf0d01829cc8f646
   languageName: node
   linkType: hard
 
@@ -2523,6 +2522,13 @@ __metadata:
   version: 4.0.0
   resolution: "@google-cloud/projectify@npm:4.0.0"
   checksum: 10c0/0d0a6ceca76a138973fcb3ad577f209acdbd9d9aed1c645b09f98d5e5a258053dbbe6c1f13e6f85310cc0d9308f5f3a84f8fa4f1a132549a68d86174fb21067f
+  languageName: node
+  linkType: hard
+
+"@google-cloud/promisify@npm:4.0.0":
+  version: 4.0.0
+  resolution: "@google-cloud/promisify@npm:4.0.0"
+  checksum: 10c0/4332cbd923d7c6943ecdf46f187f1417c84bb9c801525cd74d719c766bfaad650f7964fb74576345f6537b6d6273a4f2992c8d79ebec6c8b8401b23d626b8dd3
   languageName: node
   linkType: hard
 
@@ -4523,6 +4529,13 @@ __metadata:
     "@parcel/watcher-win32-x64":
       optional: true
   checksum: 10c0/8f35073d0c0b34a63d4c8d2213482f0ebc6a25de7b2cdd415d19cb929964a793cb285b68d1d50bfb732b070b3c82a2fdb4eb9c250eab709a1cd9d63345455a82
+  languageName: node
+  linkType: hard
+
+"@pinojs/redact@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@pinojs/redact@npm:0.4.0"
+  checksum: 10c0/4b311ba17ee0cf154ff9c39eb063ec04cd0d0017cb3750efcdf06c2d485df3e1095e13e872175993568c5568c23e4508dd877c981bbc9c5ae5e384d569efcdff
   languageName: node
   linkType: hard
 
@@ -9171,10 +9184,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-copy@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "fast-copy@npm:3.0.2"
-  checksum: 10c0/02e8b9fd03c8c024d2987760ce126456a0e17470850b51e11a1c3254eed6832e4733ded2d93316c82bc0b36aeb991ad1ff48d1ba95effe7add7c3ab8d8eb554a
+"fast-copy@npm:^4.0.0":
+  version: 4.0.1
+  resolution: "fast-copy@npm:4.0.1"
+  checksum: 10c0/5c0ccddc68cb8f071d7806681f4bb87741cc07ed3153bba49adc456607c6d38854bf921c318feba402442056f7babcdc435052f431f19b2c7c6cbeefe9ae5841
   languageName: node
   linkType: hard
 
@@ -9182,13 +9195,6 @@ __metadata:
   version: 3.1.3
   resolution: "fast-deep-equal@npm:3.1.3"
   checksum: 10c0/40dedc862eb8992c54579c66d914635afbec43350afbbe991235fdcb4e3a8d5af1b23ae7e79bef7d4882d0ecee06c3197488026998fb19f72dc95acff1d1b1d0
-  languageName: node
-  linkType: hard
-
-"fast-redact@npm:^3.1.1":
-  version: 3.5.0
-  resolution: "fast-redact@npm:3.5.0"
-  checksum: 10c0/7e2ce4aad6e7535e0775bf12bd3e4f2e53d8051d8b630e0fa9e67f68cb0b0e6070d2f7a94b1d0522ef07e32f7c7cda5755e2b677a6538f1e9070ca053c42343a
   languageName: node
   linkType: hard
 
@@ -9833,7 +9839,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"google-gax@npm:^4.0.3, google-gax@npm:^4.6.1":
+"google-gax@npm:^4.0.3":
   version: 4.6.1
   resolution: "google-gax@npm:4.6.1"
   dependencies:
@@ -13087,26 +13093,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino-pretty@npm:^13.1.1":
-  version: 13.1.1
-  resolution: "pino-pretty@npm:13.1.1"
+"pino-abstract-transport@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "pino-abstract-transport@npm:3.0.0"
+  dependencies:
+    split2: "npm:^4.0.0"
+  checksum: 10c0/4486e1b9508110aaf963d07741ac98d660b974dd51d8ad42077d215118e27cda20c64da46c07c926898d52540aab7c6b9c37dc0f5355c203bb1d6a72b5bd8d6c
+  languageName: node
+  linkType: hard
+
+"pino-pretty@npm:^13.1.2":
+  version: 13.1.3
+  resolution: "pino-pretty@npm:13.1.3"
   dependencies:
     colorette: "npm:^2.0.7"
     dateformat: "npm:^4.6.3"
-    fast-copy: "npm:^3.0.2"
+    fast-copy: "npm:^4.0.0"
     fast-safe-stringify: "npm:^2.1.1"
     help-me: "npm:^5.0.0"
     joycon: "npm:^3.1.1"
     minimist: "npm:^1.2.6"
     on-exit-leak-free: "npm:^2.1.0"
-    pino-abstract-transport: "npm:^2.0.0"
+    pino-abstract-transport: "npm:^3.0.0"
     pump: "npm:^3.0.0"
     secure-json-parse: "npm:^4.0.0"
     sonic-boom: "npm:^4.0.1"
     strip-json-comments: "npm:^5.0.2"
   bin:
     pino-pretty: bin.js
-  checksum: 10c0/845c07afd3d73cb96ad2049cfa7fca12b8280a51e30d6db8b490857690637556bb8e7f05b2fa640b3e4a7edd9b1369110042d670fda743ef98fe3be29876c8c7
+  checksum: 10c0/36fa382521a893290c8f6a5b2ddc28dfb87fda1d161adb6b97d80bf7d24184970d0a7eab6f8ee45c39aff4b2ec3b2e533c756899798adc270010f34ba4411063
   languageName: node
   linkType: hard
 
@@ -13117,12 +13132,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino@npm:^9.7.0":
-  version: 9.7.0
-  resolution: "pino@npm:9.7.0"
+"pino@npm:^10.1.0":
+  version: 10.1.0
+  resolution: "pino@npm:10.1.0"
   dependencies:
+    "@pinojs/redact": "npm:^0.4.0"
     atomic-sleep: "npm:^1.0.0"
-    fast-redact: "npm:^3.1.1"
     on-exit-leak-free: "npm:^2.1.0"
     pino-abstract-transport: "npm:^2.0.0"
     pino-std-serializers: "npm:^7.0.0"
@@ -13134,7 +13149,7 @@ __metadata:
     thread-stream: "npm:^3.0.0"
   bin:
     pino: bin.js
-  checksum: 10c0/c7f8a83a9a9d728b4eff6d0f4b9367f031c91bcaa5806fbf0eedcc8e77faba593d59baf11a8fba0dd1c778bb17ca7ed01418ac1df4ec129faeedd4f3ecaff66f
+  checksum: 10c0/49c1dd80d5f99f02bde1acf2f60cef7686948a937f751f6cb368c2868c7e82e54aeabac63a34587e16019965cbf0eb6e609edf92c439a98a0a4fcb0add277eaf
   languageName: node
   linkType: hard
 
@@ -16239,8 +16254,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "www-frontend@workspace:packages/frontend"
   dependencies:
-    "@google-cloud/logging": "npm:^11.2.0"
-    "@google-cloud/pino-logging-gcp-config": "npm:^1.1.0"
+    "@google-cloud/pino-logging-gcp-config": "npm:^1.3.0"
     "@tailwindcss/postcss": "npm:^4.1.11"
     "@twreporter/react-typescript-components": "npm:^0.1.0-beta.22"
     "@twreporter/tailwind-config": "npm:^0.1.0-beta.8"
@@ -16253,8 +16267,8 @@ __metadata:
     clsx: "npm:^2.1.1"
     lodash: "npm:^4.17.21"
     next: "npm:^15.5.9"
-    pino: "npm:^9.7.0"
-    pino-pretty: "npm:^13.1.1"
+    pino: "npm:^10.1.0"
+    pino-pretty: "npm:^13.1.2"
     postcss: "npm:^8.5.6"
     react: "npm:^19.2.3"
     react-dom: "npm:^19.2.3"
