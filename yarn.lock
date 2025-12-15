@@ -3832,7 +3832,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@npm:14.2.33":
+"@next/swc-linux-x64-gnu@npm:14.2.33":
   version: 14.2.33
   resolution: "@next/swc-linux-x64-gnu@npm:14.2.33"
   conditions: os=linux & cpu=x64 & libc=glibc
