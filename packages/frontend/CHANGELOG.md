@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.40](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.39...www-frontend@0.1.0-beta.40) (2025-12-15)
+
+
+### Bug Fixes
+
+* **frontend:** upgrade `pino` version ([5c8a6a7](https://github.com/twreporter/www-public-monorepo/commit/5c8a6a7b11150b9cb360d913d959201df0e9afe9))
+
+
+
+
+
 # [0.1.0-beta.39](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.38...www-frontend@0.1.0-beta.39) (2025-12-15)
 
 **Note:** Version bump only for package www-frontend
