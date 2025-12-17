@@ -17,6 +17,11 @@ export const LexicalBox = styled.div`
   border: 1px solid #e1e5e9;
   border-radius: 6px;
 
+  &::selection {
+    background-color: ${colorSupportive.heavy};
+    color: ${colorGrayscale.white};
+  }
+
   &.fullscreen {
     z-index: 1000;
     height: 100%;
@@ -193,7 +198,7 @@ export const StyleWrapper = styled.div`
     `}
   }
 
-  .TwreporterTheme__ul, TwreporterTheme__ol {
+  .TwreporterTheme__ul, .TwreporterTheme__ol {
     ${normalWidthCSS}
     ${paragraphTextCSS}
     margin: ${mockup.margin.normal};
@@ -216,6 +221,10 @@ export const StyleWrapper = styled.div`
     .Annotation__content {
       ${normalWidthCSS}
       margin: 0 auto 10px auto;
+      span {
+        color: ${colorGrayscale.gray700} !important;
+        background-color: white !important;
+      }
     }
   }
 
