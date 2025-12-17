@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.22](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.21...www-cms@0.1.0-beta.22) (2025-12-17)
+
+
+### Bug Fixes
+
+* **cms:** lexical annotation / ol style ([bc93396](https://github.com/twreporter/www-public-monorepo/commit/bc93396d7d9b3c2114f5b9486c5decacb9ace222))
+
+
+
+
+
 # [0.1.0-beta.21](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.20...www-cms@0.1.0-beta.21) (2025-12-15)
 
 **Note:** Version bump only for package www-cms
