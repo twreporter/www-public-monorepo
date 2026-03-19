@@ -85,5 +85,14 @@
   --breakpoint-tablet: 768px;
   --breakpoint-desktop: 1024px;
   --breakpoint-hd: 1440px;
+
+  /* Animations */
+  --animate-shimmer: shimmer 2.5s infinite;
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
 }
 
