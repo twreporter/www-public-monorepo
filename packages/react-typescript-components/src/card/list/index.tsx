@@ -45,7 +45,11 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
       props as CardListDetailProps
     return (
       <div
-        className={clsx('flex flex-col w-full gap-[8px]', 'hover:opacity-70')}
+        className={clsx(
+          'flex flex-col w-full gap-[8px]',
+          'hover:opacity-70',
+          'hover:cursor-pointer'
+        )}
       >
         <div className="flex flex-row gap-[8px]">
           <div className="flex flex-col w-full gap-[4px]">
@@ -81,7 +85,11 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
     props as CardListDetailProps
   return (
     <div
-      className={clsx('flex flex-row w-full gap-[32px]', 'hover:opacity-70')}
+      className={clsx(
+        'flex flex-row w-full gap-[32px]',
+        'hover:opacity-70',
+        'hover:cursor-pointer'
+      )}
     >
       <div className="flex flex-col w-full gap-[8px]">
         <div className="flex flex-row gap-[8px]">
