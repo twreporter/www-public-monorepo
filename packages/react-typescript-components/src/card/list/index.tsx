@@ -5,8 +5,10 @@ import { P1, P2, P3 } from '../../text/paragraph'
 import { H4 } from '../../text/heading'
 // constants
 import { SIZE, type Size } from './constants'
+// skeleton
+import { LargeSkeleton, SmallSkeleton } from './loading'
 
-type CardListProps = {
+type CardListBaseProps = {
   category?: string
   publishedDate?: string
   title: string
@@ -20,24 +22,40 @@ type CardListProps = {
   // isBookmark?: boolean
   // onBookmarkClick?: () => void
 }
-const CardList: FC<CardListProps> & { Size: typeof SIZE } = ({
-  category,
-  publishedDate,
-  title,
-  description,
-  image,
-  size,
-}) => {
+
+type CardListLoadingProps = {
+  isLoading: true
+  size: Size
+}
+
+type CardListDetailProps = CardListBaseProps & {
+  isLoading?: false
+}
+
+type CardListProps = CardListLoadingProps | CardListDetailProps
+
+const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
+  const { size, isLoading = false } = props
+
   if (size === SIZE.s) {
+    if (isLoading) {
+      return <SmallSkeleton />
+    }
+    const { category, publishedDate, title, description, image } =
+      props as CardListDetailProps
     return (
       <div
         className={clsx('flex flex-col w-full gap-[8px]', 'hover:opacity-70')}
       >
-        <div className={clsx('flex flex-row gap-[8px]')}>
+        <div className="flex flex-row gap-[8px]">
           <div className="flex flex-col w-full gap-[4px]">
             <div className="flex flex-row gap-[8px]">
-              <P3 className="text-gray-600" text={category} />
-              <P3 className="text-gray-600" text={publishedDate} />
+              {category ? (
+                <P3 className="text-gray-600" text={category} />
+              ) : null}
+              {publishedDate ? (
+                <P3 className="text-gray-600" text={publishedDate} />
+              ) : null}
             </div>
             <H4 className="text-gray-800" text={title} />
           </div>
@@ -55,14 +73,22 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = ({
     )
   }
 
+  if (isLoading) {
+    return <LargeSkeleton />
+  }
+
+  const { category, publishedDate, title, description, image } =
+    props as CardListDetailProps
   return (
     <div
       className={clsx('flex flex-row w-full gap-[32px]', 'hover:opacity-70')}
     >
       <div className="flex flex-col w-full gap-[8px]">
         <div className="flex flex-row gap-[8px]">
-          <P3 className="text-gray-600" text={category} />
-          <P3 className="text-gray-600" text={publishedDate} />
+          {category ? <P3 className="text-gray-600" text={category} /> : null}
+          {publishedDate ? (
+            <P3 className="text-gray-600" text={publishedDate} />
+          ) : null}
         </div>
         <H4 className="text-gray-800" text={title} />
         <P1 className="text-gray-800 line-clamp-3" text={description} />
