@@ -68,7 +68,7 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
             <img
               src={image?.src}
               alt={image?.alt}
-              className="w-[72px] h-[72px]"
+              className="w-[72px] h-[72px] object-cover shrink-0"
             />
           </div>
         </div>
@@ -106,7 +106,7 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
         <img
           src={image?.src}
           alt={image?.alt}
-          className="w-[216px] h-[144px]"
+          className="w-[216px] h-[144px] object-cover shrink-0"
         />
       </div>
     </div>
