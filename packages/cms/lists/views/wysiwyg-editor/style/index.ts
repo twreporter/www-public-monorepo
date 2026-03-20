@@ -8,7 +8,7 @@ import {
   hdOnly,
   tabletAndBelow,
   tabletAndAbove,
-} from '../utils/media-query'
+} from './media-query'
 // @twreporter
 import { colorGrayscale, colorSupportive } from '@twreporter/core/lib/constants/color'
 
