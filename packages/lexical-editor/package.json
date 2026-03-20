@@ -1,0 +1,80 @@
+{
+  "name": "@twreporter/lexical-editor",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    },
+    "./style": {
+      "import": "./dist/index.css"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.mjs"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.mjs"
+    },
+    "./theme-emotion": {
+      "types": "./dist/theme-emotion.d.ts",
+      "import": "./dist/theme-emotion.mjs"
+    },
+    "./theme-tailwind": {
+      "types": "./dist/theme-tailwind.d.ts",
+      "import": "./dist/theme-tailwind.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "packageManager": "yarn@4.6.0",
+  "devDependencies": {
+    "@emotion/css": "^11.13.5",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@lexical/code": "^0.42.0",
+    "@lexical/link": "^0.42.0",
+    "@lexical/list": "^0.42.0",
+    "@lexical/overflow": "^0.42.0",
+    "@lexical/react": "^0.42.0",
+    "@lexical/rich-text": "^0.42.0",
+    "@lexical/selection": "^0.42.0",
+    "@lexical/table": "^0.42.0",
+    "@lexical/utils": "^0.42.0",
+    "@twreporter/core": "^1.28.0",
+    "lexical": "^0.42.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "@emotion/css": "*",
+    "@emotion/react": "*",
+    "@emotion/styled": "*",
+    "@lexical/code": "*",
+    "@lexical/link": "*",
+    "@lexical/list": "*",
+    "@lexical/overflow": "*",
+    "@lexical/react": "*",
+    "@lexical/rich-text": "*",
+    "@lexical/selection": "*",
+    "@lexical/table": "*",
+    "@lexical/utils": "*",
+    "@twreporter/core": "*",
+    "lexical": "*",
+    "react": "*",
+    "react-dom": "*"
+  }
+}

@@ -1,0 +1,169 @@
+i.chevron-down {
+  background-image: url(../assets/icons/chevron-down.svg);
+}
+
+i.palette {
+  background-image: url(../assets/icons/palette.svg);
+}
+
+i.bucket {
+  background-image: url(../assets/icons/paint-bucket.svg);
+}
+
+i.bold {
+  background-image: url(../assets/icons/type-bold.svg);
+}
+
+i.italic {
+  background-image: url(../assets/icons/type-italic.svg);
+}
+
+i.clear {
+  background-image: url(../assets/icons/trash.svg);
+}
+
+i.underline {
+  background-image: url(../assets/icons/type-underline.svg);
+}
+
+i.uppercase {
+  background-image: url(../assets/icons/type-uppercase.svg);
+}
+
+i.lowercase {
+  background-image: url(../assets/icons/type-lowercase.svg);
+}
+
+i.capitalize {
+  background-image: url(../assets/icons/type-capitalize.svg);
+}
+
+i.strikethrough {
+  background-image: url(../assets/icons/type-strikethrough.svg);
+}
+
+i.subscript {
+  background-image: url(../assets/icons/type-subscript.svg);
+}
+
+i.superscript {
+  background-image: url(../assets/icons/type-superscript.svg);
+}
+
+i.link {
+  background-image: url(../assets/icons/link.svg);
+}
+
+.icon.plus {
+  background-image: url(../assets/icons/plus.svg);
+}
+
+.icon.caret-right {
+  background-image: url(../assets/icons/caret-right-fill.svg);
+}
+
+.icon.dropdown-more {
+  background-image: url(../assets/icons/dropdown-more.svg);
+}
+
+.icon.font-color {
+  background-image: url(../assets/icons/font-color.svg);
+}
+
+.icon.bg-color {
+  background-image: url(../assets/icons/bg-color.svg);
+}
+
+.icon.fullscreen {
+  background-image: url(../assets/icons/fullscreen.svg);
+}
+
+.icon.exit-fullscreen {
+  background-image: url(../assets/icons/exit-fullscreen.svg);
+}
+
+i.success {
+  background-image: url(../assets/icons/success.svg);
+}
+
+i.prettier {
+  background-image: url(../assets/icons/prettier.svg);
+}
+
+i.prettier-error {
+  background-image: url(../assets/icons/prettier-error.svg);
+}
+
+.icon.paragraph {
+  background-image: url(../assets/icons/text-paragraph.svg);
+}
+
+.icon.h1 {
+  background-image: url(../assets/icons/type-h1.svg);
+}
+
+.icon.h2 {
+  background-image: url(../assets/icons/type-h2.svg);
+}
+
+.icon.h3 {
+  background-image: url(../assets/icons/type-h3.svg);
+}
+
+.icon.h4 {
+  background-image: url(../assets/icons/type-h4.svg);
+}
+
+.icon.h5 {
+  background-image: url(../assets/icons/type-h5.svg);
+}
+
+.icon.h6 {
+  background-image: url(../assets/icons/type-h6.svg);
+}
+
+.icon.link-edit {
+  background-image: url(../assets/icons/pencil-fill.svg);
+}
+
+.icon.link-trash {
+  background-image: url(../assets/icons/trash.svg);
+}
+
+.icon.link-cancel {
+  background-image: url(../assets/icons/close.svg);
+}
+
+.icon.link-confirm {
+  background-image: url(../assets/icons/success-alt.svg);
+}
+
+.icon.numbered-list,
+.icon.number {
+  background-image: url(../assets/icons/list-ol.svg);
+}
+
+.icon.bullet-list,
+.icon.bullet {
+  background-image: url(../assets/icons/list-ul.svg);
+}
+
+i.annotation {
+  background-image: url(../assets/icons/annotation.svg);
+}
+
+i.annotation-edit {
+  mask: url(../assets/icons/annotation-edit.svg);
+}
+
+i.annotation-confirm {
+  mask: url(../assets/icons/annotation-confirm.svg);
+}
+
+i.annotation-cancel {
+  mask: url(../assets/icons/annotation-cancel.svg);
+}
+
+i.annotation-delete {
+  mask: url(../assets/icons/annotation-trash.svg);
+}
