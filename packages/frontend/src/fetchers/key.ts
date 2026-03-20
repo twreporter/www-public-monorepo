@@ -20,3 +20,14 @@ export const categoryPostsKey = (
       skip: params.skip,
     },
   ] as const
+
+export const latestPostsKey = (params: {
+  tagSlug: string | null
+  take: number
+  skip: number
+}) =>
+  [
+    '/api/graphql',
+    'LatestPosts',
+    { tagSlug: params.tagSlug, take: params.take, skip: params.skip },
+  ] as const
