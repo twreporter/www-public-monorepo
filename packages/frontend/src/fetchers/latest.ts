@@ -84,7 +84,6 @@ const fetchLatestPosts = async (
   if (!res.ok) throw new Error('Failed to fetch latest posts')
 
   const data = await res.json()
-  console.log('data: ', data)
   const posts: PostMetaFromRes[] | undefined = data?.data?.posts
 
   if (!posts) {

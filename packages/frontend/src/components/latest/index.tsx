@@ -59,15 +59,20 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
   }, [currentTagSlug, reset])
 
   // SWR fetch
-  const { posts: fetchedPosts, isLoading } = useLatestPosts({
+  const {
+    posts: fetchedPosts,
+    isLoading,
+    error,
+  } = useLatestPosts({
     tagSlug: currentTagSlug,
     take: POSTS_PER_PAGE,
     skip,
   })
+  const hasError = Boolean(error)
 
   // Sync SWR data into Zustand store
   useEffect(() => {
-    if (isLoading || fetchedPosts === undefined) return
+    if (isLoading || hasError || fetchedPosts === undefined) return
     const key = `${currentTagSlug ?? 'all'}-${skip}`
     if (lastSyncedKeyRef.current === key) return
     lastSyncedKeyRef.current = key
@@ -80,6 +85,7 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
   }, [
     fetchedPosts,
     isLoading,
+    hasError,
     skip,
     currentTagSlug,
     setArticles,
@@ -90,6 +96,7 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
   const displayArticles = currentTag === currentTagSlug ? articles : []
 
   const handleLoadMore = () => {
+    if (isLoading || hasError || !hasMore) return
     setSkip((prev) => prev + POSTS_PER_PAGE)
   }
 
@@ -114,7 +121,7 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
               <CardList
                 title={article.title}
                 description={article.subtitle ?? ''}
-                category={article.category}
+                categoryLabel={article.category}
                 publishedDate={formatDate(article.publishedDate, 'YYYY-MM-DD')}
                 image={article.image}
                 size={CardList.Size.s}
@@ -130,7 +137,7 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
               <CardList
                 title={article.title}
                 description={article.subtitle ?? ''}
-                category={article.category}
+                categoryLabel={article.category}
                 publishedDate={formatDate(article.publishedDate, 'YYYY-MM-DD')}
                 image={article.image}
                 size={CardList.Size.l}
@@ -157,7 +164,17 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
           ))}
         </div>
       ) : null}
-      {hasMore && !isLoading ? (
+      {hasError ? (
+        <div
+          className={clsx(
+            'w-full flex justify-center mt-[24px] pt-[24px] pb-[64px]',
+            'desktop:pt-[32px] desktop:pb-[120px]'
+          )}
+        >
+          {/* TODO: error page not implemented */}
+          文章載入失敗，請稍後再試。
+        </div>
+      ) : hasMore && !isLoading ? (
         <div
           className={clsx(
             'w-full flex justify-center mt-[24px] pt-[48px] pb-[64px]',

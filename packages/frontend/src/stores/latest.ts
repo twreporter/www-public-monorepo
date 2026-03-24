@@ -32,7 +32,7 @@ export const useLatestStore = create<LatestState>((set) => ({
   reset: (tag) =>
     set({
       articles: [],
-      hasMore: true,
+      hasMore: false,
       currentTag: tag,
     }),
 }))
