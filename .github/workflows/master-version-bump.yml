@@ -1,4 +1,4 @@
-name: Dev Version Bump
+name: Master Version Bump
 
 on:
   workflow_call:
@@ -40,19 +40,14 @@ jobs:
             git commit -m "chore: commit changes before version bump" || true
           fi
 
-      - name: Get branch name
-        id: branch
-        run: echo "name=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
-
       - name: Version and publish packages
         run: |
           yarn lerna publish \
             --conventional-commits \
-            --preid beta \
+            --preid rc \
             --conventional-prerelease \
             --include-merged-tags \
-            --tag-version-prefix="${{ steps.branch.outputs.name }}/" \
-            --message "chore(release): publish beta version" \
+            --message "chore(release): publish release candidate" \
             --yes
 
       - name: Update yarn.lock and commit specific files
@@ -65,6 +60,6 @@ jobs:
             git commit -m "chore: update yarn.lock and package.json files after version bump"
           fi
 
-      - name: Push changes back to dev
+      - name: Push changes back to master
         run: |
-          git push origin dev --follow-tags
+          git push origin master --follow-tags
