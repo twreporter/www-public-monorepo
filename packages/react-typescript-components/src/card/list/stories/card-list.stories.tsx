@@ -17,9 +17,9 @@ export default meta
 export const Basic: StoryObj<typeof meta> = {
   args: {
     size: CardList.Size.l,
-    category: '科技',
+    categoryLabel: '科技',
     title: '測試文章標題',
-    description: '這是一篇沒有分類的測試文章描述。',
+    description: '這是一篇測試文章描述。',
     publishedDate: '2024-01-01',
     image: {
       src: 'https://picsum.photos/id/237/200/300',

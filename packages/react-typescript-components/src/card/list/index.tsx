@@ -7,9 +7,11 @@ import { H4 } from '../../text/heading'
 import { SIZE, type Size } from './constants'
 // skeleton
 import { LargeSkeleton, SmallSkeleton } from './loading'
+// placeholder
+import ImgPlaceholder from './img-placeholder'
 
 type CardListBaseProps = {
-  category?: string
+  categoryLabel?: string
   publishedDate?: string
   title: string
   description: string
@@ -41,7 +43,7 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
     if (isLoading) {
       return <SmallSkeleton />
     }
-    const { category, publishedDate, title, description, image } =
+    const { categoryLabel, publishedDate, title, description, image } =
       props as CardListDetailProps
     return (
       <div
@@ -54,8 +56,8 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
         <div className="flex flex-row gap-[8px]">
           <div className="flex flex-col w-full gap-[4px]">
             <div className="flex flex-row gap-[8px]">
-              {category ? (
-                <P3 className="text-gray-600" text={category} />
+              {categoryLabel ? (
+                <P3 className="text-gray-600" text={categoryLabel} />
               ) : null}
               {publishedDate ? (
                 <P3 className="text-gray-600" text={publishedDate} />
@@ -64,12 +66,18 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
             <H4 className="text-gray-800" text={title} />
           </div>
           <div className="flex justify-center items-center">
-            {/* biome-ignore lint/performance/noImgElement: use next image later */}
-            <img
-              src={image?.src}
-              alt={image?.alt}
-              className="w-[72px] h-[72px] object-cover shrink-0"
-            />
+            {image?.src ? (
+              // biome-ignore lint/performance/noImgElement: use next image later
+              <img
+                src={image.src}
+                alt={image.alt ?? ''}
+                className="w-[72px] h-[72px] object-cover shrink-0"
+              />
+            ) : (
+              <div className="w-[72px] h-[72px] shrink-0 flex items-center justify-center bg-gray-100">
+                <ImgPlaceholder />
+              </div>
+            )}
           </div>
         </div>
         <P2 className="text-gray-800 line-clamp-3" text={description} />
@@ -81,7 +89,7 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
     return <LargeSkeleton />
   }
 
-  const { category, publishedDate, title, description, image } =
+  const { categoryLabel, publishedDate, title, description, image } =
     props as CardListDetailProps
   return (
     <div
@@ -93,7 +101,9 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
     >
       <div className="flex flex-col w-full gap-[8px]">
         <div className="flex flex-row gap-[8px]">
-          {category ? <P3 className="text-gray-600" text={category} /> : null}
+          {categoryLabel ? (
+            <P3 className="text-gray-600" text={categoryLabel} />
+          ) : null}
           {publishedDate ? (
             <P3 className="text-gray-600" text={publishedDate} />
           ) : null}
@@ -102,12 +112,18 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
         <P1 className="text-gray-800 line-clamp-3" text={description} />
       </div>
       <div className="flex justify-center items-center">
-        {/* biome-ignore lint/performance/noImgElement: use next image later */}
-        <img
-          src={image?.src}
-          alt={image?.alt}
-          className="w-[216px] h-[144px] object-cover shrink-0"
-        />
+        {image?.src ? (
+          // biome-ignore lint/performance/noImgElement: use next image later
+          <img
+            src={image.src}
+            alt={image.alt ?? ''}
+            className="w-[216px] h-[144px] object-cover shrink-0"
+          />
+        ) : (
+          <div className="w-[216px] h-[144px] shrink-0 flex items-center justify-center bg-gray-100">
+            <ImgPlaceholder />
+          </div>
+        )}
       </div>
     </div>
   )
