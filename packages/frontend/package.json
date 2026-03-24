@@ -20,7 +20,8 @@
     "pino-pretty": "^13.1.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "swr": "^2.3.6"
+    "swr": "^2.3.6",
+    "zustand": "^5.0.12"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",

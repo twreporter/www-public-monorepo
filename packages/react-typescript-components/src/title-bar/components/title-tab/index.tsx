@@ -35,7 +35,7 @@ const TitleTab: FC<TitleTabProps> = ({
           ref={ref}
           className={clsx(
             'flex items-center',
-            'overflow-x-scroll scrollbar:!w-0',
+            'overflow-x-scroll [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
             {
               '[mask-image:linear-gradient(to_left,rgba(241,241,241,0),#f1f1f1_48px)] [-webkit-mask-image:linear-gradient(to_left,rgba(241,241,241,0),#f1f1f1_48px)]':
                 showGradientMask,
@@ -48,7 +48,11 @@ const TitleTab: FC<TitleTabProps> = ({
               setActiveIndex(index)
             }
             return (
-              <TabItem {...tabProps} key={`tab-${tab.text}-${index}`} onClick={handleClick} />
+              <TabItem
+                {...tabProps}
+                key={`tab-${tab.text}-${index}`}
+                onClick={handleClick}
+              />
             )
           })}
         </div>

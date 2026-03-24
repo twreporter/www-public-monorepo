@@ -8,7 +8,7 @@ type ParagraphProps = React.HTMLAttributes<HTMLParagraphElement> & {
   className?: string
 }
 
-const baseClass = 'font-default leading-[150%] flex items-center m-0'
+const baseClass = 'font-default leading-[150%]'
 
 const variantClass = {
   P1: 'text-[16px]',
