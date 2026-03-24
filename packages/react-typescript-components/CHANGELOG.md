@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.23](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.22...@twreporter/react-typescript-components@0.1.0-beta.23) (2026-03-24)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** address comment ([e602c10](https://github.com/twreporter/www-public-monorepo/commit/e602c102cde97086d2432c8565112c495811dea9))
+* **react-typescript-components:** title tab scrollbar hidden ([a3fb172](https://github.com/twreporter/www-public-monorepo/commit/a3fb1720843ce73fa0a3d4fdd2c38c0e0c09ca51))
+
+
+### Features
+
+* **react-typescript-components:** add CardList component ([1f41050](https://github.com/twreporter/www-public-monorepo/commit/1f410509ce37563195cff68ad406f243fec26c6f))
+* **react-typescript-components:** add cursor pointer to CardList ([5dcc459](https://github.com/twreporter/www-public-monorepo/commit/5dcc45993f48454f41e2366d74dabff55bf76daf))
+* **react-typescript-components:** add loading skeleton components for CardList ([5cedbc0](https://github.com/twreporter/www-public-monorepo/commit/5cedbc0f46cef0a78e3ba3d368a36fac6c4de6a3))
+* **react-typescript-components:** story book for CardList ([1c057b0](https://github.com/twreporter/www-public-monorepo/commit/1c057b08b835e7e270c01a8b5aca7ab7c8570910))
+
+
+
+
+
 # [0.1.0-beta.22](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.21...@twreporter/react-typescript-components@0.1.0-beta.22) (2025-12-15)
 
 **Note:** Version bump only for package @twreporter/react-typescript-components

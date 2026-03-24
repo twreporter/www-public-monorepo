@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.41](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.40...www-frontend@0.1.0-beta.41) (2026-03-24)
+
+
+### Bug Fixes
+
+* **frontend:** error handle for latest page ([70a5546](https://github.com/twreporter/www-public-monorepo/commit/70a5546cbe39e616255c632c4bf4fc960ae780fd))
+
+
+### Features
+
+* **frontend:** implement latest articles page ([e6293c5](https://github.com/twreporter/www-public-monorepo/commit/e6293c519593b6195bd36415dd5a622ca5b9cb26))
+
+
+
+
+
 # [0.1.0-beta.40](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.39...www-frontend@0.1.0-beta.40) (2025-12-15)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.9](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/tailwind-config@0.1.0-beta.8...@twreporter/tailwind-config@0.1.0-beta.9) (2026-03-24)
+
+
+### Features
+
+* **tailwind-config:** add shimmer animation ([89cce92](https://github.com/twreporter/www-public-monorepo/commit/89cce92923fd1b6eb35fdcafd7b0310d0f4e0242))
+
+
+
+
+
 # [0.1.0-beta.8](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/tailwind-config@0.1.0-beta.7...@twreporter/tailwind-config@0.1.0-beta.8) (2025-10-15)
 
 
