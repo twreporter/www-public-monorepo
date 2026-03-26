@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import { type FC, useState } from 'react'
 import clsx from 'clsx'
 // text
 import { P1, P2, P3 } from '../../text/paragraph'
@@ -38,6 +38,7 @@ type CardListProps = CardListLoadingProps | CardListDetailProps
 
 const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
   const { size, isLoading = false } = props
+  const [imgError, setImgError] = useState(false)
 
   if (size === SIZE.s) {
     if (isLoading) {
@@ -63,15 +64,20 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
                 <P3 className="text-gray-600" text={publishedDate} />
               ) : null}
             </div>
-            <H4 className="text-gray-800" text={title} />
+            <H4
+              className="text-gray-800 text-[18px]!"
+              text={title}
+              type={H4.Type.article}
+            />
           </div>
           <div className="flex justify-center items-center">
-            {image?.src ? (
+            {image?.src && !imgError ? (
               // biome-ignore lint/performance/noImgElement: use next image later
               <img
                 src={image.src}
                 alt={image.alt ?? ''}
                 className="w-[72px] h-[72px] object-cover shrink-0"
+                onError={() => setImgError(true)}
               />
             ) : (
               <div className="w-[72px] h-[72px] shrink-0 flex items-center justify-center bg-gray-100">
@@ -108,16 +114,21 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
             <P3 className="text-gray-600" text={publishedDate} />
           ) : null}
         </div>
-        <H4 className="text-gray-800" text={title} />
+        <H4
+          className="text-gray-800 text-[22px]!"
+          text={title}
+          type={H4.Type.article}
+        />
         <P1 className="text-gray-800 line-clamp-3" text={description} />
       </div>
       <div className="flex justify-center items-center">
-        {image?.src ? (
+        {image?.src && !imgError ? (
           // biome-ignore lint/performance/noImgElement: use next image later
           <img
             src={image.src}
             alt={image.alt ?? ''}
             className="w-[216px] h-[144px] object-cover shrink-0"
+            onError={() => setImgError(true)}
           />
         ) : (
           <div className="w-[216px] h-[144px] shrink-0 flex items-center justify-center bg-gray-100">
