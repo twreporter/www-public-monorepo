@@ -1,4 +1,4 @@
-import { defineConfig } from 'tsup'
+import { defineConfig } from 'tsdown'
 
 export default defineConfig({
   entry: {
@@ -12,10 +12,10 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   clean: true,
-  splitting: false,
   treeshake: true,
   target: 'es2022',
-  external: [
+  deps: {
+    neverBundle: [
     'react',
     'react-dom',
     'react/jsx-runtime',
@@ -33,5 +33,6 @@ export default defineConfig({
     '@emotion/react',
     '@emotion/css',
     '@emotion/styled'
-  ]
+  ],
+  },
 })
