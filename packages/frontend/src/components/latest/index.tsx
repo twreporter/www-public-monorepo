@@ -38,11 +38,11 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
 
   // Build TitleTab tabs array
   const titleTabs = [
-    { text: '所有文章', isExternal: false, link: '/latest' },
+    { text: '所有文章', isExternal: false, link: INTERNAL_ROUTES.latest },
     ...tabs.map((tab) => ({
       text: tab.name,
       isExternal: false,
-      link: `/latest?tag=${tab.slug}`,
+      link: `${INTERNAL_ROUTES.latest}?tag=${tab.slug}`,
     })),
   ]
 
@@ -177,17 +177,21 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
       ) : hasMore && !isLoading ? (
         <div
           className={clsx(
-            'w-full flex justify-center mt-[24px] pt-[48px] pb-[64px]',
+            'w-full flex justify-center pt-[32px] pb-[64px]',
             'desktop:pt-[64px] desktop:pb-[120px]'
           )}
         >
-          <button onClick={handleLoadMore} type="button">
+          <button
+            onClick={handleLoadMore}
+            type="button"
+            className="w-full px-[24px] max-w-[480px]"
+          >
             <PillButton
               text="載入更多"
               style={PillButton.Style.dark}
               type={PillButton.Type.primary}
               size={PillButton.Size.l}
-              className={clsx('w-full justify-center', 'tablet:w-[480px]')}
+              className="w-full flex justify-center"
             />
           </button>
         </div>
