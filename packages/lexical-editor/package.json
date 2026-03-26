@@ -32,7 +32,7 @@
   "files": [
     "dist"
   ],
-  "sideEffects": false,
+  "sideEffects": ["*.css"],
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",

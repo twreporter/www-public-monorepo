@@ -19,7 +19,6 @@ export type EditorConfig = {
   readOnly?: boolean
   placeholder?: string
   namespace?: string
-  isEditable?: boolean
   nodes: EditorNodes
 }
 

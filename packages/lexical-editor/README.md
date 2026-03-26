@@ -80,9 +80,26 @@ or via workspace dependency in package.json.
 
 ## Usage
 
-Example import:
+To use the `LexicalEditor` component, you should import component itself, theme config, and css file.
+
 ```ts
+// import component
 import { LexicalEditor } from '@twreporter/lexical-editor'
+// import css
+import '@twreporter/lexical-editor/style'
+// import theme config (use emotion version for example)
+import { createEmotionEditorTheme } from '@twreporter/lexical-editor/theme-emotion'
+import { cmsEditorNodes, type EditorConfig } from '@twreporter/lexical-editor/core'
+
+const createCmsEditorConfig = (): EditorConfig => ({
+  theme: createEmotionEditorTheme(),
+  nodes: cmsEditorNodes,
+  ui: { toolbar: true }
+})
+
+// use component
+const config = createLexicalEditorConfig()
+<LexicalEditor value={valueJSON} onChange={onChange} config={config} />
 ```
 
 ## Build

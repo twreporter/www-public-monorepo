@@ -83,7 +83,8 @@
   padding: 0;
   background-color: white;
 }
-.Annotation__dialog_button.icon {
+
+.Annotation__dialog_button .icon {
   width: 18px;
   height: 18px;
   mask-size: auto;
@@ -96,7 +97,7 @@
   border-color: #9f7544;
 }
 
-.Annotation__dialog_button:hover .annotation-confirm, .annotation-cancel {  
+.Annotation__dialog_button:hover .annotation-confirm, .Annotation__dialog_button:hover .annotation-cancel {  
   background-color: #9f7544 !important;
 }
 
@@ -129,7 +130,7 @@
   background-color: #6b7280;
 }
   
-.Annotation__button_box.annotation-edit {
+.Annotation__button_box .annotation-edit {
   position: absolute;
 }
 
