@@ -32,7 +32,8 @@ export default defineConfig({
     '@lexical/overflow',
     '@emotion/react',
     '@emotion/css',
-    '@emotion/styled'
+    '@emotion/styled',
+    '@twreporter/core'
   ],
   },
 })

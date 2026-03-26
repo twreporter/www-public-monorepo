@@ -6899,18 +6899,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@twreporter/core@npm:^1.24.1":
-  version: 1.24.4
-  resolution: "@twreporter/core@npm:1.24.4"
-  dependencies:
-    lodash: "npm:^4.0.0"
-    prop-types: "npm:^15.0.0"
-    styled-components: "npm:^6.0.0"
-    stylis: "npm:^4.0.0"
-  checksum: 10c0/39410e30387e6d7a7fd4d01ee8c158fe32531f8202ce74edbe06fba2d2d0a1604c9ac1fc80ead988f657da2f83a345aa03881aa28009176c8c3d7886b2c91584
-  languageName: node
-  linkType: hard
-
 "@twreporter/core@npm:^1.28.0":
   version: 1.28.0
   resolution: "@twreporter/core@npm:1.28.0"
@@ -6944,9 +6932,9 @@ __metadata:
     tsdown: "npm:^0.21.5"
     typescript: "npm:^5.9.3"
   peerDependencies:
-    "@emotion/css": "*"
-    "@emotion/react": "*"
-    "@emotion/styled": "*"
+    "@emotion/css": ^11
+    "@emotion/react": ^11
+    "@emotion/styled": ^11
     "@lexical/code": "*"
     "@lexical/link": "*"
     "@lexical/list": "*"
@@ -6956,7 +6944,7 @@ __metadata:
     "@lexical/selection": "*"
     "@lexical/table": "*"
     "@lexical/utils": "*"
-    "@twreporter/core": "*"
+    "@twreporter/core": ^1.28.0
     lexical: "*"
     react: "*"
     react-dom: "*"
@@ -17348,7 +17336,7 @@ __metadata:
     "@lexical/link": "npm:^0.33.1"
     "@lexical/react": "npm:^0.33.1"
     "@lexical/table": "npm:0.33.1"
-    "@twreporter/core": "npm:^1.24.1"
+    "@twreporter/core": "npm:^1.28.0"
     "@twreporter/lexical-editor": "workspace:*"
     exifreader: "npm:^4.23.3"
     lodash: "npm:^4.17.21"

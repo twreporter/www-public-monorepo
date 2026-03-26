@@ -1,7 +1,6 @@
 {
   "name": "@twreporter/lexical-editor",
   "version": "0.1.0",
-  "private": true,
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -60,9 +59,9 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "@emotion/css": "*",
-    "@emotion/react": "*",
-    "@emotion/styled": "*",
+    "@emotion/css": "^11",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@lexical/code": "*",
     "@lexical/link": "*",
     "@lexical/list": "*",
@@ -72,7 +71,7 @@
     "@lexical/selection": "*",
     "@lexical/table": "*",
     "@lexical/utils": "*",
-    "@twreporter/core": "*",
+    "@twreporter/core": "^1.28.0",
     "lexical": "*",
     "react": "*",
     "react-dom": "*"

@@ -85,10 +85,4 @@ export type EditorTheme = {
   components?: EditorThemeComponents
 }
 
-export type LexicalEditorProps = {
-  theme: EditorTheme
-  readOnly?: boolean
-  placeholder?: string
-}
-
 export const createEditorTheme = (theme: EditorTheme): EditorTheme => theme
