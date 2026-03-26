@@ -10,11 +10,14 @@
 .Annotation__text {
   color: #9f7544;
   cursor: pointer;
+}
 
-  &::marker,
-  &::-webkit-details-marker {
-    content: "";
-  }
+.Annotation__text::marker {
+  content: "";
+}
+
+.Annotation__text::-webkit-details-marker {
+  content: "";
 }
 
 .Annotation__indicator {
@@ -79,22 +82,22 @@
   cursor: pointer;
   padding: 0;
   background-color: white;
-
-  .icon {
-    width: 18px;
-    height: 18px;
-    mask-size: auto;
-    mask-position: center !important;
-    mask-repeat: no-repeat !important;
-    background-color: #6b7280 !important;
-  }
+}
+.Annotation__dialog_button.icon {
+  width: 18px;
+  height: 18px;
+  mask-size: auto;
+  mask-position: center !important;
+  mask-repeat: no-repeat !important;
+  background-color: #6b7280 !important;
 }
 
 .Annotation__dialog_button:hover {
   border-color: #9f7544;
-  .annotation-confirm, .annotation-cancel {  
-    background-color: #9f7544 !important;
-  }
+}
+
+.Annotation__dialog_button:hover .annotation-confirm, .annotation-cancel {  
+  background-color: #9f7544 !important;
 }
 
 .Annotation__input {
@@ -114,20 +117,20 @@
   border-style: solid;
   border-color: #6b7280;
   vertical-align: middle;
+}
 
-  i {
-    width: 18px;
-    height: 18px;
-    z-index: 2;
-    mask-size: auto;
-    mask-position: center !important;
-    mask-repeat: no-repeat !important;
-    background-color: #6b7280;
-  }
+.Annotation__button_box i {
+  width: 18px;
+  height: 18px;
+  z-index: 2;
+  mask-size: auto;
+  mask-position: center !important;
+  mask-repeat: no-repeat !important;
+  background-color: #6b7280;
+}
   
-  .annotation-edit {
-    position: absolute;
-  }
+.Annotation__button_box.annotation-edit {
+  position: absolute;
 }
 
 .Annotation__button_box:last-child {
@@ -136,19 +139,18 @@
 
 .Annotation__button_box:hover {
   border-color: #9f7544;
-  i {  
-    background-color: #9f7544;
-  }
 }
 
-.Annotation__container[open] .Annotation__indicator {
-  &::before {
-    transform: rotate(-45deg);
-  }
+.Annotation__button_box:hover i {  
+  background-color: #9f7544;
+}
 
-  &::after {
-    transform: rotate(45deg);
-  }
+.Annotation__container[open] .Annotation__indicator::before {
+  transform: rotate(-45deg);
+}
+
+.Annotation__container[open] .Annotation__indicator::after {
+  transform: rotate(45deg);
 }
 
 .Annotation__content {
