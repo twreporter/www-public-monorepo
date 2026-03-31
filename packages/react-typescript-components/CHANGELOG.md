@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.25](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.24...@twreporter/react-typescript-components@0.1.0-beta.25) (2026-03-31)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** update heading styles ([e3b6dd8](https://github.com/twreporter/www-public-monorepo/commit/e3b6dd843ead2ea48a88b320eb7b088d5c50eaf3))
+
+
+
+
+
 # [0.1.0-beta.24](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.23...@twreporter/react-typescript-components@0.1.0-beta.24) (2026-03-30)
 
 

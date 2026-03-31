@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.43](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.42...www-frontend@0.1.0-beta.43) (2026-03-31)
+
+
+### Bug Fixes
+
+* **frontend:** adjust padding for load more button in latest ([0cba3d9](https://github.com/twreporter/www-public-monorepo/commit/0cba3d9c23a89a4f386486816d0b3d46b56857fa))
+
+
+
+
+
 # [0.1.0-beta.42](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.41...www-frontend@0.1.0-beta.42) (2026-03-30)
 
 
