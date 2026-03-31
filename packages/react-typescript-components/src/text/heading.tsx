@@ -11,12 +11,12 @@ type HeadingProps = React.HTMLAttributes<HTMLHeadingElement> & {
 const baseClass = 'font-bold'
 
 const variantClass = {
-  H1: 'text-[28px] leading-[125%] tablet:text-[36px]',
-  H2: 'text-[24px] leading-[125%] tablet:text-[32px]',
-  H3: 'text-[22px] leading-[150%] tablet:text-[28px]',
-  H4: 'text-[18px] leading-[150%] tablet:text-[22px]',
-  H5: 'text-[17px] leading-[150%] tablet:text-[18px]',
-  H6: 'text-[16px] leading-[150%] tablet:text-[16px]',
+  H1: 'text-[28px] leading-[125%] desktop:text-[36px]',
+  H2: 'text-[24px] leading-[125%] desktop:text-[32px]',
+  H3: 'text-[22px] leading-[150%] desktop:text-[28px]',
+  H4: 'text-[18px] leading-[150%] desktop:text-[22px]',
+  H5: 'text-[17px] leading-[150%] desktop:text-[18px]',
+  H6: 'text-[16px] leading-[150%] desktop:text-[16px]',
 }
 
 const HeadingVariant = (variant: keyof typeof variantClass) => {

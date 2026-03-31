@@ -177,14 +177,14 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
       ) : hasMore && !isLoading ? (
         <div
           className={clsx(
-            'w-full flex justify-center pt-[32px] pb-[64px]',
+            'w-full flex justify-center pt-[48px] pb-[64px]',
             'desktop:pt-[64px] desktop:pb-[120px]'
           )}
         >
           <button
             onClick={handleLoadMore}
             type="button"
-            className="w-full px-[24px] max-w-[480px]"
+            className="w-full max-w-[480px]"
           >
             <PillButton
               text="載入更多"
