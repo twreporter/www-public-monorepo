@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.23](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.22...www-cms@0.1.0-beta.23) (2026-04-02)
+
+
+### Bug Fixes
+
+* address review comments ([7f31620](https://github.com/twreporter/www-public-monorepo/commit/7f316207a5421a9966c75e2d1610c67a10bbc8f2))
+* **cms:** use `@twreporter/lexical-editor` package ([47b5071](https://github.com/twreporter/www-public-monorepo/commit/47b50717e093ae749b562e3f7ead77656071e823))
+
+
+
+
+
 # [0.1.0-beta.22](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.21...www-cms@0.1.0-beta.22) (2025-12-17)
 
 
