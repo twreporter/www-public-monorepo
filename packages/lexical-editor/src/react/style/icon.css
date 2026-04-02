@@ -1,0 +1,169 @@
+#lexical-editor i.chevron-down {
+  background-image: url(../assets/icons/chevron-down.svg);
+}
+
+#lexical-editor i.palette {
+  background-image: url(../assets/icons/palette.svg);
+}
+
+#lexical-editor i.bucket {
+  background-image: url(../assets/icons/paint-bucket.svg);
+}
+
+#lexical-editor i.bold {
+  background-image: url(../assets/icons/type-bold.svg);
+}
+
+#lexical-editor i.italic {
+  background-image: url(../assets/icons/type-italic.svg);
+}
+
+#lexical-editor i.clear {
+  background-image: url(../assets/icons/trash.svg);
+}
+
+#lexical-editor i.underline {
+  background-image: url(../assets/icons/type-underline.svg);
+}
+
+#lexical-editor i.uppercase {
+  background-image: url(../assets/icons/type-uppercase.svg);
+}
+
+#lexical-editor i.lowercase {
+  background-image: url(../assets/icons/type-lowercase.svg);
+}
+
+#lexical-editor i.capitalize {
+  background-image: url(../assets/icons/type-capitalize.svg);
+}
+
+#lexical-editor i.strikethrough {
+  background-image: url(../assets/icons/type-strikethrough.svg);
+}
+
+#lexical-editor i.subscript {
+  background-image: url(../assets/icons/type-subscript.svg);
+}
+
+#lexical-editor i.superscript {
+  background-image: url(../assets/icons/type-superscript.svg);
+}
+
+#lexical-editor i.link {
+  background-image: url(../assets/icons/link.svg);
+}
+
+#lexical-editor .icon.plus {
+  background-image: url(../assets/icons/plus.svg);
+}
+
+#lexical-editor .icon.caret-right {
+  background-image: url(../assets/icons/caret-right-fill.svg);
+}
+
+#lexical-editor .icon.dropdown-more {
+  background-image: url(../assets/icons/dropdown-more.svg);
+}
+
+#lexical-editor .icon.font-color {
+  background-image: url(../assets/icons/font-color.svg);
+}
+
+#lexical-editor .icon.bg-color {
+  background-image: url(../assets/icons/bg-color.svg);
+}
+
+#lexical-editor .icon.fullscreen {
+  background-image: url(../assets/icons/fullscreen.svg);
+}
+
+#lexical-editor .icon.exit-fullscreen {
+  background-image: url(../assets/icons/exit-fullscreen.svg);
+}
+
+#lexical-editor i.success {
+  background-image: url(../assets/icons/success.svg);
+}
+
+#lexical-editor i.prettier {
+  background-image: url(../assets/icons/prettier.svg);
+}
+
+#lexical-editor i.prettier-error {
+  background-image: url(../assets/icons/prettier-error.svg);
+}
+
+#lexical-editor .icon.paragraph {
+  background-image: url(../assets/icons/text-paragraph.svg);
+}
+
+#lexical-editor .icon.h1 {
+  background-image: url(../assets/icons/type-h1.svg);
+}
+
+#lexical-editor .icon.h2 {
+  background-image: url(../assets/icons/type-h2.svg);
+}
+
+#lexical-editor .icon.h3 {
+  background-image: url(../assets/icons/type-h3.svg);
+}
+
+#lexical-editor .icon.h4 {
+  background-image: url(../assets/icons/type-h4.svg);
+}
+
+#lexical-editor .icon.h5 {
+  background-image: url(../assets/icons/type-h5.svg);
+}
+
+#lexical-editor .icon.h6 {
+  background-image: url(../assets/icons/type-h6.svg);
+}
+
+#lexical-editor .icon.link-edit {
+  background-image: url(../assets/icons/pencil-fill.svg);
+}
+
+#lexical-editor .icon.link-trash {
+  background-image: url(../assets/icons/trash.svg);
+}
+
+#lexical-editor .icon.link-cancel {
+  background-image: url(../assets/icons/close.svg);
+}
+
+#lexical-editor .icon.link-confirm {
+  background-image: url(../assets/icons/success-alt.svg);
+}
+
+#lexical-editor .icon.numbered-list,
+#lexical-editor .icon.number {
+  background-image: url(../assets/icons/list-ol.svg);
+}
+
+#lexical-editor .icon.bullet-list,
+#lexical-editor .icon.bullet {
+  background-image: url(../assets/icons/list-ul.svg);
+}
+
+#lexical-editor i.annotation {
+  background-image: url(../assets/icons/annotation.svg);
+}
+
+#lexical-editor i.annotation-edit {
+  mask: url(../assets/icons/annotation-edit.svg);
+}
+
+#lexical-editor i.annotation-confirm {
+  mask: url(../assets/icons/annotation-confirm.svg);
+}
+
+#lexical-editor i.annotation-cancel {
+  mask: url(../assets/icons/annotation-cancel.svg);
+}
+
+#lexical-editor i.annotation-delete {
+  mask: url(../assets/icons/annotation-trash.svg);
+}

@@ -53,6 +53,18 @@ export default withAuth(
           },
         ],
       ],
+      basePath: `',
+        webpack: (config) => {
+          config.resolve.alias = {
+            ...(config.resolve.alias || {}),
+            react: require('path').dirname(require.resolve('react/package.json')),
+            'react-dom': require('path').dirname(require.resolve('react-dom/package.json')),
+            'react/jsx-runtime': require.resolve('react/jsx-runtime'),
+            'react/jsx-dev-runtime': require.resolve('react/jsx-dev-runtime'),
+          }
+          return config
+        },
+      basePath:'`,
     },
     lists,
     session,

@@ -1,0 +1,173 @@
+.Annotation__container {
+  display: ruby;
+  flex-direction: column;
+}
+
+.Annotation__container[open] {
+  width: 100%;
+}
+
+.Annotation__text {
+  color: #9f7544;
+  cursor: pointer;
+}
+
+.Annotation__text::marker {
+  content: "";
+}
+
+.Annotation__text::-webkit-details-marker {
+  content: "";
+}
+
+.Annotation__indicator {
+  margin-left: 3px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid #9f7544;
+  position: relative;
+}
+
+.Annotation__indicator::before {
+  content: "";
+  width: 2px;
+  height: 6.5px;
+  top: 5px;
+  right: 5px;
+  transform: rotate(45deg);
+  display: block;
+  position: absolute;
+  transition: transform 200ms;
+  background-color: rgb(192, 150, 98);
+}
+
+.Annotation__indicator::after {
+  content: "";
+  width: 2px;
+  height: 6.5px;
+  top: 5px;
+  left: 5px;
+  transform: rotate(-45deg);
+  display: block;
+  position: absolute;
+  transition: transform 200ms;
+  background-color: rgb(192, 150, 98);
+}
+
+.Annotation__dialog {
+  position: relative;
+  left: 0;
+  top: 32px;
+  background-color: white;
+  border: 1px solid #cdcdcd;
+  padding: 10px 8px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.Annotation__dialog_button {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  background-color: white;
+}
+
+.Annotation__dialog_button .icon {
+  width: 18px;
+  height: 18px;
+  mask-size: auto;
+  mask-position: center !important;
+  mask-repeat: no-repeat !important;
+  background-color: #6b7280 !important;
+}
+
+.Annotation__dialog_button:hover {
+  border-color: #9f7544;
+}
+
+.Annotation__dialog_button:hover .annotation-confirm, .Annotation__dialog_button:hover .annotation-cancel {  
+  background-color: #9f7544 !important;
+}
+
+.Annotation__input {
+  min-width: 200px;
+}
+
+.Annotation__button_box {
+  margin-left: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #6b7280;
+  vertical-align: middle;
+}
+
+.Annotation__button_box i {
+  width: 18px;
+  height: 18px;
+  z-index: 2;
+  mask-size: auto;
+  mask-position: center !important;
+  mask-repeat: no-repeat !important;
+  background-color: #6b7280;
+}
+  
+.Annotation__button_box .annotation-edit {
+  position: absolute;
+}
+
+.Annotation__button_box:last-child {
+  margin-right: 4px;
+}
+
+.Annotation__button_box:hover {
+  border-color: #9f7544;
+}
+
+.Annotation__button_box:hover i {  
+  background-color: #9f7544;
+}
+
+.Annotation__container[open] .Annotation__indicator::before {
+  transform: rotate(-45deg);
+}
+
+.Annotation__container[open] .Annotation__indicator::after {
+  transform: rotate(45deg);
+}
+
+.Annotation__content {
+  display: none;
+}
+
+.Annotation__container[open] .Annotation__content {
+  display: block;
+}
+
+.Annotation__content {
+  border-top: 2px solid #c09662;
+  background-color: white;
+  padding: 25px 11px;
+  margin-bottom: 10px;
+  line-height: 2.11;
+  letter-spacing: 0.5px;
+  font-size: 16px;
+}

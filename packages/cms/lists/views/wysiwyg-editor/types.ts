@@ -1,0 +1,1 @@
+export type PostStyle = 'interactive' | 'article:v2:default' | 'photography' | 'pink'
