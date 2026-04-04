@@ -1,4 +1,4 @@
-# @repo/lexical-editor
+# @twreporter/lexical-editor
 
 Reusable Lexical editor package for the monorepo.
 
