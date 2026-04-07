@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.1](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.0...@twreporter/lexical-editor@0.2.0-beta.1) (2026-04-07)
+
+
+### Bug Fixes
+
+* use npm version lexical-editor ([51c1f45](https://github.com/twreporter/www-public-monorepo/commit/51c1f4556f82c73cb1d7a56b3f27b40719493ed9))
+
+
+
+
+
 # 0.2.0-beta.0 (2026-04-02)
 
 
