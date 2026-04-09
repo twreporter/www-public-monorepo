@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.25](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.24...www-cms@0.1.0-beta.25) (2026-04-09)
+
+
+### Bug Fixes
+
+* **cms:** remove webpack hack in keystone.ts ([bcd3c8b](https://github.com/twreporter/www-public-monorepo/commit/bcd3c8b1bf17749d11fbfd0e8ec908c9b87301bd))
+
+
+
+
+
 # [0.1.0-beta.24](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.23...www-cms@0.1.0-beta.24) (2026-04-07)
 
 
