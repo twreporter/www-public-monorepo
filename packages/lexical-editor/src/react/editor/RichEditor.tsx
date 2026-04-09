@@ -10,6 +10,7 @@ import ToolbarPlugin from '../plugins/ToolbarPlugin'
 import LinkPlugin from '../plugins/LinkPlugin'
 import FloatingLinkEditorPlugin from '../plugins/FloatingLinkEditorPlugin'
 import AnnotationPlugin from '../plugins/AnnotationPlugin'
+import ImageLinkPlugin from '../plugins/ImageLinkPlugin'
 // components
 import ContentEditable from './ContentEditable'
 // types
@@ -76,6 +77,7 @@ export default function Editor({
           />
         )}
         <AnnotationPlugin />
+        <ImageLinkPlugin />
       </div>
     </div>
   )
