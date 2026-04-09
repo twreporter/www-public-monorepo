@@ -50,7 +50,7 @@ export class AnnotationNode extends ElementNode {
     return true
   }
 
-  override createDOM(_config: EditorConfig, editor: LexicalEditor): HTMLElement {
+  override createDOM(config: EditorConfig, editor: LexicalEditor): HTMLElement {
     const detailsDom = document.createElement('details')
     detailsDom.open = this.__open
     detailsDom.addEventListener('toggle', () => {
@@ -65,7 +65,8 @@ export class AnnotationNode extends ElementNode {
         detailsDom.classList.remove('open')
       }
     })
-    detailsDom.classList.add('TwreporterTheme__annotation', 'Annotation__container') // todo: read theme name from config
+    const annotationClass = config.theme.annotation ?? 'TwreporterTheme__annotation'
+    detailsDom.classList.add(annotationClass, 'Annotation__container')
 
     return detailsDom
   }
