@@ -45,7 +45,7 @@ export class ImageLinkNode extends ElementNode {
     return false
   }
 
-  static override importDOM(): DOMConversionMap<HTMLDetailsElement> | null {
+  static override importDOM(): DOMConversionMap<HTMLDivElement> | null {
     return {
       div: () => {
         return {

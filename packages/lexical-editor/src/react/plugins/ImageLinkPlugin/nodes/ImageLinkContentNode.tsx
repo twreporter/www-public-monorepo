@@ -197,7 +197,7 @@ export class ImageLinkContentNode extends DecoratorNode<ReactNode> {
   }
 }
 
-export function $createAnnotationTextNode(url: string, layout: ImageLayout, caption: string): ImageLinkContentNode {
+export function $createImageLinkContentNode(url: string, layout: ImageLayout, caption: string): ImageLinkContentNode {
   return new ImageLinkContentNode(url, layout, caption)
 }
 

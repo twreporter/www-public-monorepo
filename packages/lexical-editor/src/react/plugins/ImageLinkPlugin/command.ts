@@ -23,10 +23,8 @@ export function registerImageLinkPlugin(editor: LexicalEditor) {
   const unregisterAdd = editor.registerCommand(
     IMAGE_LINK_ADD_COMMAND,
     ({ url, layout, caption }) => {
-      console.log('add image link', url, layout, caption)
       const selection = $getSelection()
       if (!selection) {
-        console.log('invalid add image link', $isRangeSelection(selection), selection)
         return false
       }
       const imageLinkNode = new ImageLinkNode()
