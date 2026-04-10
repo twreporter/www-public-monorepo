@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.26](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.25...www-cms@0.1.0-beta.26) (2026-04-10)
+
+
+### Bug Fixes
+
+* address revuew comments ([c508e3b](https://github.com/twreporter/www-public-monorepo/commit/c508e3bbfbe4d0d039ba7dad252aef3f30ddb720))
+
+
+
+
+
 # [0.1.0-beta.25](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.24...www-cms@0.1.0-beta.25) (2026-04-09)
 
 
