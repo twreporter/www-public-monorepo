@@ -1,4 +1,4 @@
-import { useMemo, useRef, type JSX } from 'react'
+import React, { useMemo, useRef, type JSX } from 'react'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import type { EditorState } from 'lexical'
 // context
@@ -14,6 +14,13 @@ import type { LexicalEditorProps } from '../../core'
 
 import '../style/Editor.css'
 import '../style/icon.css'
+
+// for multiple react instance debugging
+if (typeof window !== 'undefined') {
+  setTimeout(() => {
+    console.log('same react instance?', React === (window as any).__CMS_REACT__)
+  }, 0)
+}
 
 const defaultOnError = (error: Error) => {
   throw error
