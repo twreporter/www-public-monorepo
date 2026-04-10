@@ -6912,31 +6912,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@twreporter/lexical-editor@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "@twreporter/lexical-editor@npm:0.1.0"
-  peerDependencies:
-    "@emotion/css": ^11
-    "@emotion/react": ^11
-    "@emotion/styled": ^11
-    "@lexical/code": "*"
-    "@lexical/link": "*"
-    "@lexical/list": "*"
-    "@lexical/overflow": "*"
-    "@lexical/react": "*"
-    "@lexical/rich-text": "*"
-    "@lexical/selection": "*"
-    "@lexical/table": "*"
-    "@lexical/utils": "*"
-    "@twreporter/core": ^1.28.0
-    lexical: "*"
-    react: "*"
-    react-dom: "*"
-  checksum: 10c0/bd2a8e620d344ac9a4821eebfe8fdd9c5740425883c7d2b32e42f7a3bf22451481515362f9db4107ba1753139857e296732926e3d1304d26e391639adf51d01b
-  languageName: node
-  linkType: hard
-
-"@twreporter/lexical-editor@workspace:packages/lexical-editor":
+"@twreporter/lexical-editor@npm:^0.2.0-beta.1, @twreporter/lexical-editor@workspace:packages/lexical-editor":
   version: 0.0.0-use.local
   resolution: "@twreporter/lexical-editor@workspace:packages/lexical-editor"
   dependencies:
@@ -17599,7 +17575,7 @@ __metadata:
     "@lexical/react": "npm:^0.33.1"
     "@lexical/table": "npm:0.33.1"
     "@twreporter/core": "npm:^1.28.0"
-    "@twreporter/lexical-editor": "npm:^0.1.0"
+    "@twreporter/lexical-editor": "npm:^0.2.0-beta.1"
     exifreader: "npm:^4.23.3"
     lodash: "npm:^4.17.21"
     react-colorful: "npm:^5.6.1"
