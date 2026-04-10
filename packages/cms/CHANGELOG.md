@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.27](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.26...www-cms@0.1.0-beta.27) (2026-04-10)
+
+**Note:** Version bump only for package www-cms
+
+
+
+
+
 # [0.1.0-beta.26](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.25...www-cms@0.1.0-beta.26) (2026-04-10)
 
 
