@@ -10,11 +10,6 @@ import createLexicalEditorConfig from './config'
 // css
 import '@twreporter/lexical-editor/style'
 
-// for multiple react instance debugging
-if (typeof window !== 'undefined') {
-  ;(window as any).__CMS_REACT__ = React
-}
-
 export const Field = ({
   value,
   field,
