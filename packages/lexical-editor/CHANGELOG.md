@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.5](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.4...@twreporter/lexical-editor@0.2.0-beta.5) (2026-04-13)
+
+**Note:** Version bump only for package @twreporter/lexical-editor
+
+
+
+
+
 # [0.2.0-beta.4](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.3...@twreporter/lexical-editor@0.2.0-beta.4) (2026-04-13)
 
 
