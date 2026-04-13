@@ -84,5 +84,10 @@
     "lexical": "*",
     "react": "*",
     "react-dom": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twreporter/www-public-monorepo.git",
+    "directory": "packages/lexical-editor"
   }
 }
