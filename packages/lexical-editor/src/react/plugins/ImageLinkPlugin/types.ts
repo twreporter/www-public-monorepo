@@ -1,0 +1,1 @@
+export type ImageLayout = 'default' | 'small' | 'right'

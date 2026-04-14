@@ -33,6 +33,8 @@ export const createEmotionEditorTheme = (): EditorTheme => {
         ol: 'TwreporterTheme__ol',
       },
       link: 'TwreporterTheme__link',
+      annotation: 'TwreporterTheme__annotation',
+      imageLink: 'TwreporterTheme__imageLink',
     },
     tokens: {
       colorTextPrimary: '#111111',

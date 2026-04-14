@@ -21,31 +21,6 @@ export const LexicalBox = styled.div`
     background-color: ${colorSupportive.heavy};
     color: ${colorGrayscale.white};
   }
-
-  &.fullscreen {
-    z-index: 1000;
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 0;
-    background-color: ${colorGrayscale.gray100};
-    max-height: 100vh;
-    max-width: 100vw;
-    overflow-y: scroll;
-
-    .toolbar {
-      position: fixed;
-      width: 100%;
-      max-width: 100vw;
-    }
-
-    .editor-container {
-      height: 100vh;
-      padding-top: 36px;
-    }
-  }
 `
 
 const extendWidthCSS = css`
@@ -110,47 +85,11 @@ const mockup = {
 }
 
 export const StyleWrapper = styled.div`
-  .editor-shell {
-    margin: 0 auto;
-    border-radius: 2px;
-    max-width: 100%;
-    position: relative;
-    line-height: 1.8;
-    font-weight: 400;
-  }
-
-  .editor-shell .editor-container {
-    position: relative;
-    display: block;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-
-  .editor-scroller {
-    min-height: 150px;
-    max-width: 100%;
-    border: 0;
-    display: flex;
-    position: relative;
-    outline: 0;
-    z-index: 0;
-    resize: vertical;
-  }
-
   .editor {
-    flex: auto;
-    max-width: 100%;
-    position: relative;
-    resize: vertical;
-    z-index: -1;
     /* twreporter style */
     background-color: ${colorGrayscale.gray100};
     color: ${colorGrayscale.gray800};
     font-family: "Roboto Slab", "Noto Sans TC", sans-serif;
-
-    & > div {
-      padding: 0;
-    }
   }
 
   .TwreporterTheme__paragraph {

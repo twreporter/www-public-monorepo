@@ -167,3 +167,23 @@
 #lexical-editor i.annotation-delete {
   mask: url(../assets/icons/annotation-trash.svg);
 }
+
+#lexical-editor .icon.image-link {
+  background-image: url(../assets/icons/image-link.svg);
+}
+
+#lexical-editor i.image-edit {
+  mask: url(../assets/icons/image-edit.svg);
+}
+
+#lexical-editor i.image-layout-default {
+  background-image: url(../assets/icons/image-layout-default.svg);
+}
+
+#lexical-editor i.image-layout-small {
+  background-image: url(../assets/icons/image-layout-small.svg);
+}
+
+#lexical-editor i.image-layout-right {
+  background-image: url(../assets/icons/image-layout-right.svg);
+}

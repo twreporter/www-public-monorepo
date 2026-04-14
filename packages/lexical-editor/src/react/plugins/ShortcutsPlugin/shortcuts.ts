@@ -19,6 +19,7 @@ export const SHORTCUTS = Object.freeze({
   CODE_BLOCK: IS_APPLE ? '⌘+Opt+C' : 'Ctrl+Alt+C',
   QUOTE: IS_APPLE ? '⌘+Opt+Q' : 'Ctrl+Alt+Q',
   ANNOTATION: IS_APPLE ? '⌘+Opt+A' : 'Ctrl+Alt+A',
+  IMAGE_LINK: IS_APPLE ? '⌘+Opt+K' : 'Ctrl+Alt+K',
 
   // (Ctrl|⌘) + Shift + <key> shortcuts
   INCREASE_FONT_SIZE: IS_APPLE ? '⌘+Shift+.' : 'Ctrl+Shift+.',

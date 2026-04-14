@@ -1,0 +1,26 @@
+#lexical-editor {
+  &.fullscreen {
+    z-index: 1000;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+    max-height: 100vh;
+    max-width: 100vw;
+    overflow-y: scroll;
+
+    .toolbar {
+      position: fixed;
+      width: 100%;
+      max-width: 100vw;
+    }
+
+    .editor-container {
+      height: 100vh;
+      padding-top: 36px;
+    }
+  }
+}
