@@ -57,6 +57,8 @@ import {
 } from '../ImageLinkPlugin/command'
 // types
 import type { EditorTheme } from '../../../core'
+// css
+import './Toolbar.scss'
 
 function dropDownActiveClass(active: boolean) {
   if (active) {
