@@ -18,6 +18,114 @@ import type { ImageLayout } from '../types'
 // global var
 const imageLinkContentType = 'imageLink-content'
 
+type ImageLinkEditModeProps = {
+  imageUrl: string
+  layout: ImageLayout
+  caption: string
+  onConfirm: (url: string, layout: ImageLayout, caption: string) => void
+  onDelete: () => void
+  onUpdateLayout: (layout: ImageLayout) => void
+}
+const ImageLinkEditMode: FC<ImageLinkEditModeProps> = ({
+  imageUrl,
+  layout,
+  caption,
+  onConfirm,
+  onDelete,
+  onUpdateLayout,
+}) => {
+  const [isOpenEdit, setIsOpenEdit] = useState(false)
+
+  const openEditDialog = () => setIsOpenEdit(true)
+  const closeEditDialog = () => setIsOpenEdit(false)
+
+  const updateLayout = (e: MouseEvent<HTMLButtonElement>, layout: ImageLayout) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    if (typeof onUpdateLayout === 'function') {
+      onUpdateLayout(layout)
+    }
+  }
+
+  const confirmEdit = (url: string, layout: ImageLayout, caption: string) => {
+    if (typeof onConfirm === 'function') {
+      onConfirm(url, layout, caption)
+    }
+
+    closeEditDialog()
+  }
+
+  return (
+    <div className={`ImageLink__container ${layout}`}>
+      <div className={`ImageLink__image_block ${layout}`} onClick={openEditDialog}>
+        <figure itemScope itemType="http://schema.org/ImageObject">
+          <img src={imageUrl} alt={caption} aria-label={caption} className="ImageLink__image" />
+          {caption &&
+            <figcaption className="ImageLink__caption">
+              {caption}
+            </figcaption>
+          }
+        </figure>
+        <div className="ImageLink__edit_layout">
+          <button type="button" className={`layout-option ${layout === 'default' ? 'is-active' : ''}`} onClick={(e) => updateLayout(e, 'default')}>
+            <i className="image-layout-default" />
+          </button>
+          <button type="button" className={`layout-option ${layout === 'small' ? 'is-active' : ''}`} onClick={(e) => updateLayout(e, 'small')}>
+            <i className="image-layout-small" />
+          </button>
+          <button type="button" className={`layout-option ${layout === 'right' ? 'is-active' : ''}`} onClick={(e) => updateLayout(e, 'right')}>
+            <i className="image-layout-right" />
+          </button>
+        </div>
+        <div className="ImageLink__edit_image">
+          <button type="button">
+            <i className="image-edit" />
+          </button>
+        </div>
+      </div>
+
+      {isOpenEdit ? (
+        <ImageLinkEditDialog
+          imageUrl={imageUrl}
+          imageLayout={layout}
+          imageCaption={caption}
+          onConfirm={confirmEdit}
+          onClose={closeEditDialog}
+          onDelete={onDelete}
+        />
+      ) : null}
+    </div>
+  )
+}
+
+/* todo: fullscreen image & sensitive image */
+type ImageLinkDisplayModeProps = {
+  imageUrl: string
+  layout: ImageLayout
+  caption: string
+}
+const ImageLinkDisplayMode: FC<ImageLinkDisplayModeProps> = ({
+  imageUrl,
+  layout,
+  caption,
+}) => {
+  return (
+    <div className={`ImageLink__container ${layout}`}>
+      <div className={`ImageLink__image_block ${layout}`}>
+        <figure itemScope itemType="http://schema.org/ImageObject">
+          <img src={imageUrl} alt={caption} aria-label={caption} className="ImageLink__image" />
+          {caption &&
+            <figcaption className="ImageLink__caption">
+              {caption}
+            </figcaption>
+          }
+        </figure>
+      </div>
+    </div>
+  )
+}
+
 type ImageLinkContentProps = {
   nodeKey: string
   imageCaption?: string
@@ -33,18 +141,7 @@ const ImageLinkContent: FC<ImageLinkContentProps> = ({
   const [editor] = useLexicalComposerContext()
   const editable = editor.isEditable()
 
-  const [isOpenEdit, setIsOpenEdit] = useState(false)
-
-  const openEditDialog = (e: MouseEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setIsOpenEdit(true)
-  }
-
-  const updateLayout = (e: MouseEvent<HTMLButtonElement>, layout: ImageLayout) => {
-    e.preventDefault()
-    e.stopPropagation()
-  
+  const updateLayout = (layout: ImageLayout) => {
     editor.update(() => {
       const node = $getNodeByKey(nodeKey) as ImageLinkContentNode
       if (node) {
@@ -63,7 +160,6 @@ const ImageLinkContent: FC<ImageLinkContentProps> = ({
       }
     })
 
-    setIsOpenEdit(false)
     return
   }
 
@@ -79,47 +175,21 @@ const ImageLinkContent: FC<ImageLinkContentProps> = ({
 
   return (
     <>
-      <div className={`ImageLink__image_block ${imageLayout}`} onClick={openEditDialog}>
-        <figure itemScope itemType="http://schema.org/ImageObject">
-          <img src={imageUrl} alt={imageCaption} aria-label={imageCaption} className="ImageLink__image" />
-          {imageCaption &&
-            <figcaption className="ImageLink__caption">
-              {imageCaption}
-            </figcaption>
-          }
-        </figure>
-        {editable ? (
-          <>
-            <div className="ImageLink__edit_layout">
-              <button type="button" className={`layout-option ${imageLayout === 'default' ? 'is-active' : ''}`} onClick={(e) => updateLayout(e, 'default')}>
-                <i className="image-layout-default" />
-              </button>
-              <button type="button" className={`layout-option ${imageLayout === 'small' ? 'is-active' : ''}`} onClick={(e) => updateLayout(e, 'small')}>
-                <i className="image-layout-small" />
-              </button>
-              <button type="button" className={`layout-option ${imageLayout === 'right' ? 'is-active' : ''}`} onClick={(e) => updateLayout(e, 'right')}>
-                <i className="image-layout-right" />
-              </button>
-            </div>
-            <div className="ImageLink__edit_image">
-              <button type="button">
-                <i className="image-edit" />
-              </button>
-            </div>
-          </>
-        ) : null}
-      </div>
-
-      {isOpenEdit ? (
-        <ImageLinkEditDialog
+      { editable ?
+        <ImageLinkEditMode
           imageUrl={imageUrl}
-          imageLayout={imageLayout}
-          imageCaption={imageCaption}
+          layout={imageLayout}
+          caption={imageCaption}
           onConfirm={confirm}
-          onClose={() => setIsOpenEdit(false)}
           onDelete={deleteImageLink}
+          onUpdateLayout={updateLayout}
+        /> :
+        <ImageLinkDisplayMode
+          imageUrl={imageUrl}
+          layout={imageLayout}
+          caption={imageCaption}
         />
-      ) : null}
+      }
     </>
   )
 }

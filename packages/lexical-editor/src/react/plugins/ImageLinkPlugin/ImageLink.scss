@@ -185,6 +185,58 @@
   }
 }
 
+/* container style */
+.ImageLink__container {
+  margin: 60px auto;
+  /* clear float */
+  clear: both;
+
+  &.default, &.right {
+    width: 100%;
+    @include desktop-only {
+      width: 752px;
+    }
+    @include hd-only {
+      width: 1033px;
+    }
+  }
+
+  &.small {
+    @include mobile-only {
+      width: 100%;
+    }
+    @include tablet-only {
+      width: 513px;
+    }
+    @include desktop-only {
+      width: 550px;
+    }
+    @include hd-only {
+      width: 730px;
+    }
+
+    .ImageLink__caption {
+      margin-bottom: 0px;
+
+      @include desktop-and-above {
+        position: absolute;
+        bottom: 0;
+        transform: translateX(100%);
+        &::after {
+          width: 100%;
+        }
+      }
+
+      @include desktop-only {
+        right: -21px;
+      }
+      @include hd-only {
+        right: -38px;
+      }
+    }
+  }
+}
+
 /* edit dialog style */
 .ImageLink__edit_dialog {
   background: #ffffff;
