@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.6](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.5...@twreporter/lexical-editor@0.2.0-beta.6) (2026-04-14)
+
+
+### Bug Fixes
+
+* **lexical-editor:** address review comments ([7170a8d](https://github.com/twreporter/www-public-monorepo/commit/7170a8d4f548b49f2458e4967338521f7b343ec8))
+* **lexical-editor:** separate edit & display node ([edd99eb](https://github.com/twreporter/www-public-monorepo/commit/edd99ebd313a787e8fffd49e49268221267b8308))
+* update editor style ([566bed4](https://github.com/twreporter/www-public-monorepo/commit/566bed4eadf6336d8b224b1d8191fb39171f7f5b))
+
+
+### Features
+
+* **lexical-editor:** add ImageLink plugin ([08fbc72](https://github.com/twreporter/www-public-monorepo/commit/08fbc728a6962ce50a9a410dbec6ac258199b409))
+
+
+
+
+
 # [0.2.0-beta.5](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.4...@twreporter/lexical-editor@0.2.0-beta.5) (2026-04-13)
 
 **Note:** Version bump only for package @twreporter/lexical-editor
