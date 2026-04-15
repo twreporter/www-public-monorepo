@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.44](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.43...www-frontend@0.1.0-beta.44) (2026-04-15)
+
+
+### Bug Fixes
+
+* use lerna to deal with task order ([6a35730](https://github.com/twreporter/www-public-monorepo/commit/6a3573045229de6d14faa0d2b278e52fd03bf283))
+* use nx instead of targetDefault ([30a7caa](https://github.com/twreporter/www-public-monorepo/commit/30a7caad4acc091db6def833857f45c7d1422292))
+
+
+
+
+
 # [0.1.0-beta.43](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.42...www-frontend@0.1.0-beta.43) (2026-03-31)
 
 

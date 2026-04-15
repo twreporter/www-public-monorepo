@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.7](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.6...@twreporter/lexical-editor@0.2.0-beta.7) (2026-04-15)
+
+
+### Bug Fixes
+
+* ci/cd failed ([4e7375a](https://github.com/twreporter/www-public-monorepo/commit/4e7375a7daa3f9d87095923ed3ef8efe3536eb9a))
+
+
+
+
+
 # [0.2.0-beta.6](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.5...@twreporter/lexical-editor@0.2.0-beta.6) (2026-04-14)
 
 

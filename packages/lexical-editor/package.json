@@ -2,7 +2,7 @@
   "name": "@twreporter/lexical-editor",
   "author": "twreporter <developer@twreporter.org>",
   "license": "MIT",
-  "version": "0.2.0-beta.6",
+  "version": "0.2.0-beta.7",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
