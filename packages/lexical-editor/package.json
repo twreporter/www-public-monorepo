@@ -39,6 +39,7 @@
   ],
   "scripts": {
     "build": "tsdown",
+    "prepublishOnly": "yarn build",
     "dev": "tsdown --watch",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"

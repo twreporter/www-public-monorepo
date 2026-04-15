@@ -1,1 +1,1 @@
-npx yarn build:frontend
+npx yarn build:react-component && npx yarn build:frontend
