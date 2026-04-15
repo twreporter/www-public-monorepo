@@ -36,9 +36,11 @@
     "tailwindcss": "^4.1.11",
     "typescript": "^5"
   },
-  "targetDefaults": {
-    "build": {
-      "dependsOn": ["^build"]
+  "nx": {
+    "targets": {
+      "build": {
+        "dependsOn": ["^build"]
+      }
     }
   }
 }
