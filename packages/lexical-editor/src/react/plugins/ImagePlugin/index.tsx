@@ -1,29 +1,29 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { useEffect, type FC } from 'react'
-import { registerImageLinkPlugin } from './command'
+import { registerImagePlugin } from './command'
 import {
-  ImageLinkNode,
-  ImageLinkContentNode
+  ImageNode,
+  ImageContentNode,
 } from './nodes'
 
-import './ImageLink.scss'
+import './Image.scss'
 
-const ImageLinkPlugin: FC = () => {
+const ImagePlugin: FC = () => {
   const [editor] = useLexicalComposerContext()
 
   useEffect(() => {
     if (
       !editor.hasNodes([
-        ImageLinkNode,
-        ImageLinkContentNode,
+        ImageNode,
+        ImageContentNode,
       ])
     ) {
       throw new Error(
-        'ImageLinkPlugin: ImageLinkNode, ImageLinkContentNode not registered on editor'
+        'ImagePlugin: ImageNode, ImageContentNode not registered on editor'
       )
     }
 
-    const unregister = registerImageLinkPlugin(editor)
+    const unregister = registerImagePlugin(editor)
 
     return () => {
       unregister()
@@ -33,4 +33,4 @@ const ImageLinkPlugin: FC = () => {
   return null // no visible UI; it's a functional plugin
 }
 
-export default ImageLinkPlugin
+export default ImagePlugin

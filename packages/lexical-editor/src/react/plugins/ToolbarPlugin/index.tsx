@@ -45,7 +45,7 @@ import { sanitizeUrl } from '../../utils/url'
 import { $isAnnotationNode } from '../AnnotationPlugin/nodes/AnnotationNode'
 // component
 import DropDown, { DropDownItem } from '../../components/DropDown'
-import ImageLinkEditDialog from '../ImageLinkPlugin/components/ImageLinkEditDialog'
+import ImageEditDialog from '../ImagePlugin/components/ImageEditDialog'
 import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts'
 // custom command
 import {
@@ -53,8 +53,8 @@ import {
   ANNOTATION_REMOVE_COMMAND,
 } from '../AnnotationPlugin/command'
 import {
-  IMAGE_LINK_ADD_COMMAND
-} from '../ImageLinkPlugin/command'
+  IMAGE_ADD_COMMAND,
+} from '../ImagePlugin/command'
 // types
 import type { EditorTheme } from '../../../core'
 // css
@@ -201,7 +201,7 @@ export default function ToolbarPlugin({
   const { toolbarState, updateToolbarState } = useToolbarState()
 
   // custom plugin state
-  const [isOpenImageLinkDialog, setIsOpenImageLinkDialog] = useState(false)
+  const [isOpenImageDialog, setIsOpenImageDialog] = useState(false)
 
   const $handleHeadingNode = useCallback(
     (selectedElement: LexicalNode) => {
@@ -648,7 +648,7 @@ export default function ToolbarPlugin({
         >
           <DropDownItem
             onClick={() => {
-              setIsOpenImageLinkDialog(true)
+              setIsOpenImageDialog(true)
             }}
             className={`item wide`}
             title="Image Link"
@@ -664,20 +664,20 @@ export default function ToolbarPlugin({
         <Divider />
         <button
           disabled={!isEditable}
-          className={`toolbar-item spaced ${toolbarState.isUnderline ? 'active' : ''}`}
+          className={`toolbar-item spaced`}
           type="button"
         >
           <Fullscreen />
         </button>
         {modal}
       </div>
-      {isOpenImageLinkDialog &&
-        <ImageLinkEditDialog
+      {isOpenImageDialog &&
+        <ImageEditDialog
           imageLayout="default"
           imageUrl=""
           imageCaption=""
-          onClose={() => setIsOpenImageLinkDialog(false)}
-          onConfirm={(url, layout, caption) => activeEditor.dispatchCommand(IMAGE_LINK_ADD_COMMAND, { url, layout, caption })}
+          onClose={() => setIsOpenImageDialog(false)}
+          onConfirm={(url, layout, caption) => activeEditor.dispatchCommand(IMAGE_ADD_COMMAND, { url, layout, caption })}
         />}
     </>
   )

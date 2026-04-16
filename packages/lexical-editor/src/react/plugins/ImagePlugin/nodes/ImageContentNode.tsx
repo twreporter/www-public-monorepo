@@ -11,14 +11,14 @@ import {
   useState,
   type MouseEvent,
 } from 'react'
-import { $isImageLinkNode, ImageLinkNode } from './ImageLinkNode'
-import ImageLinkEditDialog from '../components/ImageLinkEditDialog'
+import { $isImageNode, ImageNode } from './ImageNode'
+import ImageEditDialog from '../components/ImageEditDialog'
 // type
 import type { ImageLayout } from '../types'
 // global var
 const imageLinkContentType = 'imageLink-content'
 
-type ImageLinkEditModeProps = {
+type ImageEditModeProps = {
   imageUrl: string
   layout: ImageLayout
   caption: string
@@ -26,7 +26,7 @@ type ImageLinkEditModeProps = {
   onDelete: () => void
   onUpdateLayout: (layout: ImageLayout) => void
 }
-const ImageLinkEditMode: FC<ImageLinkEditModeProps> = ({
+const ImageEditMode: FC<ImageEditModeProps> = ({
   imageUrl,
   layout,
   caption,
@@ -57,17 +57,17 @@ const ImageLinkEditMode: FC<ImageLinkEditModeProps> = ({
   }
 
   return (
-    <div className={`ImageLink__container ${layout}`}>
-      <div className={`ImageLink__image_block ${layout}`} onClick={openEditDialog}>
+    <div className={`Image__container ${layout}`}>
+      <div className={`Image__image_block ${layout}`} onClick={openEditDialog}>
         <figure itemScope itemType="http://schema.org/ImageObject">
-          <img src={imageUrl} alt={caption} aria-label={caption} className="ImageLink__image" />
+          <img src={imageUrl} alt={caption} aria-label={caption} className="Image__image" />
           {caption &&
-            <figcaption className="ImageLink__caption">
+            <figcaption className="Image__caption">
               {caption}
             </figcaption>
           }
         </figure>
-        <div className="ImageLink__edit_layout">
+        <div className="Image__edit_layout">
           <button type="button" className={`layout-option ${layout === 'default' ? 'is-active' : ''}`} onClick={(e) => updateLayout(e, 'default')}>
             <i className="image-layout-default" />
           </button>
@@ -78,7 +78,7 @@ const ImageLinkEditMode: FC<ImageLinkEditModeProps> = ({
             <i className="image-layout-right" />
           </button>
         </div>
-        <div className="ImageLink__edit_image">
+        <div className="Image__edit_image">
           <button type="button">
             <i className="image-edit" />
           </button>
@@ -86,7 +86,7 @@ const ImageLinkEditMode: FC<ImageLinkEditModeProps> = ({
       </div>
 
       {isOpenEdit ? (
-        <ImageLinkEditDialog
+        <ImageEditDialog
           imageUrl={imageUrl}
           imageLayout={layout}
           imageCaption={caption}
@@ -100,23 +100,23 @@ const ImageLinkEditMode: FC<ImageLinkEditModeProps> = ({
 }
 
 /* todo: fullscreen image & sensitive image */
-type ImageLinkDisplayModeProps = {
+type ImageDisplayModeProps = {
   imageUrl: string
   layout: ImageLayout
   caption: string
 }
-const ImageLinkDisplayMode: FC<ImageLinkDisplayModeProps> = ({
+const ImageDisplayMode: FC<ImageDisplayModeProps> = ({
   imageUrl,
   layout,
   caption,
 }) => {
   return (
-    <div className={`ImageLink__container ${layout}`}>
-      <div className={`ImageLink__image_block ${layout}`}>
+    <div className={`Image__container ${layout}`}>
+      <div className={`Image__image_block ${layout}`}>
         <figure itemScope itemType="http://schema.org/ImageObject">
-          <img src={imageUrl} alt={caption} aria-label={caption} className="ImageLink__image" />
+          <img src={imageUrl} alt={caption} aria-label={caption} className="Image__image" />
           {caption &&
-            <figcaption className="ImageLink__caption">
+            <figcaption className="Image__caption">
               {caption}
             </figcaption>
           }
@@ -126,13 +126,13 @@ const ImageLinkDisplayMode: FC<ImageLinkDisplayModeProps> = ({
   )
 }
 
-type ImageLinkContentProps = {
+type ImageContentProps = {
   nodeKey: string
   imageCaption?: string
   imageUrl: string
   imageLayout?: ImageLayout
 }
-const ImageLinkContent: FC<ImageLinkContentProps> = ({
+const ImageContent: FC<ImageContentProps> = ({
   nodeKey,
   imageCaption = '',
   imageUrl,
@@ -143,7 +143,7 @@ const ImageLinkContent: FC<ImageLinkContentProps> = ({
 
   const updateLayout = (layout: ImageLayout) => {
     editor.update(() => {
-      const node = $getNodeByKey(nodeKey) as ImageLinkContentNode
+      const node = $getNodeByKey(nodeKey) as ImageContentNode
       if (node) {
         node.getWritable().__imageLayout = layout
       }
@@ -152,7 +152,7 @@ const ImageLinkContent: FC<ImageLinkContentProps> = ({
 
   const confirm = (url: string, layout: ImageLayout, caption: string) => {
     editor.update(() => {
-      const node = $getNodeByKey(nodeKey) as ImageLinkContentNode
+      const node = $getNodeByKey(nodeKey) as ImageContentNode
       if (node) {
         node.getWritable().__caption = caption
         node.getWritable().__imageUrl = url
@@ -163,11 +163,11 @@ const ImageLinkContent: FC<ImageLinkContentProps> = ({
     return
   }
 
-  const deleteImageLink = () => {
+  const deleteImage = () => {
     editor.update(() => {
-      const node = $getNodeByKey(nodeKey) as ImageLinkContentNode
+      const node = $getNodeByKey(nodeKey) as ImageContentNode
       const parent = node.getParent()
-      if (parent instanceof ImageLinkNode) {
+      if (parent instanceof ImageNode) {
         parent.remove()
       }
     })
@@ -176,15 +176,15 @@ const ImageLinkContent: FC<ImageLinkContentProps> = ({
   return (
     <>
       { editable ?
-        <ImageLinkEditMode
+        <ImageEditMode
           imageUrl={imageUrl}
           layout={imageLayout}
           caption={imageCaption}
           onConfirm={confirm}
-          onDelete={deleteImageLink}
+          onDelete={deleteImage}
           onUpdateLayout={updateLayout}
         /> :
-        <ImageLinkDisplayMode
+        <ImageDisplayMode
           imageUrl={imageUrl}
           layout={imageLayout}
           caption={imageCaption}
@@ -194,7 +194,7 @@ const ImageLinkContent: FC<ImageLinkContentProps> = ({
   )
 }
 
-type SerializedImageLinkContentNode = {
+type SerializedImageContentNode = {
   type: typeof imageLinkContentType
   version: 1
   imageLayout: ImageLayout
@@ -202,7 +202,7 @@ type SerializedImageLinkContentNode = {
   caption: string
 }
 
-export class ImageLinkContentNode extends DecoratorNode<ReactNode> {
+export class ImageContentNode extends DecoratorNode<ReactNode> {
   __imageUrl: string
   __imageLayout: ImageLayout
   __caption: string
@@ -211,8 +211,8 @@ export class ImageLinkContentNode extends DecoratorNode<ReactNode> {
     return imageLinkContentType
   }
 
-  static override clone(node: ImageLinkContentNode): ImageLinkContentNode {
-    return new ImageLinkContentNode(node.__imageUrl, node.__imageLayout, node.__caption, node.__key)
+  static override clone(node: ImageContentNode): ImageContentNode {
+    return new ImageContentNode(node.__imageUrl, node.__imageLayout, node.__caption, node.__key)
   }
 
   constructor(url: string, layout: ImageLayout, caption: string, key?: NodeKey) {
@@ -224,12 +224,12 @@ export class ImageLinkContentNode extends DecoratorNode<ReactNode> {
 
   override createDOM(): HTMLElement {
     const parentNode = this.getLatest().getParentOrThrow()
-    if (!$isImageLinkNode(parentNode)) {
-      throw new Error('Expected parent node to be a ImageLinkNode')
+    if (!$isImageNode(parentNode)) {
+      throw new Error('Expected parent node to be an ImageNode')
     }
 
     const div = document.createElement('div')
-    div.classList.add('ImageLink__content')
+    div.classList.add('Image__content')
   
     return div
   }
@@ -239,14 +239,14 @@ export class ImageLinkContentNode extends DecoratorNode<ReactNode> {
   }
 
   override decorate(): ReactNode {
-    return <ImageLinkContent nodeKey={this.getKey()} imageUrl={this.__imageUrl} imageLayout={this.__imageLayout} imageCaption={this.__caption} />
+    return <ImageContent nodeKey={this.getKey()} imageUrl={this.__imageUrl} imageLayout={this.__imageLayout} imageCaption={this.__caption} />
   }
 
-  static override importJSON(serializedNode: SerializedImageLinkContentNode) {
-    return new ImageLinkContentNode(serializedNode.imageUrl, serializedNode.imageLayout, serializedNode.caption)
+  static override importJSON(serializedNode: SerializedImageContentNode) {
+    return new ImageContentNode(serializedNode.imageUrl, serializedNode.imageLayout, serializedNode.caption)
   }
 
-  override exportJSON(): SerializedImageLinkContentNode {
+  override exportJSON(): SerializedImageContentNode {
     return {
       type: imageLinkContentType,
       version: 1,
@@ -267,12 +267,12 @@ export class ImageLinkContentNode extends DecoratorNode<ReactNode> {
   }
 }
 
-export function $createImageLinkContentNode(url: string, layout: ImageLayout, caption: string): ImageLinkContentNode {
-  return new ImageLinkContentNode(url, layout, caption)
+export function $createImageContentNode(url: string, layout: ImageLayout, caption: string): ImageContentNode {
+  return new ImageContentNode(url, layout, caption)
 }
 
-export function $isImageLinkContentNode(
+export function $isImageContentNode(
   node: LexicalNode | null | undefined
-): node is ImageLinkContentNode {
-  return node instanceof ImageLinkContentNode
+): node is ImageContentNode {
+  return node instanceof ImageContentNode
 }

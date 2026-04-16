@@ -55,7 +55,7 @@ const EditDialog: FC<EditDialogProps> = ({
   }
 
   return (
-    <div className="ImageLink__edit_dialog" role="dialog" aria-modal="true">
+    <div className="Image__edit_dialog" role="dialog" aria-modal="true">
       <div className="dialog-header">
         <p className="title">編輯圖片</p>
         <div className="button-set">
