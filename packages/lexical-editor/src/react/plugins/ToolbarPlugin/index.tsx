@@ -571,7 +571,7 @@ export default function ToolbarPlugin({
           onClick={togglePreview}
           className={`toolbar-item spaced`}
           type="button"
-          aria-label={`Preview rich editor`}
+          aria-label={isEditable ? 'Preview rich editor' : 'Exit preview'}
         >
           <i className={`icon preview-${isEditable ? 'open' : 'close'}`} />
         </button>
