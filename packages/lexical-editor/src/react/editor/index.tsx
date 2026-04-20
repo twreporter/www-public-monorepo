@@ -13,7 +13,7 @@ import RichEditor from './RichEditor'
 import type { LexicalEditorProps } from '../../core'
 
 import '../style/Editor.scss'
-import '../style/icon.css'
+import '../style/icon.scss'
 
 const defaultOnError = (error: Error) => {
   throw error
