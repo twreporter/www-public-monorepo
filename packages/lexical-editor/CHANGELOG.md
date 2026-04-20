@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.8](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.7...@twreporter/lexical-editor@0.2.0-beta.8) (2026-04-20)
+
+
+### Bug Fixes
+
+* **lexical-editor:** add README for image plugin ([7e92eef](https://github.com/twreporter/www-public-monorepo/commit/7e92eef1cb14d91b338312efd1335865649c0c92))
+* **lexical-editor:** address defects ([ce9e44a](https://github.com/twreporter/www-public-monorepo/commit/ce9e44aadfe924b42e808ba1096af9d743b631df))
+* **lexical-editor:** address review comments ([b97f652](https://github.com/twreporter/www-public-monorepo/commit/b97f6525aa058e9a14821b728934da37e50a0294))
+* **lexical-editor:** rename to ImagePlugin ([db8acb3](https://github.com/twreporter/www-public-monorepo/commit/db8acb3763269d3b920f6e05d5834b8b283f513a))
+
+
+
+
+
 # [0.2.0-beta.7](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.6...@twreporter/lexical-editor@0.2.0-beta.7) (2026-04-15)
 
 
