@@ -20,9 +20,14 @@ function Fullscreen(): JSX.Element {
   }
 
   return (
-    <div className="fullscreen" onClick={toggleFullscreen}>
+    <button
+      className="toolbar-item spaced"
+      type="button"
+      onClick={toggleFullscreen}
+      aria-label={isFull ? 'Exit fullscreen' : 'Enter fullscreen'}
+    >
       <i className={`icon ${isFull ? 'exit-fullscreen' : 'fullscreen'}`} />
-    </div>
+    </button>
   )
 }
 

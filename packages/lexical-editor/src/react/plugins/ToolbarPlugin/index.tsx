@@ -561,12 +561,7 @@ export default function ToolbarPlugin({
           </DropDownItem>
         </DropDown>
         <Divider />
-        <button
-          className={`toolbar-item spaced`}
-          type="button"
-        >
-          <Fullscreen />
-        </button>
+        <Fullscreen />
         <button
           onClick={togglePreview}
           className={`toolbar-item spaced`}
