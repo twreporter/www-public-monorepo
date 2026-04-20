@@ -19,7 +19,7 @@
 }
 
 /* image block style */
-.ImageLink__caption {
+.Image__caption {
   line-height: 1.36;
   letter-spacing: 0.5px;
   font-weight: normal;
@@ -67,7 +67,7 @@
 }
 
 /* border-bottom of caption */
-.ImageLink__caption::after {
+.Image__caption::after {
   content: '';
   height: 1px;
   position: absolute;
@@ -77,7 +77,7 @@
   border-style: solid;
 }
 
-.ImageLink__image_block {
+.Image__image_block {
   position: relative;
   width: 100%;
   cursor: pointer;
@@ -94,13 +94,13 @@
   }
 
   &:hover {
-    .ImageLink__edit_image button {
+    .Image__edit_image button {
       background-color: rgba(0, 0, 0, 0.35);
     }
   }
 }
 
-.ImageLink__image_block.small {
+.Image__image_block.right {
   @include desktop-only {
     width: 403px;
   }
@@ -111,7 +111,7 @@
     float: right;
     margin: 0 0 20px 25px;
 
-    .ImageLink__caption {
+    .Image__caption {
       /* overwrite Caption styles */
       float: none;
       margin-bottom:0;
@@ -125,7 +125,7 @@
   }
 }
 
-.ImageLink__image {
+.Image__image {
   display: block;
   height: 100%;
   max-width: 100%;
@@ -133,7 +133,7 @@
   object-position: 50% 50%;
 }
 
-.ImageLink__edit_layout {
+.Image__edit_layout {
   display: flex;
   gap: 4px;
   width: fit-content;
@@ -161,7 +161,7 @@
   }
 }
 
-.ImageLink__edit_image {
+.Image__edit_image {
   width: fit-content;
   position: absolute;
   transform: translateX(-50%) translateY(-50%);
@@ -186,7 +186,7 @@
 }
 
 /* container style */
-.ImageLink__container {
+.Image__container {
   margin: 60px auto;
   /* clear float */
   clear: both;
@@ -215,7 +215,7 @@
       width: 730px;
     }
 
-    .ImageLink__caption {
+    .Image__caption {
       margin-bottom: 0px;
 
       @include desktop-and-above {
@@ -238,7 +238,7 @@
 }
 
 /* edit dialog style */
-.ImageLink__edit_dialog {
+.Image__edit_dialog {
   background: #ffffff;
   border: 1px solid #d9dee7;
   border-radius: 14px;
@@ -253,7 +253,7 @@
   width: 500px;
 }
 
-.ImageLink__edit_dialog .dialog-header {
+.Image__edit_dialog .dialog-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -263,35 +263,35 @@
   background: #f8fafc;
 }
 
-.ImageLink__edit_dialog .title {
+.Image__edit_dialog .title {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
   color: #111827;
 }
 
-.ImageLink__edit_dialog .button-set {
+.Image__edit_dialog .button-set {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.ImageLink__edit_dialog .dialog-content {
+.Image__edit_dialog .dialog-content {
   padding: 20px;
 }
 
-.ImageLink__edit_dialog .edit-item + .edit-item {
+.Image__edit_dialog .edit-item + .edit-item {
   margin-top: 20px;
 }
 
-.ImageLink__edit_dialog .item-title {
+.Image__edit_dialog .item-title {
   margin: 0 0 8px;
   font-size: 14px;
   font-weight: 600;
   color: #374151;
 }
 
-.ImageLink__edit_dialog input[type='text'] {
+.Image__edit_dialog input[type='text'] {
   display: block;
   width: 100%;
   min-height: 44px;
@@ -310,26 +310,26 @@
     background-color 0.15s ease;
 }
 
-.ImageLink__edit_dialog input[type='text']::placeholder {
+.Image__edit_dialog input[type='text']::placeholder {
   color: #9ca3af;
 }
 
-.ImageLink__edit_dialog input[type='text']:hover {
+.Image__edit_dialog input[type='text']:hover {
   border-color: #b8c1cc;
 }
 
-.ImageLink__edit_dialog input[type='text']:focus {
+.Image__edit_dialog input[type='text']:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
-.ImageLink__edit_dialog .layout-option {
+.Image__edit_dialog .layout-option {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
 
-.ImageLink__edit_dialog .button-layout {
+.Image__edit_dialog .button-layout {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -348,26 +348,26 @@
     transform 0.15s ease;
 }
 
-.ImageLink__edit_dialog .button-layout:hover {
+.Image__edit_dialog .button-layout:hover {
   border-color: #94a3b8;
   background: #f8fafc;
 }
 
-.ImageLink__edit_dialog .button-layout:focus-visible {
+.Image__edit_dialog .button-layout:focus-visible {
   outline: none;
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
-.ImageLink__edit_dialog .button-layout.is-active {
+.Image__edit_dialog .button-layout.is-active {
   border-color: #cbd5e1;
   background: #eef2f7;
   color: #111827;
 }
 
-.ImageLink__edit_dialog .button-cancel,
-.ImageLink__edit_dialog .button-confirm,
-.ImageLink__edit_dialog .button-delete {
+.Image__edit_dialog .button-cancel,
+.Image__edit_dialog .button-confirm,
+.Image__edit_dialog .button-delete {
   appearance: none;
   border: 1px solid transparent;
   border-radius: 10px;
@@ -383,42 +383,42 @@
     box-shadow 0.15s ease;
 }
 
-.ImageLink__edit_dialog .button-cancel {
+.Image__edit_dialog .button-cancel {
   background: #ffffff;
   border-color: #d1d5db;
   color: #4b5563;
 }
 
-.ImageLink__edit_dialog .button-cancel:hover {
+.Image__edit_dialog .button-cancel:hover {
   background: #f9fafb;
 }
 
-.ImageLink__edit_dialog .button-confirm {
+.Image__edit_dialog .button-confirm {
   background: #f3f4f6;
   border-color: #e5e7eb;
   color: #374151;
 }
 
-.ImageLink__edit_dialog .button-confirm:hover {
+.Image__edit_dialog .button-confirm:hover {
   background: #e5e7eb;
 }
 
-.ImageLink__edit_dialog .button-delete {
+.Image__edit_dialog .button-delete {
   background: #ffffff;
   border-color: #fecaca;
   color: #dc2626;
 }
 
-.ImageLink__edit_dialog .button-delete:hover {
+.Image__edit_dialog .button-delete:hover {
   background: #fef2f2;
 }
 
-.ImageLink__edit_dialog button:disabled {
+.Image__edit_dialog button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.ImageLink__edit_dialog i[class^='image-layout-'] {
+.Image__edit_dialog i[class^='image-layout-'] {
   display: inline-block;
   width: 24px;
   height: 20px;
@@ -427,7 +427,7 @@
   background-repeat: no-repeat;
 }
 
-.ImageLink__edit_dialog .button-layout.is-active {
+.Image__edit_dialog .button-layout.is-active {
   background: #e5e7eb;
   border-color: #d1d5db;
   color: #111827;

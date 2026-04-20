@@ -9,24 +9,24 @@ import {
 } from 'lexical'
 // global var
 const imageLinkNodeType = 'image-link'
-const imageLinkNodeClassname = 'ImageLink__container'
+const imageNodeClassname = 'Image__container'
 
-type SerializedImageLinkNode = SerializedElementNode
+type SerializedImageNode = SerializedElementNode
 
 export function $convertDivElement(): DOMConversionOutput | null {
-  const node = $createImageLinkNode()
+  const node = $createImageNode()
   return {
     node,
   }
 }
 
-export class ImageLinkNode extends ElementNode {
+export class ImageNode extends ElementNode {
   static override getType() {
     return imageLinkNodeType
   }
 
-  static override clone(node: ImageLinkNode): ImageLinkNode {
-    return new ImageLinkNode(node.__key)
+  static override clone(node: ImageNode): ImageNode {
+    return new ImageNode(node.__key)
   }
 
   override isInline(): true {
@@ -36,7 +36,7 @@ export class ImageLinkNode extends ElementNode {
   override createDOM(config: EditorConfig): HTMLElement {
     const imageLinkClass = config.theme.imageLink ?? 'TwreporterTheme__imageLink'
     const divDom = document.createElement('div')
-    divDom.classList.add(imageLinkClass, imageLinkNodeClassname)
+    divDom.classList.add(imageLinkClass, imageNodeClassname)
 
     return divDom
   }
@@ -58,23 +58,23 @@ export class ImageLinkNode extends ElementNode {
 
   override exportDOM(): DOMExportOutput {
     const element = document.createElement('div')
-    element.classList.add(imageLinkNodeClassname)
+    element.classList.add(imageNodeClassname)
     return { element }
   }
 
-  static override importJSON(serializedNode: SerializedImageLinkNode): ImageLinkNode {
-    return $createImageLinkNode().updateFromJSON(
+  static override importJSON(serializedNode: SerializedImageNode): ImageNode {
+    return $createImageNode().updateFromJSON(
       serializedNode
     )
   }
 }
 
-export function $createImageLinkNode(): ImageLinkNode {
-  return new ImageLinkNode()
+export function $createImageNode(): ImageNode {
+  return new ImageNode()
 }
 
-export function $isImageLinkNode(
+export function $isImageNode(
   node: LexicalNode | null | undefined
-): node is ImageLinkNode {
-  return node instanceof ImageLinkNode
+): node is ImageNode {
+  return node instanceof ImageNode
 }

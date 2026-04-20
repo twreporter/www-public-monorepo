@@ -8,6 +8,7 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 import {
   type ReactNode,
   type FC,
+  useEffect,
   useState,
   type MouseEvent,
   type ChangeEvent,
@@ -23,7 +24,13 @@ type AnnotationTextProps = {
 }
 const AnnotationText: FC<AnnotationTextProps> = ({ nodeKey, text }) => {
   const [editor] = useLexicalComposerContext()
-  const editable = editor.isEditable()
+  const [editable, setEditable] = useState(() => editor.isEditable())
+
+  useEffect(() => {
+    return editor.registerEditableListener((currentEditable) => {
+      setEditable(currentEditable)
+    })
+  }, [editor])
 
   const [isOpenEdit, setIsOpenEditText] = useState(false)
   const [value, setValue] = useState(text)

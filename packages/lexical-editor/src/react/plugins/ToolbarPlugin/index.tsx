@@ -35,137 +35,32 @@ import useModal from '../../hooks/useModal'
 // util
 import {
   clearFormatting,
-  formatHeading,
-  formatParagraph,
-  formatBulletList,
-  formatNumberedList,
 } from './utils'
 import { getSelectedNode } from '../../utils/getSelectedNode'
 import { sanitizeUrl } from '../../utils/url'
 import { $isAnnotationNode } from '../AnnotationPlugin/nodes/AnnotationNode'
 // component
 import DropDown, { DropDownItem } from '../../components/DropDown'
-import ImageLinkEditDialog from '../ImageLinkPlugin/components/ImageLinkEditDialog'
+import ImageEditDialog from '../ImagePlugin/components/ImageEditDialog'
 import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts'
+import Fullscreen from './components/Fullscreen'
+import BlockFormatDropDown, { dropDownActiveClass } from './components/BlockFormatDropdown'
 // custom command
 import {
   ANNOTATION_ADD_COMMAND,
   ANNOTATION_REMOVE_COMMAND,
 } from '../AnnotationPlugin/command'
 import {
-  IMAGE_LINK_ADD_COMMAND
-} from '../ImageLinkPlugin/command'
+  IMAGE_ADD_COMMAND,
+} from '../ImagePlugin/command'
 // types
 import type { EditorTheme } from '../../../core'
 // css
 import './Toolbar.scss'
 
-function dropDownActiveClass(active: boolean) {
-  if (active) {
-    return 'active dropdown-item-active'
-  } else {
-    return ''
-  }
-}
-
-function BlockFormatDropDown({
-  editor,
-  blockType,
-  disabled = false,
-}: {
-  blockType: keyof typeof blockTypeToBlockName
-  editor: LexicalEditor
-  disabled?: boolean
-}): JSX.Element {
-  return (
-    <DropDown
-      disabled={disabled}
-      buttonClassName="toolbar-item block-controls"
-      buttonIconClassName={`icon block-type ${blockType}`}
-      buttonLabel={blockTypeToBlockName[blockType]}
-      buttonAriaLabel="Formatting options for text style"
-    >
-      <DropDownItem
-        className={`item wide ${dropDownActiveClass(blockType === 'paragraph')}`}
-        onClick={() => formatParagraph(editor)}
-      >
-        <div className="icon-text-container">
-          <i className="icon paragraph" />
-          <span className="text">Normal</span>
-        </div>
-        <span className="shortcut">{SHORTCUTS.NORMAL}</span>
-      </DropDownItem>
-      <DropDownItem
-        className={`item wide ${dropDownActiveClass(blockType === 'h2')}`}
-        onClick={() => formatHeading(editor, blockType, 'h2')}
-      >
-        <div className="icon-text-container">
-          <i className="icon h2" />
-          <span className="text">Heading 2</span>
-        </div>
-        <span className="shortcut">{SHORTCUTS.HEADING2}</span>
-      </DropDownItem>
-      <DropDownItem
-        className={`item wide ${dropDownActiveClass(blockType === 'h3')}`}
-        onClick={() => formatHeading(editor, blockType, 'h3')}
-      >
-        <div className="icon-text-container">
-          <i className="icon h3" />
-          <span className="text">Heading 3</span>
-        </div>
-        <span className="shortcut">{SHORTCUTS.HEADING3}</span>
-      </DropDownItem>
-      <DropDownItem
-        className={`item wide ${dropDownActiveClass(blockType === 'bullet')}`}
-        onClick={() => formatBulletList(editor, blockType)}
-      >
-        <div className="icon-text-container">
-          <i className="icon bullet-list" />
-          <span className="text">Bullet List</span>
-        </div>
-        <span className="shortcut">{SHORTCUTS.BULLET_LIST}</span>
-      </DropDownItem>
-      <DropDownItem
-        className={`item wide ${dropDownActiveClass(blockType === 'number')}`}
-        onClick={() => formatNumberedList(editor, blockType)}
-      >
-        <div className="icon-text-container">
-          <i className="icon numbered-list" />
-          <span className="text">Numbered List</span>
-        </div>
-        <span className="shortcut">{SHORTCUTS.NUMBERED_LIST}</span>
-      </DropDownItem>
-    </DropDown>
-  )
-}
 
 function Divider(): JSX.Element {
   return <div className="divider" />
-}
-
-const editorId = 'lexical-editor'
-const fullscreenClassname = 'fullscreen'
-function Fullscreen(): JSX.Element {
-  const [isFull, setIsFull] = useState(false)
-  const toggleFullscreen = () => {
-    if (!document) return
-    const editorElement = document.getElementById(editorId)
-    if (!editorElement) return
-
-    if (isFull) {
-      editorElement.classList.remove(fullscreenClassname)
-    } else {
-      editorElement.classList.add(fullscreenClassname)
-    }
-
-    setIsFull(!isFull)
-  }
-
-  return (
-    <div className="fullscreen" onClick={toggleFullscreen}>
-      <i className={`icon ${isFull ? 'exit-fullscreen' : 'fullscreen'}`} />
-    </div>
-  )
 }
 
 function $findTopLevelElement(node: LexicalNode) {
@@ -201,7 +96,7 @@ export default function ToolbarPlugin({
   const { toolbarState, updateToolbarState } = useToolbarState()
 
   // custom plugin state
-  const [isOpenImageLinkDialog, setIsOpenImageLinkDialog] = useState(false)
+  const [isOpenImageDialog, setIsOpenImageDialog] = useState(false)
 
   const $handleHeadingNode = useCallback(
     (selectedElement: LexicalNode) => {
@@ -365,6 +260,10 @@ export default function ToolbarPlugin({
     },
     [activeEditor, $updateToolbarFromSelection]
   )
+
+  const togglePreview = useCallback(() => {
+    activeEditor.setEditable(!isEditable)
+  }, [activeEditor, isEditable])
 
   useEffect(() => {
     return editor.registerCommand(
@@ -648,7 +547,7 @@ export default function ToolbarPlugin({
         >
           <DropDownItem
             onClick={() => {
-              setIsOpenImageLinkDialog(true)
+              setIsOpenImageDialog(true)
             }}
             className={`item wide`}
             title="Image Link"
@@ -662,22 +561,24 @@ export default function ToolbarPlugin({
           </DropDownItem>
         </DropDown>
         <Divider />
+        <Fullscreen />
         <button
-          disabled={!isEditable}
-          className={`toolbar-item spaced ${toolbarState.isUnderline ? 'active' : ''}`}
+          onClick={togglePreview}
+          className={`toolbar-item spaced`}
           type="button"
+          aria-label={isEditable ? 'Preview rich editor' : 'Exit preview'}
         >
-          <Fullscreen />
+          <i className={`icon preview-${isEditable ? 'open' : 'close'}`} />
         </button>
         {modal}
       </div>
-      {isOpenImageLinkDialog &&
-        <ImageLinkEditDialog
+      {isOpenImageDialog &&
+        <ImageEditDialog
           imageLayout="default"
           imageUrl=""
           imageCaption=""
-          onClose={() => setIsOpenImageLinkDialog(false)}
-          onConfirm={(url, layout, caption) => activeEditor.dispatchCommand(IMAGE_LINK_ADD_COMMAND, { url, layout, caption })}
+          onClose={() => setIsOpenImageDialog(false)}
+          onConfirm={(url, layout, caption) => activeEditor.dispatchCommand(IMAGE_ADD_COMMAND, { url, layout, caption })}
         />}
     </>
   )

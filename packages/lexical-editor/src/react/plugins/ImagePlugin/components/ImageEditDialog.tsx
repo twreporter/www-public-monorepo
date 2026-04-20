@@ -1,4 +1,4 @@
-import { type FC, useState, type MouseEvent } from 'react'
+import { type FC, useState, type KeyboardEvent, type MouseEvent } from 'react'
 import type { ImageLayout } from '../types'
 
 type EditDialogProps = {
@@ -54,8 +54,14 @@ const EditDialog: FC<EditDialogProps> = ({
     }
   }
 
+  const handleInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'a') {
+      e.stopPropagation()
+    }
+  }
+
   return (
-    <div className="ImageLink__edit_dialog" role="dialog" aria-modal="true">
+    <div className="Image__edit_dialog" role="dialog" aria-modal="true">
       <div className="dialog-header">
         <p className="title">編輯圖片</p>
         <div className="button-set">
@@ -67,11 +73,21 @@ const EditDialog: FC<EditDialogProps> = ({
       <div className="dialog-content">
         <div className="edit-item">
           <p className="item-title">圖片 url</p>
-          <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
+          <input
+            type="text"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            onKeyDown={handleInputKeyDown}
+          />
         </div>
         <div className="edit-item">
           <p className="item-title">圖說</p>
-          <input type="text" value={caption} onChange={(e) => setCaption(e.target.value)} />
+          <input
+            type="text"
+            value={caption}
+            onChange={(e) => setCaption(e.target.value)}
+            onKeyDown={handleInputKeyDown}
+          />
         </div>
         <div className="edit-item">
           <p className="item-title">圖片版式</p>

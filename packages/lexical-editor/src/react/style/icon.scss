@@ -1,0 +1,194 @@
+#lexical-editor {
+  i {
+    &.chevron-down {
+      background-image: url(../assets/icons/chevron-down.svg);
+    }
+
+    &.palette {
+      background-image: url(../assets/icons/palette.svg);
+    }
+
+    &.bucket {
+      background-image: url(../assets/icons/paint-bucket.svg);
+    }
+
+    &.bold {
+      background-image: url(../assets/icons/type-bold.svg);
+    }
+
+    &.italic {
+      background-image: url(../assets/icons/type-italic.svg);
+    }
+
+
+    &.underline {
+      background-image: url(../assets/icons/type-underline.svg);
+    }
+
+    &.link {
+      background-image: url(../assets/icons/link.svg);
+    }
+
+    &.success {
+      background-image: url(../assets/icons/success.svg);
+    }
+
+    &.prettier {
+      background-image: url(../assets/icons/prettier.svg);
+    }
+
+    &.prettier-error {
+      background-image: url(../assets/icons/prettier-error.svg);
+    }
+
+    &.annotation {
+      background-image: url(../assets/icons/annotation.svg);
+    }
+
+    &.annotation-edit {
+      mask: url(../assets/icons/annotation-edit.svg);
+    }
+
+    &.annotation-confirm {
+      mask: url(../assets/icons/annotation-confirm.svg);
+    }
+
+    &.annotation-cancel {
+      mask: url(../assets/icons/annotation-cancel.svg);
+    }
+
+    &.annotation-delete {
+      mask: url(../assets/icons/annotation-trash.svg);
+    }
+
+    &.image-edit {
+      mask: url(../assets/icons/image-edit.svg);
+    }
+
+    &.image-layout-default {
+      background-image: url(../assets/icons/image-layout-default.svg);
+    }
+
+    &.image-layout-small {
+      background-image: url(../assets/icons/image-layout-small.svg);
+    }
+
+    &.image-layout-right {
+      background-image: url(../assets/icons/image-layout-right.svg);
+    }
+  }
+
+  .icon {
+    &.plus {
+      background-image: url(../assets/icons/plus.svg);
+    }
+
+    &.caret-right {
+      background-image: url(../assets/icons/caret-right-fill.svg);
+    }
+
+    &.dropdown-more {
+      background-image: url(../assets/icons/dropdown-more.svg);
+    }
+
+    &.font-color {
+      background-image: url(../assets/icons/font-color.svg);
+    }
+
+    &.bg-color {
+      background-image: url(../assets/icons/bg-color.svg);
+    }
+
+    &.fullscreen {
+      background-image: url(../assets/icons/fullscreen.svg);
+    }
+
+    &.exit-fullscreen {
+      background-image: url(../assets/icons/exit-fullscreen.svg);
+    }
+
+    &.link-edit {
+      background-image: url(../assets/icons/pencil-fill.svg);
+    }
+
+    &.link-trash {
+      background-image: url(../assets/icons/trash.svg);
+    }
+
+    &.link-cancel {
+      background-image: url(../assets/icons/close.svg);
+    }
+
+    &.link-confirm {
+      background-image: url(../assets/icons/success-alt.svg);
+    }
+
+    &.preview-open {
+      background-image: url(../assets/icons/preview-open.svg);
+    }
+
+    &.preview-close {
+      background-image: url(../assets/icons/preview-close.svg);
+    }
+  }
+}
+
+.icon {
+  &.paragraph {
+    background-image: url(../assets/icons/text-paragraph.svg);
+  }
+
+  &.numbered-list,
+  &.number {
+    background-image: url(../assets/icons/list-ol.svg);
+  }
+
+  &.bullet-list,
+  &.bullet {
+    background-image: url(../assets/icons/list-ul.svg);
+  }
+
+  &.h1 {
+    background-image: url(../assets/icons/type-h1.svg);
+  }
+
+  &.h2 {
+    background-image: url(../assets/icons/type-h2.svg);
+  }
+
+  &.h3 {
+    background-image: url(../assets/icons/type-h3.svg);
+  }
+
+  &.uppercase {
+    background-image: url(../assets/icons/type-uppercase.svg);
+  }
+
+  &.lowercase {
+    background-image: url(../assets/icons/type-lowercase.svg);
+  }
+
+  &.capitalize {
+    background-image: url(../assets/icons/type-capitalize.svg);
+  }
+
+  &.strikethrough {
+    background-image: url(../assets/icons/type-strikethrough.svg);
+  }
+
+  &.subscript {
+    background-image: url(../assets/icons/type-subscript.svg);
+  }
+
+  &.superscript {
+    background-image: url(../assets/icons/type-superscript.svg);
+  }
+
+  &.clear {
+    background-image: url(../assets/icons/trash.svg);
+  }
+
+  &.image-link {
+    background-image: url(../assets/icons/image-link.svg);
+  }
+}
