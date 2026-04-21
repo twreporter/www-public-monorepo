@@ -58,7 +58,6 @@ import type { EditorTheme } from '../../../core'
 // css
 import './Toolbar.scss'
 
-
 function Divider(): JSX.Element {
   return <div className="divider" />
 }

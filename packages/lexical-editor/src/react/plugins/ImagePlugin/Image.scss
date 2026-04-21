@@ -30,7 +30,7 @@
     position: relative;
     margin-left: auto;
     padding: 15px 15px 15px 0;
-    &:after {
+    &::after {
       width: calc(100% - 15px);
     }
   }
@@ -44,11 +44,8 @@
   }
 
   @include desktop-and-above {
-    /* clear float */
-    clear: both;
-
     position: relative;
-    float: right;
+    margin-left: auto;
 
     &:after {
       width: 100%;
@@ -75,6 +72,7 @@
   left: 0;
   border-width: 0 0 1px 0;
   border-style: solid;
+  border-color: #c09662;
 }
 
 .Image__image_block {
@@ -110,6 +108,7 @@
   @include desktop-and-above {
     float: right;
     margin: 0 0 20px 25px;
+    z-index: 2;
 
     .Image__caption {
       /* overwrite Caption styles */
@@ -118,8 +117,8 @@
       position: absolute;
 
       /* give new styles */
-      right: 0;
-      bottom: 0;
+      inset-inline-end: 0;
+      inset-block-end: 0;
       transform: translateY(100%);
     }
   }
@@ -188,16 +187,24 @@
 /* container style */
 .Image__container {
   margin: 60px auto;
-  /* clear float */
-  clear: both;
 
-  &.default, &.right {
+  &.default {
     width: 100%;
     @include desktop-only {
       width: 752px;
     }
     @include hd-only {
       width: 1033px;
+    }
+  }
+
+  &.right {
+    width: 100%;
+    @include desktop-only {
+      width: 850px;
+    }
+    @include hd-only {
+      width: 1160px;
     }
   }
 
@@ -220,7 +227,7 @@
 
       @include desktop-and-above {
         position: absolute;
-        bottom: 0;
+        inset-block-end: 0;
         transform: translateX(100%);
         &::after {
           width: 100%;
@@ -228,10 +235,10 @@
       }
 
       @include desktop-only {
-        right: -21px;
+        inset-inline-end: -21px;
       }
       @include hd-only {
-        right: -38px;
+        inset-inline-end: -38px;
       }
     }
   }
@@ -242,15 +249,17 @@
   background: #ffffff;
   border: 1px solid #d9dee7;
   border-radius: 14px;
-  overflow: hidden;
   color: #1f2937;
   font-size: 16px;
   line-height: 1.5;
   position: fixed;
   z-index: 9999;
-  transform: translateY(-50%);
   top: 50%;
-  width: 500px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(500px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow: auto;
 }
 
 .Image__edit_dialog .dialog-header {
