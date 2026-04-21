@@ -125,10 +125,12 @@
 
     &.preview-open {
       background-image: url(../assets/icons/preview-open.svg);
+      margin-right: 0;
     }
 
     &.preview-close {
       background-image: url(../assets/icons/preview-close.svg);
+      margin-right: 0;
     }
   }
 }

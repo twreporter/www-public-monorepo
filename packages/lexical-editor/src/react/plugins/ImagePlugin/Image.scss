@@ -30,7 +30,7 @@
     position: relative;
     margin-left: auto;
     padding: 15px 15px 15px 0;
-    &:after {
+    &::after {
       width: calc(100% - 15px);
     }
   }
@@ -75,6 +75,7 @@
   left: 0;
   border-width: 0 0 1px 0;
   border-style: solid;
+  border-color: rgb(192, 150, 98);
 }
 
 .Image__image_block {
@@ -110,6 +111,7 @@
   @include desktop-and-above {
     float: right;
     margin: 0 0 20px 25px;
+    z-index: 2;
 
     .Image__caption {
       /* overwrite Caption styles */
@@ -248,9 +250,12 @@
   line-height: 1.5;
   position: fixed;
   z-index: 9999;
-  transform: translateY(-50%);
   top: 50%;
-  width: 500px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(500px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow: auto;
 }
 
 .Image__edit_dialog .dialog-header {
