@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.9](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.8...@twreporter/lexical-editor@0.2.0-beta.9) (2026-04-21)
+
+
+### Bug Fixes
+
+* **lexical-editor:** address image style ([bbe6342](https://github.com/twreporter/www-public-monorepo/commit/bbe6342187616ea147f244c585889826ec38993c))
+* **lexical-editor:** address review comments ([abb5beb](https://github.com/twreporter/www-public-monorepo/commit/abb5beb4c798dc0e803abc012be71896dc294686))
+* **lexical-editor:** address style defects ([8bde064](https://github.com/twreporter/www-public-monorepo/commit/8bde064e1cac41e3e2322390fbc96460fe004999))
+
+
+
+
+
 # [0.2.0-beta.8](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.7...@twreporter/lexical-editor@0.2.0-beta.8) (2026-04-20)
 
 
