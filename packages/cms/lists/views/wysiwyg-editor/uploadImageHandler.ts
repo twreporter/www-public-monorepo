@@ -34,8 +34,6 @@ export async function uploadImageHandler(
     // Create FormData for GraphQL multipart file upload
     const formData = new FormData()
     
-    // GraphQL mutation to create Photo with image
-    // Keystone automatically generates createPhoto mutation from the Photo list
     const query = `
       mutation CreatePhoto($data: PhotoCreateInput!) {
         createPhoto(data: $data) {

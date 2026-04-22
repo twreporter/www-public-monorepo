@@ -24,8 +24,10 @@ const EditDialog: FC<EditDialogProps> = ({
   const [url, setUrl] = useState(imageUrl)
   const [layout, setLayout] = useState(imageLayout)
   const [caption, setCaption] = useState(imageCaption)
-  const [title, setTitle] = useState(imageTitle)
   const isUploadedImage = imageSource === 'drag-drop'
+  const relatedPhotosHref = imageTitle
+    ? `/photos?!name_is_i=${encodeURIComponent(`"${imageTitle}"`)}`
+    : ''
 
   const cancel = () => {
     onClose()
@@ -34,7 +36,7 @@ const EditDialog: FC<EditDialogProps> = ({
   const confirm = () => {
     // For uploaded images, URL is not editable
     if (isUploadedImage) {
-      onConfirm(imageUrl, layout, caption, title)
+      onConfirm(imageUrl, layout, caption, imageTitle)
       onClose()
       return
     }
@@ -53,7 +55,7 @@ const EditDialog: FC<EditDialogProps> = ({
       return
     }
 
-    onConfirm(trimmedUrl, layout, caption, title || undefined)
+    onConfirm(trimmedUrl, layout, caption, imageTitle || undefined)
     onClose()
     return
   }
@@ -98,13 +100,10 @@ const EditDialog: FC<EditDialogProps> = ({
         {isUploadedImage && imageTitle && (
           <div className="edit-item">
             <p className="item-title">圖片標題</p>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              onKeyDown={handleInputKeyDown}
-              readOnly={isUploadedImage}
-            />
+            <p className="item-description">{imageTitle}</p>
+            <a href={relatedPhotosHref} target="_blank" rel="noopener noreferrer" className="item-link">
+              View related Photos
+            </a>
           </div>
         )}
         <div className="edit-item">
