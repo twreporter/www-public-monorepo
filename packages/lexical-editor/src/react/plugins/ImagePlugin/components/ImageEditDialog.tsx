@@ -1,11 +1,13 @@
 import { type FC, useState, type KeyboardEvent, type MouseEvent } from 'react'
-import type { ImageLayout } from '../types'
+import type { ImageLayout, ImageSource } from '../types'
 
 type EditDialogProps = {
   imageCaption?: string
   imageUrl: string
   imageLayout: ImageLayout
-  onConfirm: (url: string, layout: ImageLayout, caption: string) => void
+  imageTitle?: string
+  imageSource?: ImageSource
+  onConfirm: (url: string, layout: ImageLayout, caption: string, title?: string) => void
   onClose: () => void
   onDelete?: () => void
 }
@@ -13,6 +15,8 @@ const EditDialog: FC<EditDialogProps> = ({
   imageUrl,
   imageLayout,
   imageCaption = '',
+  imageTitle = '',
+  imageSource = 'link',
   onConfirm,
   onClose,
   onDelete
@@ -20,12 +24,21 @@ const EditDialog: FC<EditDialogProps> = ({
   const [url, setUrl] = useState(imageUrl)
   const [layout, setLayout] = useState(imageLayout)
   const [caption, setCaption] = useState(imageCaption)
+  const [title, setTitle] = useState(imageTitle)
+  const isUploadedImage = imageSource === 'drag-drop'
 
   const cancel = () => {
     onClose()
   }
 
   const confirm = () => {
+    // For uploaded images, URL is not editable
+    if (isUploadedImage) {
+      onConfirm(imageUrl, layout, caption, title)
+      onClose()
+      return
+    }
+
     const trimmedUrl = url.trim()
 
     if (!trimmedUrl) {
@@ -40,7 +53,7 @@ const EditDialog: FC<EditDialogProps> = ({
       return
     }
 
-    onConfirm(trimmedUrl, layout, caption)
+    onConfirm(trimmedUrl, layout, caption, title || undefined)
     onClose()
     return
   }
@@ -71,15 +84,29 @@ const EditDialog: FC<EditDialogProps> = ({
         </div>
       </div>
       <div className="dialog-content">
-        <div className="edit-item">
-          <p className="item-title">圖片 url</p>
-          <input
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            onKeyDown={handleInputKeyDown}
-          />
-        </div>
+        {!isUploadedImage && (
+          <div className="edit-item">
+            <p className="item-title">圖片 url</p>
+            <input
+              type="text"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              onKeyDown={handleInputKeyDown}
+            />
+          </div>
+        )}
+        {isUploadedImage && imageTitle && (
+          <div className="edit-item">
+            <p className="item-title">圖片標題</p>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              onKeyDown={handleInputKeyDown}
+              readOnly={isUploadedImage}
+            />
+          </div>
+        )}
         <div className="edit-item">
           <p className="item-title">圖說</p>
           <input

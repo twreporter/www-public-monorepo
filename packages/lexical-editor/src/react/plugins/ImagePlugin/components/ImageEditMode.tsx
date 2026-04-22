@@ -2,14 +2,17 @@ import { type FC, useState, type MouseEvent } from 'react'
 // components
 import ImageEditDialog from './ImageEditDialog'
 // types
-import type { ImageLayout } from '../types'
+import type { ImageLayout, ImageSource } from '../types'
 
 
 type ImageEditModeProps = {
   imageUrl: string
   layout: ImageLayout
   caption: string
-  onConfirm: (url: string, layout: ImageLayout, caption: string) => void
+  imageTitle?: string
+  imageSource?: ImageSource
+  isLoading?: boolean
+  onConfirm: (url: string, layout: ImageLayout, caption: string, title?: string) => void
   onDelete: () => void
   onUpdateLayout: (layout: ImageLayout) => void
 }
@@ -17,6 +20,9 @@ const ImageEditMode: FC<ImageEditModeProps> = ({
   imageUrl,
   layout,
   caption,
+  imageTitle = '',
+  imageSource = 'link',
+  isLoading = false,
   onConfirm,
   onDelete,
   onUpdateLayout,
@@ -35,9 +41,9 @@ const ImageEditMode: FC<ImageEditModeProps> = ({
     }
   }
 
-  const confirmEdit = (url: string, layout: ImageLayout, caption: string) => {
+  const confirmEdit = (url: string, layout: ImageLayout, caption: string, title?: string) => {
     if (typeof onConfirm === 'function') {
-      onConfirm(url, layout, caption)
+      onConfirm(url, layout, caption, title)
     }
 
     closeEditDialog()
@@ -46,14 +52,20 @@ const ImageEditMode: FC<ImageEditModeProps> = ({
   return (
     <div className={`Image__container ${layout}`}>
       <div className={`Image__image_block ${layout}`} onClick={openEditDialog}>
-        <figure itemScope itemType="http://schema.org/ImageObject">
-          <img src={imageUrl} alt={caption} aria-label={caption} className="Image__image" />
-          {caption &&
-            <figcaption className="Image__caption">
-              {caption}
-            </figcaption>
-          }
-        </figure>
+        {isLoading ? (
+          <div className="Image__loading_skeleton">
+            <div className="skeleton-placeholder"></div>
+          </div>
+        ) : (
+          <figure itemScope itemType="http://schema.org/ImageObject">
+            <img src={imageUrl} alt={caption} aria-label={caption} className="Image__image" />
+            {caption &&
+              <figcaption className="Image__caption">
+                {caption}
+              </figcaption>
+            }
+          </figure>
+        )}
         <div className="Image__edit_layout">
           <button type="button" className={`layout-option ${layout === 'default' ? 'is-active' : ''}`} onClick={(e) => updateLayout(e, 'default')}>
             <i className="image-layout-default" />
@@ -77,6 +89,8 @@ const ImageEditMode: FC<ImageEditModeProps> = ({
           imageUrl={imageUrl}
           imageLayout={layout}
           imageCaption={caption}
+          imageTitle={imageTitle}
+          imageSource={imageSource}
           onConfirm={confirmEdit}
           onClose={closeEditDialog}
           onDelete={onDelete}

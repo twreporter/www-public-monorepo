@@ -9,6 +9,8 @@ export type {
   ToolbarButtonProps,
   LexicalEditorProps,
   LexicalEditorValue,
+  EditorConfig,
+  UploadImageConfig,
 } from './core'
 
 export { createEditorTheme } from './core'

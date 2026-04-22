@@ -12,10 +12,39 @@ export type EditorPluginFlags = {
   richText?: boolean
 }
 
+export type UploadImageConfig = {
+  /**
+   * Async handler to upload a file and return the image URL and optional title
+   */
+  handler: (file: File) => Promise<{ url: string; title?: string }>
+  
+  /**
+   * Optional validation function to check if a file is allowed
+   * Return { valid: true } if file is valid, or { valid: false, error: string } if invalid
+   */
+  validate?: (file: File) => { valid: boolean; error?: string }
+  
+  /**
+   * Maximum file size in bytes (default: 5MB)
+   */
+  maxFileSize?: number
+  
+  /**
+   * Allowed MIME types (default: common image types)
+   */
+  allowedMimeTypes?: string[]
+  
+  /**
+   * Optional error callback for handling upload errors
+   */
+  onError?: (error: Error) => void
+}
+
 export type EditorConfig = {
   theme: EditorTheme
   plugins?: EditorPluginFlags
   ui?: EditorUiConfig
+  uploadImage?: UploadImageConfig
   readOnly?: boolean
   placeholder?: string
   namespace?: string
