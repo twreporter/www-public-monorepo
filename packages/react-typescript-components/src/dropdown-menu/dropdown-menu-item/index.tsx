@@ -14,7 +14,7 @@ const DropdownMenuItem: FC<{
   return (
     <div
       className={clsx(
-        'py-[8px] pl-[48px] pr-[32px] cursor-pointer',
+        'py-[8px] pl-[48px] pr-[32px] cursor-pointer text-left',
         color,
         hoverBgColor,
         activeBgColor
