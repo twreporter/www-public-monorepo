@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.26](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.25...@twreporter/react-typescript-components@0.1.0-beta.26) (2026-04-24)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** dropdown menu text align ([5f372c5](https://github.com/twreporter/www-public-monorepo/commit/5f372c5273a5e43ca135c856226277d51f5c9789))
+
+
+
+
+
 # [0.1.0-beta.25](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.24...@twreporter/react-typescript-components@0.1.0-beta.25) (2026-03-31)
 
 
