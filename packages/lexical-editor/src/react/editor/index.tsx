@@ -2,6 +2,7 @@ import React, { useMemo, useRef, type JSX } from 'react'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import type { EditorState } from 'lexical'
 // context
+import { ImageConfigContext } from '../context/ImageConfigContext'
 import { ToolbarContext } from '../context/ToolbarContext'
 // plugin
 import { OnChangePlugin } from '../plugins/OnChangePlugin'
@@ -51,12 +52,14 @@ export const LexicalEditor = ({
   return (
     <div id="lexical-editor">
       <LexicalComposer initialConfig={initialConfig}>
-        <ToolbarContext>
-          <RichEditor
-            config={config}
-            placeholder={placeholder}
-          />
-        </ToolbarContext>
+        <ImageConfigContext value={config.image}>
+          <ToolbarContext>
+            <RichEditor
+              config={config}
+              placeholder={placeholder}
+            />
+          </ToolbarContext>
+        </ImageConfigContext>
         <OnChangePlugin
           onChange={onEditorStateChange}
         />

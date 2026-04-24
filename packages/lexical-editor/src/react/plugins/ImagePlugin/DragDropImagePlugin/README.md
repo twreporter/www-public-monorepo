@@ -11,18 +11,16 @@ A Lexical plugin that enables drag & drop functionality for uploading images dir
    ├─ Invalid? → Show error message and stop
    └─ Valid? → Proceed to upload
    ↓
-3. Show loading skeleton while uploading to CMS
+3. CMS returns: { url: "image URL", title?: "image name" }
    ↓
-4. CMS returns: { url: "image URL", title?: "image name" }
-   ↓
-5. Insert image node with:
+4. Insert image node with:
    - URL from server
    - Title from server (if provided)
    - Default layout: 'default'
    - Empty caption: ''
    - Source: 'drag-drop'
    ↓
-6. In edit dialog:
+5. In edit dialog:
    - Title field is read-only (shows server-returned title)
    - URL field is hidden (can't edit uploaded image reference)
    - Caption and layout remain editable

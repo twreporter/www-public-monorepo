@@ -15,6 +15,7 @@ export type {
   EditorConfig,
   EditorPluginFlags,
   EditorUiConfig,
+  ImageConfig,
   UploadImageConfig,
 } from './types/editor'
 

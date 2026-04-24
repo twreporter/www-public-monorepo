@@ -92,7 +92,18 @@ function handleDrop(
   }
 
   event.preventDefault()
-  void uploadDroppedImages(imageFiles, uploadImage, editor, abortControllerRef)
+  abortControllerRef.current?.abort()
+
+  const abortController = new AbortController()
+  abortControllerRef.current = abortController
+
+  void uploadDroppedImages(
+    imageFiles,
+    uploadImage,
+    editor,
+    abortControllerRef,
+    abortController
+  )
 
   return true
 }
@@ -101,45 +112,61 @@ async function uploadDroppedImages(
   imageFiles: File[],
   uploadImage: UploadImageConfig,
   editor: LexicalEditor,
-  abortControllerRef: MutableRefObject<AbortController | null>
+  abortControllerRef: MutableRefObject<AbortController | null>,
+  abortController: AbortController
 ): Promise<void> {
-  for (const file of imageFiles) {
-    try {
-      if (uploadImage.validate) {
-        const validation = uploadImage.validate(file)
-        if (!validation.valid) {
-          const errorMsg = validation.error ?? `Invalid file: ${file.name}`
+  const { signal } = abortController
+
+  try {
+    for (const file of imageFiles) {
+      if (signal.aborted) {
+        break
+      }
+
+      try {
+        if (uploadImage.validate) {
+          const validation = uploadImage.validate(file)
+          if (!validation.valid) {
+            const errorMsg = validation.error ?? `Invalid file: ${file.name}`
+            handleUploadError(uploadImage, new Error(errorMsg))
+            continue
+          }
+        }
+
+        const maxFileSize = uploadImage.maxFileSize ?? DEFAULT_MAX_FILE_SIZE
+        if (file.size > maxFileSize) {
+          const errorMsg =
+            `File size exceeds maximum of ${Math.round(maxFileSize / 1024 / 1024)}MB`
           handleUploadError(uploadImage, new Error(errorMsg))
           continue
         }
+
+        const result = await uploadImage.handler(file, signal)
+
+        if (signal.aborted) {
+          break
+        }
+
+        editor.dispatchCommand(IMAGE_ADD_COMMAND, {
+          url: result.url,
+          layout: 'default',
+          caption: '',
+          title: result.title || '',
+          source: 'drag-drop'
+        })
+      } catch (error) {
+        if (error instanceof Error && error.name === 'AbortError') {
+          break
+        }
+        handleUploadError(
+          uploadImage,
+          error instanceof Error ? error : new Error('Upload failed')
+        )
       }
-
-      const maxFileSize = uploadImage.maxFileSize ?? DEFAULT_MAX_FILE_SIZE
-      if (file.size > maxFileSize) {
-        const errorMsg =
-          `File size exceeds maximum of ${Math.round(maxFileSize / 1024 / 1024)}MB`
-        handleUploadError(uploadImage, new Error(errorMsg))
-        continue
-      }
-
-      abortControllerRef.current = new AbortController()
-
-      const result = await uploadImage.handler(file)
-
-      editor.dispatchCommand(IMAGE_ADD_COMMAND, {
-        url: result.url,
-        layout: 'default',
-        caption: '',
-        title: result.title || '',
-        source: 'drag-drop'
-      })
-
+    }
+  } finally {
+    if (abortControllerRef.current === abortController) {
       abortControllerRef.current = null
-    } catch (error) {
-      if (error instanceof Error && error.name === 'AbortError') {
-        continue
-      }
-      handleUploadError(uploadImage, error instanceof Error ? error : new Error('Upload failed'))
     }
   }
 }
@@ -148,7 +175,7 @@ function handleUploadError(uploadImage: UploadImageConfig, error: Error): void {
   if (uploadImage.onError) {
     uploadImage.onError(error)
   } else {
-    alert(`Image upload failed: ${error.message}`)
+    console.error(`Image upload failed: ${error.message}`)
   }
 }
 

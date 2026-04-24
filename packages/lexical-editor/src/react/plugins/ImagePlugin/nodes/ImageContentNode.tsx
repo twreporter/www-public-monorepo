@@ -28,7 +28,6 @@ type ImageContentProps = {
   imageLayout?: ImageLayout
   imageTitle?: string
   imageSource?: ImageSource
-  isLoading?: boolean | undefined
 }
 const ImageContent: FC<ImageContentProps> = ({
   nodeKey,
@@ -37,7 +36,6 @@ const ImageContent: FC<ImageContentProps> = ({
   imageLayout = 'default',
   imageTitle = '',
   imageSource = 'link',
-  isLoading = false
 }) => {
   const [editor] = useLexicalComposerContext()
   const [editable, setEditable] = useState(() => editor.isEditable())
@@ -92,7 +90,6 @@ const ImageContent: FC<ImageContentProps> = ({
           caption={imageCaption}
           imageTitle={imageTitle}
           imageSource={imageSource}
-          isLoading={isLoading}
           onConfirm={confirm}
           onDelete={deleteImage}
           onUpdateLayout={updateLayout}

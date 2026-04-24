@@ -11,7 +11,6 @@ type ImageEditModeProps = {
   caption: string
   imageTitle?: string
   imageSource?: ImageSource
-  isLoading?: boolean
   onConfirm: (url: string, layout: ImageLayout, caption: string, title?: string) => void
   onDelete: () => void
   onUpdateLayout: (layout: ImageLayout) => void
@@ -22,7 +21,6 @@ const ImageEditMode: FC<ImageEditModeProps> = ({
   caption,
   imageTitle = '',
   imageSource = 'link',
-  isLoading = false,
   onConfirm,
   onDelete,
   onUpdateLayout,
@@ -52,20 +50,14 @@ const ImageEditMode: FC<ImageEditModeProps> = ({
   return (
     <div className={`Image__container ${layout}`}>
       <div className={`Image__image_block ${layout}`} onClick={openEditDialog}>
-        {isLoading ? (
-          <div className="Image__loading_skeleton">
-            <div className="skeleton-placeholder"></div>
-          </div>
-        ) : (
-          <figure itemScope itemType="http://schema.org/ImageObject">
-            <img src={imageUrl} alt={caption} aria-label={caption} className="Image__image" />
-            {caption &&
-              <figcaption className="Image__caption">
-                {caption}
-              </figcaption>
-            }
-          </figure>
-        )}
+        <figure itemScope itemType="http://schema.org/ImageObject">
+          <img src={imageUrl} alt={caption} aria-label={caption} className="Image__image" />
+          {caption &&
+            <figcaption className="Image__caption">
+              {caption}
+            </figcaption>
+          }
+        </figure>
         <div className="Image__edit_layout">
           <button type="button" className={`layout-option ${layout === 'default' ? 'is-active' : ''}`} onClick={(e) => updateLayout(e, 'default')}>
             <i className="image-layout-default" />

@@ -12,11 +12,15 @@ export type EditorPluginFlags = {
   richText?: boolean
 }
 
+export type ImageConfig = {
+  relatedPhotosHref?: (imageTitle: string) => string
+}
+
 export type UploadImageConfig = {
   /**
    * Async handler to upload a file and return the image URL and optional title
    */
-  handler: (file: File) => Promise<{ url: string; title?: string }>
+  handler: (file: File, signal?: AbortSignal) => Promise<{ url: string; title?: string }>
   
   /**
    * Optional validation function to check if a file is allowed
@@ -44,6 +48,7 @@ export type EditorConfig = {
   theme: EditorTheme
   plugins?: EditorPluginFlags
   ui?: EditorUiConfig
+  image?: ImageConfig
   uploadImage?: UploadImageConfig
   readOnly?: boolean
   placeholder?: string

@@ -16,17 +16,20 @@ function generateImageTitle(filename: string): string {
 
   // Extract filename without extension
   const nameWithoutExt = filename.split('.').slice(0, -1).join('.')
+  const imageName = nameWithoutExt || filename
 
-  return `${nameWithoutExt}-${dateStr}-${randomNum}`
+  return `${imageName}-${dateStr}-${randomNum}`
 }
 
 /**
  * Upload image to CMS Photo list via GraphQL API
  * @param file - Image file to upload
+ * @param signal - Optional abort signal for cancelling the upload
  * @returns Promise with uploaded image URL and title
  */
 export async function uploadImageHandler(
-  file: File
+  file: File,
+  signal?: AbortSignal
 ): Promise<{ url: string; title: string }> {
   try {
     const imageTitle = generateImageTitle(file.name)
@@ -73,6 +76,7 @@ export async function uploadImageHandler(
       },
       body: formData,
       credentials: 'include', // Include cookies for authentication
+      signal,
     })
 
     if (!response.ok) {
@@ -101,6 +105,10 @@ export async function uploadImageHandler(
       title: imageTitle,
     }
   } catch (error) {
+    if (error instanceof Error && error.name === 'AbortError') {
+      throw error
+    }
+
     const errorMessage = error instanceof Error ? error.message : 'Unknown error'
     throw new Error(`Image upload failed: ${errorMessage}`)
   }

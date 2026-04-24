@@ -1,5 +1,6 @@
 import { type FC, useState, type KeyboardEvent, type MouseEvent } from 'react'
 import type { ImageLayout, ImageSource } from '../types'
+import { useImageConfig } from '../../../context/ImageConfigContext'
 
 type EditDialogProps = {
   imageCaption?: string
@@ -24,10 +25,11 @@ const EditDialog: FC<EditDialogProps> = ({
   const [url, setUrl] = useState(imageUrl)
   const [layout, setLayout] = useState(imageLayout)
   const [caption, setCaption] = useState(imageCaption)
+  const imageConfig = useImageConfig()
   const isUploadedImage = imageSource === 'drag-drop'
   const relatedPhotosHref = imageTitle
-    ? `/photos?!name_is_i=${encodeURIComponent(`"${imageTitle}"`)}`
-    : ''
+    ? imageConfig?.relatedPhotosHref?.(imageTitle)
+    : undefined
 
   const cancel = () => {
     onClose()
@@ -101,9 +103,11 @@ const EditDialog: FC<EditDialogProps> = ({
           <div className="edit-item">
             <p className="item-title">圖片標題</p>
             <p className="item-description">{imageTitle}</p>
-            <a href={relatedPhotosHref} target="_blank" rel="noopener noreferrer" className="item-link">
-              View related Photos
-            </a>
+            {relatedPhotosHref && (
+              <a href={relatedPhotosHref} target="_blank" rel="noopener noreferrer" className="item-link">
+                View related Photos
+              </a>
+            )}
           </div>
         )}
         <div className="edit-item">
