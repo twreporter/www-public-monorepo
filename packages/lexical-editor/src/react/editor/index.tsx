@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, type JSX } from 'react'
+import { useMemo, useRef, type JSX } from 'react'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import type { EditorState } from 'lexical'
 // context
@@ -29,7 +29,8 @@ export const LexicalEditor = ({
   const initialValue = useRef(value)
 
   const initialEditorState = useMemo(
-    () => (initialValue.current ? JSON.stringify(initialValue.current) : ''),
+    () =>
+      initialValue.current ? JSON.stringify(initialValue.current) : undefined,
     []
   )
 
@@ -42,7 +43,7 @@ export const LexicalEditor = ({
     editable: !config.readOnly,
     onError,
     nodes: config.nodes,
-    editorState: initialEditorState,
+    ...(initialEditorState ? { editorState: initialEditorState } : {}),
   }
 
   const onEditorStateChange = (editorState: EditorState) => {
@@ -54,15 +55,10 @@ export const LexicalEditor = ({
       <LexicalComposer initialConfig={initialConfig}>
         <ImageConfigContext value={config.image}>
           <ToolbarContext>
-            <RichEditor
-              config={config}
-              placeholder={placeholder}
-            />
+            <RichEditor config={config} placeholder={placeholder} />
           </ToolbarContext>
         </ImageConfigContext>
-        <OnChangePlugin
-          onChange={onEditorStateChange}
-        />
+        <OnChangePlugin onChange={onEditorStateChange} />
       </LexicalComposer>
     </div>
   )
