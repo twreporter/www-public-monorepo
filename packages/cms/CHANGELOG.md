@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.34](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.33...www-cms@0.1.0-beta.34) (2026-04-27)
+
+
+### Bug Fixes
+
+* address review comments ([4112460](https://github.com/twreporter/www-public-monorepo/commit/4112460003c5c6e7aecf2cf6d0672ab0a5d1f383))
+* **lexical-editor:** add relation link for photo ([3775c31](https://github.com/twreporter/www-public-monorepo/commit/3775c319e970d27f87fcbb0e5f08d736dae37ef4))
+
+
+### Features
+
+* **cms:** add `imageUpload` config to lexical ([0af88fa](https://github.com/twreporter/www-public-monorepo/commit/0af88faa292606489a88bb84bd3d3c43f80aa9cb))
+
+
+
+
+
 # [0.1.0-beta.33](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.32...www-cms@0.1.0-beta.33) (2026-04-21)
 
 **Note:** Version bump only for package www-cms

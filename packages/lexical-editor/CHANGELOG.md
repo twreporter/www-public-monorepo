@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.10](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.9...@twreporter/lexical-editor@0.2.0-beta.10) (2026-04-27)
+
+
+### Bug Fixes
+
+* address review comments ([4112460](https://github.com/twreporter/www-public-monorepo/commit/4112460003c5c6e7aecf2cf6d0672ab0a5d1f383))
+* **lexical-editor:** add relation link for photo ([3775c31](https://github.com/twreporter/www-public-monorepo/commit/3775c319e970d27f87fcbb0e5f08d736dae37ef4))
+* **lexical-editor:** fix lexical initial value ([049890c](https://github.com/twreporter/www-public-monorepo/commit/049890cc97211d14e4ff0e3f991195662d2b90db))
+* **lexical-editor:** fix style ([b92cf6b](https://github.com/twreporter/www-public-monorepo/commit/b92cf6b7a9944e6517ae1bee81d8159aac8920f6))
+
+
+### Features
+
+* **lexical-editor:** add `DrapDropImagePlugin` ([2bddb65](https://github.com/twreporter/www-public-monorepo/commit/2bddb6587d0f7afafa0a879cbd10d26ab229f593))
+
+
+
+
+
 # [0.2.0-beta.9](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.8...@twreporter/lexical-editor@0.2.0-beta.9) (2026-04-21)
 
 
