@@ -181,6 +181,7 @@
     padding: 0;
     margin: 0;
     background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
   }
 }
 
@@ -192,9 +193,11 @@
     width: 100%;
     @include desktop-only {
       width: 752px;
+      transform: translateX(100px);
     }
     @include hd-only {
       width: 1033px;
+      transform: translateX(151px);
     }
   }
 

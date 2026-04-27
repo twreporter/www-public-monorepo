@@ -1,7 +1,8 @@
-import React, { useMemo, useRef, type JSX } from 'react'
+import { useMemo, useRef, type JSX } from 'react'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import type { EditorState } from 'lexical'
 // context
+import { ImageConfigContext } from '../context/ImageConfigContext'
 import { ToolbarContext } from '../context/ToolbarContext'
 // plugin
 import { OnChangePlugin } from '../plugins/OnChangePlugin'
@@ -28,7 +29,8 @@ export const LexicalEditor = ({
   const initialValue = useRef(value)
 
   const initialEditorState = useMemo(
-    () => (initialValue.current ? JSON.stringify(initialValue.current) : ''),
+    () =>
+      initialValue.current ? JSON.stringify(initialValue.current) : undefined,
     []
   )
 
@@ -41,7 +43,7 @@ export const LexicalEditor = ({
     editable: !config.readOnly,
     onError,
     nodes: config.nodes,
-    editorState: initialEditorState,
+    ...(initialEditorState ? { editorState: initialEditorState } : {}),
   }
 
   const onEditorStateChange = (editorState: EditorState) => {
@@ -51,15 +53,12 @@ export const LexicalEditor = ({
   return (
     <div id="lexical-editor">
       <LexicalComposer initialConfig={initialConfig}>
-        <ToolbarContext>
-          <RichEditor
-            config={config}
-            placeholder={placeholder}
-          />
-        </ToolbarContext>
-        <OnChangePlugin
-          onChange={onEditorStateChange}
-        />
+        <ImageConfigContext value={config.image}>
+          <ToolbarContext>
+            <RichEditor config={config} placeholder={placeholder} />
+          </ToolbarContext>
+        </ImageConfigContext>
+        <OnChangePlugin onChange={onEditorStateChange} />
       </LexicalComposer>
     </div>
   )

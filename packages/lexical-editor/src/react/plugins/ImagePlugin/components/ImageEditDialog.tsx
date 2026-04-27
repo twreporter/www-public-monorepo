@@ -1,11 +1,14 @@
 import { type FC, useState, type KeyboardEvent, type MouseEvent } from 'react'
-import type { ImageLayout } from '../types'
+import type { ImageLayout, ImageSource } from '../types'
+import { useImageConfig } from '../../../context/ImageConfigContext'
 
 type EditDialogProps = {
   imageCaption?: string
   imageUrl: string
   imageLayout: ImageLayout
-  onConfirm: (url: string, layout: ImageLayout, caption: string) => void
+  imageTitle?: string
+  imageSource?: ImageSource
+  onConfirm: (url: string, layout: ImageLayout, caption: string, title?: string) => void
   onClose: () => void
   onDelete?: () => void
 }
@@ -13,6 +16,8 @@ const EditDialog: FC<EditDialogProps> = ({
   imageUrl,
   imageLayout,
   imageCaption = '',
+  imageTitle = '',
+  imageSource = 'link',
   onConfirm,
   onClose,
   onDelete
@@ -20,12 +25,24 @@ const EditDialog: FC<EditDialogProps> = ({
   const [url, setUrl] = useState(imageUrl)
   const [layout, setLayout] = useState(imageLayout)
   const [caption, setCaption] = useState(imageCaption)
+  const imageConfig = useImageConfig()
+  const isUploadedImage = imageSource === 'drag-drop'
+  const relatedPhotosHref = imageTitle
+    ? imageConfig?.relatedPhotosHref?.(imageTitle)
+    : undefined
 
   const cancel = () => {
     onClose()
   }
 
   const confirm = () => {
+    // For uploaded images, URL is not editable
+    if (isUploadedImage) {
+      onConfirm(imageUrl, layout, caption, imageTitle)
+      onClose()
+      return
+    }
+
     const trimmedUrl = url.trim()
 
     if (!trimmedUrl) {
@@ -40,7 +57,7 @@ const EditDialog: FC<EditDialogProps> = ({
       return
     }
 
-    onConfirm(trimmedUrl, layout, caption)
+    onConfirm(trimmedUrl, layout, caption, imageTitle || undefined)
     onClose()
     return
   }
@@ -71,15 +88,28 @@ const EditDialog: FC<EditDialogProps> = ({
         </div>
       </div>
       <div className="dialog-content">
-        <div className="edit-item">
-          <p className="item-title">圖片 url</p>
-          <input
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            onKeyDown={handleInputKeyDown}
-          />
-        </div>
+        {!isUploadedImage && (
+          <div className="edit-item">
+            <p className="item-title">圖片 url</p>
+            <input
+              type="text"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              onKeyDown={handleInputKeyDown}
+            />
+          </div>
+        )}
+        {isUploadedImage && imageTitle && (
+          <div className="edit-item">
+            <p className="item-title">圖片標題</p>
+            <p className="item-description">{imageTitle}</p>
+            {relatedPhotosHref && (
+              <a href={relatedPhotosHref} target="_blank" rel="noopener noreferrer" className="item-link">
+                View related Photos
+              </a>
+            )}
+          </div>
+        )}
         <div className="edit-item">
           <p className="item-title">圖說</p>
           <input

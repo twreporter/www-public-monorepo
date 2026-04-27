@@ -10,25 +10,28 @@ import {
 // nodes
 import { ImageNode } from './nodes/ImageNode'
 import { ImageContentNode } from './nodes/ImageContentNode'
-import type { ImageLayout } from './types'
+import type { ImageAddCommandPayload } from './types'
 
-export const IMAGE_ADD_COMMAND: LexicalCommand<{
-  url: string
-  layout: ImageLayout
-  caption: string
-}> = createCommand('ADD_IMAGE_LINK')
+export const IMAGE_ADD_COMMAND: LexicalCommand<ImageAddCommandPayload> = createCommand('ADD_IMAGE_LINK')
 export const IMAGE_REMOVE_COMMAND = createCommand('REMOVE_IMAGE_LINK')
 
 export function registerImagePlugin(editor: LexicalEditor) {
   const unregisterAdd = editor.registerCommand(
     IMAGE_ADD_COMMAND,
-    ({ url, layout, caption }) => {
+    (payload) => {
+      const { url, layout, caption = '', title = '', source = 'link' } = payload
       const selection = $getSelection()
       if (!selection) {
         return false
       }
       const imageNode = new ImageNode()
-      const imageContentNode = new ImageContentNode(url, layout, caption)
+      const imageContentNode = new ImageContentNode(
+        url,
+        layout,
+        caption,
+        title,
+        source
+      )
       imageNode.append(imageContentNode)
       selection.insertNodes([imageNode])
       return true

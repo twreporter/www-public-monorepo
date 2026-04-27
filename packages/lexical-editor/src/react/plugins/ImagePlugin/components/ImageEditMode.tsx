@@ -2,14 +2,16 @@ import { type FC, useState, type MouseEvent } from 'react'
 // components
 import ImageEditDialog from './ImageEditDialog'
 // types
-import type { ImageLayout } from '../types'
+import type { ImageLayout, ImageSource } from '../types'
 
 
 type ImageEditModeProps = {
   imageUrl: string
   layout: ImageLayout
   caption: string
-  onConfirm: (url: string, layout: ImageLayout, caption: string) => void
+  imageTitle?: string
+  imageSource?: ImageSource
+  onConfirm: (url: string, layout: ImageLayout, caption: string, title?: string) => void
   onDelete: () => void
   onUpdateLayout: (layout: ImageLayout) => void
 }
@@ -17,6 +19,8 @@ const ImageEditMode: FC<ImageEditModeProps> = ({
   imageUrl,
   layout,
   caption,
+  imageTitle = '',
+  imageSource = 'link',
   onConfirm,
   onDelete,
   onUpdateLayout,
@@ -35,9 +39,9 @@ const ImageEditMode: FC<ImageEditModeProps> = ({
     }
   }
 
-  const confirmEdit = (url: string, layout: ImageLayout, caption: string) => {
+  const confirmEdit = (url: string, layout: ImageLayout, caption: string, title?: string) => {
     if (typeof onConfirm === 'function') {
-      onConfirm(url, layout, caption)
+      onConfirm(url, layout, caption, title)
     }
 
     closeEditDialog()
@@ -77,6 +81,8 @@ const ImageEditMode: FC<ImageEditModeProps> = ({
           imageUrl={imageUrl}
           imageLayout={layout}
           imageCaption={caption}
+          imageTitle={imageTitle}
+          imageSource={imageSource}
           onConfirm={confirmEdit}
           onClose={closeEditDialog}
           onDelete={onDelete}
