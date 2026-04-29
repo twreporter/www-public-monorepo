@@ -8,9 +8,9 @@ import { SIZE, type Size } from './constants'
 // skeleton
 import { LargeSkeleton, SmallSkeleton } from './loading'
 // placeholder
-import ImgPlaceholder from './img-placeholder'
+import ImgPlaceholder from '../img-placeholder'
 
-type CardListBaseProps = {
+type ArticleCardBaseProps = {
   categoryLabel?: string
   publishedDate?: string
   title: string
@@ -25,18 +25,18 @@ type CardListBaseProps = {
   // onBookmarkClick?: () => void
 }
 
-type CardListLoadingProps = {
+type ArticleCardLoadingProps = {
   isLoading: true
   size: Size
 }
 
-type CardListDetailProps = CardListBaseProps & {
+type ArticleCardDetailProps = ArticleCardBaseProps & {
   isLoading?: false
 }
 
-type CardListProps = CardListLoadingProps | CardListDetailProps
+type ArticleCardProps = ArticleCardLoadingProps | ArticleCardDetailProps
 
-const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
+const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
   const { size, isLoading = false } = props
   const [failedImageKey, setFailedImageKey] = useState<string | null>(null)
   const imageSrc = 'image' in props ? props.image?.src : undefined
@@ -48,7 +48,7 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
       return <SmallSkeleton />
     }
     const { categoryLabel, publishedDate, title, description, image } =
-      props as CardListDetailProps
+      props as ArticleCardDetailProps
     return (
       <div
         className={clsx(
@@ -99,7 +99,7 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
   }
 
   const { categoryLabel, publishedDate, title, description, image } =
-    props as CardListDetailProps
+    props as ArticleCardDetailProps
   return (
     <div
       className={clsx(
@@ -143,5 +143,5 @@ const CardList: FC<CardListProps> & { Size: typeof SIZE } = (props) => {
   )
 }
 
-CardList.Size = SIZE
-export default CardList
+ArticleCard.Size = SIZE
+export default ArticleCard
