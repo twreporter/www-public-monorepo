@@ -11,6 +11,7 @@ import {
   getActiveContainerTheme,
   getDisabledContainerTheme,
 } from './theme'
+import { getIconSizeStyle } from './size'
 
 type TextButtonProps = {
   text: string
@@ -23,6 +24,7 @@ type TextButtonProps = {
   disabled?: boolean
   loading?: boolean
   className?: string
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 const TextButton: FC<TextButtonProps> & {
   Size: typeof SIZE
@@ -39,6 +41,7 @@ const TextButton: FC<TextButtonProps> & {
   disabled = false,
   loading = false,
   className = '',
+  onClick = () => {},
 }) => {
   const TextJSX = useMemo(
     () =>
@@ -57,9 +60,17 @@ const TextButton: FC<TextButtonProps> & {
         : getContainerTheme
     return themeFunc(theme, style)
   }, [disabled, active, theme, style])
+  const iconSizeClass = useMemo(() => getIconSizeStyle(size), [size])
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (disabled) {
+      return
+    }
+    e.stopPropagation()
+    onClick(e)
+  }
 
   return (
-    <div
+    <button
       className={clsx(
         'flex items-center',
         {
@@ -69,6 +80,8 @@ const TextButton: FC<TextButtonProps> & {
         themeClass,
         className
       )}
+      type="button"
+      onClick={handleClick}
     >
       <div className="relative flex justify-center items-center">
         <div
@@ -77,9 +90,13 @@ const TextButton: FC<TextButtonProps> & {
             'opacity-100': !loading,
           })}
         >
-          <div className="flex items-center mr-[4px]">{leftIconComponent}</div>
+          <div className={clsx('flex items-center mr-[4px]', iconSizeClass)}>
+            {leftIconComponent}
+          </div>
           {TextJSX}
-          <div className="flex items-center ml-[4px]">{rightIconComponent}</div>
+          <div className={clsx('flex items-center ml-[4px]', iconSizeClass)}>
+            {rightIconComponent}
+          </div>
         </div>
         <span
           className={clsx(
@@ -96,7 +113,7 @@ const TextButton: FC<TextButtonProps> & {
           )}
         />
       </div>
-    </div>
+    </button>
   )
 }
 TextButton.Size = SIZE

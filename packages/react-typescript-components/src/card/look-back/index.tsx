@@ -4,7 +4,7 @@ import { H4 } from '../../text/heading'
 import { P1, P2, P3 } from '../../text/paragraph'
 
 type LookBackCardProps = {
-  reviewWord: string
+  reviewWord?: string
   title: string
   ogDescription: string
   bgImage: string
