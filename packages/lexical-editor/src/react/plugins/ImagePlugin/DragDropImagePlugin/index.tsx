@@ -2,8 +2,12 @@ import { type FC, useEffect, useRef, type MutableRefObject } from 'react'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { mergeRegister } from '@lexical/utils'
 import {
-  $getSelection,
+  $createRangeSelection,
+  $getNearestNodeFromDOMNode,
   $getNodeByKey,
+  $isTextNode,
+  $normalizeSelection__EXPERIMENTAL,
+  $setSelection,
   COMMAND_PRIORITY_HIGH,
   DRAGOVER_COMMAND,
   DROP_COMMAND,
@@ -12,6 +16,7 @@ import {
 import { IMAGE_ADD_COMMAND } from '../command'
 import { $isImageContentNode, ImageContentNode } from '../nodes/ImageContentNode'
 import { $isImageNode, ImageNode } from '../nodes/ImageNode'
+import { $insertImageNodes } from '../utils'
 import type { UploadImageConfig } from '../../../../core/types/editor'
 
 const DEFAULT_MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
@@ -112,6 +117,7 @@ function handleDrop(
 
   const abortController = new AbortController()
   abortControllerRef.current = abortController
+  setDropSelection(event)
   const loadingNodeKeys = insertImageSkeletons(imageFiles.length)
   loadingNodeKeysRef.current = loadingNodeKeys
 
@@ -201,11 +207,6 @@ async function uploadDroppedImages(
 }
 
 function insertImageSkeletons(count: number): string[] {
-  const selection = $getSelection()
-  if (!selection) {
-    return []
-  }
-
   const loadingNodeKeys: string[] = []
   const imageNodes = Array.from({ length: count }, () => {
     const imageNode = new ImageNode()
@@ -224,9 +225,61 @@ function insertImageSkeletons(count: number): string[] {
     return imageNode
   })
 
-  selection.insertNodes(imageNodes)
+  $insertImageNodes(imageNodes)
 
   return loadingNodeKeys
+}
+
+function setDropSelection(event: DragEvent): void {
+  const eventRange = getEventRange(event.clientX, event.clientY)
+  if (!eventRange) {
+    return
+  }
+
+  const lexicalNode = $getNearestNodeFromDOMNode(eventRange.node)
+  if (!lexicalNode) {
+    return
+  }
+
+  const selection = $createRangeSelection()
+  if ($isTextNode(lexicalNode)) {
+    selection.anchor.set(lexicalNode.getKey(), eventRange.offset, 'text')
+    selection.focus.set(lexicalNode.getKey(), eventRange.offset, 'text')
+  } else {
+    const parent = lexicalNode.getParentOrThrow()
+    const offset = lexicalNode.getIndexWithinParent() + 1
+    selection.anchor.set(parent.getKey(), offset, 'element')
+    selection.focus.set(parent.getKey(), offset, 'element')
+  }
+
+  $setSelection($normalizeSelection__EXPERIMENTAL(selection))
+}
+
+function getEventRange(
+  x: number,
+  y: number
+): { node: Node; offset: number } | null {
+  if (typeof document.caretRangeFromPoint !== 'undefined') {
+    const range = document.caretRangeFromPoint(x, y)
+    return range
+      ? {
+          node: range.startContainer,
+          offset: range.startOffset
+        }
+      : null
+  }
+
+  if (typeof document.caretPositionFromPoint !== 'undefined') {
+    const range = document.caretPositionFromPoint(x, y)
+    return range
+      ? {
+          node: range.offsetNode,
+          offset: range.offset
+        }
+      : null
+  }
+
+  return null
 }
 
 function replaceImageSkeleton(

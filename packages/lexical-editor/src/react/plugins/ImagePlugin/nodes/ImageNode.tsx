@@ -29,8 +29,8 @@ export class ImageNode extends ElementNode {
     return new ImageNode(node.__key)
   }
 
-  override isInline(): true {
-    return true
+  override isInline(): false {
+    return false
   }
 
   override createDOM(config: EditorConfig): HTMLElement {
