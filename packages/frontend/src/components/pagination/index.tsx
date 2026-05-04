@@ -53,11 +53,13 @@ const Pagination: FC<PaginationProps> = ({
   ellipsis = '…',
   className = '',
 }) => {
-
   const belowFirst = currentPage <= 1
   const aboveLast = currentPage >= totalPage
 
-  const onPage = useCallback((p: number) => handleClickPage(p), [handleClickPage])
+  const onPage = useCallback(
+    (p: number) => handleClickPage(p),
+    [handleClickPage]
+  )
 
   const desktopPages = useDesktopPages(
     currentPage,
@@ -69,16 +71,12 @@ const Pagination: FC<PaginationProps> = ({
   )
   const mobilePages = useMobilePages(currentPage, totalPage, onPage)
 
-
   if (!currentPage || !totalPage) {
     return <div className={containerClass(className)} />
   }
 
   return (
-    <nav
-      className={containerClass(className)}
-      aria-label="Pagination"
-    >
+    <nav className={containerClass(className)} aria-label="Pagination">
       <div className={boxesRowClass}>
         {/* Prev */}
         <button

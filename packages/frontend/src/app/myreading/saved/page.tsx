@@ -13,7 +13,9 @@ export default async function Page({
   searchParams: Promise<{ page?: string }>
 }) {
   const { page } = await searchParams
-  const totalPages = Math.ceil(fakeSavedBookmarks.length / SAVED_BOOKMARKS_PER_PAGE)
+  const totalPages = Math.ceil(
+    fakeSavedBookmarks.length / SAVED_BOOKMARKS_PER_PAGE
+  )
   const currentPage = pageParamParser(page, totalPages)
   return <SavedBookmarks currentPage={currentPage} />
 }

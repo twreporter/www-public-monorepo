@@ -21,32 +21,53 @@ type SavedBookmarksProps = {
 // TODO: empty state, get data from API, error handling, bookmark action
 const SavedBookmarks: FC<SavedBookmarksProps> = ({ currentPage }) => {
   const router = useRouter()
-  const totalPage = Math.ceil(fakeSavedBookmarks.length / SAVED_BOOKMARKS_PER_PAGE)
+  const totalPage = Math.ceil(
+    fakeSavedBookmarks.length / SAVED_BOOKMARKS_PER_PAGE
+  )
   const totalCount = fakeSavedBookmarks.length
 
-  const buildUrl = (page: number) => {
-    const p = Math.max(1, Math.min(page, Math.max(1, totalPage)))
-    return `${INTERNAL_ROUTES.savedBookmark}?page=${p}`
-  }
+  const buildUrl = useCallback(
+    (page: number) => {
+      const p = Math.max(1, Math.min(page, Math.max(1, totalPage)))
+      return `${INTERNAL_ROUTES.savedBookmark}?page=${p}`
+    },
+    [totalPage]
+  )
 
-  const handleClickPage = useCallback((page: number) => { router.push(buildUrl(page)) }, [router, totalPage])
-  const handleClickPrev = useCallback(() => { router.push(buildUrl(currentPage - 1)) }, [router, currentPage, totalPage])
-  const handleClickNext = useCallback(() => { router.push(buildUrl(currentPage + 1)) }, [router, currentPage, totalPage])
+  const handleClickPage = useCallback(
+    (page: number) => {
+      router.push(buildUrl(page))
+    },
+    [router, buildUrl]
+  )
+  const handleClickPrev = useCallback(() => {
+    router.push(buildUrl(currentPage - 1))
+  }, [router, currentPage, buildUrl])
+  const handleClickNext = useCallback(() => {
+    router.push(buildUrl(currentPage + 1))
+  }, [router, currentPage, buildUrl])
 
   const start = (currentPage - 1) * SAVED_BOOKMARKS_PER_PAGE
-  const items = fakeSavedBookmarks.slice(start, start + SAVED_BOOKMARKS_PER_PAGE)
+  const items = fakeSavedBookmarks.slice(
+    start,
+    start + SAVED_BOOKMARKS_PER_PAGE
+  )
 
   return (
-    <div className={clsx(
-      'w-full height-auto flex flex-col px-[24px] pb-[120px]',
-      'tablet:px-[32px] tablet:grid tablet:grid-cols-12 tablet:gap-x-[24px]',
-      'desktop:px-[48px] desktop:gap-x-[32px]',
-      'hd:w-[1280px] hd:mx-auto hd:px-0'
-    )}>
-      <div className={clsx(
-        'w-full flex flex-col',
-        'tablet:col-start-2 tablet:col-end-12'
-      )}>
+    <div
+      className={clsx(
+        'w-full height-auto flex flex-col px-[24px] pb-[120px]',
+        'tablet:px-[32px] tablet:grid tablet:grid-cols-12 tablet:gap-x-[24px]',
+        'desktop:px-[48px] desktop:gap-x-[32px]',
+        'hd:w-[1280px] hd:mx-auto hd:px-0'
+      )}
+    >
+      <div
+        className={clsx(
+          'w-full flex flex-col',
+          'tablet:col-start-2 tablet:col-end-12'
+        )}
+      >
         <Title1 title="已收藏" subtitle={`共${totalCount}篇`} />
         <div className="pt-[24px] grid grid-cols-1 gap-[24px]">
           {items.map((item) => (

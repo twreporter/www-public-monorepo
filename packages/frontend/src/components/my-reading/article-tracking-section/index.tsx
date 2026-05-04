@@ -232,7 +232,10 @@ const ArticleTrackingSection: FC<ArticleTrackingSectionProps> = ({
                 slidesOffsetAfter={offset}
               >
                 {trackingArticles.map((article) => (
-                  <SwiperSlide key={article.slug} className="!w-[280px] !h-auto">
+                  <SwiperSlide
+                    key={article.slug}
+                    className="!w-[280px] !h-auto"
+                  >
                     <TrackingCard article={article} />
                   </SwiperSlide>
                 ))}

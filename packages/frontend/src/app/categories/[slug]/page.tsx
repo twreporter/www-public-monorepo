@@ -8,7 +8,7 @@ import CategoryPage from '@/components/categories'
 import { POSTS_PER_PAGE } from '@/constants'
 // utils
 import { categoryPostsKey } from '@/fetchers/key'
-import logger from "@/utils/logger"
+import logger from '@/utils/logger'
 
 export default async function Page({
   params,

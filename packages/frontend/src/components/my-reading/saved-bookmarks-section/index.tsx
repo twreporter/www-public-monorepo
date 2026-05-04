@@ -21,7 +21,6 @@ const SavedBookmarksSection: FC<SavedBookmarksSectionProps> = ({
   isLoading,
   items,
 }) => {
-
   return (
     <section>
       <Title2

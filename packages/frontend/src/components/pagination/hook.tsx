@@ -6,10 +6,12 @@ const pageButtonBase = [
   'mx-[5px] size-[28px] tablet:size-[28px]',
   'inline-flex items-center justify-center',
   'rounded-full border border-solid',
-  'text-[14px] user-select-none relative cursor-pointer'
+  'text-[14px] user-select-none relative cursor-pointer',
 ]
-const pageButtonDefault =
-  clsx(pageButtonBase, 'border-supportive-heavy text-supportive-heavy')
+const pageButtonDefault = clsx(
+  pageButtonBase,
+  'border-supportive-heavy text-supportive-heavy'
+)
 const pageButtonCurrent = clsx(
   pageButtonBase,
   'border-supportive-heavy bg-supportive-heavy text-gray-white'
@@ -95,7 +97,8 @@ export const useDesktopPages = (
     }
 
     const inLeftRange = currentPage <= nOfMarginPages + nOfCenterPages
-    const inRightRange = currentPage > totalPages - nOfMarginPages - nOfCenterPages
+    const inRightRange =
+      currentPage > totalPages - nOfMarginPages - nOfCenterPages
 
     const leftMargin = buildRangeButtons(1, nOfMarginPages, currentPage, onPage)
     const rightMarginStart = totalPages - nOfMarginPages + 1
@@ -149,7 +152,14 @@ export const useDesktopPages = (
       rightEllipsis,
       ...rightMargin,
     ]
-  }, [currentPage, totalPages, nOfMarginPages, nOfCenterPages, ellipsis, onPage])
+  }, [
+    currentPage,
+    totalPages,
+    nOfMarginPages,
+    nOfCenterPages,
+    ellipsis,
+    onPage,
+  ])
 
 /** Mobile pagination: always a 5-slot window centered on current when possible */
 export const useMobilePages = (
