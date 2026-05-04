@@ -5,12 +5,10 @@ import { useEffect } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
-import 'swiper/css'
-import 'swiper/css/free-mode'
 // @twreporters
 import { Title2 } from '@twreporter/react-typescript-components/lib/title-bar'
+import { IconButton } from '@twreporter/react-typescript-components/lib/button'
 import { Arrow } from '@twreporter/react-typescript-components/lib/icons'
 import {
   P1,
@@ -147,20 +145,20 @@ export default function ArticleTrackingSection({
       ) : (
         <>
           <div className="hidden desktop:grid mt-[24px] grid-cols-[24px_minmax(0,1fr)_24px] items-center gap-[16px] w-[calc((16px+24px)+100%+(16px+24px))] ml-[-40px]">
-            <button
-              type="button"
+            <IconButton
               className={clsx(
                 'h-[24px] w-[24px] flex items-center justify-center',
                 isBeginning && 'invisible'
               )}
               onClick={() => handleDesktopArrow('left')}
               aria-label="上一組追蹤文章"
-            >
-              <Arrow
-                direction={Arrow.Direction.left}
-                releaseBranch={releaseBranch}
-              />
-            </button>
+              iconComponent={
+                <Arrow
+                  direction={Arrow.Direction.left}
+                  releaseBranch={releaseBranch}
+                />
+              }
+            />
             <div className="min-w-0">
               <Swiper
                 className="w-full [&_.swiper-wrapper]:items-stretch [&_.swiper-slide]:h-auto"
@@ -193,7 +191,7 @@ export default function ArticleTrackingSection({
                 {cardsForDesktop.map((item) => {
                   if (isTrackingArticle(item)) {
                     return (
-                      <SwiperSlide key={item.slug} className="h-auto">
+                      <SwiperSlide key={item.slug} className="!h-auto">
                         <TrackingCard article={item} />
                       </SwiperSlide>
                     )
@@ -207,20 +205,20 @@ export default function ArticleTrackingSection({
                 })}
               </Swiper>
             </div>
-            <button
-              type="button"
+            <IconButton
               className={clsx(
                 'h-[24px] w-[24px] flex items-center justify-center',
                 isEnd && 'invisible'
               )}
               onClick={() => handleDesktopArrow('right')}
               aria-label="下一組追蹤文章"
-            >
-              <Arrow
-                direction={Arrow.Direction.right}
-                releaseBranch={releaseBranch}
-              />
-            </button>
+              iconComponent={
+                <Arrow
+                  direction={Arrow.Direction.right}
+                  releaseBranch={releaseBranch}
+                />
+              }
+            />
           </div>
 
           <div
@@ -229,15 +227,13 @@ export default function ArticleTrackingSection({
           >
             {offset > 0 && (
               <Swiper
-                modules={[FreeMode]}
-                freeMode
                 slidesPerView="auto"
                 spaceBetween={16}
                 slidesOffsetBefore={offset}
                 slidesOffsetAfter={offset}
               >
                 {trackingArticles.map((article) => (
-                  <SwiperSlide key={article.slug} className="!w-[280px] h-auto">
+                  <SwiperSlide key={article.slug} className="!w-[280px] !h-auto">
                     <TrackingCard article={article} />
                   </SwiperSlide>
                 ))}

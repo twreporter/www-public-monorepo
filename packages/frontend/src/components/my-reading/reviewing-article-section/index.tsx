@@ -2,9 +2,6 @@
 import Link from 'next/link'
 import { useMemo, useState, useContext } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/free-mode'
 // @twreporters
 import { Divider } from '@twreporter/react-typescript-components/lib/divider'
 import { Title2 } from '@twreporter/react-typescript-components/lib/title-bar'
@@ -78,8 +75,6 @@ export default function ReviewingArticleSection({
           </div>
           <div className="tablet:hidden mt-[24px] w-screen ml-[-24px]">
             <Swiper
-              modules={[FreeMode]}
-              freeMode
               slidesPerView="auto"
               spaceBetween={24}
               slidesOffsetBefore={24}
