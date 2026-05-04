@@ -51,9 +51,7 @@ const BadgeOverlay: FC<{ reviewWord?: string; reverse?: boolean }> = ({
 )
 
 const ClampedText: FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div className="w-full text-gray-800 line-clamp-3">
-    {children}
-  </div>
+  <div className="w-full text-gray-800 line-clamp-3">{children}</div>
 )
 
 const LookBackCard: FC<LookBackCardProps> = ({
