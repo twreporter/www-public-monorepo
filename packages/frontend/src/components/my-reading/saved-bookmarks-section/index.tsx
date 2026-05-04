@@ -1,28 +1,34 @@
+'use client'
+import type { FC } from 'react'
+// @twreporters
 import { Divider } from '@twreporter/react-typescript-components/lib/divider'
 import { Title2 } from '@twreporter/react-typescript-components/lib/title-bar'
 import ArticleCard from '@twreporter/react-typescript-components/lib/card/article'
-
+// components
 import EmptyBox from '@/components/my-reading/empty-box'
 import MoreButton from '@/components/my-reading/more-button'
 import ReadingListRow from '@/components/my-reading/reading-list-row'
 import type { ReadingListItem } from '@/components/my-reading/types'
+// constants
+import { INTERNAL_ROUTES } from '@/constants/routes'
 
 type SavedBookmarksSectionProps = {
   isLoading: boolean
   items: ReadingListItem[]
 }
-
-export default function SavedBookmarksSection({
+// TODO: bookmark action
+const SavedBookmarksSection: FC<SavedBookmarksSectionProps> = ({
   isLoading,
   items,
-}: SavedBookmarksSectionProps) {
+}) => {
+
   return (
     <section>
       <Title2
         title="已收藏"
         renderButton={
           items.length > 0 ? (
-            <MoreButton href="/my-reading/saved-bookmarks" />
+            <MoreButton href={INTERNAL_ROUTES.savedBookmark} />
           ) : null
         }
       />
@@ -38,15 +44,27 @@ export default function SavedBookmarksSection({
       ) : items.length === 0 ? (
         <EmptyBox type="bookmark" />
       ) : (
-        <div className="pt-[24px] pb-[24px] grid grid-cols-1 gap-[24px]">
-          {items.map((item) => (
-            <div key={item.slug}>
-              <ReadingListRow item={item} desktopSize={ArticleCard.Size.l} />
-              <Divider className="mt-[24px]" />
-            </div>
-          ))}
-        </div>
+        <>
+          <div className="tablet:hidden pt-[24px] pb-[24px] grid grid-cols-1 gap-[24px]">
+            {items.slice(0, 4).map((item) => (
+              <div key={item.slug}>
+                <ReadingListRow item={item} />
+                <Divider className="mt-[24px]" />
+              </div>
+            ))}
+          </div>
+          <div className="hidden tablet:grid pt-[24px] pb-[24px] grid-cols-1 gap-[24px]">
+            {items.slice(0, 6).map((item) => (
+              <div key={item.slug}>
+                <ReadingListRow item={item} desktopSize={ArticleCard.Size.l} />
+                <Divider className="mt-[24px]" />
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </section>
   )
 }
+
+export default SavedBookmarksSection

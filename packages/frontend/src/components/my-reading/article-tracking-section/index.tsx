@@ -1,6 +1,5 @@
 'use client'
-
-import { useMemo, useRef, useState, useContext } from 'react'
+import { type FC, useMemo, useRef, useState, useContext } from 'react'
 import { useEffect } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -34,7 +33,7 @@ const isTrackingArticle = (item: TrackingOrBlank): item is TrackingArticle => {
   return 'trackingTitle' in item
 }
 
-function TrackingCard({ article }: { article: TrackingArticle }) {
+const TrackingCard: FC<{ article: TrackingArticle }> = ({ article }) => {
   return (
     <Link
       href={`${INTERNAL_ROUTES.article}/${encodeURIComponent(article.trackingArticleSlug)}`}
@@ -64,7 +63,7 @@ function TrackingCard({ article }: { article: TrackingArticle }) {
   )
 }
 
-function LoadingCard() {
+const LoadingCard: FC = () => {
   return (
     <div className="border border-gray-300 rounded-[8px] p-[24px] animate-pulse">
       <div className="h-[12px] w-[48px] bg-gray-200 rounded" />
@@ -80,10 +79,10 @@ function LoadingCard() {
   )
 }
 
-export default function ArticleTrackingSection({
+const ArticleTrackingSection: FC<ArticleTrackingSectionProps> = ({
   isLoading,
   trackingArticles,
-}: ArticleTrackingSectionProps) {
+}) => {
   const { releaseBranch } = useContext(BaseContext)
   const [swiper, setSwiper] = useState<SwiperType | null>(null)
   const [isBeginning, setIsBeginning] = useState(true)
@@ -245,3 +244,5 @@ export default function ArticleTrackingSection({
     </section>
   )
 }
+
+export default ArticleTrackingSection

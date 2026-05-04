@@ -1,17 +1,24 @@
+'use client'
+import type { FC } from 'react'
 import Link from 'next/link'
+// @twreporters
 import ArticleCard from '@twreporter/react-typescript-components/lib/card/article'
+// types
 import type { ReadingListItem } from '@/components/my-reading/types'
+// constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
 
 type ReadingListRowProps = {
   item: ReadingListItem
   desktopSize?: typeof ArticleCard.Size.l | typeof ArticleCard.Size.s
+  mobileSize?: typeof ArticleCard.Size.l | typeof ArticleCard.Size.s
 }
 
-export default function ReadingListRow({
+const ReadingListRow: FC<ReadingListRowProps> = ({
   item,
   desktopSize = ArticleCard.Size.l,
-}: ReadingListRowProps) {
+  mobileSize = ArticleCard.Size.s,
+}: ReadingListRowProps) => {
   return (
     <Link
       href={`${INTERNAL_ROUTES.article}/${encodeURIComponent(item.slug)}`}
@@ -24,7 +31,7 @@ export default function ReadingListRow({
           categoryLabel={item.category}
           publishedDate={item.publishedDate}
           image={{ src: item.image, alt: item.title }}
-          size={ArticleCard.Size.s}
+          size={mobileSize}
         />
       </div>
       <div className="hidden desktop:block">
@@ -40,3 +47,5 @@ export default function ReadingListRow({
     </Link>
   )
 }
+
+export default ReadingListRow
