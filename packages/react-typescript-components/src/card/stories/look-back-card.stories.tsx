@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 // component
-import LookBackCard from '../index'
+import LookBackCard from '../look-back'
 
 const meta = {
   title: 'Card/Look Back',

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 // utils
-import { getRadioArgFromObject } from '../../../storybook/utils/get-enum-arg'
+import { getRadioArgFromObject } from '../../storybook/utils/get-enum-arg'
 // component
-import ShortCard from '../index'
+import ShortCard from '../short'
 
 const meta = {
   title: 'Card/Short',
