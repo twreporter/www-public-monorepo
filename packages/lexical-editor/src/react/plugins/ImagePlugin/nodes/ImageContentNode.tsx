@@ -16,6 +16,7 @@ import { $isImageNode, ImageNode } from './ImageNode'
 // components
 import ImageEditMode from '../components/ImageEditMode'
 import ImageDisplayMode from '../components/ImageDisplayMode'
+import ImageSkeleton from '../components/ImageSkeleton'
 // type
 import type { ImageLayout, ImageSource } from '../types'
 // global var
@@ -28,6 +29,7 @@ type ImageContentProps = {
   imageLayout?: ImageLayout
   imageTitle?: string
   imageSource?: ImageSource
+  isLoading?: boolean
 }
 const ImageContent: FC<ImageContentProps> = ({
   nodeKey,
@@ -36,6 +38,7 @@ const ImageContent: FC<ImageContentProps> = ({
   imageLayout = 'default',
   imageTitle = '',
   imageSource = 'link',
+  isLoading = false,
 }) => {
   const [editor] = useLexicalComposerContext()
   const [editable, setEditable] = useState(() => editor.isEditable())
@@ -81,6 +84,10 @@ const ImageContent: FC<ImageContentProps> = ({
     })
   }
 
+  if (isLoading) {
+    return <ImageSkeleton layout={imageLayout} />
+  }
+
   return (
     <>
       { editable ?
@@ -112,6 +119,7 @@ type SerializedImageContentNode = {
   caption: string
   imageTitle?: string
   imageSource?: ImageSource
+  isLoading?: boolean
 }
 
 export class ImageContentNode extends DecoratorNode<ReactNode> {
@@ -120,6 +128,7 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
   __caption: string
   __imageTitle: string
   __imageSource: ImageSource
+  __isLoading: boolean
 
   static override getType(): string {
     return imageLinkContentType
@@ -132,6 +141,7 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
       node.__caption,
       node.__imageTitle,
       node.__imageSource,
+      node.__isLoading,
       node.__key
     )
   }
@@ -142,6 +152,7 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
     caption: string,
     imageTitle: string = '',
     imageSource: ImageSource = 'link',
+    isLoading: boolean = false,
     key?: NodeKey,
   ) {
     super(key)
@@ -150,6 +161,7 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
     this.__caption = caption
     this.__imageTitle = imageTitle
     this.__imageSource = imageSource
+    this.__isLoading = isLoading
   }
 
   override createDOM(): HTMLElement {
@@ -177,6 +189,7 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
         imageCaption={this.__caption}
         imageTitle={this.__imageTitle}
         imageSource={this.__imageSource}
+        isLoading={this.__isLoading}
       />
     )
   }
@@ -187,7 +200,8 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
       serializedNode.imageLayout,
       serializedNode.caption,
       serializedNode.imageTitle,
-      serializedNode.imageSource
+      serializedNode.imageSource,
+      serializedNode.isLoading
     )
   }
 
@@ -200,6 +214,7 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
       caption: this.__caption,
       imageTitle: this.__imageTitle,
       imageSource: this.__imageSource,
+      isLoading: this.__isLoading,
     }
   }
 
@@ -219,9 +234,17 @@ export function $createImageContentNode(
   layout: ImageLayout,
   caption: string,
   imageTitle: string = '',
-  imageSource: ImageSource = 'link'
+  imageSource: ImageSource = 'link',
+  isLoading: boolean = false
 ): ImageContentNode {
-  return new ImageContentNode(url, layout, caption, imageTitle, imageSource)
+  return new ImageContentNode(
+    url,
+    layout,
+    caption,
+    imageTitle,
+    imageSource,
+    isLoading
+  )
 }
 
 export function $isImageContentNode(
