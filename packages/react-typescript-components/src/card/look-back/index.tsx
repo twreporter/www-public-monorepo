@@ -23,7 +23,7 @@ const AwardBadge: FC<{ children: React.ReactNode }> = ({ children }) => (
   </div>
 )
 
-const BadgeOverlay: FC<{ reviewWord: string; reverse?: boolean }> = ({
+const BadgeOverlay: FC<{ reviewWord?: string; reverse?: boolean }> = ({
   reviewWord,
   reverse = false,
 }) => (
@@ -51,7 +51,7 @@ const BadgeOverlay: FC<{ reviewWord: string; reverse?: boolean }> = ({
 )
 
 const ClampedText: FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div className="w-full text-gray-800 [&_p]:overflow-hidden [&_p]:[-webkit-line-clamp:3] [&_p]:[display:-webkit-box] [&_p]:[-webkit-box-orient:vertical]">
+  <div className="w-full text-gray-800 line-clamp-3">
     {children}
   </div>
 )
