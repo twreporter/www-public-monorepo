@@ -14,8 +14,11 @@ import {
   type LexicalEditor,
 } from 'lexical'
 import { IMAGE_ADD_COMMAND } from '../command'
-import { $isImageContentNode, ImageContentNode } from '../nodes/ImageContentNode'
-import { $isImageNode, ImageNode } from '../nodes/ImageNode'
+import {
+  $createImageContentNode,
+  $isImageContentNode
+} from '../nodes/ImageContentNode'
+import { $createImageNode, $isImageNode } from '../nodes/ImageNode'
 import { $insertImageNodes } from '../utils'
 import type { UploadImageConfig } from '../../../../core/types/editor'
 
@@ -117,8 +120,11 @@ function handleDrop(
 
   const abortController = new AbortController()
   abortControllerRef.current = abortController
-  setDropSelection(event)
-  const loadingNodeKeys = insertImageSkeletons(imageFiles.length)
+  let loadingNodeKeys: string[] = []
+  editor.update(() => {
+    setDropSelection(event)
+    loadingNodeKeys = insertImageSkeletons(imageFiles.length)
+  })
   loadingNodeKeysRef.current = loadingNodeKeys
 
   void uploadDroppedImages(
@@ -209,8 +215,8 @@ async function uploadDroppedImages(
 function insertImageSkeletons(count: number): string[] {
   const loadingNodeKeys: string[] = []
   const imageNodes = Array.from({ length: count }, () => {
-    const imageNode = new ImageNode()
-    const imageContentNode = new ImageContentNode(
+    const imageNode = $createImageNode()
+    const imageContentNode = $createImageContentNode(
       '',
       'default',
       '',
@@ -304,11 +310,10 @@ function replaceImageSkeleton(
       return
     }
 
-    const writable = node.getWritable()
-    writable.__imageUrl = result.url
-    writable.__imageTitle = result.title || ''
-    writable.__imageSource = 'drag-drop'
-    writable.__isLoading = false
+    node.finishUpload({
+      title: result.title || '',
+      url: result.url
+    })
   })
 }
 
@@ -321,17 +326,7 @@ function removeImageSkeleton(
   }
 
   editor.update(() => {
-    const node = $getNodeByKey(loadingNodeKey)
-    if (!$isImageContentNode(node)) {
-      return
-    }
-
-    const parent = node.getParent()
-    if ($isImageNode(parent)) {
-      parent.remove()
-    } else {
-      node.remove()
-    }
+    $removeImageSkeletonByKey(loadingNodeKey)
   })
 }
 
@@ -339,9 +334,29 @@ function removeImageSkeletons(
   editor: LexicalEditor,
   loadingNodeKeys: string[]
 ): void {
-  loadingNodeKeys.forEach((loadingNodeKey) => {
-    removeImageSkeleton(editor, loadingNodeKey)
+  if (loadingNodeKeys.length === 0) {
+    return
+  }
+
+  editor.update(() => {
+    loadingNodeKeys.forEach((loadingNodeKey) => {
+      $removeImageSkeletonByKey(loadingNodeKey)
+    })
   })
+}
+
+function $removeImageSkeletonByKey(loadingNodeKey: string): void {
+  const node = $getNodeByKey(loadingNodeKey)
+  if (!$isImageContentNode(node)) {
+    return
+  }
+
+  const parent = node.getParent()
+  if ($isImageNode(parent)) {
+    parent.remove()
+  } else {
+    node.remove()
+  }
 }
 
 function removePendingImageSkeletonKey(

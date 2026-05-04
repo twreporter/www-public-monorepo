@@ -1,4 +1,5 @@
 import {
+  $applyNodeReplacement,
   type LexicalNode,
   DecoratorNode,
   type NodeKey,
@@ -51,23 +52,23 @@ const ImageContent: FC<ImageContentProps> = ({
 
   const updateLayout = (layout: ImageLayout) => {
     editor.update(() => {
-      const node = $getNodeByKey(nodeKey) as ImageContentNode
-      if (node) {
-        node.getWritable().__imageLayout = layout
+      const node = $getNodeByKey(nodeKey)
+      if ($isImageContentNode(node)) {
+        node.setLayout(layout)
       }
     })
   }
 
   const confirm = (url: string, layout: ImageLayout, caption: string, title?: string) => {
     editor.update(() => {
-      const node = $getNodeByKey(nodeKey) as ImageContentNode
-      if (node) {
-        node.getWritable().__caption = caption
-        node.getWritable().__imageUrl = url
-        node.getWritable().__imageLayout = layout
-        if (title) {
-          node.getWritable().__imageTitle = title
+      const node = $getNodeByKey(nodeKey)
+      if ($isImageContentNode(node)) {
+        const updatePayload = {
+          caption,
+          layout,
+          url,
         }
+        node.updateContent(title ? { ...updatePayload, title } : updatePayload)
       }
     })
 
@@ -195,7 +196,7 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
   }
 
   static override importJSON(serializedNode: SerializedImageContentNode) {
-    return new ImageContentNode(
+    return $createImageContentNode(
       serializedNode.imageUrl,
       serializedNode.imageLayout,
       serializedNode.caption,
@@ -227,6 +228,45 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
     const write = this.getWritable()
     write.__imageUrl = url
   }
+
+  setLayout(layout: ImageLayout): void {
+    const writable = this.getWritable()
+    writable.__imageLayout = layout
+  }
+
+  updateContent({
+    caption,
+    layout,
+    title,
+    url,
+  }: {
+    caption: string
+    layout: ImageLayout
+    title?: string
+    url: string
+  }): void {
+    const writable = this.getWritable()
+    writable.__caption = caption
+    writable.__imageUrl = url
+    writable.__imageLayout = layout
+    if (title) {
+      writable.__imageTitle = title
+    }
+  }
+
+  finishUpload({
+    title = '',
+    url,
+  }: {
+    title?: string
+    url: string
+  }): void {
+    const writable = this.getWritable()
+    writable.__imageUrl = url
+    writable.__imageTitle = title
+    writable.__imageSource = 'drag-drop'
+    writable.__isLoading = false
+  }
 }
 
 export function $createImageContentNode(
@@ -237,13 +277,15 @@ export function $createImageContentNode(
   imageSource: ImageSource = 'link',
   isLoading: boolean = false
 ): ImageContentNode {
-  return new ImageContentNode(
-    url,
-    layout,
-    caption,
-    imageTitle,
-    imageSource,
-    isLoading
+  return $applyNodeReplacement(
+    new ImageContentNode(
+      url,
+      layout,
+      caption,
+      imageTitle,
+      imageSource,
+      isLoading
+    )
   )
 }
 

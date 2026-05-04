@@ -1,4 +1,5 @@
 import {
+  $applyNodeReplacement,
   ElementNode,
   type LexicalNode,
   type EditorConfig,
@@ -70,7 +71,7 @@ export class ImageNode extends ElementNode {
 }
 
 export function $createImageNode(): ImageNode {
-  return new ImageNode()
+  return $applyNodeReplacement(new ImageNode())
 }
 
 export function $isImageNode(
