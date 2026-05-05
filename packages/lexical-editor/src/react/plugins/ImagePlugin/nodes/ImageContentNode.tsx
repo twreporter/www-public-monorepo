@@ -106,6 +106,7 @@ const ImageContent: FC<ImageContentProps> = ({
           imageUrl={imageUrl}
           layout={imageLayout}
           caption={imageCaption}
+          imageSource={imageSource}
         />
       }
     </>

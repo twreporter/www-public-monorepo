@@ -1,6 +1,6 @@
 export type ImageLayout = 'default' | 'small' | 'right'
 
-export type ImageSource = 'link' | 'drag-drop'
+export type ImageSource = 'link' | 'drag-drop' | 'db'
 
 export type ImageAddCommandPayload = {
   url: string

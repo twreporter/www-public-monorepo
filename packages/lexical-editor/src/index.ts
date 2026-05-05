@@ -11,6 +11,8 @@ export type {
   LexicalEditorValue,
   EditorConfig,
   ImageConfig,
+  ImageFromDbConfig,
+  ImageFromDbItem,
   UploadImageConfig,
 } from './core'
 

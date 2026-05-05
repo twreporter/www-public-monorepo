@@ -16,6 +16,8 @@ export type {
   EditorPluginFlags,
   EditorUiConfig,
   ImageConfig,
+  ImageFromDbConfig,
+  ImageFromDbItem,
   UploadImageConfig,
 } from './types/editor'
 

@@ -30,6 +30,7 @@ import {
   blockTypeToBlockName,
   useToolbarState,
 } from '../../context/ToolbarContext'
+import { useImageConfig } from '../../context/ImageConfigContext'
 // hook
 import useModal from '../../hooks/useModal'
 // util
@@ -42,6 +43,7 @@ import { $isAnnotationNode } from '../AnnotationPlugin/nodes/AnnotationNode'
 // component
 import DropDown, { DropDownItem } from '../../components/DropDown'
 import ImageEditDialog from '../ImagePlugin/components/ImageEditDialog'
+import ImageFromDbDialog from '../ImagePlugin/components/ImageFromDbDialog'
 import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts'
 import Fullscreen from './components/Fullscreen'
 import BlockFormatDropDown, { dropDownActiveClass } from './components/BlockFormatDropdown'
@@ -93,9 +95,12 @@ export default function ToolbarPlugin({
   const [modal] = useModal()
   const [isEditable, setIsEditable] = useState(() => editor.isEditable())
   const { toolbarState, updateToolbarState } = useToolbarState()
+  const imageConfig = useImageConfig()
 
   // custom plugin state
   const [isOpenImageDialog, setIsOpenImageDialog] = useState(false)
+  const [isOpenImageFromDbDialog, setIsOpenImageFromDbDialog] =
+    useState(false)
 
   const $handleHeadingNode = useCallback(
     (selectedElement: LexicalNode) => {
@@ -544,6 +549,22 @@ export default function ToolbarPlugin({
           buttonAriaLabel="insert some cool compoents"
           buttonIconClassName="icon plus"
         >
+          {imageConfig?.imageFromDb && (
+            <DropDownItem
+              onClick={() => {
+                setIsOpenImageFromDbDialog(true)
+              }}
+              className={`item wide`}
+              title="Image from DB"
+              aria-label="add image from db"
+            >
+              <div className="icon-text-container">
+                <i className="icon image-from-db" />
+                <span className="text">Image</span>
+              </div>
+              <span className="shortcut">{SHORTCUTS.IMAGE_FROM_DB}</span>
+            </DropDownItem>
+          )}
           <DropDownItem
             onClick={() => {
               setIsOpenImageDialog(true)
@@ -571,14 +592,36 @@ export default function ToolbarPlugin({
         </button>
         {modal}
       </div>
-      {isOpenImageDialog &&
+      {isOpenImageDialog && (
         <ImageEditDialog
           imageLayout="default"
           imageUrl=""
           imageCaption=""
           onClose={() => setIsOpenImageDialog(false)}
-          onConfirm={(url, layout, caption) => activeEditor.dispatchCommand(IMAGE_ADD_COMMAND, { url, layout, caption })}
-        />}
+          onConfirm={(url, layout, caption) =>
+            activeEditor.dispatchCommand(IMAGE_ADD_COMMAND, {
+              url,
+              layout,
+              caption,
+            })
+          }
+        />
+      )}
+      {isOpenImageFromDbDialog && imageConfig?.imageFromDb && (
+        <ImageFromDbDialog
+          imageFromDb={imageConfig.imageFromDb}
+          onClose={() => setIsOpenImageFromDbDialog(false)}
+          onConfirm={({ caption, url, layout, title }) =>
+            activeEditor.dispatchCommand(IMAGE_ADD_COMMAND, {
+              url,
+              layout,
+              caption,
+              title,
+              source: 'db',
+            })
+          }
+        />
+      )}
     </>
   )
 }

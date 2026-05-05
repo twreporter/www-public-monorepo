@@ -12,8 +12,30 @@ export type EditorPluginFlags = {
   richText?: boolean
 }
 
+export type ImageFromDbItem = {
+  id: string
+  title: string
+  url: string
+}
+
+export type ImageFromDbConfig = {
+  pageSize?: number
+  search: (params: {
+    keyword: string
+    page: number
+    pageSize: number
+    signal?: AbortSignal
+  }) => Promise<{
+    items: ImageFromDbItem[]
+    total: number
+  }>
+  onError?: (error: Error) => void
+}
+
 export type ImageConfig = {
   relatedPhotosHref?: (imageTitle: string) => string
+  imageFromDb?: ImageFromDbConfig
+  getDbImageSrcSet?: (url: string) => string
 }
 
 export type UploadImageConfig = {
