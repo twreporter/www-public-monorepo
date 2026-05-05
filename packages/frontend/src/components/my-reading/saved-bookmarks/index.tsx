@@ -21,10 +21,14 @@ import { BaseContext } from '@/contexts'
 
 type SavedBookmarksProps = {
   currentPage: number
+  isEmpty?: boolean
 }
 
 // TODO: get data from API, error handling, bookmark action
-const SavedBookmarks: FC<SavedBookmarksProps> = ({ currentPage }) => {
+const SavedBookmarks: FC<SavedBookmarksProps> = ({
+  currentPage,
+  isEmpty = false,
+}) => {
   const { releaseBranch } = useContext(BaseContext)
   const router = useRouter()
   const totalPage = Math.ceil(
@@ -54,10 +58,9 @@ const SavedBookmarks: FC<SavedBookmarksProps> = ({ currentPage }) => {
   }, [router, currentPage, buildUrl])
 
   const start = (currentPage - 1) * SAVED_BOOKMARKS_PER_PAGE
-  const items = fakeSavedBookmarks.slice(
-    start,
-    start + SAVED_BOOKMARKS_PER_PAGE
-  )
+  const items = isEmpty
+    ? []
+    : fakeSavedBookmarks.slice(start, start + SAVED_BOOKMARKS_PER_PAGE)
 
   return (
     <div
@@ -97,25 +100,24 @@ const SavedBookmarks: FC<SavedBookmarksProps> = ({ currentPage }) => {
             />
           </>
         ) : (
-          <div className="mt-[72px] mb-[120px]">
-            <EmptyState
-              style={EmptyState.Style.default}
-              title="你還沒有收藏任何報導"
-              guide={
-                <>
-                  <P2 text="點擊" />
-                  <Bookmark
-                    type={Bookmark.Type.ADD}
-                    releaseBranch={releaseBranch}
-                  />
-                  <P2 text="將喜愛的文章加入我的書籤" />
-                </>
-              }
-              buttonText="前往首頁"
-              buttonUrl={`${INTERNAL_ROUTES.home}`}
-              releaseBranch={releaseBranch}
-            />
-          </div>
+          <EmptyState
+            className="mt-[72px] mb-[120px]"
+            style={EmptyState.Style.default}
+            title="你還沒有收藏任何報導"
+            guide={
+              <>
+                <P2 text="點擊" />
+                <Bookmark
+                  type={Bookmark.Type.ADD}
+                  releaseBranch={releaseBranch}
+                />
+                <P2 text="將喜愛的文章加入我的書籤" />
+              </>
+            }
+            buttonText="前往首頁"
+            buttonUrl={`${INTERNAL_ROUTES.home}`}
+            releaseBranch={releaseBranch}
+          />
         )}
       </div>
     </div>

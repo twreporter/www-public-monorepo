@@ -10,12 +10,14 @@ import { pageParamParser } from '@/utils/page-param-parser'
 export default async function Page({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string }>
+  searchParams: Promise<{ page?: string; empty?: string }>
 }) {
-  const { page } = await searchParams
+  const { page, empty } = await searchParams
   const totalPages = Math.ceil(
     fakeBrowsingHistory.length / BROWSING_HISTORY_PER_PAGE
   )
   const currentPage = pageParamParser(page, totalPages)
-  return <BrowsingHistory currentPage={currentPage} />
+  return (
+    <BrowsingHistory currentPage={currentPage} isEmpty={empty !== undefined} />
+  )
 }

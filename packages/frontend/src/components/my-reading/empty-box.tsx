@@ -32,7 +32,11 @@ const EmptyBookmark = () => {
       />
       <div className="flex flex-row items-center justify-center mt-[4px]">
         <P1 text="點擊" className="text-gray-600" />
-        <Bookmark type={Bookmark.Type.ADD} releaseBranch={releaseBranch} />
+        <Bookmark
+          type={Bookmark.Type.ADD}
+          releaseBranch={releaseBranch}
+          className="!bg-gray-600"
+        />
         <P1 text="收藏你喜愛的報導" className="text-gray-600" />
       </div>
     </div>

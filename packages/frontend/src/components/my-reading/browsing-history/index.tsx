@@ -19,10 +19,14 @@ import { BaseContext } from '@/contexts'
 
 type BrowsingHistoryProps = {
   currentPage: number
+  isEmpty?: boolean
 }
 
 // TODO: get data from API, error handling, bookmark action
-const BrowsingHistory: FC<BrowsingHistoryProps> = ({ currentPage }) => {
+const BrowsingHistory: FC<BrowsingHistoryProps> = ({
+  currentPage,
+  isEmpty = false,
+}) => {
   const { releaseBranch } = useContext(BaseContext)
   const router = useRouter()
   const totalPage = Math.ceil(
@@ -51,10 +55,9 @@ const BrowsingHistory: FC<BrowsingHistoryProps> = ({ currentPage }) => {
   }, [router, currentPage, buildUrl])
 
   const start = (currentPage - 1) * BROWSING_HISTORY_PER_PAGE
-  const items = fakeBrowsingHistory.slice(
-    start,
-    start + BROWSING_HISTORY_PER_PAGE
-  )
+  const items = isEmpty
+    ? []
+    : fakeBrowsingHistory.slice(start, start + BROWSING_HISTORY_PER_PAGE)
 
   return (
     <div
@@ -91,16 +94,15 @@ const BrowsingHistory: FC<BrowsingHistoryProps> = ({ currentPage }) => {
             />
           </>
         ) : (
-          <div className="mt-[72px] mb-[120px]">
-            <EmptyState
-              style={EmptyState.Style.default}
-              title="你還沒有造訪過任何報導"
-              guide="前往首頁探索更多內容"
-              buttonText="前往首頁"
-              buttonUrl={`${INTERNAL_ROUTES.home}`}
-              releaseBranch={releaseBranch}
-            />
-          </div>
+          <EmptyState
+            className="mt-[72px] mb-[120px]"
+            style={EmptyState.Style.default}
+            title="你還沒有造訪過任何報導"
+            guide="前往首頁探索更多內容"
+            buttonText="前往首頁"
+            buttonUrl={`${INTERNAL_ROUTES.home}`}
+            releaseBranch={releaseBranch}
+          />
         )}
       </div>
     </div>

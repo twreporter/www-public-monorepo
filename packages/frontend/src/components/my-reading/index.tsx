@@ -9,7 +9,11 @@ import ReviewingArticleSection from '@/components/my-reading/reviewing-article-s
 
 import { H2 } from '@twreporter/react-typescript-components/lib/text/heading'
 
-export const MyReading: FC = () => {
+type MyReadingProps = {
+  isEmpty?: boolean
+}
+
+export const MyReading: FC<MyReadingProps> = ({ isEmpty = false }) => {
   const {
     hydrateWithFakeData,
     isTrackingLoading,
@@ -23,8 +27,10 @@ export const MyReading: FC = () => {
   } = useMyReadingStore()
 
   useEffect(() => {
-    hydrateWithFakeData()
-  }, [hydrateWithFakeData])
+    if (!isEmpty) {
+      hydrateWithFakeData()
+    }
+  }, [hydrateWithFakeData, isEmpty])
 
   return (
     <div className="w-full overflow-hidden">
