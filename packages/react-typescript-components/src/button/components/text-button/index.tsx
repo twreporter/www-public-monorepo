@@ -65,7 +65,7 @@ const TextButton: FC<TextButtonProps> & {
     if (disabled) {
       return
     }
-    e.stopPropagation()
+    e.preventDefault()
     onClick(e)
   }
 

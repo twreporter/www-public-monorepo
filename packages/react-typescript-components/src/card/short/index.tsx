@@ -35,6 +35,7 @@ const ShortCard: FC<ShortCardProps> & { Size: typeof SIZE } = ({
     <div
       className={clsx(
         'flex flex-row w-full',
+        'hover:opacity-80',
         size === SIZE.s ? 'gap-[8px]' : 'gap-[16px]'
       )}
     >
