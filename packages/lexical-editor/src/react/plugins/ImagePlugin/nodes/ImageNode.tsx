@@ -1,4 +1,5 @@
 import {
+  $applyNodeReplacement,
   ElementNode,
   type LexicalNode,
   type EditorConfig,
@@ -29,8 +30,8 @@ export class ImageNode extends ElementNode {
     return new ImageNode(node.__key)
   }
 
-  override isInline(): true {
-    return true
+  override isInline(): false {
+    return false
   }
 
   override createDOM(config: EditorConfig): HTMLElement {
@@ -70,7 +71,7 @@ export class ImageNode extends ElementNode {
 }
 
 export function $createImageNode(): ImageNode {
-  return new ImageNode()
+  return $applyNodeReplacement(new ImageNode())
 }
 
 export function $isImageNode(

@@ -1,4 +1,5 @@
 import {
+  $applyNodeReplacement,
   type LexicalNode,
   DecoratorNode,
   type NodeKey,
@@ -16,6 +17,7 @@ import { $isImageNode, ImageNode } from './ImageNode'
 // components
 import ImageEditMode from '../components/ImageEditMode'
 import ImageDisplayMode from '../components/ImageDisplayMode'
+import ImageSkeleton from '../components/ImageSkeleton'
 // type
 import type { ImageLayout, ImageSource } from '../types'
 // global var
@@ -28,6 +30,7 @@ type ImageContentProps = {
   imageLayout?: ImageLayout
   imageTitle?: string
   imageSource?: ImageSource
+  isLoading?: boolean
 }
 const ImageContent: FC<ImageContentProps> = ({
   nodeKey,
@@ -36,6 +39,7 @@ const ImageContent: FC<ImageContentProps> = ({
   imageLayout = 'default',
   imageTitle = '',
   imageSource = 'link',
+  isLoading = false,
 }) => {
   const [editor] = useLexicalComposerContext()
   const [editable, setEditable] = useState(() => editor.isEditable())
@@ -48,23 +52,23 @@ const ImageContent: FC<ImageContentProps> = ({
 
   const updateLayout = (layout: ImageLayout) => {
     editor.update(() => {
-      const node = $getNodeByKey(nodeKey) as ImageContentNode
-      if (node) {
-        node.getWritable().__imageLayout = layout
+      const node = $getNodeByKey(nodeKey)
+      if ($isImageContentNode(node)) {
+        node.setLayout(layout)
       }
     })
   }
 
   const confirm = (url: string, layout: ImageLayout, caption: string, title?: string) => {
     editor.update(() => {
-      const node = $getNodeByKey(nodeKey) as ImageContentNode
-      if (node) {
-        node.getWritable().__caption = caption
-        node.getWritable().__imageUrl = url
-        node.getWritable().__imageLayout = layout
-        if (title) {
-          node.getWritable().__imageTitle = title
+      const node = $getNodeByKey(nodeKey)
+      if ($isImageContentNode(node)) {
+        const updatePayload = {
+          caption,
+          layout,
+          url,
         }
+        node.updateContent(title ? { ...updatePayload, title } : updatePayload)
       }
     })
 
@@ -79,6 +83,10 @@ const ImageContent: FC<ImageContentProps> = ({
         parent.remove()
       }
     })
+  }
+
+  if (isLoading) {
+    return <ImageSkeleton layout={imageLayout} />
   }
 
   return (
@@ -112,6 +120,7 @@ type SerializedImageContentNode = {
   caption: string
   imageTitle?: string
   imageSource?: ImageSource
+  isLoading?: boolean
 }
 
 export class ImageContentNode extends DecoratorNode<ReactNode> {
@@ -120,6 +129,7 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
   __caption: string
   __imageTitle: string
   __imageSource: ImageSource
+  __isLoading: boolean
 
   static override getType(): string {
     return imageLinkContentType
@@ -132,6 +142,7 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
       node.__caption,
       node.__imageTitle,
       node.__imageSource,
+      node.__isLoading,
       node.__key
     )
   }
@@ -142,6 +153,7 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
     caption: string,
     imageTitle: string = '',
     imageSource: ImageSource = 'link',
+    isLoading: boolean = false,
     key?: NodeKey,
   ) {
     super(key)
@@ -150,6 +162,7 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
     this.__caption = caption
     this.__imageTitle = imageTitle
     this.__imageSource = imageSource
+    this.__isLoading = isLoading
   }
 
   override createDOM(): HTMLElement {
@@ -177,17 +190,19 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
         imageCaption={this.__caption}
         imageTitle={this.__imageTitle}
         imageSource={this.__imageSource}
+        isLoading={this.__isLoading}
       />
     )
   }
 
   static override importJSON(serializedNode: SerializedImageContentNode) {
-    return new ImageContentNode(
+    return $createImageContentNode(
       serializedNode.imageUrl,
       serializedNode.imageLayout,
       serializedNode.caption,
       serializedNode.imageTitle,
-      serializedNode.imageSource
+      serializedNode.imageSource,
+      serializedNode.isLoading
     )
   }
 
@@ -200,6 +215,7 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
       caption: this.__caption,
       imageTitle: this.__imageTitle,
       imageSource: this.__imageSource,
+      isLoading: this.__isLoading,
     }
   }
 
@@ -212,6 +228,45 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
     const write = this.getWritable()
     write.__imageUrl = url
   }
+
+  setLayout(layout: ImageLayout): void {
+    const writable = this.getWritable()
+    writable.__imageLayout = layout
+  }
+
+  updateContent({
+    caption,
+    layout,
+    title,
+    url,
+  }: {
+    caption: string
+    layout: ImageLayout
+    title?: string
+    url: string
+  }): void {
+    const writable = this.getWritable()
+    writable.__caption = caption
+    writable.__imageUrl = url
+    writable.__imageLayout = layout
+    if (title) {
+      writable.__imageTitle = title
+    }
+  }
+
+  finishUpload({
+    title = '',
+    url,
+  }: {
+    title?: string
+    url: string
+  }): void {
+    const writable = this.getWritable()
+    writable.__imageUrl = url
+    writable.__imageTitle = title
+    writable.__imageSource = 'drag-drop'
+    writable.__isLoading = false
+  }
 }
 
 export function $createImageContentNode(
@@ -219,9 +274,19 @@ export function $createImageContentNode(
   layout: ImageLayout,
   caption: string,
   imageTitle: string = '',
-  imageSource: ImageSource = 'link'
+  imageSource: ImageSource = 'link',
+  isLoading: boolean = false
 ): ImageContentNode {
-  return new ImageContentNode(url, layout, caption, imageTitle, imageSource)
+  return $applyNodeReplacement(
+    new ImageContentNode(
+      url,
+      layout,
+      caption,
+      imageTitle,
+      imageSource,
+      isLoading
+    )
+  )
 }
 
 export function $isImageContentNode(

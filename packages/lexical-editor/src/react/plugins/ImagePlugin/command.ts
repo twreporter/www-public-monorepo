@@ -8,8 +8,9 @@ import {
   type LexicalCommand
 } from 'lexical'
 // nodes
-import { ImageNode } from './nodes/ImageNode'
-import { ImageContentNode } from './nodes/ImageContentNode'
+import { $createImageNode, ImageNode } from './nodes/ImageNode'
+import { $createImageContentNode } from './nodes/ImageContentNode'
+import { $insertImageNodes } from './utils'
 import type { ImageAddCommandPayload } from './types'
 
 export const IMAGE_ADD_COMMAND: LexicalCommand<ImageAddCommandPayload> = createCommand('ADD_IMAGE_LINK')
@@ -24,8 +25,8 @@ export function registerImagePlugin(editor: LexicalEditor) {
       if (!selection) {
         return false
       }
-      const imageNode = new ImageNode()
-      const imageContentNode = new ImageContentNode(
+      const imageNode = $createImageNode()
+      const imageContentNode = $createImageContentNode(
         url,
         layout,
         caption,
@@ -33,7 +34,7 @@ export function registerImagePlugin(editor: LexicalEditor) {
         source
       )
       imageNode.append(imageContentNode)
-      selection.insertNodes([imageNode])
+      $insertImageNodes([imageNode])
       return true
     },
     COMMAND_PRIORITY_EDITOR

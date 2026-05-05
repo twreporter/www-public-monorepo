@@ -1,0 +1,19 @@
+/* media query mixin */
+@mixin mobile-only {
+  @media (max-width: 767px) { @content; }
+}
+@mixin tablet-and-below {
+  @media (max-width: 1023px) { @content; }
+}
+@mixin tablet-only {
+  @media (min-width: 768px) and (max-width: 1023px) { @content; }
+}
+@mixin desktop-only {
+  @media (min-width: 1024px) and (max-width: 1339px) { @content; }
+}
+@mixin hd-only {
+  @media (min-width: 1440px) { @content; }
+}
+@mixin desktop-and-above {
+  @media (min-width: 1024px) { @content; }
+}
