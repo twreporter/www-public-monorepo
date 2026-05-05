@@ -1,6 +1,6 @@
 'use client'
-import Link from 'next/link'
 import { useContext } from 'react'
+import { useRouter } from 'next/navigation'
 // @twreporters
 import { TextButton } from '@twreporter/react-typescript-components/lib/button'
 import { Arrow } from '@twreporter/react-typescript-components/lib/icons'
@@ -13,18 +13,18 @@ type MoreButtonProps = {
 
 export default function MoreButton({ href }: MoreButtonProps) {
   const { releaseBranch } = useContext(BaseContext)
+  const router = useRouter()
   return (
-    <Link href={href}>
-      <TextButton
-        className="text-gray-800"
-        text="查看更多"
-        rightIconComponent={
-          <Arrow
-            direction={Arrow.Direction.right}
-            releaseBranch={releaseBranch}
-          />
-        }
-      />
-    </Link>
+    <TextButton
+      className="text-gray-800"
+      text="查看更多"
+      rightIconComponent={
+        <Arrow
+          direction={Arrow.Direction.right}
+          releaseBranch={releaseBranch}
+        />
+      }
+      onClick={() => router.push(href)}
+    />
   )
 }

@@ -1,5 +1,6 @@
 'use client'
 import type { FC } from 'react'
+import Link from 'next/link'
 // @twreporters
 import { Divider } from '@twreporter/react-typescript-components/lib/divider'
 import { Title2 } from '@twreporter/react-typescript-components/lib/title-bar'
@@ -40,7 +41,10 @@ const BrowsingHistorySection: FC<BrowsingHistorySectionProps> = ({
       ) : (
         <div className="pt-[24px] pb-[24px] grid grid-cols-1 tablet:grid-cols-2 gap-y-[24px] tablet:gap-x-[24px] desktop:gap-x-[32px]">
           {items.slice(0, 6).map((item) => (
-            <div key={item.slug}>
+            <Link
+              key={item.slug}
+              href={`${INTERNAL_ROUTES.article}/${encodeURIComponent(item.slug)}`}
+            >
               <div className="desktop:hidden">
                 <ShortCard
                   title={item.title}
@@ -58,7 +62,7 @@ const BrowsingHistorySection: FC<BrowsingHistorySectionProps> = ({
                 />
               </div>
               <Divider className="mt-[24px]" />
-            </div>
+            </Link>
           ))}
         </div>
       )}

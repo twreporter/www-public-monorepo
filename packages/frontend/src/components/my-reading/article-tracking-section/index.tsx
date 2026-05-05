@@ -1,6 +1,12 @@
 'use client'
-import { type FC, useMemo, useRef, useState, useContext } from 'react'
-import { useEffect } from 'react'
+import {
+  type FC,
+  useMemo,
+  useRef,
+  useState,
+  useContext,
+  useEffect,
+} from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -176,11 +182,6 @@ const ArticleTrackingSection: FC<ArticleTrackingSectionProps> = ({
                 }}
                 onSwiper={(instance: SwiperType) => {
                   setSwiper(instance)
-                  requestAnimationFrame(() => {
-                    instance.update()
-                    setIsBeginning(instance.isBeginning)
-                    setIsEnd(instance.isEnd)
-                  })
                 }}
                 onSlideChange={(instance: SwiperType) => {
                   setIsBeginning(instance.isBeginning)
