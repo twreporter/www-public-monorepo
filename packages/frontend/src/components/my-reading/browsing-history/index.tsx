@@ -1,10 +1,11 @@
 'use client'
-import { type FC, useCallback } from 'react'
+import { type FC, useCallback, useContext } from 'react'
 import { useRouter } from 'next/navigation'
 import clsx from 'clsx'
 // @twreporters
 import { Title1 } from '@twreporter/react-typescript-components/lib/title-bar'
 import { Divider } from '@twreporter/react-typescript-components/lib/divider'
+import { EmptyState } from '@twreporter/react-typescript-components/lib/empty-state'
 // components
 import ReadingListRow from '@/components/my-reading/reading-list-row'
 import Pagination from '@/components/pagination'
@@ -13,13 +14,16 @@ import { fakeBrowsingHistory } from '@/components/my-reading/fake-data'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
 import { BROWSING_HISTORY_PER_PAGE } from '@/components/my-reading/constants'
+// context
+import { BaseContext } from '@/contexts'
 
 type BrowsingHistoryProps = {
   currentPage: number
 }
 
-// TODO: empty state, get data from API, error handling, bookmark action
+// TODO: get data from API, error handling, bookmark action
 const BrowsingHistory: FC<BrowsingHistoryProps> = ({ currentPage }) => {
+  const { releaseBranch } = useContext(BaseContext)
   const router = useRouter()
   const totalPage = Math.ceil(
     fakeBrowsingHistory.length / BROWSING_HISTORY_PER_PAGE
@@ -68,21 +72,36 @@ const BrowsingHistory: FC<BrowsingHistoryProps> = ({ currentPage }) => {
         )}
       >
         <Title1 title="瀏覽紀錄" subtitle="近六個月造訪過的報導" />
-        <div className="pt-[24px] grid grid-cols-1 gap-[24px]">
-          {items.map((item) => (
-            <div key={item.slug}>
-              <ReadingListRow item={item} />
-              <Divider className="mt-[24px]" />
+        {items.length > 0 ? (
+          <>
+            <div className="pt-[24px] grid grid-cols-1 gap-[24px]">
+              {items.map((item) => (
+                <div key={item.slug}>
+                  <ReadingListRow item={item} />
+                  <Divider className="mt-[24px]" />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <Pagination
-          currentPage={currentPage}
-          totalPage={totalPage}
-          handleClickPage={handleClickPage}
-          handleClickPrev={handleClickPrev}
-          handleClickNext={handleClickNext}
-        />
+            <Pagination
+              currentPage={currentPage}
+              totalPage={totalPage}
+              handleClickPage={handleClickPage}
+              handleClickPrev={handleClickPrev}
+              handleClickNext={handleClickNext}
+            />
+          </>
+        ) : (
+          <div className="mt-[72px] mb-[120px]">
+            <EmptyState
+              style={EmptyState.Style.default}
+              title="你還沒有造訪過任何報導"
+              guide="前往首頁探索更多內容"
+              buttonText="前往首頁"
+              buttonUrl={`${INTERNAL_ROUTES.home}`}
+              releaseBranch={releaseBranch}
+            />
+          </div>
+        )}
       </div>
     </div>
   )

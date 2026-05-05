@@ -1,10 +1,13 @@
 'use client'
-import { type FC, useCallback } from 'react'
+import { type FC, useCallback, useContext } from 'react'
 import { useRouter } from 'next/navigation'
 import clsx from 'clsx'
 // @twreporters
 import { Title1 } from '@twreporter/react-typescript-components/lib/title-bar'
 import { Divider } from '@twreporter/react-typescript-components/lib/divider'
+import { EmptyState } from '@twreporter/react-typescript-components/lib/empty-state'
+import { P2 } from '@twreporter/react-typescript-components/lib/text/paragraph'
+import { Bookmark } from '@twreporter/react-typescript-components/lib/icons'
 // components
 import ReadingListRow from '@/components/my-reading/reading-list-row'
 import Pagination from '@/components/pagination'
@@ -13,13 +16,16 @@ import { fakeSavedBookmarks } from '@/components/my-reading/fake-data'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
 import { SAVED_BOOKMARKS_PER_PAGE } from '@/components/my-reading/constants'
+// context
+import { BaseContext } from '@/contexts'
 
 type SavedBookmarksProps = {
   currentPage: number
 }
 
-// TODO: empty state, get data from API, error handling, bookmark action
+// TODO: get data from API, error handling, bookmark action
 const SavedBookmarks: FC<SavedBookmarksProps> = ({ currentPage }) => {
+  const { releaseBranch } = useContext(BaseContext)
   const router = useRouter()
   const totalPage = Math.ceil(
     fakeSavedBookmarks.length / SAVED_BOOKMARKS_PER_PAGE
@@ -68,22 +74,49 @@ const SavedBookmarks: FC<SavedBookmarksProps> = ({ currentPage }) => {
           'tablet:col-start-2 tablet:col-end-12'
         )}
       >
-        <Title1 title="已收藏" subtitle={`共${totalCount}篇`} />
-        <div className="pt-[24px] grid grid-cols-1 gap-[24px]">
-          {items.map((item) => (
-            <div key={item.slug}>
-              <ReadingListRow item={item} />
-              <Divider className="mt-[24px]" />
-            </div>
-          ))}
-        </div>
-        <Pagination
-          currentPage={currentPage}
-          totalPage={totalPage}
-          handleClickPage={handleClickPage}
-          handleClickPrev={handleClickPrev}
-          handleClickNext={handleClickNext}
+        <Title1
+          title="已收藏"
+          subtitle={totalCount ? `共${totalCount}篇` : undefined}
         />
+        {items.length > 0 ? (
+          <>
+            <div className="pt-[24px] grid grid-cols-1 gap-[24px]">
+              {items.map((item) => (
+                <div key={item.slug}>
+                  <ReadingListRow item={item} />
+                  <Divider className="mt-[24px]" />
+                </div>
+              ))}
+            </div>
+            <Pagination
+              currentPage={currentPage}
+              totalPage={totalPage}
+              handleClickPage={handleClickPage}
+              handleClickPrev={handleClickPrev}
+              handleClickNext={handleClickNext}
+            />
+          </>
+        ) : (
+          <div className="mt-[72px] mb-[120px]">
+            <EmptyState
+              style={EmptyState.Style.default}
+              title="你還沒有收藏任何報導"
+              guide={
+                <>
+                  <P2 text="點擊" />
+                  <Bookmark
+                    type={Bookmark.Type.ADD}
+                    releaseBranch={releaseBranch}
+                  />
+                  <P2 text="將喜愛的文章加入我的書籤" />
+                </>
+              }
+              buttonText="前往首頁"
+              buttonUrl={`${INTERNAL_ROUTES.home}`}
+              releaseBranch={releaseBranch}
+            />
+          </div>
+        )}
       </div>
     </div>
   )
