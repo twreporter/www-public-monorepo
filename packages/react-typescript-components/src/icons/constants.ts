@@ -29,3 +29,11 @@ export const MEDIA_TYPE = {
 } as const
 
 export type MediaType = ValuesOf<typeof MEDIA_TYPE>
+
+export const BOOKMARK_TYPE = {
+  BASIC: 'basic',
+  ADD: 'add',
+  SAVED: 'saved',
+} as const
+
+export type BookmarkType = ValuesOf<typeof BOOKMARK_TYPE>

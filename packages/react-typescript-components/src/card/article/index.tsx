@@ -5,10 +5,18 @@ import { P1, P2, P3 } from '../../text/paragraph'
 import { H4 } from '../../text/heading'
 // constants
 import { SIZE, type Size } from './constants'
+import {
+  RELEASE_BRANCH,
+  type ReleaseBranch,
+} from '../../constants/release-branch'
 // skeleton
 import { LargeSkeleton, SmallSkeleton } from './loading'
 // placeholder
 import ImgPlaceholder from '../img-placeholder'
+// components
+import { TextButton } from '../../button'
+// icons
+import { Bookmark } from '../../icons'
 
 type ArticleCardBaseProps = {
   categoryLabel?: string
@@ -20,9 +28,9 @@ type ArticleCardBaseProps = {
     alt?: string
   }
   size: Size
-  // TODO: add isBookmark when bookmark feature is ready
-  // isBookmark?: boolean
-  // onBookmarkClick?: () => void
+  isBookmark?: boolean
+  onBookmarkClick?: () => void
+  releaseBranch?: ReleaseBranch
 }
 
 type ArticleCardLoadingProps = {
@@ -47,8 +55,16 @@ const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
     if (isLoading) {
       return <SmallSkeleton />
     }
-    const { categoryLabel, publishedDate, title, description, image } =
-      props as ArticleCardDetailProps
+    const {
+      categoryLabel,
+      publishedDate,
+      title,
+      description,
+      image,
+      isBookmark,
+      onBookmarkClick,
+      releaseBranch = RELEASE_BRANCH.master,
+    } = props as ArticleCardDetailProps
     return (
       <div
         className={clsx(
@@ -90,6 +106,33 @@ const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
           </div>
         </div>
         <P2 className="text-gray-800 line-clamp-3" text={description} />
+        {isBookmark ? (
+          <div className="flex justify-end">
+            <TextButton
+              leftIconComponent={
+                <Bookmark
+                  type={Bookmark.Type.SAVED}
+                  releaseBranch={releaseBranch}
+                />
+              }
+              onClick={onBookmarkClick}
+              text="已收藏"
+            />
+          </div>
+        ) : (
+          <div className="flex justify-end">
+            <TextButton
+              leftIconComponent={
+                <Bookmark
+                  type={Bookmark.Type.ADD}
+                  releaseBranch={releaseBranch}
+                />
+              }
+              onClick={onBookmarkClick}
+              text="收藏"
+            />
+          </div>
+        )}
       </div>
     )
   }
@@ -98,8 +141,16 @@ const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
     return <LargeSkeleton />
   }
 
-  const { categoryLabel, publishedDate, title, description, image } =
-    props as ArticleCardDetailProps
+  const {
+    categoryLabel,
+    publishedDate,
+    title,
+    description,
+    image,
+    isBookmark,
+    onBookmarkClick,
+    releaseBranch = RELEASE_BRANCH.master,
+  } = props as ArticleCardDetailProps
   return (
     <div
       className={clsx(
@@ -123,6 +174,33 @@ const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
           type={H4.Type.article}
         />
         <P1 className="text-gray-800 line-clamp-3" text={description} />
+        {isBookmark ? (
+          <div className="flex justify-end">
+            <TextButton
+              leftIconComponent={
+                <Bookmark
+                  type={Bookmark.Type.SAVED}
+                  releaseBranch={releaseBranch}
+                />
+              }
+              onClick={onBookmarkClick}
+              text="已收藏"
+            />
+          </div>
+        ) : (
+          <div className="flex justify-end">
+            <TextButton
+              leftIconComponent={
+                <Bookmark
+                  type={Bookmark.Type.ADD}
+                  releaseBranch={releaseBranch}
+                />
+              }
+              onClick={onBookmarkClick}
+              text="收藏"
+            />
+          </div>
+        )}
       </div>
       <div className="flex justify-center items-center">
         {image?.src && !isImageFailed ? (
