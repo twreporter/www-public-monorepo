@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.11](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.10...@twreporter/lexical-editor@0.2.0-beta.11) (2026-05-05)
+
+
+### Bug Fixes
+
+* **lexical-editor:** add image upload skeleton ([b9ea9c1](https://github.com/twreporter/www-public-monorepo/commit/b9ea9c1046a0ec7adff3bfc961e6565fdf6c0c49))
+* **lexical-editor:** address review comments ([65f7e4a](https://github.com/twreporter/www-public-monorepo/commit/65f7e4ac983344e82d3ec72f6ffcd4e9caa044e9))
+* **lexical-editor:** fix insert img into paragraph ([8295304](https://github.com/twreporter/www-public-monorepo/commit/82953049046f6a92869c1c264401af56486a9072))
+
+
+
+
+
 # [0.2.0-beta.10](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.9...@twreporter/lexical-editor@0.2.0-beta.10) (2026-04-27)
 
 
