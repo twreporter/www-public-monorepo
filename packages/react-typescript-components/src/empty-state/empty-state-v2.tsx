@@ -13,6 +13,7 @@ type EmptyStateV2Props = {
   title?: string
   guide?: React.ReactNode | string
   buttonComponents?: React.ReactElement[]
+  className?: string
 }
 
 const EmptyStateV2: FC<EmptyStateV2Props> & { Style: typeof STYLE } = ({
@@ -22,6 +23,7 @@ const EmptyStateV2: FC<EmptyStateV2Props> & { Style: typeof STYLE } = ({
   title = '',
   guide = null,
   buttonComponents = [],
+  className = '',
 }) => {
   const { imageUrl, imageWidth } = useMemo(() => {
     switch (style) {
@@ -45,9 +47,13 @@ const EmptyStateV2: FC<EmptyStateV2Props> & { Style: typeof STYLE } = ({
 
   return (
     <div
-      className="w-full flex flex-col justify-center items-center"
+      className={clsx(
+        'w-full flex flex-col justify-center items-center',
+        className
+      )}
       style={{ maxWidth }}
     >
+      {/* biome-ignore lint/performance/noImgElement: use next image later */}
       <img src={imageUrl} width={imageWidth} alt="" />
       <div className="mt-[48px] flex flex-col items-center text-center text-gray-800">
         <P1 text={title} weight={P1.Weight.bold} />

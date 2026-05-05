@@ -19,6 +19,7 @@ type EmptyStateProps = {
   buttonUrl?: string
   buttonOnClick?: () => void
   maxWidth?: string
+  className?: string
 }
 
 const EmptyState: FC<EmptyStateProps> & { Style: typeof STYLE } = ({
@@ -32,6 +33,7 @@ const EmptyState: FC<EmptyStateProps> & { Style: typeof STYLE } = ({
   buttonUrl = '/',
   buttonOnClick = () => {},
   maxWidth = '280px',
+  className = '',
 }) => {
   let imageUrl = ''
   let imageWidth = ''
@@ -52,8 +54,11 @@ const EmptyState: FC<EmptyStateProps> & { Style: typeof STYLE } = ({
   }
 
   return (
-    <div className="w-full mt-[8px] flex flex-col items-center">
+    <div
+      className={clsx('w-full mt-[8px] flex flex-col items-center', className)}
+    >
       <div className="flex flex-col items-center" style={{ maxWidth }}>
+        {/* biome-ignore lint/performance/noImgElement: use next image later */}
         <img src={imageUrl} width={imageWidth} alt="" />
         <div className="mt-[48px] flex flex-col items-center text-center text-gray-800">
           <P1 text={title} weight={P1.Weight.bold} />
