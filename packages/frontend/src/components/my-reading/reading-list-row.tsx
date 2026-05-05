@@ -32,6 +32,7 @@ const ReadingListRow: FC<ReadingListRowProps> = ({
           publishedDate={item.publishedDate}
           image={{ src: item.image, alt: item.title }}
           size={mobileSize}
+          isBookmark={item.isBookmark}
         />
       </div>
       <div className="hidden desktop:block">
@@ -42,6 +43,7 @@ const ReadingListRow: FC<ReadingListRowProps> = ({
           publishedDate={item.publishedDate}
           image={{ src: item.image, alt: item.title }}
           size={desktopSize}
+          isBookmark={item.isBookmark}
         />
       </div>
     </Link>

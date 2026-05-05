@@ -14,6 +14,7 @@ export type ReadingListItem = {
   description: string
   publishedDate: string
   image: string
+  isBookmark?: boolean
 }
 
 export type ReviewingArticle = {

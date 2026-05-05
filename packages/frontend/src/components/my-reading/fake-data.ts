@@ -60,6 +60,7 @@ export const fakeSavedBookmarks: ReadingListItem[] = [
     publishedDate: '2026-03-18',
     image:
       'https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'saved-learning-portfolio',
@@ -69,6 +70,7 @@ export const fakeSavedBookmarks: ReadingListItem[] = [
     publishedDate: '2026-03-02',
     image:
       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'saved-night-economy',
@@ -78,6 +80,7 @@ export const fakeSavedBookmarks: ReadingListItem[] = [
     publishedDate: '2026-02-25',
     image:
       'https://images.unsplash.com/photo-1517142089942-ba376ce32a2e?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'saved-pension-debate',
@@ -87,6 +90,7 @@ export const fakeSavedBookmarks: ReadingListItem[] = [
     publishedDate: '2026-02-18',
     image:
       'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'saved-indigenous-land',
@@ -96,6 +100,7 @@ export const fakeSavedBookmarks: ReadingListItem[] = [
     publishedDate: '2026-02-10',
     image:
       'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'saved-media-trust',
@@ -105,6 +110,7 @@ export const fakeSavedBookmarks: ReadingListItem[] = [
     publishedDate: '2026-01-30',
     image:
       'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'saved-air-quality',
@@ -114,6 +120,7 @@ export const fakeSavedBookmarks: ReadingListItem[] = [
     publishedDate: '2026-01-22',
     image:
       'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'saved-rural-hospital',
@@ -123,6 +130,7 @@ export const fakeSavedBookmarks: ReadingListItem[] = [
     publishedDate: '2026-01-14',
     image:
       'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'saved-digital-divide',
@@ -132,6 +140,7 @@ export const fakeSavedBookmarks: ReadingListItem[] = [
     publishedDate: '2026-01-06',
     image:
       'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'saved-sports-facilities',
@@ -141,6 +150,7 @@ export const fakeSavedBookmarks: ReadingListItem[] = [
     publishedDate: '2025-12-28',
     image:
       'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'saved-birth-rate',
@@ -150,6 +160,7 @@ export const fakeSavedBookmarks: ReadingListItem[] = [
     publishedDate: '2025-12-19',
     image:
       'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
 ]
 
@@ -162,6 +173,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     publishedDate: '2026-03-17',
     image:
       'https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'browsing-algorithm-governance',
@@ -171,6 +183,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     publishedDate: '2026-03-09',
     image:
       'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: false,
   },
   {
     slug: 'browsing-mountain-tourism',
@@ -180,6 +193,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     publishedDate: '2026-02-26',
     image:
       'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'browsing-er-congestion',
@@ -189,6 +203,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     publishedDate: '2026-02-11',
     image:
       'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: false,
   },
   {
     slug: 'browsing-pension-reform',
@@ -198,6 +213,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     publishedDate: '2026-02-05',
     image:
       'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'browsing-ev-infrastructure',
@@ -207,6 +223,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     publishedDate: '2026-01-28',
     image:
       'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: false,
   },
   {
     slug: 'browsing-food-safety',
@@ -216,6 +233,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     publishedDate: '2026-01-19',
     image:
       'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'browsing-river-restoration',
@@ -225,6 +243,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     publishedDate: '2026-01-12',
     image:
       'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: false,
   },
   {
     slug: 'browsing-night-economy',
@@ -234,6 +253,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     publishedDate: '2025-12-30',
     image:
       'https://images.unsplash.com/photo-1517142089942-ba376ce32a2e?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
   {
     slug: 'browsing-ai-hiring',
@@ -243,6 +263,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     publishedDate: '2025-12-21',
     image:
       'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: false,
   },
   {
     slug: 'browsing-tribal-water',
@@ -252,6 +273,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     publishedDate: '2025-12-14',
     image:
       'https://images.unsplash.com/photo-1559825481-12a05cc00344?auto=format&fit=crop&w=1200&q=80',
+    isBookmark: true,
   },
 ]
 
