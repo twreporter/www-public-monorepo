@@ -65,9 +65,11 @@ export const useMyReadingStore = create<MyReadingState>((set, get) => ({
 
   toggleBookmark: (slug: string) => {
     set((state) => ({
-      savedBookmarks: state.savedBookmarks.map((item) =>
-        item.slug === slug ? { ...item, isBookmark: !item.isBookmark } : item
-      ),
+      savedBookmarks: state.savedBookmarks
+        .map((item) =>
+          item.slug === slug ? { ...item, isBookmark: !item.isBookmark } : item
+        )
+        .filter((item) => item.isBookmark),
     }))
   },
 }))

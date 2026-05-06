@@ -37,9 +37,11 @@ const SavedBookmarks: FC<SavedBookmarksProps> = ({
 
   const handleToggleBookmark = useCallback((slug: string) => {
     setBookmarks((prev) =>
-      prev.map((item) =>
-        item.slug === slug ? { ...item, isBookmark: !item.isBookmark } : item
-      )
+      prev
+        .map((item) =>
+          item.slug === slug ? { ...item, isBookmark: !item.isBookmark } : item
+        )
+        .filter((item) => item.isBookmark)
     )
   }, [])
 
