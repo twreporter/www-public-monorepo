@@ -1,6 +1,8 @@
 import { type FC, useState, type MouseEvent } from 'react'
 // components
 import ImageEditDialog from './ImageEditDialog'
+import ImageFromDbDialog from './ImageFromDbDialog'
+import { useImageConfig } from '../../../context/ImageConfigContext'
 // types
 import type { ImageLayout, ImageSource } from '../types'
 
@@ -26,6 +28,8 @@ const ImageEditMode: FC<ImageEditModeProps> = ({
   onUpdateLayout,
 }) => {
   const [isOpenEdit, setIsOpenEdit] = useState(false)
+  const imageConfig = useImageConfig()
+  const isDbImage = imageSource === 'db'
 
   const openEditDialog = () => setIsOpenEdit(true)
   const closeEditDialog = () => setIsOpenEdit(false)
@@ -77,16 +81,32 @@ const ImageEditMode: FC<ImageEditModeProps> = ({
       </div>
 
       {isOpenEdit ? (
-        <ImageEditDialog
-          imageUrl={imageUrl}
-          imageLayout={layout}
-          imageCaption={caption}
-          imageTitle={imageTitle}
-          imageSource={imageSource}
-          onConfirm={confirmEdit}
-          onClose={closeEditDialog}
-          onDelete={onDelete}
-        />
+        isDbImage && imageConfig?.imageFromDb ? (
+          <ImageFromDbDialog
+            imageFromDb={imageConfig.imageFromDb}
+            initialImage={{
+              title: imageTitle,
+              url: imageUrl,
+              caption,
+              layout,
+            }}
+            onConfirm={({ caption, url, layout, title }) => {
+              confirmEdit(url, layout, caption, title)
+            }}
+            onClose={closeEditDialog}
+          />
+        ) : (
+          <ImageEditDialog
+            imageUrl={imageUrl}
+            imageLayout={layout}
+            imageCaption={caption}
+            imageTitle={imageTitle}
+            imageSource={imageSource}
+            onConfirm={confirmEdit}
+            onClose={closeEditDialog}
+            onDelete={onDelete}
+          />
+        )
       ) : null}
     </div>
   )

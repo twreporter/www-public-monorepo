@@ -16,7 +16,7 @@ export const Field = ({
   onChange,
 }: FieldProps<typeof controller>) => {
   const valueJSON = useMemo(
-    () => (value ? JSON.parse(value) : undefined),
+    () => (value ? JSON.parse(value) : null),
     [value]
   )
   const config = createLexicalEditorConfig()
