@@ -85,7 +85,6 @@ const ImageEditMode: FC<ImageEditModeProps> = ({
           <ImageFromDbDialog
             imageFromDb={imageConfig.imageFromDb}
             initialImage={{
-              id: imageUrl,
               title: imageTitle,
               url: imageUrl,
               caption,

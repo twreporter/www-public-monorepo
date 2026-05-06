@@ -13,7 +13,6 @@ export type EditorPluginFlags = {
 }
 
 export type ImageFromDbItem = {
-  id: string
   title: string
   url: string
 }

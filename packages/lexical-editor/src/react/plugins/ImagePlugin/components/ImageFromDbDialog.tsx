@@ -48,6 +48,16 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
   const [errorMessage, setErrorMessage] = useState('')
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize))
+  const displayItems = useMemo(() => {
+    if (
+      selectedImage &&
+      !items.some((item) => item.url === selectedImage.url)
+    ) {
+      return [selectedImage, ...items]
+    }
+
+    return items
+  }, [items, selectedImage])
   const pageNumbers = useMemo(() => {
     const start = Math.max(1, page - 2)
     const end = Math.min(totalPages, start + 4)
@@ -77,9 +87,7 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
         setSelectedImage((currentSelectedImage) => {
           if (currentSelectedImage) {
             const matchedImage = nextItems.find(
-              (item) =>
-                item.id === currentSelectedImage.id ||
-                item.url === currentSelectedImage.url
+              (item) => item.url === currentSelectedImage.url
             )
 
             return matchedImage ?? currentSelectedImage
@@ -187,15 +195,13 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
         <div className="Image__db_grid" aria-busy={isLoading}>
           {isLoading ? (
             <p className="Image__db_status">Loading...</p>
-          ) : items.length > 0 ? (
-            items.map((item) => (
+          ) : displayItems.length > 0 ? (
+            displayItems.map((item) => (
               <button
-                key={item.id}
+                key={item.url}
                 type="button"
                 className={`Image__db_card ${
-                  selectedImage?.id === item.id || selectedImage?.url === item.url
-                    ? 'is-active'
-                    : ''
+                  selectedImage?.url === item.url ? 'is-active' : ''
                 }`}
                 onClick={() => setSelectedImage(item)}
               >

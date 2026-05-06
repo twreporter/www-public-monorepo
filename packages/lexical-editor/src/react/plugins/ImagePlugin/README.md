@@ -42,7 +42,6 @@ button below the image link button.
 
 ```ts
 type ImageFromDbItem = {
-  id: string
   title: string
   url: string
 }
@@ -117,11 +116,11 @@ Confirming a DB image dispatches the normal `IMAGE_ADD_COMMAND` with:
 
 DB images keep the same serialized node shape as other images. The node stores
 only `imageUrl`, `caption`, `imageTitle`, `imageLayout`, and `imageSource`; it
-does not store image sets or thumbnail URLs.
+does not store image sets, thumbnail URLs or database IDs.
 
 When editing an existing DB image, the image edit trigger opens the DB selector
 again instead of the URL edit dialog. The currently selected card is restored by
-matching either the DB item `id` or `url`.
+matching the stored `imageUrl` with the DB item `url`.
 
 ## HTML
 

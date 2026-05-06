@@ -3,7 +3,6 @@ import type { ImageFromDbConfig } from '@twreporter/lexical-editor/core'
 type PhotoSearchResponse = {
   data?: {
     photos?: Array<{
-      id: string
       name: string | null
       resized: {
         original: string | null
@@ -33,7 +32,6 @@ export const searchPhotoHandler: ImageFromDbConfig['search'] = async ({
         take: $take,
         skip: $skip
       ) {
-        id
         name
         resized {
           original
@@ -76,7 +74,6 @@ export const searchPhotoHandler: ImageFromDbConfig['search'] = async ({
   return {
     items: (data.data?.photos ?? [])
       .map((photo) => ({
-        id: photo.id,
         title: photo.name ?? '',
         url: photo.resized?.original ?? '',
       }))
