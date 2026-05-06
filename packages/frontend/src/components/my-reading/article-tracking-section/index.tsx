@@ -27,6 +27,10 @@ import type { TrackingArticle } from '@/components/my-reading/types'
 import { INTERNAL_ROUTES } from '@/constants/routes'
 // context
 import { BaseContext } from '@/contexts'
+// lodash
+import { throttle } from 'lodash'
+
+const _ = { throttle }
 
 type ArticleTrackingSectionProps = {
   isLoading: boolean
@@ -111,10 +115,10 @@ const ArticleTrackingSection: FC<ArticleTrackingSectionProps> = ({
   }, [trackingArticles])
 
   useEffect(() => {
-    const setSwiperOffset = () => {
+    const setSwiperOffset = _.throttle(() => {
       if (!sectionRef.current) return
       setOffset(sectionRef.current.offsetLeft)
-    }
+    }, 150)
 
     setSwiperOffset()
     window.addEventListener('resize', setSwiperOffset)
@@ -149,6 +153,12 @@ const ArticleTrackingSection: FC<ArticleTrackingSectionProps> = ({
         </div>
       ) : (
         <>
+          {/*
+          icon width = 24px, gap = 16px
+          |
+          | <left icon 24px> | <gap 16px> | <cards...> | <gap 16px> | <right icon 24px> |
+          |
+          */}
           <div className="hidden desktop:grid mt-[24px] grid-cols-[24px_minmax(0,1fr)_24px] items-center gap-[16px] w-[calc((16px+24px)+100%+(16px+24px))] ml-[-40px]">
             <IconButton
               className={clsx(
@@ -182,6 +192,8 @@ const ArticleTrackingSection: FC<ArticleTrackingSectionProps> = ({
                 }}
                 onSwiper={(instance: SwiperType) => {
                   setSwiper(instance)
+                  setIsBeginning(instance.isBeginning)
+                  setIsEnd(instance.isEnd)
                 }}
                 onSlideChange={(instance: SwiperType) => {
                   setIsBeginning(instance.isBeginning)
