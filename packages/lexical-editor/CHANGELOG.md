@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.12](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.11...@twreporter/lexical-editor@0.2.0-beta.12) (2026-05-06)
+
+
+### Bug Fixes
+
+* **lexical-editor:** address review comments ([248ce53](https://github.com/twreporter/www-public-monorepo/commit/248ce530dda5a3d688e72a18c3582ba182848c68))
+* **lexical-editor:** address review comments ([354c67f](https://github.com/twreporter/www-public-monorepo/commit/354c67f3a8390462ad520a5e6e7cf221223402bc))
+* **lexical-editor:** update image plugin README ([9d128f0](https://github.com/twreporter/www-public-monorepo/commit/9d128f0b51b48b7aac44e72b81907a2a856d6ab6))
+
+
+### Features
+
+* **lexical-editor:** support images from cms db ([71e5d87](https://github.com/twreporter/www-public-monorepo/commit/71e5d879bc830d3e6b4e33e46b6f77bf8ca607d3))
+
+
+
+
+
 # [0.2.0-beta.11](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.10...@twreporter/lexical-editor@0.2.0-beta.11) (2026-05-05)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.36](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.35...www-cms@0.1.0-beta.36) (2026-05-06)
+
+
+### Bug Fixes
+
+* **lexical-editor:** address review comments ([354c67f](https://github.com/twreporter/www-public-monorepo/commit/354c67f3a8390462ad520a5e6e7cf221223402bc))
+
+
+### Features
+
+* **lexical-editor:** support images from cms db ([71e5d87](https://github.com/twreporter/www-public-monorepo/commit/71e5d879bc830d3e6b4e33e46b6f77bf8ca607d3))
+
+
+
+
+
 # [0.1.0-beta.35](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.34...www-cms@0.1.0-beta.35) (2026-05-05)
 
 **Note:** Version bump only for package www-cms
