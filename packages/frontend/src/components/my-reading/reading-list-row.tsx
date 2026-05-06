@@ -12,12 +12,14 @@ type ReadingListRowProps = {
   item: ReadingListItem
   desktopSize?: typeof ArticleCard.Size.l | typeof ArticleCard.Size.s
   mobileSize?: typeof ArticleCard.Size.l | typeof ArticleCard.Size.s
+  onBookmarkClick?: () => void
 }
 
 const ReadingListRow: FC<ReadingListRowProps> = ({
   item,
   desktopSize = ArticleCard.Size.l,
   mobileSize = ArticleCard.Size.s,
+  onBookmarkClick,
 }: ReadingListRowProps) => {
   return (
     <Link
@@ -33,6 +35,8 @@ const ReadingListRow: FC<ReadingListRowProps> = ({
           image={{ src: item.image, alt: item.title }}
           size={mobileSize}
           isBookmark={item.isBookmark}
+          showIsBookmarked={!!onBookmarkClick}
+          onBookmarkClick={onBookmarkClick}
         />
       </div>
       <div className="hidden desktop:block">
@@ -44,6 +48,8 @@ const ReadingListRow: FC<ReadingListRowProps> = ({
           image={{ src: item.image, alt: item.title }}
           size={desktopSize}
           isBookmark={item.isBookmark}
+          showIsBookmarked={!!onBookmarkClick}
+          onBookmarkClick={onBookmarkClick}
         />
       </div>
     </Link>

@@ -22,6 +22,7 @@ type MyReadingState = {
   browsingHistory: ReadingListItem[]
   reviewingArticles: ReviewingArticle[]
   hydrateWithFakeData: () => void
+  toggleBookmark: (slug: string) => void
 }
 
 export const useMyReadingStore = create<MyReadingState>((set, get) => ({
@@ -60,5 +61,13 @@ export const useMyReadingStore = create<MyReadingState>((set, get) => ({
         isHydrated: true,
       })
     }, 250)
+  },
+
+  toggleBookmark: (slug: string) => {
+    set((state) => ({
+      savedBookmarks: state.savedBookmarks.map((item) =>
+        item.slug === slug ? { ...item, isBookmark: !item.isBookmark } : item
+      ),
+    }))
   },
 }))

@@ -1,5 +1,5 @@
 'use client'
-import { type FC, useCallback, useContext } from 'react'
+import { type FC, useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import clsx from 'clsx'
 // @twreporters
@@ -24,17 +24,24 @@ type SavedBookmarksProps = {
   isEmpty?: boolean
 }
 
-// TODO: get data from API, error handling, bookmark action
+// TODO: get data from API, error handling
 const SavedBookmarks: FC<SavedBookmarksProps> = ({
   currentPage,
   isEmpty = false,
 }) => {
   const { releaseBranch } = useContext(BaseContext)
   const router = useRouter()
-  const totalPage = Math.ceil(
-    fakeSavedBookmarks.length / SAVED_BOOKMARKS_PER_PAGE
-  )
-  const totalCount = fakeSavedBookmarks.length
+  const [bookmarks, setBookmarks] = useState(fakeSavedBookmarks)
+  const totalPage = Math.ceil(bookmarks.length / SAVED_BOOKMARKS_PER_PAGE)
+  const totalCount = bookmarks.length
+
+  const handleToggleBookmark = useCallback((slug: string) => {
+    setBookmarks((prev) =>
+      prev.map((item) =>
+        item.slug === slug ? { ...item, isBookmark: !item.isBookmark } : item
+      )
+    )
+  }, [])
 
   const buildUrl = useCallback(
     (page: number) => {
@@ -60,7 +67,7 @@ const SavedBookmarks: FC<SavedBookmarksProps> = ({
   const start = (currentPage - 1) * SAVED_BOOKMARKS_PER_PAGE
   const items = isEmpty
     ? []
-    : fakeSavedBookmarks.slice(start, start + SAVED_BOOKMARKS_PER_PAGE)
+    : bookmarks.slice(start, start + SAVED_BOOKMARKS_PER_PAGE)
 
   return (
     <div
@@ -86,7 +93,10 @@ const SavedBookmarks: FC<SavedBookmarksProps> = ({
             <div className="pt-[24px] grid grid-cols-1 gap-[24px]">
               {items.map((item) => (
                 <div key={item.slug}>
-                  <ReadingListRow item={item} />
+                  <ReadingListRow
+                    item={item}
+                    onBookmarkClick={() => handleToggleBookmark(item.slug)}
+                  />
                   <Divider className="mt-[24px]" />
                 </div>
               ))}

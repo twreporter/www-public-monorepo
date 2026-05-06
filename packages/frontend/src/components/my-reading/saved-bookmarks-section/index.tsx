@@ -11,16 +11,19 @@ import ReadingListRow from '@/components/my-reading/reading-list-row'
 import type { ReadingListItem } from '@/components/my-reading/types'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
+// store
+import { useMyReadingStore } from '@/stores/my-reading'
 
 type SavedBookmarksSectionProps = {
   isLoading: boolean
   items: ReadingListItem[]
 }
-// TODO: bookmark action
+
 const SavedBookmarksSection: FC<SavedBookmarksSectionProps> = ({
   isLoading,
   items,
 }) => {
+  const { toggleBookmark } = useMyReadingStore()
   return (
     <section>
       <Title2
@@ -47,7 +50,10 @@ const SavedBookmarksSection: FC<SavedBookmarksSectionProps> = ({
           <div className="tablet:hidden pt-[24px] pb-[24px] grid grid-cols-1 gap-[24px]">
             {items.slice(0, 4).map((item) => (
               <div key={item.slug}>
-                <ReadingListRow item={item} />
+                <ReadingListRow
+                  item={item}
+                  onBookmarkClick={() => toggleBookmark(item.slug)}
+                />
                 <Divider className="mt-[24px]" />
               </div>
             ))}
@@ -55,7 +61,11 @@ const SavedBookmarksSection: FC<SavedBookmarksSectionProps> = ({
           <div className="hidden tablet:grid pt-[24px] pb-[24px] grid-cols-1 gap-[24px]">
             {items.slice(0, 6).map((item) => (
               <div key={item.slug}>
-                <ReadingListRow item={item} desktopSize={ArticleCard.Size.l} />
+                <ReadingListRow
+                  item={item}
+                  desktopSize={ArticleCard.Size.l}
+                  onBookmarkClick={() => toggleBookmark(item.slug)}
+                />
                 <Divider className="mt-[24px]" />
               </div>
             ))}
