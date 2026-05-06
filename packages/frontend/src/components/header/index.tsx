@@ -3,15 +3,12 @@ import { useState, useContext } from 'react'
 import { usePathname } from 'next/navigation'
 // @twreporter
 import Header from '@twreporter/react-typescript-components/lib/header'
-// hooks
-import { usePrevious } from '@/hooks'
 // contexts
 import { BaseContext } from '@/contexts'
 
-const UniversalHeader = () => {
+const UniversalHeader = ({ prevLocation }: { prevLocation: string | null }) => {
   const { releaseBranch } = useContext(BaseContext)
   const pathname = usePathname()
-  const prevLocation = usePrevious(pathname)
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false)
   const toggleHamburger = () => {
     setIsHamburgerMenuOpen((v) => !v)
