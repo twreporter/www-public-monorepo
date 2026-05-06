@@ -10,6 +10,8 @@ const meta = {
   argTypes: {
     size: getRadioArgFromObject(ArticleCard.Size, ArticleCard.Size.l),
     isLoading: { control: 'boolean' },
+    showIsBookmarked: { control: 'boolean' },
+    isBookmark: { control: 'boolean' },
   },
 } satisfies Meta<typeof ArticleCard>
 
@@ -26,6 +28,8 @@ export const Basic: StoryObj<typeof meta> = {
       alt: 'placeholder',
     },
     isLoading: false,
+    showIsBookmarked: false,
+    isBookmark: false,
   },
   parameters: { controls: { exclude: ['className'] } },
 }

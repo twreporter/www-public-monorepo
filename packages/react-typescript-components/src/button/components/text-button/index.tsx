@@ -65,7 +65,6 @@ const TextButton: FC<TextButtonProps> & {
     if (disabled) {
       return
     }
-    e.preventDefault()
     onClick(e)
   }
 
@@ -81,6 +80,7 @@ const TextButton: FC<TextButtonProps> & {
         className
       )}
       type="button"
+      disabled={disabled}
       onClick={handleClick}
     >
       <div className="relative flex justify-center items-center">

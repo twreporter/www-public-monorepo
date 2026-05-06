@@ -29,6 +29,7 @@ type ArticleCardBaseProps = {
   }
   size: Size
   isBookmark?: boolean
+  showIsBookmarked?: boolean
   onBookmarkClick?: () => void
   releaseBranch?: ReleaseBranch
 }
@@ -43,6 +44,35 @@ type ArticleCardDetailProps = ArticleCardBaseProps & {
 }
 
 type ArticleCardProps = ArticleCardLoadingProps | ArticleCardDetailProps
+
+type BookmarkButtonProps = {
+  isBookmark?: boolean
+  onBookmarkClick?: () => void
+  releaseBranch?: ReleaseBranch
+}
+
+const BookmarkButton: FC<BookmarkButtonProps> = ({
+  isBookmark = false,
+  onBookmarkClick,
+  releaseBranch = RELEASE_BRANCH.master,
+}) => (
+  <div className="flex justify-end">
+    <TextButton
+      leftIconComponent={
+        <Bookmark
+          type={isBookmark ? Bookmark.Type.SAVED : Bookmark.Type.ADD}
+          releaseBranch={releaseBranch}
+        />
+      }
+      onClick={(e) => {
+        e.stopPropagation()
+        e.preventDefault()
+        onBookmarkClick?.()
+      }}
+      text={isBookmark ? '已收藏' : '收藏'}
+    />
+  </div>
+)
 
 const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
   const { size, isLoading = false } = props
@@ -62,6 +92,7 @@ const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
       description,
       image,
       isBookmark,
+      showIsBookmarked,
       onBookmarkClick,
       releaseBranch = RELEASE_BRANCH.master,
     } = props as ArticleCardDetailProps
@@ -106,33 +137,13 @@ const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
           </div>
         </div>
         <P2 className="text-gray-800 line-clamp-3" text={description} />
-        {isBookmark ? (
-          <div className="flex justify-end">
-            <TextButton
-              leftIconComponent={
-                <Bookmark
-                  type={Bookmark.Type.SAVED}
-                  releaseBranch={releaseBranch}
-                />
-              }
-              onClick={onBookmarkClick}
-              text="已收藏"
-            />
-          </div>
-        ) : (
-          <div className="flex justify-end">
-            <TextButton
-              leftIconComponent={
-                <Bookmark
-                  type={Bookmark.Type.ADD}
-                  releaseBranch={releaseBranch}
-                />
-              }
-              onClick={onBookmarkClick}
-              text="收藏"
-            />
-          </div>
-        )}
+        {showIsBookmarked ? (
+          <BookmarkButton
+            isBookmark={isBookmark}
+            onBookmarkClick={onBookmarkClick}
+            releaseBranch={releaseBranch}
+          />
+        ) : null}
       </div>
     )
   }
@@ -148,6 +159,7 @@ const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
     description,
     image,
     isBookmark,
+    showIsBookmarked,
     onBookmarkClick,
     releaseBranch = RELEASE_BRANCH.master,
   } = props as ArticleCardDetailProps
@@ -174,33 +186,13 @@ const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
           type={H4.Type.article}
         />
         <P1 className="text-gray-800 line-clamp-3" text={description} />
-        {isBookmark ? (
-          <div className="flex justify-end">
-            <TextButton
-              leftIconComponent={
-                <Bookmark
-                  type={Bookmark.Type.SAVED}
-                  releaseBranch={releaseBranch}
-                />
-              }
-              onClick={onBookmarkClick}
-              text="已收藏"
-            />
-          </div>
-        ) : (
-          <div className="flex justify-end">
-            <TextButton
-              leftIconComponent={
-                <Bookmark
-                  type={Bookmark.Type.ADD}
-                  releaseBranch={releaseBranch}
-                />
-              }
-              onClick={onBookmarkClick}
-              text="收藏"
-            />
-          </div>
-        )}
+        {showIsBookmarked ? (
+          <BookmarkButton
+            isBookmark={isBookmark}
+            onBookmarkClick={onBookmarkClick}
+            releaseBranch={releaseBranch}
+          />
+        ) : null}
       </div>
       <div className="flex justify-center items-center">
         {image?.src && !isImageFailed ? (
