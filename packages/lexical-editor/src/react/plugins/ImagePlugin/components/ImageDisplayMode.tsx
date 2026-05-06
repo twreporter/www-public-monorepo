@@ -19,8 +19,9 @@ const ImageDisplayMode: FC<ImageDisplayModeProps> = ({
   const imageConfig = useImageConfig()
   const isCmsBackedImage =
     imageSource === 'db' || imageSource === 'drag-drop'
-  const srcSet =
+  const rawSrcSet =
     isCmsBackedImage ? imageConfig?.getDbImageSrcSet?.(imageUrl) : undefined
+  const srcSet = rawSrcSet?.trim() ? rawSrcSet : undefined
 
   return (
     <div className={`Image__container ${layout}`}>

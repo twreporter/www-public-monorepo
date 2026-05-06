@@ -2,6 +2,7 @@ import {
   type FC,
   type KeyboardEvent,
   useEffect,
+  useId,
   useMemo,
   useState,
 } from 'react'
@@ -31,6 +32,7 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
   onConfirm,
   onClose,
 }) => {
+  const titleId = useId()
   const pageSize = imageFromDb.pageSize ?? DEFAULT_PAGE_SIZE
   const [inputKeyword, setInputKeyword] = useState('')
   const [keyword, setKeyword] = useState('')
@@ -155,9 +157,12 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
       className="Image__edit_dialog Image__db_dialog"
       role="dialog"
       aria-modal="true"
+      aria-labelledby={titleId}
     >
       <div className="dialog-header">
-        <p className="title">選擇圖片</p>
+        <p className="title" id={titleId}>
+          選擇圖片
+        </p>
         <div className="button-set">
           <button type="button" className="button-cancel" onClick={onClose}>
             Cancel
@@ -215,15 +220,18 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
         </div>
 
         <div className="Image__db_pagination">
-          <button
-            type="button"
-            disabled={page === 1 || isLoading}
-            onClick={() =>
-              setPage((currentPage) => Math.max(1, currentPage - 1))
-            }
-          >
-            ...
-          </button>
+          {page > 1 && (
+            <button
+              type="button"
+              aria-label="Previous page"
+              disabled={isLoading}
+              onClick={() =>
+                setPage((currentPage) => Math.max(1, currentPage - 1))
+              }
+            >
+              &lt;
+            </button>
+          )}
           {pageNumbers.map((pageNumber) => (
             <button
               key={pageNumber}
@@ -235,15 +243,18 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
               {pageNumber}
             </button>
           ))}
-          <button
-            type="button"
-            disabled={page === totalPages || isLoading}
-            onClick={() =>
-              setPage((currentPage) => Math.min(totalPages, currentPage + 1))
-            }
-          >
-            ...
-          </button>
+          {page < totalPages && (
+            <button
+              type="button"
+              aria-label="Next page"
+              disabled={isLoading}
+              onClick={() =>
+                setPage((currentPage) => Math.min(totalPages, currentPage + 1))
+              }
+            >
+              &gt;
+            </button>
+          )}
         </div>
 
         <div className="Image__db_selected">
