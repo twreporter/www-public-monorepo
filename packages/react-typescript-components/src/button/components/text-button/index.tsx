@@ -82,6 +82,7 @@ const TextButton: FC<TextButtonProps> & {
       type="button"
       disabled={disabled}
       onClick={handleClick}
+      aria-label={text}
     >
       <div className="relative flex justify-center items-center">
         <div

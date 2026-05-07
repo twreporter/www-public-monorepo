@@ -58,6 +58,8 @@ const BookmarkButton: FC<BookmarkButtonProps> = ({
 }) => (
   <div className="flex justify-end">
     <TextButton
+      theme={TextButton.Theme.normal}
+      style={TextButton.Style.light}
       leftIconComponent={
         <Bookmark
           type={isBookmark ? Bookmark.Type.SAVED : Bookmark.Type.ADD}
@@ -100,11 +102,11 @@ const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
       <div
         className={clsx(
           'flex flex-col w-full gap-[8px]',
-          'hover:opacity-70',
+          'group/card',
           'hover:cursor-pointer'
         )}
       >
-        <div className="flex flex-row gap-[8px]">
+        <div className="flex flex-row gap-[8px] group-hover/card:opacity-70">
           <div className="flex flex-col w-full gap-[4px]">
             <div className="flex flex-row gap-[8px]">
               {categoryLabel ? (
@@ -136,7 +138,10 @@ const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
             )}
           </div>
         </div>
-        <P2 className="text-gray-800 line-clamp-3" text={description} />
+        <P2
+          className="text-gray-800 line-clamp-3 group-hover/card:opacity-70"
+          text={description}
+        />
         {showIsBookmarked ? (
           <BookmarkButton
             isBookmark={isBookmark}
@@ -167,12 +172,12 @@ const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
     <div
       className={clsx(
         'flex flex-row w-full gap-[32px]',
-        'hover:opacity-70',
+        'group/card',
         'hover:cursor-pointer'
       )}
     >
       <div className="flex flex-col w-full gap-[8px]">
-        <div className="flex flex-row gap-[8px]">
+        <div className="flex flex-row gap-[8px] group-hover/card:opacity-70">
           {categoryLabel ? (
             <P3 className="text-gray-600" text={categoryLabel} />
           ) : null}
@@ -181,11 +186,14 @@ const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
           ) : null}
         </div>
         <H4
-          className="text-gray-800 !text-[22px]"
+          className="text-gray-800 !text-[22px] group-hover/card:opacity-70"
           text={title}
           type={H4.Type.article}
         />
-        <P1 className="text-gray-800 line-clamp-3" text={description} />
+        <P1
+          className="text-gray-800 line-clamp-3 group-hover/card:opacity-70"
+          text={description}
+        />
         {showIsBookmarked ? (
           <BookmarkButton
             isBookmark={isBookmark}
@@ -194,7 +202,7 @@ const ArticleCard: FC<ArticleCardProps> & { Size: typeof SIZE } = (props) => {
           />
         ) : null}
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center group-hover/card:opacity-70">
         {image?.src && !isImageFailed ? (
           // biome-ignore lint/performance/noImgElement: use next image later
           <img
