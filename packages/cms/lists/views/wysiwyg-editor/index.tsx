@@ -19,7 +19,8 @@ export const Field = ({
     () => (value ? JSON.parse(value) : null),
     [value]
   )
-  const config = createLexicalEditorConfig()
+  const config = useMemo(() => createLexicalEditorConfig(), [])
+
   return (
     <FieldContainer>
       <FieldLabel>{field.label}</FieldLabel>
