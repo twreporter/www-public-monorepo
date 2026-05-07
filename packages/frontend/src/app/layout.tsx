@@ -1,4 +1,3 @@
-import { headers } from 'next/headers'
 import clsx from 'clsx'
 import type { Metadata } from 'next'
 // components
@@ -14,17 +13,15 @@ export const metadata: Metadata = {
   description: '報導者',
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const headersList = await headers()
-  const referer = headersList.get('referer')
   return (
     <html lang="en">
       <body className="tracking-[0.4px] leading-[1.4]">
-        <Header prevLocation={referer} />
+        <Header />
         <main
           className={clsx(
             'w-full h-full',

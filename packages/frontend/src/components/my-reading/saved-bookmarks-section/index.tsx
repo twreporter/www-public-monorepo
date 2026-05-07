@@ -73,7 +73,7 @@ const SavedBookmarksSection: FC<SavedBookmarksSectionProps> = ({
           </div>
         </div>
       ) : items.length === 0 ? (
-        <EmptyBox type="bookmark" />
+        <EmptyBox type={EmptyBox.Type.Bookmark} />
       ) : (
         <>
           <div className="tablet:hidden pt-[24px] pb-[24px] grid grid-cols-1 gap-[24px]">

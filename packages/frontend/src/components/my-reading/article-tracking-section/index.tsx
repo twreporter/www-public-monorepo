@@ -117,7 +117,7 @@ const ArticleTrackingSection: FC<ArticleTrackingSectionProps> = ({
   useEffect(() => {
     const setSwiperOffset = _.throttle(() => {
       if (!sectionRef.current) return
-      setOffset(sectionRef.current.offsetLeft)
+      setOffset(sectionRef.current.getBoundingClientRect().left)
     }, 150)
 
     setSwiperOffset()
@@ -125,6 +125,7 @@ const ArticleTrackingSection: FC<ArticleTrackingSectionProps> = ({
 
     return () => {
       window.removeEventListener('resize', setSwiperOffset)
+      setSwiperOffset.cancel()
     }
   }, [])
 

@@ -4,11 +4,13 @@ import { useRouter } from 'next/navigation'
 // @twreporters
 import { TextButton } from '@twreporter/react-typescript-components/lib/button'
 import { Arrow } from '@twreporter/react-typescript-components/lib/icons'
+// constants
+import type { InternalRoutes } from '@/constants/routes'
 // context
 import { BaseContext } from '@/contexts'
 
 type MoreButtonProps = {
-  href: string
+  href: InternalRoutes
 }
 
 export default function MoreButton({ href }: MoreButtonProps) {

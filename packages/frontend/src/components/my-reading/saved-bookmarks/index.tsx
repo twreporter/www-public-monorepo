@@ -74,7 +74,7 @@ const SavedBookmarks: FC<SavedBookmarksProps> = ({
   return (
     <div
       className={clsx(
-        'w-full height-auto flex flex-col px-[24px] pb-[120px]',
+        'w-full h-auto flex flex-col px-[24px] pb-[120px]',
         'tablet:px-[32px] tablet:grid tablet:grid-cols-12 tablet:gap-x-[24px]',
         'desktop:px-[48px] desktop:gap-x-[32px]',
         'hd:w-[1280px] hd:mx-auto hd:px-0'

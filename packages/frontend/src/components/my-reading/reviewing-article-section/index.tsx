@@ -16,6 +16,8 @@ import { INTERNAL_ROUTES } from '@/constants/routes'
 // context
 import { BaseContext } from '@/contexts'
 
+const NUMBER_OF_PREVIEW = 3
+
 type ReviewingArticleSectionProps = {
   isLoading: boolean
   items: ReviewingArticle[]
@@ -32,7 +34,7 @@ export default function ReviewingArticleSection({
     if (showMore) {
       return items
     }
-    return items.slice(0, 3)
+    return items.slice(0, NUMBER_OF_PREVIEW)
   }, [showMore, items])
 
   return (
@@ -58,7 +60,7 @@ export default function ReviewingArticleSection({
                 <Divider className="mt-[16px]" />
               </div>
             ))}
-            {!showMore && items.length > 3 ? (
+            {!showMore && items.length > NUMBER_OF_PREVIEW ? (
               <TextButton
                 className="w-full flex justify-center item-center text-gray-800"
                 text="展開更多"
