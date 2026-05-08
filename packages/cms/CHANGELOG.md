@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.37](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.36...www-cms@0.1.0-beta.37) (2026-05-08)
+
+
+### Bug Fixes
+
+* **lexical-editor:** address review comment ([6ca4548](https://github.com/twreporter/www-public-monorepo/commit/6ca4548b5372ec809ed2d0f5505776a31a20ed45))
+* **lexical-editor:** unexpected graphql req ([8c08fbf](https://github.com/twreporter/www-public-monorepo/commit/8c08fbfe9a784e108f5b4442cb16bba9627e7c37))
+
+
+
+
+
 # [0.1.0-beta.36](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.35...www-cms@0.1.0-beta.36) (2026-05-06)
 
 
