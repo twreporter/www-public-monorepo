@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.46](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.45...www-frontend@0.1.0-beta.46) (2026-05-08)
+
+
+### Bug Fixes
+
+* **frontend:** address comments ([c893b76](https://github.com/twreporter/www-public-monorepo/commit/c893b76c955693acc683431d4d7cf9c5d0b239fb))
+* **frontend:** biome format ([ded342a](https://github.com/twreporter/www-public-monorepo/commit/ded342a39c04bf438cc2dd0b92f074e2c56ba199))
+* **frontend:** prev page ([9060a7e](https://github.com/twreporter/www-public-monorepo/commit/9060a7e6c269d5097b4cd786795835bd93e119fc))
+* **frontend:** simplify header component and improve layout responsiveness ([e42ac48](https://github.com/twreporter/www-public-monorepo/commit/e42ac487d40ed23060ca33b52c6c10cc87c08b1a))
+* **frontend:** throttle for resize ([f11afc3](https://github.com/twreporter/www-public-monorepo/commit/f11afc319990c34288b428e75478fc7c02d215fc))
+
+
+### Features
+
+* **frontend:** empty state for my-reading ([3dc0f31](https://github.com/twreporter/www-public-monorepo/commit/3dc0f311cfd0ab1867500d7d1f2e970dbe392944))
+* **frontend:** implement my reading sections with browsing history and saved bookmarks ([de4cfa5](https://github.com/twreporter/www-public-monorepo/commit/de4cfa5d5c5434817faeea2b8de1d382699b985b))
+* **frontend:** isBookmark for my-reading ([457e390](https://github.com/twreporter/www-public-monorepo/commit/457e390e7b78c6588218f30339411376b4d2801c))
+* **frontend:** isEmpty for test ([3f26a47](https://github.com/twreporter/www-public-monorepo/commit/3f26a477c80171393d9b995ba3bc697755b49a31))
+* **frontend:** mock toggle bookmark action ([7637f99](https://github.com/twreporter/www-public-monorepo/commit/7637f99e45064d76b42ce2e2b331f22cdc1b8cb5))
+* **frontend:** my reading page ([c271825](https://github.com/twreporter/www-public-monorepo/commit/c271825e1aaef76f4ca393d8968e4b3bc81d7be8))
+* **frontend:** saved and review and history section ([207d189](https://github.com/twreporter/www-public-monorepo/commit/207d189325b8b4c616006d6064e20d91f06df16e))
+* **frontend:** saved bookmark section empty box ([ff1e081](https://github.com/twreporter/www-public-monorepo/commit/ff1e081066c4b10fc8b5b16f691b285e1d1d72c3))
+* **frontend:** swiper import ([d67323c](https://github.com/twreporter/www-public-monorepo/commit/d67323cc29fb8ac462e7b2149b8a2f9a5e728320))
+* **frontend:** use ArticleCard for latest page ([ae12429](https://github.com/twreporter/www-public-monorepo/commit/ae12429c81808dbe86f5af6cc71c01caa67bdea5))
+
+
+
+
+
 # [0.1.0-beta.45](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.44...www-frontend@0.1.0-beta.45) (2026-04-24)
 
 **Note:** Version bump only for package www-frontend

@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.27](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.26...@twreporter/react-typescript-components@0.1.0-beta.27) (2026-05-08)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** address comments ([1e92672](https://github.com/twreporter/www-public-monorepo/commit/1e926724bcca78e97d9effeeefdcc2c3e2d06e3b))
+* **react-typescript-components:** article card and text button ([827ac40](https://github.com/twreporter/www-public-monorepo/commit/827ac4029501db83835bb9974ba2e00d1c47a277))
+* **react-typescript-components:** bookmark button and showIsBookmark to aritcle card ([1047478](https://github.com/twreporter/www-public-monorepo/commit/1047478b3d6002b9a87d038fa685992406d512ce))
+* **react-typescript-components:** card storybook ([3eba1c7](https://github.com/twreporter/www-public-monorepo/commit/3eba1c776055a9482664eaa3300b904d341339ed))
+* **react-typescript-components:** look back card class ([81846e3](https://github.com/twreporter/www-public-monorepo/commit/81846e39858c4fb084a6a7f00631b43b1e1d9419))
+* **react-typescript-components:** look back card class ([0ca2cbd](https://github.com/twreporter/www-public-monorepo/commit/0ca2cbdee5800758de35759d9fdb33edc32c11a1))
+
+
+### Features
+
+* **react-typescript-components:** className props ([e2e6320](https://github.com/twreporter/www-public-monorepo/commit/e2e63208830d5f0fdf934672e92a051629086252))
+* **react-typescript-components:** create ArticleCard and ShortCard and LookBackCard ([bceb09b](https://github.com/twreporter/www-public-monorepo/commit/bceb09b05368ad4791cb00f56ba6872b8a611d80))
+* **react-typescript-components:** empty state ([43a799b](https://github.com/twreporter/www-public-monorepo/commit/43a799bf1f6a8173537c59752d3f979ee982e9ae))
+* **react-typescript-components:** handle bookmark for article card ([f48aff6](https://github.com/twreporter/www-public-monorepo/commit/f48aff6bff4ee638b5a75dfff35f1b3626a5a80a))
+* **react-typescript-components:** text button icon size and onClick ([633063e](https://github.com/twreporter/www-public-monorepo/commit/633063efaf2d95d457fb655a03086ea39b824d2d))
+
+
+
+
+
 # [0.1.0-beta.26](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.25...@twreporter/react-typescript-components@0.1.0-beta.26) (2026-04-24)
 
 

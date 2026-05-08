@@ -7109,7 +7109,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@twreporter/react-typescript-components@npm:^0.1.0-beta.26, @twreporter/react-typescript-components@workspace:packages/react-typescript-components":
+"@twreporter/react-typescript-components@npm:^0.1.0-beta.27, @twreporter/react-typescript-components@workspace:packages/react-typescript-components":
   version: 0.0.0-use.local
   resolution: "@twreporter/react-typescript-components@workspace:packages/react-typescript-components"
   dependencies:
@@ -18013,7 +18013,7 @@ __metadata:
   dependencies:
     "@google-cloud/pino-logging-gcp-config": "npm:^1.3.0"
     "@tailwindcss/postcss": "npm:^4.1.11"
-    "@twreporter/react-typescript-components": "npm:^0.1.0-beta.26"
+    "@twreporter/react-typescript-components": "npm:^0.1.0-beta.27"
     "@twreporter/tailwind-config": "npm:^0.1.0-beta.9"
     "@types/lodash": "npm:^4"
     "@types/node": "npm:^22"
