@@ -10,6 +10,8 @@ import createLexicalEditorConfig from './config'
 // css
 import '@twreporter/lexical-editor/style'
 
+const lexicalEditorConfig = createLexicalEditorConfig()
+
 export const Field = ({
   value,
   field,
@@ -19,13 +21,17 @@ export const Field = ({
     () => (value ? JSON.parse(value) : null),
     [value]
   )
-  const config = createLexicalEditorConfig()
+
   return (
     <FieldContainer>
       <FieldLabel>{field.label}</FieldLabel>
       <LexicalBox id="www-lexical-editor">
         <StyleWrapper>
-          <LexicalEditor value={valueJSON} onChange={onChange} config={config} />
+          <LexicalEditor
+            value={valueJSON}
+            onChange={onChange}
+            config={lexicalEditorConfig}
+          />
         </StyleWrapper>
       </LexicalBox>
     </FieldContainer>
