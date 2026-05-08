@@ -8,7 +8,7 @@ import CategoryPage from '@/components/categories'
 import { POSTS_PER_PAGE } from '@/constants'
 // utils
 import { categoryPostsKey } from '@/fetchers/key'
-import logger from "@/utils/logger"
+import logger from '@/utils/logger'
 
 export default async function Page({
   params,
@@ -50,6 +50,8 @@ export default async function Page({
     )
   } catch (error) {
     logger.error(error, 'Error fetching category data')
-    return <div>Failed to load subcategory page data. Please try again later.</div>
+    return (
+      <div>Failed to load subcategory page data. Please try again later.</div>
+    )
   }
 }

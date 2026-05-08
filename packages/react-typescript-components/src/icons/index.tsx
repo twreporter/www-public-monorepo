@@ -9,6 +9,8 @@ import {
   type ArrowDirection,
   MEDIA_TYPE,
   type MediaType,
+  BOOKMARK_TYPE,
+  type BookmarkType,
 } from './constants'
 
 const baseGCSDir = 'https://www.twreporter.org/assets/icon/'
@@ -108,3 +110,26 @@ export const SocialMedia: React.FC<SocialMediaProps> & {
 }
 SocialMedia.Type = ICON_TYPE
 SocialMedia.MediaType = MEDIA_TYPE
+
+type BookmarkProps = {
+  type?: BookmarkType
+  releaseBranch: ReleaseBranch
+  className?: string
+}
+export const Bookmark: React.FC<BookmarkProps> & {
+  Type: typeof BOOKMARK_TYPE
+} = ({
+  type = Bookmark.Type.BASIC,
+  releaseBranch = Icon.ReleaseBranch.master,
+  className = '',
+}) => {
+  const filename = `bookmark_${type}`
+  return (
+    <Icon
+      filename={filename}
+      releaseBranch={releaseBranch}
+      className={className}
+    />
+  )
+}
+Bookmark.Type = BOOKMARK_TYPE

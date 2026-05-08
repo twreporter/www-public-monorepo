@@ -9,7 +9,7 @@ import ArticleCard from '@/components/article-card'
 import Pagination from '@/components/pagination'
 import Loading from '@/components/loading'
 // style
-import { rwdContainerClass } from '@/styles/layout' 
+import { rwdContainerClass } from '@/styles/layout'
 // @twreporter
 import { Title1 } from '@twreporter/react-typescript-components/lib/title-bar'
 // constants

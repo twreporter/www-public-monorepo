@@ -8,7 +8,7 @@ import TagPage from '@/components/tags'
 import { POSTS_PER_PAGE } from '@/constants'
 // utils
 import { tagPostsKey } from '@/fetchers/key'
-import logger from "@/utils/logger"
+import logger from '@/utils/logger'
 
 export default async function Page({
   params,

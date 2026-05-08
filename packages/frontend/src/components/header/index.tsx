@@ -1,17 +1,18 @@
 'use client'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 // @twreporter
 import Header from '@twreporter/react-typescript-components/lib/header'
-// hooks
-import { usePrevious } from '@/hooks'
 // contexts
 import { BaseContext } from '@/contexts'
 
 const UniversalHeader = () => {
   const { releaseBranch } = useContext(BaseContext)
   const pathname = usePathname()
-  const prevLocation = usePrevious(pathname)
+  const [referrer, setReferrer] = useState('')
+  useEffect(() => {
+    setReferrer(document.referrer)
+  }, [])
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false)
   const toggleHamburger = () => {
     setIsHamburgerMenuOpen((v) => !v)
@@ -31,7 +32,7 @@ const UniversalHeader = () => {
       theme="normal"
       isLinkExternal={false}
       pathname={pathname}
-      referrerPath={prevLocation || ''}
+      referrerPath={referrer}
     />
   )
 }

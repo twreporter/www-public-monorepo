@@ -14,7 +14,7 @@ import { INTERNAL_ROUTES } from '@/constants/routes'
 import { TitleTab } from '@twreporter/react-typescript-components/lib/title-bar'
 import { Divider } from '@twreporter/react-typescript-components/lib/divider'
 import { PillButton } from '@twreporter/react-typescript-components/lib/button'
-import CardList from '@twreporter/react-typescript-components/lib/card/list'
+import ArticleCard from '@twreporter/react-typescript-components/lib/card/article'
 // utils
 import { formatDate } from '@/utils/date-formatters'
 
@@ -118,13 +118,13 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
               href={`${INTERNAL_ROUTES.article}/${article.slug}`}
               className="no-underline"
             >
-              <CardList
+              <ArticleCard
                 title={article.title}
                 description={article.subtitle ?? ''}
                 categoryLabel={article.category}
                 publishedDate={formatDate(article.publishedDate, 'YYYY-MM-DD')}
                 image={article.image}
-                size={CardList.Size.s}
+                size={ArticleCard.Size.s}
               />
             </Link>
           </div>
@@ -134,13 +134,13 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
               href={`${INTERNAL_ROUTES.article}/${article.slug}`}
               className="no-underline"
             >
-              <CardList
+              <ArticleCard
                 title={article.title}
                 description={article.subtitle ?? ''}
                 categoryLabel={article.category}
                 publishedDate={formatDate(article.publishedDate, 'YYYY-MM-DD')}
                 image={article.image}
-                size={CardList.Size.l}
+                size={ArticleCard.Size.l}
               />
             </Link>
           </div>
@@ -153,11 +153,11 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
             <div key={index} className="flex flex-col pt-[24px]">
               {/* Tablet and below: size S */}
               <div className="desktop:hidden">
-                <CardList size={CardList.Size.s} isLoading />
+                <ArticleCard size={ArticleCard.Size.s} isLoading />
               </div>
               {/* Desktop and above: size L */}
               <div className="hidden desktop:block">
-                <CardList size={CardList.Size.l} isLoading />
+                <ArticleCard size={ArticleCard.Size.l} isLoading />
               </div>
               <Divider className="mt-[24px]" />
             </div>

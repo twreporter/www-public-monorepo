@@ -1,0 +1,2 @@
+export const BROWSING_HISTORY_PER_PAGE = 10
+export const SAVED_BOOKMARKS_PER_PAGE = 10

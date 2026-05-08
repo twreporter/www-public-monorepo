@@ -24,7 +24,7 @@ const logger: Logger = isProduction
         options: {
           colorize: true,
         },
-        level: 'debug'
+        level: 'debug',
       })
     )
 

@@ -6,6 +6,7 @@ import Footer from '@/components/footer'
 
 // These styles apply to every route in the application
 import './globals.css'
+import 'swiper/css'
 
 export const metadata: Metadata = {
   title: '報導者',
