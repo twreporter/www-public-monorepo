@@ -262,209 +262,14 @@
 }
 
 /* edit dialog style */
-.Image__edit_dialog {
-  background: #ffffff;
-  border: 1px solid #d9dee7;
-  border-radius: 14px;
-  color: #1f2937;
-  font-size: 16px;
-  line-height: 1.5;
-  position: fixed;
-  z-index: 9999;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(500px, calc(100vw - 32px));
-  max-height: calc(100vh - 32px);
-  overflow: auto;
-}
-
-.Image__edit_dialog .dialog-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 16px 20px;
-  border-bottom: 1px solid #e5e7eb;
-  background: #f8fafc;
-}
-
-.Image__edit_dialog .title {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 700;
-  color: #111827;
-}
-
-.Image__edit_dialog .button-set {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.Image__edit_dialog .dialog-content {
-  padding: 20px;
-}
-
-.Image__edit_dialog .edit-item + .edit-item {
-  margin-top: 20px;
-}
-
-.Image__edit_dialog .item-title {
-  margin: 0 0 8px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #374151;
-}
-
-.Image__edit_dialog input[type='text'] {
-  display: block;
-  width: 100%;
-  min-height: 44px;
-  padding: 10px 14px;
-  border: 1px solid #d1d5db;
-  border-radius: 10px;
-  background: #ffffff;
-  color: #111827;
-  font-size: 16px;
-  line-height: 1.4;
-  outline: none;
-  box-sizing: border-box;
-  transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease,
-    background-color 0.15s ease;
-}
-
-.Image__edit_dialog input[type='text']::placeholder {
-  color: #9ca3af;
-}
-
-.Image__edit_dialog input[type='text']:hover {
-  border-color: #b8c1cc;
-}
-
-.Image__edit_dialog input[type='text']:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-
 .Image__edit_dialog .layout-option {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
 
-.Image__edit_dialog .button-layout {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 132px;
-  height: 46px;
-  padding: 0 18px;
-  border: 1px solid #d1d5db;
-  border-radius: 12px;
-  background: #ffffff;
-  color: #4b5563;
-  cursor: pointer;
-  transition:
-    border-color 0.15s ease,
-    background-color 0.15s ease,
-    box-shadow 0.15s ease,
-    transform 0.15s ease;
-}
-
-.Image__edit_dialog .button-layout:hover {
-  border-color: #94a3b8;
-  background: #f8fafc;
-}
-
-.Image__edit_dialog .button-layout:focus-visible {
-  outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-
-.Image__edit_dialog .button-layout.is-active {
-  border-color: #cbd5e1;
-  background: #eef2f7;
-  color: #111827;
-}
-
-.Image__edit_dialog .button-cancel,
-.Image__edit_dialog .button-confirm,
-.Image__edit_dialog .button-search,
-.Image__edit_dialog .button-delete {
-  appearance: none;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  min-height: 40px;
-  padding: 0 14px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background-color 0.15s ease,
-    border-color 0.15s ease,
-    color 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
-.Image__edit_dialog .button-cancel {
-  background: #ffffff;
-  border-color: #d1d5db;
-  color: #4b5563;
-}
-
-.Image__edit_dialog .button-cancel:hover {
-  background: #f9fafb;
-}
-
-.Image__edit_dialog {
-  .button-confirm, .button-search {
-    background: #f3f4f6;
-    border-color: #e5e7eb;
-    color: #374151;
-
-    &:hover {
-      background: #e5e7eb;
-    }
-  }
-}
-
-.Image__edit_dialog .button-search {
+.Image__db_search_button {
   flex-shrink: 0;
-}
-
-.Image__edit_dialog .button-delete {
-  background: #ffffff;
-  border-color: #fecaca;
-  color: #dc2626;
-}
-
-.Image__edit_dialog .button-delete:hover {
-  background: #fef2f2;
-}
-
-.Image__edit_dialog button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.Image__edit_dialog i[class^='image-layout-'] {
-  display: inline-block;
-  width: 24px;
-  height: 20px;
-  position: relative;
-  color: currentColor;
-  background-repeat: no-repeat;
-}
-
-.Image__edit_dialog .button-layout.is-active {
-  background: #e5e7eb;
-  border-color: #d1d5db;
-  color: #111827;
-  box-shadow: none;
 }
 
 .Image__db_dialog {
@@ -476,7 +281,7 @@
   gap: 12px;
 }
 
-.Image__db_search input[type='text'] {
+.Image__db_search .LexicalPluginTextInput {
   flex: 1 1 auto;
 }
 
@@ -582,7 +387,7 @@
   min-width: 0;
 }
 
-.Image__db_selected_content .edit-item {
+.Image__db_selected_content .LexicalPluginField {
   margin: 0;
 }
 
@@ -592,7 +397,7 @@
   gap: 8px;
 }
 
-.Image__db_selected_content .button-layout {
+.Image__db_selected_content .LexicalPluginIconButton {
   min-width: 96px;
   height: 38px;
   padding: 0 12px;

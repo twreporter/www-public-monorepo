@@ -2,11 +2,17 @@ import {
   type FC,
   type KeyboardEvent,
   useEffect,
-  useId,
   useMemo,
   useState,
 } from 'react'
 import type { ImageFromDbConfig, ImageFromDbItem } from '../../../../core'
+import {
+  PluginButton,
+  PluginDialog,
+  PluginField,
+  PluginTextInput,
+} from '../../../components/PluginUI'
+import ImageLayoutOptions from './ImageLayoutOptions'
 import type { ImageLayout } from '../types'
 
 type ImageFromDbDialogProps = {
@@ -32,7 +38,6 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
   onConfirm,
   onClose,
 }) => {
-  const titleId = useId()
   const pageSize = imageFromDb.pageSize ?? DEFAULT_PAGE_SIZE
   const [inputKeyword, setInputKeyword] = useState('')
   const [keyword, setKeyword] = useState('')
@@ -153,164 +158,122 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
   }
 
   return (
-    <div
-      className="Image__edit_dialog Image__db_dialog"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby={titleId}
-    >
-      <div className="dialog-header">
-        <p className="title" id={titleId}>
-          選擇圖片
-        </p>
-        <div className="button-set">
-          <button type="button" className="button-cancel" onClick={onClose}>
-            Cancel
-          </button>
-          <button
-            type="button"
-            className="button-confirm"
+    <PluginDialog
+      title="選擇圖片"
+      className="Image__db_dialog"
+      actions={
+        <>
+          <PluginButton onClick={onClose}>Cancel</PluginButton>
+          <PluginButton
+            variant="primary"
             disabled={!selectedImage}
             onClick={confirm}
           >
             Confirm
-          </button>
-        </div>
+          </PluginButton>
+        </>
+      }
+    >
+      <div className="Image__db_search">
+        <PluginTextInput
+          type="text"
+          placeholder="請輸入圖片標題"
+          value={inputKeyword}
+          onChange={(e) => setInputKeyword(e.target.value)}
+          onKeyDown={handleInputKeyDown}
+        />
+        <PluginButton className="Image__db_search_button" onClick={search}>
+          Search
+        </PluginButton>
       </div>
-      <div className="dialog-content">
-        <div className="Image__db_search">
-          <input
-            type="text"
-            placeholder="請輸入圖片標題"
-            value={inputKeyword}
-            onChange={(e) => setInputKeyword(e.target.value)}
-            onKeyDown={handleInputKeyDown}
-          />
-          <button type="button" className="button-search" onClick={search}>
-            Search
-          </button>
-        </div>
 
-        {errorMessage && (
-          <p className="Image__db_status" role="alert">
-            {errorMessage}
-          </p>
+      {errorMessage && (
+        <p className="Image__db_status" role="alert">
+          {errorMessage}
+        </p>
+      )}
+
+      <div className="Image__db_grid" aria-busy={isLoading}>
+        {isLoading ? (
+          <p className="Image__db_status">Loading...</p>
+        ) : displayItems.length > 0 ? (
+          displayItems.map((item) => (
+            <button
+              key={item.url}
+              type="button"
+              className={`Image__db_card ${
+                selectedImage?.url === item.url ? 'is-active' : ''
+              }`}
+              onClick={() => setSelectedImage(item)}
+            >
+              <img src={item.url} alt={item.title} />
+              <span>{item.title}</span>
+            </button>
+          ))
+        ) : (
+          <p className="Image__db_status">No images found.</p>
         )}
-
-        <div className="Image__db_grid" aria-busy={isLoading}>
-          {isLoading ? (
-            <p className="Image__db_status">Loading...</p>
-          ) : displayItems.length > 0 ? (
-            displayItems.map((item) => (
-              <button
-                key={item.url}
-                type="button"
-                className={`Image__db_card ${
-                  selectedImage?.url === item.url ? 'is-active' : ''
-                }`}
-                onClick={() => setSelectedImage(item)}
-              >
-                <img src={item.url} alt={item.title} />
-                <span>{item.title}</span>
-              </button>
-            ))
-          ) : (
-            <p className="Image__db_status">No images found.</p>
-          )}
-        </div>
-
-        <div className="Image__db_pagination">
-          {page > 1 && (
-            <button
-              type="button"
-              aria-label="Previous page"
-              disabled={isLoading}
-              onClick={() =>
-                setPage((currentPage) => Math.max(1, currentPage - 1))
-              }
-            >
-              &lt;
-            </button>
-          )}
-          {pageNumbers.map((pageNumber) => (
-            <button
-              key={pageNumber}
-              type="button"
-              className={pageNumber === page ? 'is-active' : ''}
-              disabled={isLoading}
-              onClick={() => setPage(pageNumber)}
-            >
-              {pageNumber}
-            </button>
-          ))}
-          {page < totalPages && (
-            <button
-              type="button"
-              aria-label="Next page"
-              disabled={isLoading}
-              onClick={() =>
-                setPage((currentPage) => Math.min(totalPages, currentPage + 1))
-              }
-            >
-              &gt;
-            </button>
-          )}
-        </div>
-
-        <div className="Image__db_selected">
-          {selectedImage ? (
-            <>
-              <img src={selectedImage.url} alt={selectedImage.title} />
-              <div className="Image__db_selected_content">
-                <div className="edit-item">
-                  <p className="item-title">圖說</p>
-                  <input
-                    type="text"
-                    value={caption}
-                    onChange={(e) => setCaption(e.target.value)}
-                    onKeyDown={handleInputKeyDown}
-                  />
-                </div>
-                <div className="layout-option">
-                  <button
-                    type="button"
-                    className={`button-layout ${
-                      layout === 'default' ? 'is-active' : ''
-                    }`}
-                    onClick={() => setLayout('default')}
-                  >
-                    <i className="image-layout-default" />
-                    <p>default</p>
-                  </button>
-                  <button
-                    type="button"
-                    className={`button-layout ${
-                      layout === 'small' ? 'is-active' : ''
-                    }`}
-                    onClick={() => setLayout('small')}
-                  >
-                    <i className="image-layout-small" />
-                    <p>small</p>
-                  </button>
-                  <button
-                    type="button"
-                    className={`button-layout ${
-                      layout === 'right' ? 'is-active' : ''
-                    }`}
-                    onClick={() => setLayout('right')}
-                  >
-                    <i className="image-layout-right" />
-                    <p>right</p>
-                  </button>
-                </div>
-              </div>
-            </>
-          ) : (
-            <p className="Image__db_status">No image selected.</p>
-          )}
-        </div>
       </div>
-    </div>
+
+      <div className="Image__db_pagination">
+        {page > 1 && (
+          <button
+            type="button"
+            aria-label="Previous page"
+            disabled={isLoading}
+            onClick={() =>
+              setPage((currentPage) => Math.max(1, currentPage - 1))
+            }
+          >
+            &lt;
+          </button>
+        )}
+        {pageNumbers.map((pageNumber) => (
+          <button
+            key={pageNumber}
+            type="button"
+            className={pageNumber === page ? 'is-active' : ''}
+            disabled={isLoading}
+            onClick={() => setPage(pageNumber)}
+          >
+            {pageNumber}
+          </button>
+        ))}
+        {page < totalPages && (
+          <button
+            type="button"
+            aria-label="Next page"
+            disabled={isLoading}
+            onClick={() =>
+              setPage((currentPage) => Math.min(totalPages, currentPage + 1))
+            }
+          >
+            &gt;
+          </button>
+        )}
+      </div>
+
+      <div className="Image__db_selected">
+        {selectedImage ? (
+          <>
+            <img src={selectedImage.url} alt={selectedImage.title} />
+            <div className="Image__db_selected_content">
+              <PluginField label="圖說">
+                <PluginTextInput
+                  type="text"
+                  value={caption}
+                  onChange={(e) => setCaption(e.target.value)}
+                  onKeyDown={handleInputKeyDown}
+                />
+              </PluginField>
+              <ImageLayoutOptions layout={layout} onChange={setLayout} />
+            </div>
+          </>
+        ) : (
+          <p className="Image__db_status">No image selected.</p>
+        )}
+      </div>
+    </PluginDialog>
   )
 }
 

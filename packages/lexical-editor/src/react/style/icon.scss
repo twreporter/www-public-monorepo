@@ -198,3 +198,19 @@
     background-image: url(../assets/icons/image-from-db.svg);
   }
 }
+
+.LexicalPluginDialog__overlay {
+  i {
+    &.image-layout-default {
+      background-image: url(../assets/icons/image-layout-default.svg);
+    }
+
+    &.image-layout-small {
+      background-image: url(../assets/icons/image-layout-small.svg);
+    }
+
+    &.image-layout-right {
+      background-image: url(../assets/icons/image-layout-right.svg);
+    }
+  }
+}

@@ -591,7 +591,7 @@ button.item.dropdown-item-active i {
   background-color: rgba(40, 40, 40, 0.6);
   flex-grow: 0px;
   flex-shrink: 1px;
-  z-index: 100;
+  z-index: 1100;
 }
 
 .lexical-modal .ref-node {
@@ -635,6 +635,201 @@ button.item.dropdown-item-active i {
 
 .lexical-modal .content {
   padding-top: 20px;
+}
+
+/* Shared plugin UI components */
+.LexicalPluginDialog__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  pointer-events: none;
+}
+
+.LexicalPluginDialog {
+  width: min(500px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  pointer-events: auto;
+  background: #ffffff;
+  border: 1px solid #d9dee7;
+  border-radius: 14px;
+  color: #1f2937;
+  font-size: 16px;
+  line-height: 1.5;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.22);
+  outline: none;
+}
+
+.LexicalPluginDialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f8fafc;
+}
+
+.LexicalPluginDialog__title {
+  margin: 0;
+  color: #111827;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.LexicalPluginDialog__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.LexicalPluginDialog__content {
+  padding: 20px;
+}
+
+.LexicalPluginField + .LexicalPluginField {
+  margin-top: 20px;
+}
+
+.LexicalPluginField__label {
+  margin: 0 0 8px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.LexicalPluginTextInput {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #111827;
+  font-size: 16px;
+  line-height: 1.4;
+  outline: none;
+  box-sizing: border-box;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.LexicalPluginTextInput::placeholder {
+  color: #9ca3af;
+}
+
+.LexicalPluginTextInput:hover {
+  border-color: #b8c1cc;
+}
+
+.LexicalPluginTextInput:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.LexicalPluginButton,
+.LexicalPluginIconButton {
+  appearance: none;
+  border: 1px solid transparent;
+  background: #ffffff;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.LexicalPluginButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.LexicalPluginButton--secondary,
+.LexicalPluginButton--primary {
+  border-color: #e5e7eb;
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.LexicalPluginButton--secondary:hover,
+.LexicalPluginButton--primary:hover {
+  background: #e5e7eb;
+}
+
+.LexicalPluginButton--danger {
+  border-color: #fecaca;
+  background: #ffffff;
+  color: #dc2626;
+}
+
+.LexicalPluginButton--danger:hover {
+  background: #fef2f2;
+}
+
+.LexicalPluginButton:disabled,
+.LexicalPluginIconButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.LexicalPluginButton:focus-visible,
+.LexicalPluginIconButton:focus-visible {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.LexicalPluginButton__icon,
+.LexicalPluginIconButton__icon {
+  display: inline-block;
+  flex: 0 0 auto;
+  background-repeat: no-repeat;
+}
+
+.LexicalPluginIconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 132px;
+  height: 46px;
+  gap: 8px;
+  padding: 0 18px;
+  border-color: #d1d5db;
+  border-radius: 12px;
+  color: #4b5563;
+}
+
+.LexicalPluginIconButton:hover {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+.LexicalPluginIconButton.is-active {
+  border-color: #d1d5db;
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.LexicalPluginIconButton__icon {
+  width: 24px;
+  height: 20px;
+  position: relative;
+  color: currentColor;
 }
 
 /* Fullscreen component */
