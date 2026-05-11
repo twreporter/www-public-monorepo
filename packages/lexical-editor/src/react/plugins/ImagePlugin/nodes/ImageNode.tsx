@@ -1,33 +1,167 @@
 import {
   $applyNodeReplacement,
-  ElementNode,
   type LexicalNode,
+  DecoratorNode,
+  type NodeKey,
+  $getNodeByKey,
   type EditorConfig,
-  type DOMConversionMap,
-  type DOMConversionOutput,
-  type SerializedElementNode,
-  type DOMExportOutput,
 } from 'lexical'
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import {
+  type ReactNode,
+  type FC,
+  useEffect,
+  useState
+} from 'react'
+// components
+import ImageEditMode from '../components/ImageEditMode'
+import ImageDisplayMode from '../components/ImageDisplayMode'
+import ImageSkeleton from '../components/ImageSkeleton'
+// type
+import type { ImageLayout, ImageSource } from '../types'
 // global var
-const imageLinkNodeType = 'image-link'
-const imageNodeClassname = 'Image__container'
+const imageNodeType = 'image'
 
-type SerializedImageNode = SerializedElementNode
+type ImageProps = {
+  nodeKey: string
+  imageCaption?: string
+  imageUrl: string
+  imageLayout?: ImageLayout
+  imageTitle?: string
+  imageSource?: ImageSource
+  isLoading?: boolean
+}
+const Image: FC<ImageProps> = ({
+  nodeKey,
+  imageCaption = '',
+  imageUrl,
+  imageLayout = 'default',
+  imageTitle = '',
+  imageSource = 'link',
+  isLoading = false,
+}) => {
+  const [editor] = useLexicalComposerContext()
+  const [editable, setEditable] = useState(() => editor.isEditable())
 
-export function $convertDivElement(): DOMConversionOutput | null {
-  const node = $createImageNode()
-  return {
-    node,
+  useEffect(() => {
+    return editor.registerEditableListener((currentEditable) => {
+      setEditable(currentEditable)
+    })
+  }, [editor])
+
+  const updateLayout = (layout: ImageLayout) => {
+    editor.update(() => {
+      const node = $getNodeByKey(nodeKey)
+      if ($isImageNode(node)) {
+        node.setLayout(layout)
+      }
+    })
   }
+
+  const confirm = (url: string, layout: ImageLayout, caption: string, title?: string) => {
+    editor.update(() => {
+      const node = $getNodeByKey(nodeKey)
+      if ($isImageNode(node)) {
+        const updatePayload = {
+          caption,
+          layout,
+          url,
+        }
+        node.updateContent(title ? { ...updatePayload, title } : updatePayload)
+      }
+    })
+
+    return
+  }
+
+  const deleteImage = () => {
+    editor.update(() => {
+      const node = $getNodeByKey(nodeKey)
+      if ($isImageNode(node)) {
+        node.remove()
+      }
+    })
+  }
+
+  if (isLoading) {
+    return <ImageSkeleton layout={imageLayout} />
+  }
+
+  return (
+    <>
+      { editable ?
+        <ImageEditMode
+          imageUrl={imageUrl}
+          layout={imageLayout}
+          caption={imageCaption}
+          imageTitle={imageTitle}
+          imageSource={imageSource}
+          onConfirm={confirm}
+          onDelete={deleteImage}
+          onUpdateLayout={updateLayout}
+        /> :
+        <ImageDisplayMode
+          imageUrl={imageUrl}
+          layout={imageLayout}
+          caption={imageCaption}
+          imageSource={imageSource}
+        />
+      }
+    </>
+  )
 }
 
-export class ImageNode extends ElementNode {
-  static override getType() {
-    return imageLinkNodeType
+type SerializedImageNode = {
+  type: typeof imageNodeType
+  version: 1
+  imageLayout: ImageLayout
+  imageUrl: string
+  caption: string
+  imageTitle?: string
+  imageSource?: ImageSource
+  isLoading?: boolean
+}
+
+export class ImageNode extends DecoratorNode<ReactNode> {
+  __imageUrl: string
+  __imageLayout: ImageLayout
+  __caption: string
+  __imageTitle: string
+  __imageSource: ImageSource
+  __isLoading: boolean
+
+  static override getType(): string {
+    return imageNodeType
   }
 
   static override clone(node: ImageNode): ImageNode {
-    return new ImageNode(node.__key)
+    return new ImageNode(
+      node.__imageUrl,
+      node.__imageLayout,
+      node.__caption,
+      node.__imageTitle,
+      node.__imageSource,
+      node.__isLoading,
+      node.__key
+    )
+  }
+
+  constructor(
+    url: string,
+    layout: ImageLayout,
+    caption: string,
+    imageTitle: string = '',
+    imageSource: ImageSource = 'link',
+    isLoading: boolean = false,
+    key?: NodeKey,
+  ) {
+    super(key)
+    this.__imageUrl = url
+    this.__imageLayout = layout
+    this.__caption = caption
+    this.__imageTitle = imageTitle
+    this.__imageSource = imageSource
+    this.__isLoading = isLoading
   }
 
   override isInline(): false {
@@ -35,43 +169,133 @@ export class ImageNode extends ElementNode {
   }
 
   override createDOM(config: EditorConfig): HTMLElement {
-    const imageLinkClass = config.theme.imageLink ?? 'TwreporterTheme__imageLink'
-    const divDom = document.createElement('div')
-    divDom.classList.add(imageLinkClass, imageNodeClassname)
+    const themeClass = config.theme.image ?? 'TwreporterTheme__image'
+    const div = document.createElement('div')
+    div.classList.add(themeClass, 'Image__content', this.__imageLayout)
 
-    return divDom
+    return div
   }
 
-  override updateDOM(): boolean {
+  override updateDOM(prevNode: ImageNode, dom: HTMLElement): boolean {
+    if (prevNode.__imageLayout !== this.__imageLayout) {
+      dom.classList.remove(prevNode.__imageLayout)
+      dom.classList.add(this.__imageLayout)
+    }
+
     return false
   }
 
-  static override importDOM(): DOMConversionMap<HTMLDivElement> | null {
+  override decorate(): ReactNode {
+    return (
+      <Image
+        nodeKey={this.getKey()}
+        imageUrl={this.__imageUrl}
+        imageLayout={this.__imageLayout}
+        imageCaption={this.__caption}
+        imageTitle={this.__imageTitle}
+        imageSource={this.__imageSource}
+        isLoading={this.__isLoading}
+      />
+    )
+  }
+
+  static override importJSON(serializedNode: SerializedImageNode) {
+    return $createImageNode(
+      serializedNode.imageUrl,
+      serializedNode.imageLayout,
+      serializedNode.caption,
+      serializedNode.imageTitle,
+      serializedNode.imageSource,
+      serializedNode.isLoading
+    )
+  }
+
+  override exportJSON(): SerializedImageNode {
     return {
-      div: () => {
-        return {
-          conversion: $convertDivElement,
-          priority: 1,
-        }
-      },
+      type: imageNodeType,
+      version: 1,
+      imageUrl: this.__imageUrl,
+      imageLayout: this.__imageLayout,
+      caption: this.__caption,
+      imageTitle: this.__imageTitle,
+      imageSource: this.__imageSource,
+      isLoading: this.__isLoading,
     }
   }
 
-  override exportDOM(): DOMExportOutput {
-    const element = document.createElement('div')
-    element.classList.add(imageNodeClassname)
-    return { element }
+  getUrl(): string {
+    const self = this.getLatest()
+    return self.__imageUrl
   }
 
-  static override importJSON(serializedNode: SerializedImageNode): ImageNode {
-    return $createImageNode().updateFromJSON(
-      serializedNode
-    )
+  isLoading(): boolean {
+    const self = this.getLatest()
+    return self.__isLoading
+  }
+
+  setUrl(url: string) {
+    const write = this.getWritable()
+    write.__imageUrl = url
+  }
+
+  setLayout(layout: ImageLayout): void {
+    const writable = this.getWritable()
+    writable.__imageLayout = layout
+  }
+
+  updateContent({
+    caption,
+    layout,
+    title,
+    url,
+  }: {
+    caption: string
+    layout: ImageLayout
+    title?: string
+    url: string
+  }): void {
+    const writable = this.getWritable()
+    writable.__caption = caption
+    writable.__imageUrl = url
+    writable.__imageLayout = layout
+    if (title) {
+      writable.__imageTitle = title
+    }
+  }
+
+  finishUpload({
+    title = '',
+    url,
+  }: {
+    title?: string
+    url: string
+  }): void {
+    const writable = this.getWritable()
+    writable.__imageUrl = url
+    writable.__imageTitle = title
+    writable.__imageSource = 'drag-drop'
+    writable.__isLoading = false
   }
 }
 
-export function $createImageNode(): ImageNode {
-  return $applyNodeReplacement(new ImageNode())
+export function $createImageNode(
+  url: string,
+  layout: ImageLayout,
+  caption: string,
+  imageTitle: string = '',
+  imageSource: ImageSource = 'link',
+  isLoading: boolean = false
+): ImageNode {
+  return $applyNodeReplacement(
+    new ImageNode(
+      url,
+      layout,
+      caption,
+      imageTitle,
+      imageSource,
+      isLoading
+    )
+  )
 }
 
 export function $isImageNode(

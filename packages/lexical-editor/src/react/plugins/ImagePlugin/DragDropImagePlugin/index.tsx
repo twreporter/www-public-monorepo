@@ -17,11 +17,10 @@ import {
   type LexicalNode,
 } from 'lexical'
 import {
-  $createImageContentNode,
-  $isImageContentNode,
-  type ImageContentNode
-} from '../nodes/ImageContentNode'
-import { $createImageNode, $isImageNode } from '../nodes/ImageNode'
+  $createImageNode,
+  $isImageNode,
+  type ImageNode
+} from '../nodes/ImageNode'
 import { $insertImageNodes } from '../utils'
 import type { UploadImageConfig } from '../../../../core/types/editor'
 
@@ -229,8 +228,7 @@ async function uploadDroppedImages(
 function insertImageSkeletons(count: number): string[] {
   const loadingNodeKeys: string[] = []
   const imageNodes = Array.from({ length: count }, () => {
-    const imageNode = $createImageNode()
-    const imageContentNode = $createImageContentNode(
+    const imageNode = $createImageNode(
       '',
       'default',
       '',
@@ -239,8 +237,7 @@ function insertImageSkeletons(count: number): string[] {
       true
     )
 
-    imageNode.append(imageContentNode)
-    loadingNodeKeys.push(imageContentNode.getKey())
+    loadingNodeKeys.push(imageNode.getKey())
 
     return imageNode
   })
@@ -326,13 +323,7 @@ function replaceImageSkeleton(
 
     replacedLoadingNodeKey = node.getKey()
 
-    const parent = node.getParent()
-    if ($isImageNode(parent)) {
-      parent.replace($createUploadedImageNode(result))
-      return
-    }
-
-    node.replace($createUploadedImageContentNode(result))
+    node.replace($createUploadedImageNode(result))
   })
 
   return replacedLoadingNodeKey
@@ -340,10 +331,10 @@ function replaceImageSkeleton(
 
 function $getImageSkeletonNode(
   loadingNodeKey: string | null
-): ImageContentNode | null {
+): ImageNode | null {
   if (loadingNodeKey) {
     const node = $getNodeByKey(loadingNodeKey)
-    if ($isImageContentNode(node)) {
+    if ($isImageNode(node)) {
       return node
     }
   }
@@ -351,13 +342,13 @@ function $getImageSkeletonNode(
   return $findPendingImageSkeletonNode()
 }
 
-function $findPendingImageSkeletonNode(): ImageContentNode | null {
+function $findPendingImageSkeletonNode(): ImageNode | null {
   const pendingNodes = $findPendingImageSkeletonNodes($getRoot())
   return pendingNodes[0] ?? null
 }
 
-function $findPendingImageSkeletonNodes(node: LexicalNode): ImageContentNode[] {
-  if ($isImageContentNode(node)) {
+function $findPendingImageSkeletonNodes(node: LexicalNode): ImageNode[] {
+  if ($isImageNode(node)) {
     return node.isLoading() ? [node] : []
   }
 
@@ -370,17 +361,11 @@ function $findPendingImageSkeletonNodes(node: LexicalNode): ImageContentNode[] {
   )
 }
 
-function $createUploadedImageNode(result: { url: string; title?: string }) {
-  const imageNode = $createImageNode()
-  imageNode.append($createUploadedImageContentNode(result))
-  return imageNode
-}
-
-function $createUploadedImageContentNode(result: {
+function $createUploadedImageNode(result: {
   url: string
   title?: string
 }) {
-  return $createImageContentNode(
+  return $createImageNode(
     result.url,
     'default',
     '',
@@ -419,16 +404,11 @@ function removeImageSkeletons(
 
 function $removeImageSkeletonByKey(loadingNodeKey: string): void {
   const node = $getNodeByKey(loadingNodeKey)
-  if (!$isImageContentNode(node)) {
+  if (!$isImageNode(node)) {
     return
   }
 
-  const parent = node.getParent()
-  if ($isImageNode(parent)) {
-    parent.remove()
-  } else {
-    node.remove()
-  }
+  node.remove()
 }
 
 function removePendingImageSkeletonKey(

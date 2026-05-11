@@ -3,7 +3,6 @@ import { useEffect, type FC } from 'react'
 import { registerImagePlugin } from './command'
 import {
   ImageNode,
-  ImageContentNode,
 } from './nodes'
 
 import './Image.scss'
@@ -15,11 +14,10 @@ const ImagePlugin: FC = () => {
     if (
       !editor.hasNodes([
         ImageNode,
-        ImageContentNode,
       ])
     ) {
       throw new Error(
-        'ImagePlugin: ImageNode, ImageContentNode not registered on editor'
+        'ImagePlugin: ImageNode not registered on editor'
       )
     }
 

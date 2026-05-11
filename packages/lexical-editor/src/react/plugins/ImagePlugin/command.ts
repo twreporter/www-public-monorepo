@@ -8,8 +8,10 @@ import {
   type LexicalCommand
 } from 'lexical'
 // nodes
-import { $createImageNode, ImageNode } from './nodes/ImageNode'
-import { $createImageContentNode } from './nodes/ImageContentNode'
+import {
+  $createImageNode,
+  $isImageNode,
+} from './nodes/ImageNode'
 import { $insertImageNodes } from './utils'
 import type { ImageAddCommandPayload } from './types'
 
@@ -25,15 +27,13 @@ export function registerImagePlugin(editor: LexicalEditor) {
       if (!selection) {
         return false
       }
-      const imageNode = $createImageNode()
-      const imageContentNode = $createImageContentNode(
+      const imageNode = $createImageNode(
         url,
         layout,
         caption,
         title,
         source
       )
-      imageNode.append(imageContentNode)
       $insertImageNodes([imageNode])
       return true
     },
@@ -47,15 +47,14 @@ export function registerImagePlugin(editor: LexicalEditor) {
       if ($isRangeSelection(selection)) {
         const nodes = selection.getNodes()
         nodes.forEach((node) => {
-          const parent = node.getParent()
-          if (parent instanceof ImageNode) {
-            parent.remove()
+          if ($isImageNode(node)) {
+            node.remove()
           }
         })
       } else if ($isNodeSelection(selection)) {
         const nodes = selection.getNodes()
         nodes.forEach((node) => {
-          if (node instanceof ImageNode) {
+          if ($isImageNode(node)) {
             node.remove()
           }
         })

@@ -168,6 +168,19 @@ export const StyleWrapper = styled.div`
       }
     }
   }
+  
+  .TwreporterTheme__image {
+    margin: 60px auto;
+    &.default, &.right {
+      ${extendWidthCSS}
+    }
+    &.small {
+      ${largeWidthCSS}
+      ${mobileOnly`
+        width: 100%;
+      `}
+    }
+  }
 
   .TwreporterTheme__audio {
     ${largeWidthCSS}

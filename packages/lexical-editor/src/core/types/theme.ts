@@ -57,7 +57,7 @@ export type EditorThemeClasses = {
   }
   link?: string
   annotation?: string
-  imageLink?: string
+  image?: string
 }
 
 export type EditorThemeTokens = {
