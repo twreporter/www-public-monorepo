@@ -646,7 +646,7 @@ button.item.dropdown-item-active i {
   align-items: center;
   justify-content: center;
   padding: 16px;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .LexicalPluginDialog {

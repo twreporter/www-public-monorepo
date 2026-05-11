@@ -93,15 +93,13 @@ export const StyleWrapper = styled.div`
   }
 
   .TwreporterTheme__paragraph {
-    &:not(:has(.TwreporterTheme__imageLink)) {
-      ${normalWidthCSS}
-      ${paragraphTextCSS}
-      margin: ${mockup.margin.normal};
-      color: ${colorGrayscale.gray800};
+    ${normalWidthCSS}
+    ${paragraphTextCSS}
+    margin: ${mockup.margin.normal};
+    color: ${colorGrayscale.gray800};
 
-      /* line break */
-      white-space: pre-wrap;
-    }
+    /* line break */
+    white-space: pre-wrap;
   }
   
   .TwreporterTheme__link {

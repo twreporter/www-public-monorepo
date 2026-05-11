@@ -5,8 +5,6 @@ import {
   $createRangeSelection,
   $getNearestNodeFromDOMNode,
   $getNodeByKey,
-  $getRoot,
-  $isElementNode,
   $isTextNode,
   $normalizeSelection__EXPERIMENTAL,
   $setSelection,
@@ -14,7 +12,6 @@ import {
   DRAGOVER_COMMAND,
   DROP_COMMAND,
   type LexicalEditor,
-  type LexicalNode,
 } from 'lexical'
 import {
   $createImageNode,
@@ -35,6 +32,11 @@ const DEFAULT_ALLOWED_MIME_TYPES = [
 
 type DragDropImagePluginProps = {
   uploadImage?: UploadImageConfig
+}
+
+type PendingImageUpload = {
+  file: File
+  loadingNodeKey: string
 }
 
 const DragDropImagePlugin: FC<DragDropImagePluginProps> = ({ uploadImage }) => {
@@ -126,25 +128,25 @@ function handleDrop(
   editor.update(() => {
     setDropSelection(event)
     loadingNodeKeys = insertImageSkeletons(imageFiles.length)
-  })
-  loadingNodeKeysRef.current = loadingNodeKeys
+    loadingNodeKeysRef.current = loadingNodeKeys
 
-  void uploadDroppedImages(
-    imageFiles,
-    loadingNodeKeys,
-    uploadImage,
-    editor,
-    abortControllerRef,
-    loadingNodeKeysRef,
-    abortController
-  )
+    const pendingUploads = createPendingImageUploads(imageFiles, loadingNodeKeys)
+
+    void uploadDroppedImages(
+      pendingUploads,
+      uploadImage,
+      editor,
+      abortControllerRef,
+      loadingNodeKeysRef,
+      abortController
+    )
+  })
 
   return true
 }
 
 async function uploadDroppedImages(
-  imageFiles: File[],
-  loadingNodeKeys: Array<string | null>,
+  pendingUploads: PendingImageUpload[],
   uploadImage: UploadImageConfig,
   editor: LexicalEditor,
   abortControllerRef: MutableRefObject<AbortController | null>,
@@ -154,16 +156,10 @@ async function uploadDroppedImages(
   const { signal } = abortController
 
   try {
-    for (const [index, file] of imageFiles.entries()) {
+    for (const { file, loadingNodeKey } of pendingUploads) {
       if (signal.aborted) {
         break
       }
-
-      const loadingNodeKey = getPendingImageSkeletonKey(
-        loadingNodeKeys,
-        loadingNodeKeysRef,
-        index
-      )
 
       try {
         if (uploadImage.validate) {
@@ -247,12 +243,14 @@ function insertImageSkeletons(count: number): string[] {
   return loadingNodeKeys
 }
 
-function getPendingImageSkeletonKey(
-  loadingNodeKeys: Array<string | null>,
-  loadingNodeKeysRef: MutableRefObject<string[]>,
-  index: number
-): string | null {
-  return loadingNodeKeys[index] ?? loadingNodeKeysRef.current[0] ?? null
+function createPendingImageUploads(
+  imageFiles: File[],
+  loadingNodeKeys: string[]
+): PendingImageUpload[] {
+  return imageFiles.flatMap((file, index) => {
+    const loadingNodeKey = loadingNodeKeys[index]
+    return loadingNodeKey ? [{ file, loadingNodeKey }] : []
+  })
 }
 
 function setDropSelection(event: DragEvent): void {
@@ -309,15 +307,14 @@ function getEventRange(
 
 function replaceImageSkeleton(
   editor: LexicalEditor,
-  loadingNodeKey: string | null,
+  loadingNodeKey: string,
   result: { url: string; title?: string }
-): string | null {
-  let replacedLoadingNodeKey: string | null = null
+): string {
+  let replacedLoadingNodeKey = loadingNodeKey
 
   editor.update(() => {
     const node = $getImageSkeletonNode(loadingNodeKey)
     if (!node) {
-      $insertImageNodes([$createUploadedImageNode(result)])
       return
     }
 
@@ -330,35 +327,14 @@ function replaceImageSkeleton(
 }
 
 function $getImageSkeletonNode(
-  loadingNodeKey: string | null
+  loadingNodeKey: string
 ): ImageNode | null {
-  if (loadingNodeKey) {
-    const node = $getNodeByKey(loadingNodeKey)
-    if ($isImageNode(node)) {
-      return node
-    }
-  }
-
-  return $findPendingImageSkeletonNode()
-}
-
-function $findPendingImageSkeletonNode(): ImageNode | null {
-  const pendingNodes = $findPendingImageSkeletonNodes($getRoot())
-  return pendingNodes[0] ?? null
-}
-
-function $findPendingImageSkeletonNodes(node: LexicalNode): ImageNode[] {
+  const node = $getNodeByKey(loadingNodeKey)
   if ($isImageNode(node)) {
-    return node.isLoading() ? [node] : []
+    return node
   }
 
-  if (!$isElementNode(node)) {
-    return []
-  }
-
-  return node.getChildren().flatMap((childNode) =>
-    $findPendingImageSkeletonNodes(childNode)
-  )
+  return null
 }
 
 function $createUploadedImageNode(result: {
@@ -376,12 +352,8 @@ function $createUploadedImageNode(result: {
 
 function removeImageSkeleton(
   editor: LexicalEditor,
-  loadingNodeKey: string | null
+  loadingNodeKey: string
 ): void {
-  if (!loadingNodeKey) {
-    return
-  }
-
   editor.update(() => {
     $removeImageSkeletonByKey(loadingNodeKey)
   })
@@ -413,12 +385,8 @@ function $removeImageSkeletonByKey(loadingNodeKey: string): void {
 
 function removePendingImageSkeletonKey(
   loadingNodeKeysRef: MutableRefObject<string[]>,
-  loadingNodeKey: string | null
+  loadingNodeKey: string
 ): void {
-  if (!loadingNodeKey) {
-    return
-  }
-
   loadingNodeKeysRef.current = loadingNodeKeysRef.current.filter(
     (nodeKey) => nodeKey !== loadingNodeKey
   )
