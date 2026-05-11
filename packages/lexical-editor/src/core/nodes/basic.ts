@@ -11,6 +11,7 @@ import {
   AnnotationContentNode,
   AnnotationNode,
 } from '../../react/plugins/AnnotationPlugin/nodes'
+import { EmbeddedCodeNode } from '../../react/plugins/EmbeddedCodePlugin/nodes'
 import { ImageNode } from '../../react/plugins/ImagePlugin/nodes'
 
 export const basicEditorNodes: Array<Klass<LexicalNode>> = [
@@ -24,5 +25,6 @@ export const basicEditorNodes: Array<Klass<LexicalNode>> = [
   AnnotationNode,
   AnnotatedTextNode,
   AnnotationContentNode,
+  EmbeddedCodeNode,
   ImageNode,
 ]

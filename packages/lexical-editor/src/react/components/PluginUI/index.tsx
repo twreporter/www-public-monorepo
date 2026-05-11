@@ -3,6 +3,7 @@ import {
   type InputHTMLAttributes,
   type JSX,
   type ReactNode,
+  type TextareaHTMLAttributes,
   useEffect,
   useId,
   useRef,
@@ -84,6 +85,16 @@ export const PluginTextInput = ({
     {...props}
     type={type}
     className={`LexicalPluginTextInput ${className}`.trim()}
+  />
+)
+
+export const PluginTextarea = ({
+  className = '',
+  ...props
+}: TextareaHTMLAttributes<HTMLTextAreaElement>): JSX.Element => (
+  <textarea
+    {...props}
+    className={`LexicalPluginTextInput LexicalPluginTextarea ${className}`.trim()}
   />
 )
 
