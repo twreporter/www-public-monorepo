@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.38](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.37...www-cms@0.1.0-beta.38) (2026-05-11)
+
+
+### Bug Fixes
+
+* **lexical-editor:** address review comments ([d38b42f](https://github.com/twreporter/www-public-monorepo/commit/d38b42fe160497facd562bf985a384e8efa54d9e))
+* **lexical-editor:** refactor image nodes ([84c3b81](https://github.com/twreporter/www-public-monorepo/commit/84c3b8193e85e70f606e7769b1d8f37e137c9600))
+
+
+
+
+
 # [0.1.0-beta.37](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.36...www-cms@0.1.0-beta.37) (2026-05-08)
 
 

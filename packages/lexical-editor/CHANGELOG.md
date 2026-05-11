@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.13](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.12...@twreporter/lexical-editor@0.2.0-beta.13) (2026-05-11)
+
+
+### Bug Fixes
+
+* **lexical-editor:** add PluginUi components ([8afa9df](https://github.com/twreporter/www-public-monorepo/commit/8afa9dfe7046148f183a717c97d1ce3cf0fa20e3))
+* **lexical-editor:** address defects ([20c6704](https://github.com/twreporter/www-public-monorepo/commit/20c6704fcd35db89e99d16bfdafcbecb56baa450))
+* **lexical-editor:** address review comments ([d38b42f](https://github.com/twreporter/www-public-monorepo/commit/d38b42fe160497facd562bf985a384e8efa54d9e))
+* **lexical-editor:** refactor image nodes ([84c3b81](https://github.com/twreporter/www-public-monorepo/commit/84c3b8193e85e70f606e7769b1d8f37e137c9600))
+
+
+
+
+
 # [0.2.0-beta.12](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.11...@twreporter/lexical-editor@0.2.0-beta.12) (2026-05-06)
 
 
