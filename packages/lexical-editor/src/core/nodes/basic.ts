@@ -11,7 +11,7 @@ import {
   AnnotationContentNode,
   AnnotationNode,
 } from '../../react/plugins/AnnotationPlugin/nodes'
-import { ImageNode, ImageContentNode } from '../../react/plugins/ImagePlugin/nodes'
+import { ImageNode } from '../../react/plugins/ImagePlugin/nodes'
 
 export const basicEditorNodes: Array<Klass<LexicalNode>> = [
   HeadingNode,
@@ -25,5 +25,4 @@ export const basicEditorNodes: Array<Klass<LexicalNode>> = [
   AnnotatedTextNode,
   AnnotationContentNode,
   ImageNode,
-  ImageContentNode,
 ]

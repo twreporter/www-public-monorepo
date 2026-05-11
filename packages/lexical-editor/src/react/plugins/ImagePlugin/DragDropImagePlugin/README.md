@@ -189,7 +189,7 @@ Both uploaded and manual images are persisted with their source type:
 
 ```json
 {
-  "type": "imageLink-content",
+  "type": "image",
   "version": 1,
   "imageUrl": "/images/photo.jpg",
   "imageLayout": "default",

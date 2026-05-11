@@ -1,6 +1,13 @@
 import { type FC, useState, type KeyboardEvent, type MouseEvent } from 'react'
 import type { ImageLayout, ImageSource } from '../types'
 import { useImageConfig } from '../../../context/ImageConfigContext'
+import {
+  PluginButton,
+  PluginDialog,
+  PluginField,
+  PluginTextInput,
+} from '../../../components/PluginUI'
+import ImageLayoutOptions from './ImageLayoutOptions'
 
 type EditDialogProps = {
   imageCaption?: string
@@ -8,7 +15,12 @@ type EditDialogProps = {
   imageLayout: ImageLayout
   imageTitle?: string
   imageSource?: ImageSource
-  onConfirm: (url: string, layout: ImageLayout, caption: string, title?: string) => void
+  onConfirm: (
+    url: string,
+    layout: ImageLayout,
+    caption: string,
+    title?: string
+  ) => void
   onClose: () => void
   onDelete?: () => void
 }
@@ -20,7 +32,7 @@ const EditDialog: FC<EditDialogProps> = ({
   imageSource = 'link',
   onConfirm,
   onClose,
-  onDelete
+  onDelete,
 }) => {
   const [url, setUrl] = useState(imageUrl)
   const [layout, setLayout] = useState(imageLayout)
@@ -59,13 +71,12 @@ const EditDialog: FC<EditDialogProps> = ({
 
     onConfirm(trimmedUrl, layout, caption, imageTitle || undefined)
     onClose()
-    return
   }
 
   const deleteNode = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     e.stopPropagation()
-    
+
     if (typeof onDelete === 'function') {
       onDelete()
     }
@@ -78,66 +89,60 @@ const EditDialog: FC<EditDialogProps> = ({
   }
 
   return (
-    <div className="Image__edit_dialog" role="dialog" aria-modal="true">
-      <div className="dialog-header">
-        <p className="title">編輯圖片</p>
-        <div className="button-set">
-          {onDelete && <button type="button" className="button-delete" onClick={deleteNode}>Delete</button>}
-          <button type="button" className="button-cancel" onClick={cancel}>Cancel</button>
-          <button type="button" className="button-confirm" onClick={confirm}>Confirm</button>
-        </div>
-      </div>
-      <div className="dialog-content">
-        {!isUploadedImage && (
-          <div className="edit-item">
-            <p className="item-title">圖片 url</p>
-            <input
-              type="text"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              onKeyDown={handleInputKeyDown}
-            />
-          </div>
-        )}
-        {isUploadedImage && imageTitle && (
-          <div className="edit-item">
-            <p className="item-title">圖片標題</p>
-            <p className="item-description">{imageTitle}</p>
-            {relatedPhotosHref && (
-              <a href={relatedPhotosHref} target="_blank" rel="noopener noreferrer" className="item-link">
-                View related Photos
-              </a>
-            )}
-          </div>
-        )}
-        <div className="edit-item">
-          <p className="item-title">圖說</p>
-          <input
+    <PluginDialog
+      title="編輯圖片"
+      className="Image__edit_dialog"
+      actions={
+        <>
+          {onDelete && (
+            <PluginButton variant="danger" onClick={deleteNode}>
+              Delete
+            </PluginButton>
+          )}
+          <PluginButton onClick={cancel}>Cancel</PluginButton>
+          <PluginButton variant="primary" onClick={confirm}>
+            Confirm
+          </PluginButton>
+        </>
+      }
+    >
+      {!isUploadedImage && (
+        <PluginField label="圖片 url">
+          <PluginTextInput
             type="text"
-            value={caption}
-            onChange={(e) => setCaption(e.target.value)}
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
             onKeyDown={handleInputKeyDown}
           />
-        </div>
-        <div className="edit-item">
-          <p className="item-title">圖片版式</p>
-          <div className="layout-option">
-            <button type="button" className={`button-layout ${layout === 'default' ? 'is-active' : ''}`} onClick={() => setLayout('default')}>
-              <i className="image-layout-default" />
-              <p>default</p>
-            </button>
-            <button type="button" className={`button-layout ${layout === 'small' ? 'is-active' : ''}`} onClick={() => setLayout('small')}>
-              <i className="image-layout-small" />
-              <p>small</p>
-            </button>
-            <button type="button" className={`button-layout ${layout === 'right' ? 'is-active' : ''}`} onClick={() => setLayout('right')}>
-              <i className="image-layout-right" />
-              <p>right</p>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+        </PluginField>
+      )}
+      {isUploadedImage && imageTitle && (
+        <PluginField label="圖片標題">
+          <p className="item-description">{imageTitle}</p>
+          {relatedPhotosHref && (
+            <a
+              href={relatedPhotosHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="item-link"
+            >
+              View related Photos
+            </a>
+          )}
+        </PluginField>
+      )}
+      <PluginField label="圖說">
+        <PluginTextInput
+          type="text"
+          value={caption}
+          onChange={(e) => setCaption(e.target.value)}
+          onKeyDown={handleInputKeyDown}
+        />
+      </PluginField>
+      <PluginField label="圖片版式">
+        <ImageLayoutOptions layout={layout} onChange={setLayout} />
+      </PluginField>
+    </PluginDialog>
   )
 }
 

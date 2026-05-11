@@ -1,9 +1,7 @@
 import { ImageNode } from './ImageNode'
-import { ImageContentNode } from './ImageContentNode'
 
-export { ImageNode, ImageContentNode }
+export { ImageNode }
 
 export default {
   ImageNode,
-  ImageContentNode,
 }

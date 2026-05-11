@@ -1,10 +1,7 @@
 ## Image Nodes
 
 - ImageNode
-  - block element node, contain image wrapper data
-  - the node itself does not store url / caption / layout
-- ImageContentNode
-  - decorator node, contain image url, caption, layout, title and source
+  - block decorator node, contain image url, caption, layout, title and source
   - render image in two modes:
     - edit mode: show layout switcher and edit dialog trigger
     - display mode: show image content only
@@ -22,13 +19,12 @@
 RootNode
 ├─ ParagraphNode
 │  └─ TextNode("some text before")                    ← normal text
-├─ ImageNode                                          ← custom block container
-│  └─ ImageContentNode                                ← decorator node for image UI
-│     ├─ imageUrl: "https://example.com/image.jpg"
-│     ├─ caption: "This is a photo"
-│     ├─ imageTitle: ""
-│     ├─ imageSource: "link"                          ← link | drag-drop | db
-│     └─ layout: "default"                            ← default | small | right
+├─ ImageNode                                   ← block decorator node for image UI
+│  ├─ imageUrl: "https://example.com/image.jpg"
+│  ├─ caption: "This is a photo"
+│  ├─ imageTitle: ""
+│  ├─ imageSource: "link"                             ← link | drag-drop | db
+│  └─ layout: "default"                               ← default | small | right
 └─ ParagraphNode
    └─ TextNode("some text after")                     ← normal text
 ```

@@ -13,12 +13,11 @@ import {
   DROP_COMMAND,
   type LexicalEditor,
 } from 'lexical'
-import { IMAGE_ADD_COMMAND } from '../command'
 import {
-  $createImageContentNode,
-  $isImageContentNode
-} from '../nodes/ImageContentNode'
-import { $createImageNode, $isImageNode } from '../nodes/ImageNode'
+  $createImageNode,
+  $isImageNode,
+  type ImageNode
+} from '../nodes/ImageNode'
 import { $insertImageNodes } from '../utils'
 import type { UploadImageConfig } from '../../../../core/types/editor'
 
@@ -33,6 +32,11 @@ const DEFAULT_ALLOWED_MIME_TYPES = [
 
 type DragDropImagePluginProps = {
   uploadImage?: UploadImageConfig
+}
+
+type PendingImageUpload = {
+  file: File
+  loadingNodeKey: string
 }
 
 const DragDropImagePlugin: FC<DragDropImagePluginProps> = ({ uploadImage }) => {
@@ -124,25 +128,25 @@ function handleDrop(
   editor.update(() => {
     setDropSelection(event)
     loadingNodeKeys = insertImageSkeletons(imageFiles.length)
-  })
-  loadingNodeKeysRef.current = loadingNodeKeys
+    loadingNodeKeysRef.current = loadingNodeKeys
 
-  void uploadDroppedImages(
-    imageFiles,
-    loadingNodeKeys,
-    uploadImage,
-    editor,
-    abortControllerRef,
-    loadingNodeKeysRef,
-    abortController
-  )
+    const pendingUploads = createPendingImageUploads(imageFiles, loadingNodeKeys)
+
+    void uploadDroppedImages(
+      pendingUploads,
+      uploadImage,
+      editor,
+      abortControllerRef,
+      loadingNodeKeysRef,
+      abortController
+    )
+  })
 
   return true
 }
 
 async function uploadDroppedImages(
-  imageFiles: File[],
-  loadingNodeKeys: Array<string | null>,
+  pendingUploads: PendingImageUpload[],
   uploadImage: UploadImageConfig,
   editor: LexicalEditor,
   abortControllerRef: MutableRefObject<AbortController | null>,
@@ -152,12 +156,10 @@ async function uploadDroppedImages(
   const { signal } = abortController
 
   try {
-    for (const [index, file] of imageFiles.entries()) {
+    for (const { file, loadingNodeKey } of pendingUploads) {
       if (signal.aborted) {
         break
       }
-
-      const loadingNodeKey = loadingNodeKeys[index] ?? null
 
       try {
         if (uploadImage.validate) {
@@ -189,8 +191,15 @@ async function uploadDroppedImages(
           break
         }
 
-        replaceImageSkeleton(editor, loadingNodeKey, result)
-        removePendingImageSkeletonKey(loadingNodeKeysRef, loadingNodeKey)
+        const replacedLoadingNodeKey = replaceImageSkeleton(
+          editor,
+          loadingNodeKey,
+          result
+        )
+        removePendingImageSkeletonKey(
+          loadingNodeKeysRef,
+          replacedLoadingNodeKey
+        )
       } catch (error) {
         if (error instanceof Error && error.name === 'AbortError') {
           removeImageSkeleton(editor, loadingNodeKey)
@@ -215,8 +224,7 @@ async function uploadDroppedImages(
 function insertImageSkeletons(count: number): string[] {
   const loadingNodeKeys: string[] = []
   const imageNodes = Array.from({ length: count }, () => {
-    const imageNode = $createImageNode()
-    const imageContentNode = $createImageContentNode(
+    const imageNode = $createImageNode(
       '',
       'default',
       '',
@@ -225,8 +233,7 @@ function insertImageSkeletons(count: number): string[] {
       true
     )
 
-    imageNode.append(imageContentNode)
-    loadingNodeKeys.push(imageContentNode.getKey())
+    loadingNodeKeys.push(imageNode.getKey())
 
     return imageNode
   })
@@ -234,6 +241,16 @@ function insertImageSkeletons(count: number): string[] {
   $insertImageNodes(imageNodes)
 
   return loadingNodeKeys
+}
+
+function createPendingImageUploads(
+  imageFiles: File[],
+  loadingNodeKeys: string[]
+): PendingImageUpload[] {
+  return imageFiles.flatMap((file, index) => {
+    const loadingNodeKey = loadingNodeKeys[index]
+    return loadingNodeKey ? [{ file, loadingNodeKey }] : []
+  })
 }
 
 function setDropSelection(event: DragEvent): void {
@@ -290,41 +307,53 @@ function getEventRange(
 
 function replaceImageSkeleton(
   editor: LexicalEditor,
-  loadingNodeKey: string | null,
+  loadingNodeKey: string,
   result: { url: string; title?: string }
-): void {
-  if (!loadingNodeKey) {
-    editor.dispatchCommand(IMAGE_ADD_COMMAND, {
-      url: result.url,
-      layout: 'default',
-      caption: '',
-      title: result.title || '',
-      source: 'drag-drop'
-    })
-    return
-  }
+): string {
+  let replacedLoadingNodeKey = loadingNodeKey
 
   editor.update(() => {
-    const node = $getNodeByKey(loadingNodeKey)
-    if (!$isImageContentNode(node)) {
+    const node = $getImageSkeletonNode(loadingNodeKey)
+    if (!node) {
       return
     }
 
-    node.finishUpload({
-      title: result.title || '',
-      url: result.url
-    })
+    replacedLoadingNodeKey = node.getKey()
+
+    node.replace($createUploadedImageNode(result))
   })
+
+  return replacedLoadingNodeKey
+}
+
+function $getImageSkeletonNode(
+  loadingNodeKey: string
+): ImageNode | null {
+  const node = $getNodeByKey(loadingNodeKey)
+  if ($isImageNode(node)) {
+    return node
+  }
+
+  return null
+}
+
+function $createUploadedImageNode(result: {
+  url: string
+  title?: string
+}) {
+  return $createImageNode(
+    result.url,
+    'default',
+    '',
+    result.title || '',
+    'drag-drop'
+  )
 }
 
 function removeImageSkeleton(
   editor: LexicalEditor,
-  loadingNodeKey: string | null
+  loadingNodeKey: string
 ): void {
-  if (!loadingNodeKey) {
-    return
-  }
-
   editor.update(() => {
     $removeImageSkeletonByKey(loadingNodeKey)
   })
@@ -347,26 +376,17 @@ function removeImageSkeletons(
 
 function $removeImageSkeletonByKey(loadingNodeKey: string): void {
   const node = $getNodeByKey(loadingNodeKey)
-  if (!$isImageContentNode(node)) {
+  if (!$isImageNode(node)) {
     return
   }
 
-  const parent = node.getParent()
-  if ($isImageNode(parent)) {
-    parent.remove()
-  } else {
-    node.remove()
-  }
+  node.remove()
 }
 
 function removePendingImageSkeletonKey(
   loadingNodeKeysRef: MutableRefObject<string[]>,
-  loadingNodeKey: string | null
+  loadingNodeKey: string
 ): void {
-  if (!loadingNodeKey) {
-    return
-  }
-
   loadingNodeKeysRef.current = loadingNodeKeysRef.current.filter(
     (nodeKey) => nodeKey !== loadingNodeKey
   )
