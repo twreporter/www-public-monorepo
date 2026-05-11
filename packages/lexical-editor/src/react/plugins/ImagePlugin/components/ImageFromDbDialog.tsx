@@ -57,6 +57,7 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
   const totalPages = Math.max(1, Math.ceil(total / pageSize))
   const displayItems = useMemo(() => {
     if (
+      page === 1 &&
       selectedImage &&
       !items.some((item) => item.url === selectedImage.url)
     ) {
@@ -64,7 +65,7 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
     }
 
     return items
-  }, [items, selectedImage])
+  }, [items, page, selectedImage])
   const pageNumbers = useMemo(() => {
     const start = Math.max(1, page - 2)
     const end = Math.min(totalPages, start + 4)

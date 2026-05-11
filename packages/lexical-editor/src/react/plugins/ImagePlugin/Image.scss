@@ -121,7 +121,14 @@
 .Image__skeleton_media {
   aspect-ratio: 2 / 1;
   width: 100%;
-  background-color: #d9d9d9;
+  background: linear-gradient(
+    90deg,
+    #d9d9d9 0%,
+    #ececec 50%,
+    #d9d9d9 100%
+  );
+  background-size: 200% 100%;
+  animation: ImageSkeletonLoading 1.4s ease-in-out infinite;
 }
 
 .Image__skeleton_caption {
@@ -135,7 +142,14 @@
 .Image__skeleton_line {
   height: 16px;
   border-radius: 2px;
-  background-color: #d8d8d8;
+  background: linear-gradient(
+    90deg,
+    #d8d8d8 0%,
+    #eeeeee 50%,
+    #d8d8d8 100%
+  );
+  background-size: 200% 100%;
+  animation: ImageSkeletonLoading 1.4s ease-in-out infinite;
 }
 
 .Image__skeleton_line--long {
@@ -144,6 +158,23 @@
 
 .Image__skeleton_line--short {
   width: min(119.5px, 19.92%);
+}
+
+@keyframes ImageSkeletonLoading {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Image__skeleton_media,
+  .Image__skeleton_line {
+    animation: none;
+  }
 }
 
 .Image__edit_layout {
@@ -201,7 +232,7 @@
 
 /* container style */
 .Image__container {
-  margin: 60px auto;
+  margin: 0 auto;
 
   &.default {
     width: 100%;

@@ -225,6 +225,11 @@ export class ImageContentNode extends DecoratorNode<ReactNode> {
     return self.__imageUrl
   }
 
+  isLoading(): boolean {
+    const self = this.getLatest()
+    return self.__isLoading
+  }
+
   setUrl(url: string) {
     const write = this.getWritable()
     write.__imageUrl = url

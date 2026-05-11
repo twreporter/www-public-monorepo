@@ -5,6 +5,8 @@ import {
   $createRangeSelection,
   $getNearestNodeFromDOMNode,
   $getNodeByKey,
+  $getRoot,
+  $isElementNode,
   $isTextNode,
   $normalizeSelection__EXPERIMENTAL,
   $setSelection,
@@ -12,11 +14,12 @@ import {
   DRAGOVER_COMMAND,
   DROP_COMMAND,
   type LexicalEditor,
+  type LexicalNode,
 } from 'lexical'
-import { IMAGE_ADD_COMMAND } from '../command'
 import {
   $createImageContentNode,
-  $isImageContentNode
+  $isImageContentNode,
+  type ImageContentNode
 } from '../nodes/ImageContentNode'
 import { $createImageNode, $isImageNode } from '../nodes/ImageNode'
 import { $insertImageNodes } from '../utils'
@@ -157,7 +160,11 @@ async function uploadDroppedImages(
         break
       }
 
-      const loadingNodeKey = loadingNodeKeys[index] ?? null
+      const loadingNodeKey = getPendingImageSkeletonKey(
+        loadingNodeKeys,
+        loadingNodeKeysRef,
+        index
+      )
 
       try {
         if (uploadImage.validate) {
@@ -189,8 +196,15 @@ async function uploadDroppedImages(
           break
         }
 
-        replaceImageSkeleton(editor, loadingNodeKey, result)
-        removePendingImageSkeletonKey(loadingNodeKeysRef, loadingNodeKey)
+        const replacedLoadingNodeKey = replaceImageSkeleton(
+          editor,
+          loadingNodeKey,
+          result
+        )
+        removePendingImageSkeletonKey(
+          loadingNodeKeysRef,
+          replacedLoadingNodeKey
+        )
       } catch (error) {
         if (error instanceof Error && error.name === 'AbortError') {
           removeImageSkeleton(editor, loadingNodeKey)
@@ -234,6 +248,14 @@ function insertImageSkeletons(count: number): string[] {
   $insertImageNodes(imageNodes)
 
   return loadingNodeKeys
+}
+
+function getPendingImageSkeletonKey(
+  loadingNodeKeys: Array<string | null>,
+  loadingNodeKeysRef: MutableRefObject<string[]>,
+  index: number
+): string | null {
+  return loadingNodeKeys[index] ?? loadingNodeKeysRef.current[0] ?? null
 }
 
 function setDropSelection(event: DragEvent): void {
@@ -292,29 +314,79 @@ function replaceImageSkeleton(
   editor: LexicalEditor,
   loadingNodeKey: string | null,
   result: { url: string; title?: string }
-): void {
-  if (!loadingNodeKey) {
-    editor.dispatchCommand(IMAGE_ADD_COMMAND, {
-      url: result.url,
-      layout: 'default',
-      caption: '',
-      title: result.title || '',
-      source: 'drag-drop'
-    })
-    return
-  }
+): string | null {
+  let replacedLoadingNodeKey: string | null = null
 
   editor.update(() => {
-    const node = $getNodeByKey(loadingNodeKey)
-    if (!$isImageContentNode(node)) {
+    const node = $getImageSkeletonNode(loadingNodeKey)
+    if (!node) {
+      $insertImageNodes([$createUploadedImageNode(result)])
       return
     }
 
-    node.finishUpload({
-      title: result.title || '',
-      url: result.url
-    })
+    replacedLoadingNodeKey = node.getKey()
+
+    const parent = node.getParent()
+    if ($isImageNode(parent)) {
+      parent.replace($createUploadedImageNode(result))
+      return
+    }
+
+    node.replace($createUploadedImageContentNode(result))
   })
+
+  return replacedLoadingNodeKey
+}
+
+function $getImageSkeletonNode(
+  loadingNodeKey: string | null
+): ImageContentNode | null {
+  if (loadingNodeKey) {
+    const node = $getNodeByKey(loadingNodeKey)
+    if ($isImageContentNode(node)) {
+      return node
+    }
+  }
+
+  return $findPendingImageSkeletonNode()
+}
+
+function $findPendingImageSkeletonNode(): ImageContentNode | null {
+  const pendingNodes = $findPendingImageSkeletonNodes($getRoot())
+  return pendingNodes[0] ?? null
+}
+
+function $findPendingImageSkeletonNodes(node: LexicalNode): ImageContentNode[] {
+  if ($isImageContentNode(node)) {
+    return node.isLoading() ? [node] : []
+  }
+
+  if (!$isElementNode(node)) {
+    return []
+  }
+
+  return node.getChildren().flatMap((childNode) =>
+    $findPendingImageSkeletonNodes(childNode)
+  )
+}
+
+function $createUploadedImageNode(result: { url: string; title?: string }) {
+  const imageNode = $createImageNode()
+  imageNode.append($createUploadedImageContentNode(result))
+  return imageNode
+}
+
+function $createUploadedImageContentNode(result: {
+  url: string
+  title?: string
+}) {
+  return $createImageContentNode(
+    result.url,
+    'default',
+    '',
+    result.title || '',
+    'drag-drop'
+  )
 }
 
 function removeImageSkeleton(
