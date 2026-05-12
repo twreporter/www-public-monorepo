@@ -57,6 +57,11 @@ the HTML.
 In edit mode, the plugin renders an escaped code snapshot instead of injecting
 the embedded HTML. This prevents third-party scripts, global styles or
 fullscreen embed layouts from breaking the editor UI while authors are editing.
+When confirming the edit dialog, the plugin warns authors if the code appears to
+contain executable script or risky HTML attributes, including `<script>` tags,
+inline event handlers, `javascript:` URLs, `data:text/html` URLs or `srcdoc`.
+External script tags loaded from `projects.twreporter.org` are allowlisted and
+do not trigger this warning.
 
 ```html
 <div class="EmbeddedCode__container default">
@@ -73,7 +78,9 @@ fullscreen embed layouts from breaking the editor UI while authors are editing.
 </div>
 ```
 
-After injecting the HTML, script tags are replaced with fresh script elements so
-third-party embed scripts can execute. The rendered embed container also
-registers a capturing `load` listener so load events from child iframe, image
-and script elements are handled inside the display component.
+The rendered embed container registers a capturing `load` listener so load
+events from child iframe, image and script elements are handled inside the
+display component. Script tags are parsed out before rendering non-script HTML,
+then appended as executable script elements. After all scripts load, the plugin
+dispatches a `window` `load` event for providers that initialize from that
+browser event.

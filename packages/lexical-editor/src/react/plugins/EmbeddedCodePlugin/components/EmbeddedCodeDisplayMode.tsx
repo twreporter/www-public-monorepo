@@ -2,6 +2,50 @@ import { type FC, type ReactNode, useEffect, useRef } from 'react'
 
 import type { EmbeddedCodeLayout } from '../types'
 
+type ParsedEmbeddedCode = {
+  htmlWithoutScripts: string
+  scripts: HTMLScriptElement[]
+}
+
+function parseEmbeddedCode(embeddedCode: string): ParsedEmbeddedCode {
+  const template = document.createElement('template')
+  template.innerHTML = embeddedCode
+  const scripts = Array.from(template.content.querySelectorAll('script'))
+  scripts.forEach((scriptElement) => {
+    scriptElement.remove()
+  })
+
+  return {
+    htmlWithoutScripts: template.innerHTML,
+    scripts,
+  }
+}
+
+function dispatchWindowLoadEvent(): void {
+  let loadEvent: Event
+  try {
+    loadEvent = new Event('load')
+  } catch {
+    loadEvent = document.createEvent('Event')
+    loadEvent.initEvent('load', true, true)
+  }
+  window.dispatchEvent(loadEvent)
+}
+
+function createExecutableScript(scriptElement: HTMLScriptElement): HTMLScriptElement {
+  const executableScript = document.createElement('script')
+
+  Array.from(scriptElement.attributes).forEach((attribute) => {
+    executableScript.setAttribute(attribute.name, attribute.value)
+  })
+  executableScript.text = scriptElement.src
+    ? scriptElement.text
+    : `${scriptElement.text}
+document.currentScript?.dispatchEvent(new Event('load'));`
+
+  return executableScript
+}
+
 type EmbeddedCodeDisplayModeProps = {
   embeddedCode: string
   caption: string
@@ -30,21 +74,28 @@ const EmbeddedCodeDisplayMode: FC<EmbeddedCodeDisplayModeProps> = ({
     }
 
     contentElement.addEventListener('load', handleLoad, true)
-    contentElement.innerHTML = embeddedCode
+    const { htmlWithoutScripts, scripts } = parseEmbeddedCode(embeddedCode)
+    contentElement.innerHTML = htmlWithoutScripts
 
-    const scriptElements = Array.from(
-      contentElement.querySelectorAll('script')
-    )
-    scriptElements.forEach((scriptElement) => {
-      const executableScript = document.createElement('script')
+    if (scripts.length > 0) {
+      let loadedScriptsCount = 0
+      const scriptsFragment = document.createDocumentFragment()
 
-      Array.from(scriptElement.attributes).forEach((attribute) => {
-        executableScript.setAttribute(attribute.name, attribute.value)
+      scripts.forEach((scriptElement) => {
+        const executableScript = createExecutableScript(scriptElement)
+        const handleScriptLoad = () => {
+          loadedScriptsCount += 1
+          if (loadedScriptsCount === scripts.length) {
+            dispatchWindowLoadEvent()
+          }
+          executableScript.removeEventListener('load', handleScriptLoad)
+        }
+
+        executableScript.addEventListener('load', handleScriptLoad)
+        scriptsFragment.appendChild(executableScript)
       })
-      executableScript.text = scriptElement.text
-
-      scriptElement.replaceWith(executableScript)
-    })
+      contentElement.appendChild(scriptsFragment)
+    }
 
     return () => {
       contentElement.removeEventListener('load', handleLoad, true)

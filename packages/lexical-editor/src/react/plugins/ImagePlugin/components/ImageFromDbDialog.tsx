@@ -12,6 +12,7 @@ import {
   PluginDialog,
   PluginField,
   PluginTextInput,
+  PluginTextarea,
 } from '../../../components/PluginUI'
 import ImageLayoutOptions from './ImageLayoutOptions'
 import type { ImageLayout } from '../types'
@@ -58,17 +59,6 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
   const [errorMessage, setErrorMessage] = useState('')
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize))
-  const displayItems = useMemo(() => {
-    if (
-      page === 1 &&
-      selectedImage &&
-      !items.some((item) => item.url === selectedImage.url)
-    ) {
-      return [selectedImage, ...items]
-    }
-
-    return items
-  }, [items, page, selectedImage])
   const pageNumbers = useMemo(() => {
     const start = Math.max(1, page - 2)
     const end = Math.min(totalPages, start + 4)
@@ -159,7 +149,9 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
     }
   }
 
-  const handleInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleInputKeyDown = (
+    e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'a') {
       e.stopPropagation()
     }
@@ -211,11 +203,12 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
         </p>
       )}
 
-      <div className="Image__db_grid" aria-busy={isLoading}>
-        {isLoading ? (
-          <p className="Image__db_status">Loading...</p>
-        ) : displayItems.length > 0 ? (
-          displayItems.map((item) => (
+      <div
+        className={`Image__db_grid ${isLoading ? 'is-loading' : ''}`}
+        aria-busy={isLoading}
+      >
+        {items.length > 0 ? (
+          items.map((item) => (
             <button
               key={item.url}
               type="button"
@@ -229,8 +222,15 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
             </button>
           ))
         ) : (
-          <p className="Image__db_status">No images found.</p>
+          <p className="Image__db_status Image__db_status--grid">
+            {isLoading ? 'Loading...' : 'No images found.'}
+          </p>
         )}
+        {isLoading && items.length > 0 ? (
+          <div className="Image__db_loading_overlay" aria-hidden="true">
+            <p className="Image__db_status">Loading...</p>
+          </div>
+        ) : null}
       </div>
 
       <div className="Image__db_pagination">
@@ -277,8 +277,7 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
             <img src={selectedImage.url} alt={selectedImage.title} />
             <div className="Image__db_selected_content">
               <PluginField label="圖說">
-                <PluginTextInput
-                  type="text"
+                <PluginTextarea
                   value={caption}
                   onChange={(e) => setCaption(e.target.value)}
                   onKeyDown={handleInputKeyDown}

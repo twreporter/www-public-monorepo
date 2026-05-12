@@ -6,6 +6,7 @@ import {
   PluginDialog,
   PluginField,
   PluginTextInput,
+  PluginTextarea,
 } from '../../../components/PluginUI'
 import ImageLayoutOptions from './ImageLayoutOptions'
 
@@ -82,7 +83,9 @@ const EditDialog: FC<EditDialogProps> = ({
     }
   }
 
-  const handleInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleInputKeyDown = (
+    e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'a') {
       e.stopPropagation()
     }
@@ -132,8 +135,7 @@ const EditDialog: FC<EditDialogProps> = ({
         </PluginField>
       )}
       <PluginField label="圖說">
-        <PluginTextInput
-          type="text"
+        <PluginTextarea
           value={caption}
           onChange={(e) => setCaption(e.target.value)}
           onKeyDown={handleInputKeyDown}
