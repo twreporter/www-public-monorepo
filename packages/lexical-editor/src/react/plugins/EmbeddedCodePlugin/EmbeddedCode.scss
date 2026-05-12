@@ -168,6 +168,10 @@
   cursor: pointer;
 }
 
+.EmbeddedCode__edit_dialog {
+  width: 640px !important;
+}
+
 .EmbeddedCode__edit_dialog .layout-option {
   display: flex;
   flex-wrap: wrap;
