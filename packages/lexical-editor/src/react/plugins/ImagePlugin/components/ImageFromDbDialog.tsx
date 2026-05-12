@@ -1,6 +1,7 @@
 import {
   type FC,
   type KeyboardEvent,
+  type MouseEvent,
   useEffect,
   useMemo,
   useState,
@@ -28,6 +29,7 @@ type ImageFromDbDialogProps = {
     title: string
   }) => void
   onClose: () => void
+  onDelete?: () => void
 }
 
 const DEFAULT_PAGE_SIZE = 12
@@ -37,6 +39,7 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
   initialImage,
   onConfirm,
   onClose,
+  onDelete,
 }) => {
   const pageSize = imageFromDb.pageSize ?? DEFAULT_PAGE_SIZE
   const [inputKeyword, setInputKeyword] = useState('')
@@ -147,6 +150,15 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
     onClose()
   }
 
+  const deleteNode = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    if (typeof onDelete === 'function') {
+      onDelete()
+    }
+  }
+
   const handleInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'a') {
       e.stopPropagation()
@@ -164,6 +176,11 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
       className="Image__db_dialog"
       actions={
         <>
+          {onDelete && (
+            <PluginButton variant="danger" onClick={deleteNode}>
+              Delete
+            </PluginButton>
+          )}
           <PluginButton onClick={onClose}>Cancel</PluginButton>
           <PluginButton
             variant="primary"
