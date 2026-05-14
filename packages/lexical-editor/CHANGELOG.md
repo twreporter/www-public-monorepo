@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.14](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.13...@twreporter/lexical-editor@0.2.0-beta.14) (2026-05-14)
+
+
+### Bug Fixes
+
+* **lexical-editor:** add `showLoading` to embedded ([5f09d0f](https://github.com/twreporter/www-public-monorepo/commit/5f09d0f26b492e6c3e08528552b3330231cd5003))
+* **lexical-editor:** add delete button for db img ([6478ce3](https://github.com/twreporter/www-public-monorepo/commit/6478ce37578f93cbc40b1ae36b5329c715cdc79e))
+* **lexical-editor:** address review comments ([18eccc0](https://github.com/twreporter/www-public-monorepo/commit/18eccc0df2f6336262f8ef2e27e702ec786be8e3))
+* **lexical-editor:** address review comments ([c52be29](https://github.com/twreporter/www-public-monorepo/commit/c52be29a801de9ae95f1e52f39537932a15d30fa))
+* **lexical-editor:** custom embedded dialog width ([d6c3dbd](https://github.com/twreporter/www-public-monorepo/commit/d6c3dbd625df6031402aa9e94601f287a7b4a23e))
+
+
+### Features
+
+* **lexical-editor:** add EmbeddedCodePlugin ([633d71f](https://github.com/twreporter/www-public-monorepo/commit/633d71f53da07f3a0e4ed26a15d0b199c5e3fe9f))
+
+
+
+
+
 # [0.2.0-beta.13](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.12...@twreporter/lexical-editor@0.2.0-beta.13) (2026-05-11)
 
 
