@@ -1,8 +1,10 @@
 import {
   type ButtonHTMLAttributes,
+  type ChangeEvent,
   type InputHTMLAttributes,
   type JSX,
   type ReactNode,
+  type TextareaHTMLAttributes,
   useEffect,
   useId,
   useRef,
@@ -86,6 +88,42 @@ export const PluginTextInput = ({
     className={`LexicalPluginTextInput ${className}`.trim()}
   />
 )
+
+export const PluginTextarea = ({
+  className = '',
+  ...props
+}: TextareaHTMLAttributes<HTMLTextAreaElement>): JSX.Element => (
+  <textarea
+    {...props}
+    className={`LexicalPluginTextInput LexicalPluginTextarea ${className}`.trim()}
+  />
+)
+
+type PluginToggleProps = {
+  checked: boolean
+  label: string
+  onChange: (checked: boolean) => void
+  className?: string
+}
+
+export const PluginToggle = ({
+  checked,
+  className = '',
+  label,
+  onChange,
+}: PluginToggleProps): JSX.Element => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onChange(event.target.checked)
+  }
+
+  return (
+    <label className={`LexicalPluginToggle ${className}`.trim()}>
+      <input type="checkbox" checked={checked} onChange={handleChange} />
+      <span className="LexicalPluginToggle__control" aria-hidden="true" />
+      <span className="LexicalPluginToggle__label">{label}</span>
+    </label>
+  )
+}
 
 type PluginButtonVariant = 'primary' | 'secondary' | 'danger'
 

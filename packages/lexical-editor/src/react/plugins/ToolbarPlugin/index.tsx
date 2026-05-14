@@ -42,6 +42,7 @@ import { sanitizeUrl } from '../../utils/url'
 import { $isAnnotationNode } from '../AnnotationPlugin/nodes/AnnotationNode'
 // component
 import DropDown, { DropDownItem } from '../../components/DropDown'
+import EmbeddedCodeEditDialog from '../EmbeddedCodePlugin/components/EmbeddedCodeEditDialog'
 import ImageEditDialog from '../ImagePlugin/components/ImageEditDialog'
 import ImageFromDbDialog from '../ImagePlugin/components/ImageFromDbDialog'
 import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts'
@@ -55,6 +56,9 @@ import {
 import {
   IMAGE_ADD_COMMAND,
 } from '../ImagePlugin/command'
+import {
+  EMBEDDED_CODE_ADD_COMMAND,
+} from '../EmbeddedCodePlugin/command'
 // types
 import type { EditorTheme } from '../../../core'
 // css
@@ -98,6 +102,8 @@ export default function ToolbarPlugin({
   const imageConfig = useImageConfig()
 
   // custom plugin state
+  const [isOpenEmbeddedCodeDialog, setIsOpenEmbeddedCodeDialog] =
+    useState(false)
   const [isOpenImageDialog, setIsOpenImageDialog] = useState(false)
   const [isOpenImageFromDbDialog, setIsOpenImageFromDbDialog] =
     useState(false)
@@ -549,6 +555,19 @@ export default function ToolbarPlugin({
           buttonAriaLabel="insert some cool compoents"
           buttonIconClassName="icon plus"
         >
+          <DropDownItem
+            onClick={() => {
+              setIsOpenEmbeddedCodeDialog(true)
+            }}
+            className={`item wide`}
+            title="Embedded Code"
+            aria-label="add embedded code"
+          >
+            <div className="icon-text-container">
+              <i className="icon embedded" />
+              <span className="text">Embed</span>
+            </div>
+          </DropDownItem>
           {imageConfig?.imageFromDb && (
             <DropDownItem
               onClick={() => {
@@ -592,6 +611,23 @@ export default function ToolbarPlugin({
         </button>
         {modal}
       </div>
+      {isOpenEmbeddedCodeDialog && (
+        <EmbeddedCodeEditDialog
+          embeddedCode=""
+          layout="default"
+          caption=""
+          showLoading={false}
+          onClose={() => setIsOpenEmbeddedCodeDialog(false)}
+          onConfirm={(embeddedCode, layout, caption, showLoading) =>
+            activeEditor.dispatchCommand(EMBEDDED_CODE_ADD_COMMAND, {
+              embeddedCode,
+              layout,
+              caption,
+              showLoading,
+            })
+          }
+        />
+      )}
       {isOpenImageDialog && (
         <ImageEditDialog
           imageLayout="default"

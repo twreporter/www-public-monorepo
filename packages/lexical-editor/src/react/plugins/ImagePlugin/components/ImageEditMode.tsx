@@ -94,6 +94,7 @@ const ImageEditMode: FC<ImageEditModeProps> = ({
               confirmEdit(url, layout, caption, title)
             }}
             onClose={closeEditDialog}
+            onDelete={onDelete}
           />
         ) : (
           <ImageEditDialog

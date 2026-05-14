@@ -76,6 +76,14 @@
     &.image-layout-right {
       background-image: url(../assets/icons/image-layout-right.svg);
     }
+
+    &.embedded-layout-default {
+      background-image: url(../assets/icons/image-layout-small.svg);
+    }
+
+    &.embedded-layout-fullscreen {
+      background-image: url(../assets/icons/image-layout-default.svg);
+    }
   }
 
   .icon {
@@ -197,6 +205,10 @@
   &.image-from-db {
     background-image: url(../assets/icons/image-from-db.svg);
   }
+
+  &.embedded {
+    background-image: url(../assets/icons/embedded.svg);
+  }
 }
 
 .LexicalPluginDialog__overlay {
@@ -211,6 +223,14 @@
 
     &.image-layout-right {
       background-image: url(../assets/icons/image-layout-right.svg);
+    }
+
+    &.embedded-layout-default {
+      background-image: url(../assets/icons/image-layout-small.svg);
+    }
+
+    &.embedded-layout-fullscreen {
+      background-image: url(../assets/icons/image-layout-default.svg);
     }
   }
 }

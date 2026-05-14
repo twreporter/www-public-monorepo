@@ -10,6 +10,7 @@ import ToolbarPlugin from '../plugins/ToolbarPlugin'
 import LinkPlugin from '../plugins/LinkPlugin'
 import FloatingLinkEditorPlugin from '../plugins/FloatingLinkEditorPlugin'
 import AnnotationPlugin from '../plugins/AnnotationPlugin'
+import EmbeddedCodePlugin from '../plugins/EmbeddedCodePlugin'
 import ImagePlugin from '../plugins/ImagePlugin'
 import DragDropImagePlugin from '../plugins/ImagePlugin/DragDropImagePlugin'
 // components
@@ -78,6 +79,7 @@ export default function Editor({
           />
         )}
         <AnnotationPlugin />
+        <EmbeddedCodePlugin />
         <ImagePlugin />
         {config.uploadImage && (
           <DragDropImagePlugin uploadImage={config.uploadImage} />
