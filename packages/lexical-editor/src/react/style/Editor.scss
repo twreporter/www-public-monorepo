@@ -811,6 +811,55 @@ button.item.dropdown-item-active i {
   background-repeat: no-repeat;
 }
 
+.LexicalPluginToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #374151;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.LexicalPluginToggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.LexicalPluginToggle__control {
+  position: relative;
+  width: 42px;
+  height: 24px;
+  border-radius: 999px;
+  background: #d1d5db;
+  transition: background-color 0.15s ease;
+}
+
+.LexicalPluginToggle__control::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform 0.15s ease;
+}
+
+.LexicalPluginToggle input:checked + .LexicalPluginToggle__control {
+  background: #2563eb;
+}
+
+.LexicalPluginToggle input:checked + .LexicalPluginToggle__control::after {
+  transform: translateX(18px);
+}
+
+.LexicalPluginToggle input:focus-visible + .LexicalPluginToggle__control {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
 .LexicalPluginIconButton {
   display: inline-flex;
   align-items: center;

@@ -20,6 +20,7 @@ type EmbeddedCodeProps = {
   embeddedCode: string
   caption?: string
   layout?: EmbeddedCodeLayout
+  showLoading?: boolean
 }
 
 const EmbeddedCode: FC<EmbeddedCodeProps> = ({
@@ -27,6 +28,7 @@ const EmbeddedCode: FC<EmbeddedCodeProps> = ({
   embeddedCode,
   caption = '',
   layout = 'default',
+  showLoading = false,
 }) => {
   const [editor] = useLexicalComposerContext()
   const [editable, setEditable] = useState(() => editor.isEditable())
@@ -40,7 +42,8 @@ const EmbeddedCode: FC<EmbeddedCodeProps> = ({
   const confirm = (
     nextEmbeddedCode: string,
     nextLayout: EmbeddedCodeLayout,
-    nextCaption: string
+    nextCaption: string,
+    nextShowLoading: boolean
   ) => {
     editor.update(() => {
       const node = $getNodeByKey(nodeKey)
@@ -49,6 +52,7 @@ const EmbeddedCode: FC<EmbeddedCodeProps> = ({
           embeddedCode: nextEmbeddedCode,
           layout: nextLayout,
           caption: nextCaption,
+          showLoading: nextShowLoading,
         })
       }
     })
@@ -68,6 +72,7 @@ const EmbeddedCode: FC<EmbeddedCodeProps> = ({
       embeddedCode={embeddedCode}
       layout={layout}
       caption={caption}
+      showLoading={showLoading}
       onConfirm={confirm}
       onDelete={deleteEmbeddedCode}
     />
@@ -76,6 +81,7 @@ const EmbeddedCode: FC<EmbeddedCodeProps> = ({
       embeddedCode={embeddedCode}
       layout={layout}
       caption={caption}
+      showLoading={showLoading}
     />
   )
 }
@@ -86,12 +92,14 @@ type SerializedEmbeddedCodeNode = {
   embeddedCode: string
   caption: string
   layout: EmbeddedCodeLayout
+  showLoading?: boolean
 }
 
 export class EmbeddedCodeNode extends DecoratorNode<ReactNode> {
   __embeddedCode: string
   __caption: string
   __layout: EmbeddedCodeLayout
+  __showLoading: boolean
 
   static override getType(): string {
     return embeddedCodeNodeType
@@ -102,6 +110,7 @@ export class EmbeddedCodeNode extends DecoratorNode<ReactNode> {
       node.__embeddedCode,
       node.__layout,
       node.__caption,
+      node.__showLoading,
       node.__key
     )
   }
@@ -110,12 +119,14 @@ export class EmbeddedCodeNode extends DecoratorNode<ReactNode> {
     embeddedCode: string,
     layout: EmbeddedCodeLayout,
     caption: string = '',
+    showLoading: boolean = false,
     key?: NodeKey
   ) {
     super(key)
     this.__embeddedCode = embeddedCode
     this.__layout = layout
     this.__caption = caption
+    this.__showLoading = showLoading
   }
 
   override isInline(): false {
@@ -148,6 +159,7 @@ export class EmbeddedCodeNode extends DecoratorNode<ReactNode> {
         embeddedCode={this.__embeddedCode}
         layout={this.__layout}
         caption={this.__caption}
+        showLoading={this.__showLoading}
       />
     )
   }
@@ -156,7 +168,8 @@ export class EmbeddedCodeNode extends DecoratorNode<ReactNode> {
     return $createEmbeddedCodeNode(
       serializedNode.embeddedCode,
       serializedNode.layout,
-      serializedNode.caption
+      serializedNode.caption,
+      serializedNode.showLoading ?? false
     )
   }
 
@@ -167,6 +180,7 @@ export class EmbeddedCodeNode extends DecoratorNode<ReactNode> {
       embeddedCode: this.__embeddedCode,
       caption: this.__caption,
       layout: this.__layout,
+      showLoading: this.__showLoading,
     }
   }
 
@@ -174,25 +188,29 @@ export class EmbeddedCodeNode extends DecoratorNode<ReactNode> {
     embeddedCode,
     caption,
     layout,
+    showLoading,
   }: {
     embeddedCode: string
     caption: string
     layout: EmbeddedCodeLayout
+    showLoading: boolean
   }): void {
     const writable = this.getWritable()
     writable.__embeddedCode = embeddedCode
     writable.__caption = caption
     writable.__layout = layout
+    writable.__showLoading = showLoading
   }
 }
 
 export function $createEmbeddedCodeNode(
   embeddedCode: string,
   layout: EmbeddedCodeLayout,
-  caption: string = ''
+  caption: string = '',
+  showLoading: boolean = false
 ): EmbeddedCodeNode {
   return $applyNodeReplacement(
-    new EmbeddedCodeNode(embeddedCode, layout, caption)
+    new EmbeddedCodeNode(embeddedCode, layout, caption, showLoading)
   )
 }
 

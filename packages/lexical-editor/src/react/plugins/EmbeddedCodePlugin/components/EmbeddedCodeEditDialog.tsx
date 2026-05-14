@@ -6,6 +6,7 @@ import {
   PluginField,
   PluginTextInput,
   PluginTextarea,
+  PluginToggle,
 } from '../../../components/PluginUI'
 import type { EmbeddedCodeLayout } from '../types'
 import EmbeddedCodeLayoutOptions from './EmbeddedCodeLayoutOptions'
@@ -55,10 +56,12 @@ type EmbeddedCodeEditDialogProps = {
   embeddedCode: string
   caption?: string
   layout: EmbeddedCodeLayout
+  showLoading?: boolean
   onConfirm: (
     embeddedCode: string,
     layout: EmbeddedCodeLayout,
-    caption: string
+    caption: string,
+    showLoading: boolean
   ) => void
   onClose: () => void
   onDelete?: () => void
@@ -68,6 +71,7 @@ const EmbeddedCodeEditDialog: FC<EmbeddedCodeEditDialogProps> = ({
   embeddedCode,
   caption = '',
   layout,
+  showLoading = false,
   onConfirm,
   onClose,
   onDelete,
@@ -75,6 +79,7 @@ const EmbeddedCodeEditDialog: FC<EmbeddedCodeEditDialogProps> = ({
   const [currentEmbeddedCode, setCurrentEmbeddedCode] = useState(embeddedCode)
   const [currentCaption, setCurrentCaption] = useState(caption)
   const [currentLayout, setCurrentLayout] = useState(layout)
+  const [currentShowLoading, setCurrentShowLoading] = useState(showLoading)
 
   const cancel = () => {
     onClose()
@@ -98,7 +103,12 @@ const EmbeddedCodeEditDialog: FC<EmbeddedCodeEditDialogProps> = ({
       }
     }
 
-    onConfirm(trimmedEmbeddedCode, currentLayout, currentCaption)
+    onConfirm(
+      trimmedEmbeddedCode,
+      currentLayout,
+      currentCaption,
+      currentShowLoading
+    )
     onClose()
   }
 
@@ -156,6 +166,13 @@ const EmbeddedCodeEditDialog: FC<EmbeddedCodeEditDialogProps> = ({
         <EmbeddedCodeLayoutOptions
           layout={currentLayout}
           onChange={setCurrentLayout}
+        />
+      </PluginField>
+      <PluginField label="Show Loading Skeleton">
+        <PluginToggle
+          checked={currentShowLoading}
+          label=""
+          onChange={setCurrentShowLoading}
         />
       </PluginField>
     </PluginDialog>

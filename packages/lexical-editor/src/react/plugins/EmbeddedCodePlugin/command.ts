@@ -23,7 +23,7 @@ export function registerEmbeddedCodePlugin(editor: LexicalEditor) {
   const unregisterAdd = editor.registerCommand(
     EMBEDDED_CODE_ADD_COMMAND,
     (payload) => {
-      const { embeddedCode, caption = '', layout } = payload
+      const { embeddedCode, caption = '', layout, showLoading = false } = payload
       const selection = $getSelection()
       if (!selection) {
         return false
@@ -32,7 +32,8 @@ export function registerEmbeddedCodePlugin(editor: LexicalEditor) {
       const embeddedCodeNode = $createEmbeddedCodeNode(
         embeddedCode,
         layout,
-        caption
+        caption,
+        showLoading
       )
       $insertEmbeddedCodeNodes([embeddedCodeNode])
       return true

@@ -63,6 +63,14 @@
   width: 100%;
 }
 
+.EmbeddedCode__content_body.is-loading .EmbeddedCode__html {
+  display: none;
+}
+
+.EmbeddedCode__loading {
+  width: 100%;
+}
+
 .EmbeddedCode__html iframe,
 .EmbeddedCode__html img,
 .EmbeddedCode__html video {

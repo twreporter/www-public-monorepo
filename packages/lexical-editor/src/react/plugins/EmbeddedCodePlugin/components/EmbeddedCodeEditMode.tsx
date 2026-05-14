@@ -8,10 +8,12 @@ type EmbeddedCodeEditModeProps = {
   embeddedCode: string
   caption: string
   layout: EmbeddedCodeLayout
+  showLoading: boolean
   onConfirm: (
     embeddedCode: string,
     layout: EmbeddedCodeLayout,
-    caption: string
+    caption: string,
+    showLoading: boolean
   ) => void
   onDelete: () => void
 }
@@ -20,6 +22,7 @@ const EmbeddedCodeEditMode: FC<EmbeddedCodeEditModeProps> = ({
   embeddedCode,
   caption,
   layout,
+  showLoading,
   onConfirm,
   onDelete,
 }) => {
@@ -31,9 +34,10 @@ const EmbeddedCodeEditMode: FC<EmbeddedCodeEditModeProps> = ({
   const confirmEdit = (
     nextEmbeddedCode: string,
     nextLayout: EmbeddedCodeLayout,
-    nextCaption: string
+    nextCaption: string,
+    nextShowLoading: boolean
   ) => {
-    onConfirm(nextEmbeddedCode, nextLayout, nextCaption)
+    onConfirm(nextEmbeddedCode, nextLayout, nextCaption, nextShowLoading)
     closeEditDialog()
   }
 
@@ -63,6 +67,7 @@ const EmbeddedCodeEditMode: FC<EmbeddedCodeEditModeProps> = ({
           embeddedCode={embeddedCode}
           layout={layout}
           caption={caption}
+          showLoading={showLoading}
           onConfirm={confirmEdit}
           onClose={closeEditDialog}
           onDelete={onDelete}

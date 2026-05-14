@@ -616,12 +616,14 @@ export default function ToolbarPlugin({
           embeddedCode=""
           layout="default"
           caption=""
+          showLoading={false}
           onClose={() => setIsOpenEmbeddedCodeDialog(false)}
-          onConfirm={(embeddedCode, layout, caption) =>
+          onConfirm={(embeddedCode, layout, caption, showLoading) =>
             activeEditor.dispatchCommand(EMBEDDED_CODE_ADD_COMMAND, {
               embeddedCode,
               layout,
               caption,
+              showLoading,
             })
           }
         />

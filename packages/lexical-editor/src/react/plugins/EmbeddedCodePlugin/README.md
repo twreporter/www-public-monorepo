@@ -20,7 +20,8 @@ RootNode
 ├─ EmbeddedCodeNode
 │  ├─ embeddedCode: "<iframe src=\"https://example.com/embed\"></iframe>"
 │  ├─ caption: "This is an embed"
-│  └─ layout: "default"
+│  ├─ layout: "default"
+│  └─ showLoading: false
 └─ ParagraphNode
    └─ TextNode("some text after")
 ```
@@ -41,6 +42,7 @@ Confirming dispatches `EMBEDDED_CODE_ADD_COMMAND` with:
   embeddedCode: '<iframe src="https://example.com/embed"></iframe>',
   caption: 'This is an embed',
   layout: 'default',
+  showLoading: false,
 }
 ```
 
@@ -82,5 +84,10 @@ The rendered embed container registers a capturing `load` listener so load
 events from child iframe, image and script elements are handled inside the
 display component. Script tags are parsed out before rendering non-script HTML,
 then appended as executable script elements. After all scripts load, the plugin
-dispatches a `window` `load` event for providers that initialize from that
-browser event.
+marks the embed container as loaded without redispatching a global `window`
+`load` event.
+
+When `showLoading` is true, display mode shows an image-style loading skeleton
+using the same width as the embedded component. The skeleton disappears when all
+script tags have either loaded or failed. Script load failures are reported with
+`console.error`. When `showLoading` is omitted, it defaults to false.
