@@ -27,10 +27,11 @@ function createExecutableScript(scriptElement: HTMLScriptElement): HTMLScriptEle
   Array.from(scriptElement.attributes).forEach((attribute) => {
     executableScript.setAttribute(attribute.name, attribute.value)
   })
-  executableScript.text = scriptElement.src
-    ? scriptElement.text
-    : `${scriptElement.text}
+
+  if (!scriptElement.src) {
+    executableScript.text = `${scriptElement.text}
 document.currentScript?.dispatchEvent(new Event('load'));`
+  }
 
   return executableScript
 }

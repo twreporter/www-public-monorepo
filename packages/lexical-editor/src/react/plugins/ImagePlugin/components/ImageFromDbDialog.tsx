@@ -176,7 +176,7 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
           <PluginButton onClick={onClose}>Cancel</PluginButton>
           <PluginButton
             variant="primary"
-            disabled={!selectedImage}
+            disabled={!selectedImage || isLoading}
             onClick={confirm}
           >
             Confirm
@@ -215,6 +215,7 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
               className={`Image__db_card ${
                 selectedImage?.url === item.url ? 'is-active' : ''
               }`}
+              disabled={isLoading}
               onClick={() => setSelectedImage(item)}
             >
               <img src={item.url} alt={item.title} />

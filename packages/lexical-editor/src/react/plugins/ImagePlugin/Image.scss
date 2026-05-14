@@ -327,6 +327,7 @@
 
 .Image__db_grid.is-loading .Image__db_card {
   opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .Image__db_card {
@@ -385,7 +386,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.56);
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .Image__db_pagination {
