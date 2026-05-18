@@ -47,7 +47,7 @@ const ShortCard: FC<ShortCardProps> & { Size: typeof SIZE } = ({
       >
         <div className="flex flex-row gap-[8px]">
           {categoryLabel ? (
-            <P3 className="text-gray-800" text={categoryLabel}></P3>
+            <P3 className="text-gray-600" text={categoryLabel}></P3>
           ) : null}
           {publishedDate ? (
             <P3 className="text-gray-800" text={publishedDate}></P3>
