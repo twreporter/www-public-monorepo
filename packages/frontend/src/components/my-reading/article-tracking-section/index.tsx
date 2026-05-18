@@ -57,7 +57,7 @@ const TrackingCard: FC<{ article: TrackingArticle }> = ({ article }) => {
     >
       <div className="flex flex-col">
         <P3 className="text-gray-600" text={article.publishDate} />
-        <div className="line-clamp-2">
+        <div className="line-clamp-2 mb-[16px]">
           <H5 className="text-gray-800" text={article.trackingTitle} />
         </div>
         <div className="line-clamp-3">
