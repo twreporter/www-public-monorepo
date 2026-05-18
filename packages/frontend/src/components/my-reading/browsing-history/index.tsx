@@ -1,5 +1,5 @@
 'use client'
-import { type FC, useCallback, useContext } from 'react'
+import { type FC, useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import clsx from 'clsx'
 // @twreporters
@@ -29,8 +29,9 @@ const BrowsingHistory: FC<BrowsingHistoryProps> = ({
 }) => {
   const { releaseBranch } = useContext(BaseContext)
   const router = useRouter()
+  const [browsingHistory, setBrowsingHistory] = useState(fakeBrowsingHistory)
   const totalPage = Math.ceil(
-    fakeBrowsingHistory.length / BROWSING_HISTORY_PER_PAGE
+    browsingHistory.length / BROWSING_HISTORY_PER_PAGE
   )
 
   const buildUrl = useCallback(
@@ -40,6 +41,14 @@ const BrowsingHistory: FC<BrowsingHistoryProps> = ({
     },
     [totalPage]
   )
+
+  const handleToggleBookmark = useCallback((slug: string) => {
+    setBrowsingHistory((prev) =>
+      prev.map((item) =>
+        item.slug === slug ? { ...item, isBookmark: !item.isBookmark } : item
+      )
+    )
+  }, [])
 
   const handleClickPage = useCallback(
     (page: number) => {
@@ -57,7 +66,7 @@ const BrowsingHistory: FC<BrowsingHistoryProps> = ({
   const start = (currentPage - 1) * BROWSING_HISTORY_PER_PAGE
   const items = isEmpty
     ? []
-    : fakeBrowsingHistory.slice(start, start + BROWSING_HISTORY_PER_PAGE)
+    : browsingHistory.slice(start, start + BROWSING_HISTORY_PER_PAGE)
 
   return (
     <div
@@ -74,13 +83,16 @@ const BrowsingHistory: FC<BrowsingHistoryProps> = ({
           'tablet:col-start-2 tablet:col-end-12'
         )}
       >
-        <Title1 title="瀏覽紀錄" subtitle="近六個月造訪過的報導" />
+        <Title1 title="造訪紀錄" subtitle="近六個月造訪過的報導" />
         {items.length > 0 ? (
           <>
             <div className="pt-[24px] grid grid-cols-1 gap-[24px]">
               {items.map((item) => (
                 <div key={item.slug}>
-                  <ReadingListRow item={item} />
+                  <ReadingListRow
+                    item={item}
+                    onBookmarkClick={() => handleToggleBookmark(item.slug)}
+                  />
                   <Divider className="mt-[24px]" />
                 </div>
               ))}
