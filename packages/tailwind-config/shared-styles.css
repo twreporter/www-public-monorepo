@@ -1,5 +1,34 @@
 @import "tailwindcss";
 
+/* Self-hosted fonts (converted from webfonts.js / font.js) */
+@font-face {
+  font-family: "Noto Sans TC";
+  font-weight: 100;
+  font-display: swap;
+  src: url("https://www.twreporter.org/assets/font/NotoSansTC/extraLight.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Sans TC";
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://www.twreporter.org/assets/font/NotoSansTC/normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Sans TC";
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://www.twreporter.org/assets/font/NotoSansTC/bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Tauhu Oo";
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://www.twreporter.org/assets/font/TauhuOo/normal.woff2") format("woff2");
+}
+
 @theme {
   /* Brand */
   --color-brand-faded: #f4c6c6;
