@@ -147,7 +147,7 @@ export const fakeSavedBookmarks: ReadingListItem[] = [
     title: '公共運動設施使用率偏低：設計問題還是推廣不足',
     category: '城市',
     description: '各縣市投入大量預算興建，但閒置率居高不下，背後原因逐一拆解。',
-    publishedDate: '2025-12/28',
+    publishedDate: '2025/12/28',
     image:
       'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80',
     isBookmark: true,
@@ -157,7 +157,7 @@ export const fakeSavedBookmarks: ReadingListItem[] = [
     title: '出生率創歷史新低：政策補貼之外還缺什麼',
     category: '社會',
     description: '年輕世代對生育意願的深度訪談，揭示補貼以外的結構性障礙。',
-    publishedDate: '2025-12/19',
+    publishedDate: '2025/12/19',
     image:
       'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=1200&q=80',
     isBookmark: true,
@@ -172,7 +172,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     description: '從申請門檻到輪候制度，住戶與地方政府的觀察一次整理。',
     publishedDate: '2026/03/17',
     image:
-      'https://images.unsplash.com/photo-1460317442991/0ec209397118?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1200&q=80',
     isBookmark: true,
   },
   {
@@ -232,7 +232,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     description: '中央標準趨嚴，但各縣市稽查人力與頻率仍參差不齊。',
     publishedDate: '2026/01/19',
     image:
-      'https://images.unsplash.com/photo-1504674900247/0877df9cc836?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
     isBookmark: true,
   },
   {
@@ -250,7 +250,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     title: '夜間經濟與居民衝突：商圈擴張的邊界在哪裡',
     category: '城市',
     description: '營業時間延長帶動消費，但噪音與垃圾問題讓周邊住戶反彈。',
-    publishedDate: '2025-12/30',
+    publishedDate: '2025/12/30',
     image:
       'https://images.unsplash.com/photo-1517142089942-ba376ce32a2e?auto=format&fit=crop&w=1200&q=80',
     isBookmark: true,
@@ -260,7 +260,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     title: 'AI 篩履歷已成常態：求職者如何應對演算法關卡',
     category: '勞動',
     description: '企業導入自動化初篩節省成本，但求職者投訴偏見的案例也在增加。',
-    publishedDate: '2025-12/21',
+    publishedDate: '2025/12/21',
     image:
       'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
     isBookmark: false,
@@ -270,7 +270,7 @@ export const fakeBrowsingHistory: ReadingListItem[] = [
     title: '原鄉用水困境：自來水普及率背後的維護空缺',
     category: '原住民族',
     description: '管線老化與人力不足，讓部分部落仍面臨不穩定供水的日常。',
-    publishedDate: '2025-12/14',
+    publishedDate: '2025/12/14',
     image:
       'https://images.unsplash.com/photo-1559825481-12a05cc00344?auto=format&fit=crop&w=1200&q=80',
     isBookmark: true,
