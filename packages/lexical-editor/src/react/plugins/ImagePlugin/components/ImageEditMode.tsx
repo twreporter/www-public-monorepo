@@ -4,7 +4,7 @@ import ImageEditDialog from './ImageEditDialog'
 import ImageFromDbDialog from './ImageFromDbDialog'
 import { useImageConfig } from '../../../context/ImageConfigContext'
 // types
-import type { ImageLayout, ImageSource } from '../types'
+import type { ImageLayout, ImageSource } from '../constant'
 
 
 type ImageEditModeProps = {

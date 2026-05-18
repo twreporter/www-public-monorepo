@@ -5,6 +5,7 @@ import {
   $createRangeSelection,
   $getNearestNodeFromDOMNode,
   $getNodeByKey,
+  $isElementNode,
   $isTextNode,
   $normalizeSelection__EXPERIMENTAL,
   $setSelection,
@@ -26,8 +27,7 @@ const DEFAULT_ALLOWED_MIME_TYPES = [
   'image/jpeg',
   'image/png',
   'image/webp',
-  'image/gif',
-  'image/svg+xml'
+  'image/gif'
 ]
 
 type DragDropImagePluginProps = {
@@ -268,8 +268,15 @@ function setDropSelection(event: DragEvent): void {
   if ($isTextNode(lexicalNode)) {
     selection.anchor.set(lexicalNode.getKey(), eventRange.offset, 'text')
     selection.focus.set(lexicalNode.getKey(), eventRange.offset, 'text')
+  } else if ($isElementNode(lexicalNode) && lexicalNode.getParent() === null) {
+    const offset = lexicalNode.getChildrenSize()
+    selection.anchor.set(lexicalNode.getKey(), offset, 'element')
+    selection.focus.set(lexicalNode.getKey(), offset, 'element')
   } else {
-    const parent = lexicalNode.getParentOrThrow()
+    const parent = lexicalNode.getParent()
+    if (!parent) {
+      return
+    }
     const offset = lexicalNode.getIndexWithinParent() + 1
     selection.anchor.set(parent.getKey(), offset, 'element')
     selection.focus.set(parent.getKey(), offset, 'element')

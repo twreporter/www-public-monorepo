@@ -15,7 +15,7 @@ import {
   PluginTextarea,
 } from '../../../components/PluginUI'
 import ImageLayoutOptions from './ImageLayoutOptions'
-import type { ImageLayout } from '../types'
+import type { ImageLayout } from '../constant'
 
 type ImageFromDbDialogProps = {
   imageFromDb: ImageFromDbConfig
@@ -149,12 +149,16 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
     }
   }
 
-  const handleInputKeyDown = (
+  const handleEditorShortcutKeyDown = (
     e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'a') {
       e.stopPropagation()
     }
+  }
+
+  const handleSearchInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    handleEditorShortcutKeyDown(e)
 
     if (e.key === 'Enter') {
       e.preventDefault()
@@ -190,7 +194,7 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
           placeholder="請輸入圖片標題"
           value={inputKeyword}
           onChange={(e) => setInputKeyword(e.target.value)}
-          onKeyDown={handleInputKeyDown}
+          onKeyDown={handleSearchInputKeyDown}
         />
         <PluginButton className="Image__db_search_button" onClick={search}>
           Search
@@ -281,7 +285,7 @@ const ImageFromDbDialog: FC<ImageFromDbDialogProps> = ({
                 <PluginTextarea
                   value={caption}
                   onChange={(e) => setCaption(e.target.value)}
-                  onKeyDown={handleInputKeyDown}
+                  onKeyDown={handleEditorShortcutKeyDown}
                 />
               </PluginField>
               <ImageLayoutOptions layout={layout} onChange={setLayout} />

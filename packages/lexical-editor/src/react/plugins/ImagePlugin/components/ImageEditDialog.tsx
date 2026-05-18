@@ -1,5 +1,5 @@
 import { type FC, useState, type KeyboardEvent, type MouseEvent } from 'react'
-import type { ImageLayout, ImageSource } from '../types'
+import type { ImageLayout, ImageSource } from '../constant'
 import { useImageConfig } from '../../../context/ImageConfigContext'
 import {
   PluginButton,

@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import type { ImageLayout } from '../types'
+import type { ImageLayout } from '../constant'
 
 type ImageSkeletonProps = {
   layout: ImageLayout

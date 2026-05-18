@@ -6,12 +6,16 @@ import {
   COMMAND_PRIORITY_EDITOR,
   type LexicalEditor,
 } from 'lexical'
-import { AnnotationNode } from './nodes/AnnotationNode'
-import { AnnotatedTextNode } from './nodes/AnnotationTextNode'
-import { AnnotationContentNode } from './nodes/AnnotationContentNode'
+import {
+  $createAnnotationNode,
+  $isAnnotationNode,
+} from './nodes/AnnotationNode'
+import { $createAnnotationTextNode } from './nodes/AnnotationTextNode'
+import { $createAnnotationContentNode } from './nodes/AnnotationContentNode'
 
-export const ANNOTATION_ADD_COMMAND = createCommand('ADD_ANNOTATION')
-export const ANNOTATION_REMOVE_COMMAND = createCommand('REMOVE_ANNOTATION')
+export const ANNOTATION_ADD_COMMAND = createCommand<void>('ADD_ANNOTATION')
+export const ANNOTATION_REMOVE_COMMAND =
+  createCommand<void>('REMOVE_ANNOTATION')
 
 export function registerAnnotationPlugin(editor: LexicalEditor) {
   const unregisterAdd = editor.registerCommand(
@@ -20,10 +24,13 @@ export function registerAnnotationPlugin(editor: LexicalEditor) {
       const selection = $getSelection()
       if ($isRangeSelection(selection)) {
         const selectedText = selection.getTextContent()
-        const annotatedTextNode = new AnnotatedTextNode(selectedText)
-        const annotationContentNode = new AnnotationContentNode()
+        if (selection.isCollapsed() || selectedText.trim() === '') {
+          return true
+        }
+        const annotatedTextNode = $createAnnotationTextNode(selectedText)
+        const annotationContentNode = $createAnnotationContentNode()
 
-        const annotationNode = new AnnotationNode(false)
+        const annotationNode = $createAnnotationNode(false)
         annotationNode.append(annotatedTextNode)
         annotationNode.append(annotationContentNode)
 
@@ -42,14 +49,14 @@ export function registerAnnotationPlugin(editor: LexicalEditor) {
         const nodes = selection.getNodes()
         nodes.forEach((node) => {
           const parent = node.getParent()
-          if (parent instanceof AnnotationNode) {
+          if ($isAnnotationNode(parent)) {
             parent.remove()
           }
         })
       } else if ($isNodeSelection(selection)) {
         const nodes = selection.getNodes()
         nodes.forEach((node) => {
-          if (node instanceof AnnotationNode) {
+          if ($isAnnotationNode(node)) {
             node.remove()
           }
         })

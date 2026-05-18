@@ -21,6 +21,7 @@ export const SHORTCUTS = Object.freeze({
   ANNOTATION: IS_APPLE ? '⌘+Opt+A' : 'Ctrl+Alt+A',
   IMAGE_LINK: IS_APPLE ? '⌘+Opt+K' : 'Ctrl+Alt+K',
   IMAGE_FROM_DB: IS_APPLE ? '⌘+Opt+I' : 'Ctrl+Alt+I',
+  EMBEDDED_CODE: IS_APPLE ? '⌘+Opt+E' : 'Ctrl+Alt+E',
 
   // (Ctrl|⌘) + Shift + <key> shortcuts
   INCREASE_FONT_SIZE: IS_APPLE ? '⌘+Shift+.' : 'Ctrl+Shift+.',

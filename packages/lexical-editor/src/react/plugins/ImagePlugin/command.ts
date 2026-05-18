@@ -1,8 +1,8 @@
-import { createCommand } from 'lexical'
 import {
   $getSelection,
   $isRangeSelection,
   $isNodeSelection,
+  createCommand,
   COMMAND_PRIORITY_EDITOR,
   type LexicalEditor,
   type LexicalCommand
@@ -13,6 +13,7 @@ import {
   $isImageNode,
 } from './nodes/ImageNode'
 import { $insertImageNodes } from './utils'
+import { isImageLayout, isImageSource } from './constant'
 import type { ImageAddCommandPayload } from './types'
 
 export const IMAGE_ADD_COMMAND: LexicalCommand<ImageAddCommandPayload> = createCommand('ADD_IMAGE_LINK')
@@ -23,12 +24,15 @@ export function registerImagePlugin(editor: LexicalEditor) {
     IMAGE_ADD_COMMAND,
     (payload) => {
       const { url, layout, caption = '', title = '', source = 'link' } = payload
+      const imageUrl = url.trim()
       const selection = $getSelection()
-      if (!selection) {
+
+      if (!selection || !imageUrl || !isImageLayout(layout) || !isImageSource(source)) {
         return false
       }
+
       const imageNode = $createImageNode(
-        url,
+        imageUrl,
         layout,
         caption,
         title,

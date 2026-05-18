@@ -83,6 +83,14 @@ function $findTopLevelElement(node: LexicalNode) {
   return topLevelElement
 }
 
+function $isWithinAnnotation(node: LexicalNode): boolean {
+  return (
+    $isAnnotationNode(node) ||
+    $findMatchingParent(node, (parentNode) => $isAnnotationNode(parentNode)) !==
+      null
+  )
+}
+
 export default function ToolbarPlugin({
   editor,
   activeEditor,
@@ -152,7 +160,7 @@ export default function ToolbarPlugin({
       updateToolbarState('isLink', isLink)
 
       // update annotation
-      const isAnnotated = $isAnnotationNode(parent) || $isAnnotationNode(node)
+      const isAnnotated = $isWithinAnnotation(node)
       updateToolbarState('isAnnotated', isAnnotated)
 
       if (elementDOM !== null) {
@@ -567,6 +575,7 @@ export default function ToolbarPlugin({
               <i className="icon embedded" />
               <span className="text">Embed</span>
             </div>
+            <span className="shortcut">{SHORTCUTS.EMBEDDED_CODE}</span>
           </DropDownItem>
           {imageConfig?.imageFromDb && (
             <DropDownItem
