@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.47](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.46...www-frontend@0.1.0-beta.47) (2026-05-18)
+
+
+### Bug Fixes
+
+* **frontend:** address comments ([bebfde1](https://github.com/twreporter/www-public-monorepo/commit/bebfde17fe152a79a68cdd91f9187f5fc97ca05c))
+* **frontend:** fake data ([e20ef7c](https://github.com/twreporter/www-public-monorepo/commit/e20ef7c458b4a478a48f4b4a88be882afc347bd5))
+
+
+
+
+
 # [0.1.0-beta.46](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.45...www-frontend@0.1.0-beta.46) (2026-05-08)
 
 

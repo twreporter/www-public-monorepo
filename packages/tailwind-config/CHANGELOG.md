@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.10](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/tailwind-config@0.1.0-beta.9...@twreporter/tailwind-config@0.1.0-beta.10) (2026-05-18)
+
+
+### Features
+
+* **tailwind-config:** add font face ([e50afcb](https://github.com/twreporter/www-public-monorepo/commit/e50afcbb4f610f1ccb5fc37fab08fb8613ad91c8))
+
+
+
+
+
 # [0.1.0-beta.9](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/tailwind-config@0.1.0-beta.8...@twreporter/tailwind-config@0.1.0-beta.9) (2026-03-24)
 
 

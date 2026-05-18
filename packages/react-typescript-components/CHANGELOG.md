@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.28](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.27...@twreporter/react-typescript-components@0.1.0-beta.28) (2026-05-18)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** short card text color ([2c9c38b](https://github.com/twreporter/www-public-monorepo/commit/2c9c38be79a2e23e3b1f689089936981c35b2b6d))
+
+
+
+
+
 # [0.1.0-beta.27](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.26...@twreporter/react-typescript-components@0.1.0-beta.27) (2026-05-08)
 
 
