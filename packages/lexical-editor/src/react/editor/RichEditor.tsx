@@ -18,7 +18,6 @@ import ContentEditable from './ContentEditable'
 // types
 import type { LexicalEditorProps } from '../../core'
 
-
 type EditorInnerProps = {
   config: LexicalEditorProps['config']
   placeholder: string
@@ -31,6 +30,7 @@ export default function Editor({
   const [editor] = useLexicalComposerContext()
   const [activeEditor, setActiveEditor] = useState(editor)
   const [isLinkEditMode, setIsLinkEditMode] = useState<boolean>(false)
+  const [isFullscreen, setIsFullscreen] = useState(false)
   const [floatingAnchorElem, setFloatingAnchorElem] =
     useState<HTMLDivElement | null>(null)
 
@@ -44,12 +44,14 @@ export default function Editor({
   const listStrictIndent = false
 
   return (
-    <div className="editor-shell">
+    <div className={`editor-shell ${isFullscreen ? 'fullscreen' : ''}`}>
       {showToolbar ? (
         <ToolbarPlugin
           editor={editor}
           activeEditor={activeEditor}
           config={config.theme}
+          isFullscreen={isFullscreen}
+          setIsFullscreen={setIsFullscreen}
           setActiveEditor={setActiveEditor}
           setIsLinkEditMode={setIsLinkEditMode}
         />

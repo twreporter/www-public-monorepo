@@ -51,7 +51,7 @@ export const LexicalEditor = ({
   }
 
   return (
-    <div id="lexical-editor">
+    <div className="lexical-editor">
       <LexicalComposer initialConfig={initialConfig}>
         <ImageConfigContext value={config.image}>
           <ToolbarContext>

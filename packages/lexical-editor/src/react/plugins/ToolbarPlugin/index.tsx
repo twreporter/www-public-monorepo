@@ -1,4 +1,11 @@
-import { type Dispatch, useCallback, useEffect, useState, type JSX } from 'react'
+import {
+  type Dispatch,
+  type SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+  type JSX,
+} from 'react'
 // lexical
 import { $isHeadingNode } from '@lexical/rich-text'
 import {
@@ -34,9 +41,7 @@ import { useImageConfig } from '../../context/ImageConfigContext'
 // hook
 import useModal from '../../hooks/useModal'
 // util
-import {
-  clearFormatting,
-} from './utils'
+import { clearFormatting } from './utils'
 import { getSelectedNode } from '../../utils/getSelectedNode'
 import { sanitizeUrl } from '../../utils/url'
 import { $isAnnotationNode } from '../AnnotationPlugin/nodes/AnnotationNode'
@@ -47,18 +52,16 @@ import ImageEditDialog from '../ImagePlugin/components/ImageEditDialog'
 import ImageFromDbDialog from '../ImagePlugin/components/ImageFromDbDialog'
 import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts'
 import Fullscreen from './components/Fullscreen'
-import BlockFormatDropDown, { dropDownActiveClass } from './components/BlockFormatDropdown'
+import BlockFormatDropDown, {
+  dropDownActiveClass,
+} from './components/BlockFormatDropdown'
 // custom command
 import {
   ANNOTATION_ADD_COMMAND,
   ANNOTATION_REMOVE_COMMAND,
 } from '../AnnotationPlugin/command'
-import {
-  IMAGE_ADD_COMMAND,
-} from '../ImagePlugin/command'
-import {
-  EMBEDDED_CODE_ADD_COMMAND,
-} from '../EmbeddedCodePlugin/command'
+import { IMAGE_ADD_COMMAND } from '../ImagePlugin/command'
+import { EMBEDDED_CODE_ADD_COMMAND } from '../EmbeddedCodePlugin/command'
 // types
 import type { EditorTheme } from '../../../core'
 // css
@@ -95,13 +98,17 @@ export default function ToolbarPlugin({
   editor,
   activeEditor,
   config,
+  isFullscreen,
   setActiveEditor,
+  setIsFullscreen,
   setIsLinkEditMode,
 }: {
   editor: LexicalEditor
   activeEditor: LexicalEditor
   config: EditorTheme
+  isFullscreen: boolean
   setActiveEditor: Dispatch<LexicalEditor>
+  setIsFullscreen: Dispatch<SetStateAction<boolean>>
   setIsLinkEditMode: Dispatch<boolean>
 }): JSX.Element {
   const [modal] = useModal()
@@ -113,8 +120,7 @@ export default function ToolbarPlugin({
   const [isOpenEmbeddedCodeDialog, setIsOpenEmbeddedCodeDialog] =
     useState(false)
   const [isOpenImageDialog, setIsOpenImageDialog] = useState(false)
-  const [isOpenImageFromDbDialog, setIsOpenImageFromDbDialog] =
-    useState(false)
+  const [isOpenImageFromDbDialog, setIsOpenImageFromDbDialog] = useState(false)
 
   const $handleHeadingNode = useCallback(
     (selectedElement: LexicalNode) => {
@@ -417,7 +423,7 @@ export default function ToolbarPlugin({
         >
           <i className="format link" />
         </button>
-        { config.components?.ColorPicker && (
+        {config.components?.ColorPicker && (
           <>
             <config.components.ColorPicker
               disabled={!isEditable}
@@ -609,7 +615,10 @@ export default function ToolbarPlugin({
           </DropDownItem>
         </DropDown>
         <Divider />
-        <Fullscreen />
+        <Fullscreen
+          isFullscreen={isFullscreen}
+          onToggleFullscreen={() => setIsFullscreen((current) => !current)}
+        />
         <button
           onClick={togglePreview}
           className={`toolbar-item spaced`}
