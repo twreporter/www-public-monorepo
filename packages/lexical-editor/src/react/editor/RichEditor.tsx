@@ -42,6 +42,11 @@ export default function Editor({
 
   const showToolbar = config?.ui?.toolbar ?? false
   const listStrictIndent = false
+  // Basic CMS features are intentionally always enabled in v1: h2/h3,
+  // ordered/unordered lists, inline text formatting, link, colors,
+  // annotation, fullscreen, and preview. Config only gates advanced inserts.
+  const enableImage = config.features?.image !== false
+  const enableEmbeddedCode = config.features?.embeddedCode !== false
 
   return (
     <div className={`editor-shell ${isFullscreen ? 'fullscreen' : ''}`}>
@@ -50,6 +55,7 @@ export default function Editor({
           editor={editor}
           activeEditor={activeEditor}
           config={config.theme}
+          {...(config.features ? { features: config.features } : {})}
           isFullscreen={isFullscreen}
           setIsFullscreen={setIsFullscreen}
           setActiveEditor={setActiveEditor}
@@ -81,9 +87,9 @@ export default function Editor({
           />
         )}
         <AnnotationPlugin />
-        <EmbeddedCodePlugin />
-        <ImagePlugin />
-        {config.uploadImage && (
+        {enableEmbeddedCode && <EmbeddedCodePlugin />}
+        {enableImage && <ImagePlugin />}
+        {enableImage && config.uploadImage && (
           <DragDropImagePlugin uploadImage={config.uploadImage} />
         )}
       </div>

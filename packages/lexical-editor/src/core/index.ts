@@ -13,6 +13,7 @@ export type {
   LexicalEditorProps,
   LexicalEditorValue,
   EditorConfig,
+  EditorFeatureConfig,
   EditorPluginFlags,
   EditorUiConfig,
   ImageConfig,
