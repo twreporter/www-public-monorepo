@@ -116,7 +116,7 @@ const CategoryPage: FC<CategoryPageProps> = ({
             </div>
           ) : (
             <div className={listClass}>
-              {posts.map(({ slug, ...rest }) => (
+              {posts.map(({ slug, category: _category, ...rest }) => (
                 <div key={`meta-a-${slug}`} className="col-span-5">
                   <ArticleCard slug={slug} {...rest} />
                 </div>

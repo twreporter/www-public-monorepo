@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import { type FC, useContext } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 // constants
@@ -24,6 +24,8 @@ import {
   RELEASE_BRANCH,
   type ReleaseBranch,
 } from '@twreporter/react-typescript-components/lib/constants/release-branch'
+// context
+import { BaseContext } from '@/contexts'
 
 // style
 const containerClass = 'w-full'
@@ -109,6 +111,7 @@ const ArticleCard: FC<ArticleCardProps> = ({
       ? INTERNAL_ROUTES.interactiveArticle
       : INTERNAL_ROUTES.article
   const link = `${path}/${encodeURIComponent(slug)}`
+  const { releaseBranch } = useContext(BaseContext)
 
   return (
     <div className={containerClass}>
@@ -128,10 +131,10 @@ const ArticleCard: FC<ArticleCardProps> = ({
             {publishedDate ? (
               <P3
                 className="text-gray-800"
-                text={formatDate(publishedDate, 'YYYY/MM/DD')}
+                text={formatDate(publishedDate, 'YYYY/M/DD')}
               />
             ) : null}
-            <BookmarkButton />
+            <BookmarkButton releaseBranch={releaseBranch} />
           </div>
           <H4
             className="text-gray-800 pb-[10px]"

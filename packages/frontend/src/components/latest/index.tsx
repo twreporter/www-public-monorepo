@@ -135,7 +135,7 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
                     categoryLabel={article.category}
                     publishedDate={formatDate(
                       article.publishedDate,
-                      'YYYY-MM-DD'
+                      'YYYY/M/DD'
                     )}
                     image={article.image}
                     size={ArticleCard.Size.s}
@@ -154,7 +154,7 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
                     categoryLabel={article.category}
                     publishedDate={formatDate(
                       article.publishedDate,
-                      'YYYY-MM-DD'
+                      'YYYY/M/DD'
                     )}
                     image={article.image}
                     size={ArticleCard.Size.l}

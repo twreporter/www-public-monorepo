@@ -6,6 +6,17 @@ export const rwdContainerClass: ClassArray = [
   'pb-[120px]',
 ]
 
+/**
+ * <div className={rwdGridOuterClass}>
+      <div className={rwdGridContainerClass}>
+        <div className={rwdGridInnerClass}>
+          <div className={rwdGridChildFullClass}>
+            ...
+          </div>
+        </div>
+      </div>
+    </div>
+ */
 /** Outermost shell — clips overflow for the 12-col grid pages */
 export const rwdGridOuterClass: ClassArray = ['w-full overflow-hidden']
 
