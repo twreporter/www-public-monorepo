@@ -44,6 +44,7 @@ import {
   isFormatQuote,
   isIndent,
   isInsertCodeBlock,
+  isInsertEmbeddedCode,
   isInsertLink,
   isJustifyAlign,
   isLeftAlign,
@@ -55,15 +56,20 @@ import {
   isSuperscript,
   isUppercase,
 } from './shortcuts'
+import type { EditorFeatureConfig } from '../../../core'
+import { OPEN_EMBEDDED_CODE_DIALOG_COMMAND } from '../ToolbarPlugin/command'
 
 export default function ShortcutsPlugin({
   editor,
+  features,
   setIsLinkEditMode,
 }: {
   editor: LexicalEditor
+  features?: EditorFeatureConfig
   setIsLinkEditMode: Dispatch<boolean>
 }): null {
   const { toolbarState } = useToolbarState()
+  const enableEmbeddedCode = features?.embeddedCode !== false
 
   useEffect(() => {
     const keyboardShortcutsHandler = (payload: KeyboardEvent) => {
@@ -140,6 +146,9 @@ export default function ShortcutsPlugin({
         setIsLinkEditMode(!toolbarState.isLink)
 
         editor.dispatchCommand(TOGGLE_LINK_COMMAND, url)
+      } else if (enableEmbeddedCode && isInsertEmbeddedCode(event)) {
+        event.preventDefault()
+        editor.dispatchCommand(OPEN_EMBEDDED_CODE_DIALOG_COMMAND, undefined)
       }
 
       return false
@@ -154,6 +163,7 @@ export default function ShortcutsPlugin({
     editor,
     toolbarState.isLink,
     toolbarState.blockType,
+    enableEmbeddedCode,
     setIsLinkEditMode,
   ])
 

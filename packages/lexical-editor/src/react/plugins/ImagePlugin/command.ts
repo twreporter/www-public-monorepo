@@ -24,7 +24,7 @@ export function registerImagePlugin(editor: LexicalEditor) {
     IMAGE_ADD_COMMAND,
     (payload) => {
       const { url, layout, caption = '', title = '', source = 'link' } = payload
-      const imageUrl = url.trim()
+      const imageUrl = url?.trim() ?? ''
       const selection = $getSelection()
 
       if (!selection || !imageUrl || !isImageLayout(layout) || !isImageSource(source)) {

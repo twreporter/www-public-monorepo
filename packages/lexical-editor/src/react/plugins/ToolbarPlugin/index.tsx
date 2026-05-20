@@ -27,6 +27,7 @@ import {
   $isRootOrShadowRoot,
   $isElementNode,
   COMMAND_PRIORITY_CRITICAL,
+  COMMAND_PRIORITY_EDITOR,
   FORMAT_TEXT_COMMAND,
   SELECTION_CHANGE_COMMAND,
   type LexicalEditor,
@@ -62,6 +63,7 @@ import {
 } from '../AnnotationPlugin/command'
 import { IMAGE_ADD_COMMAND } from '../ImagePlugin/command'
 import { EMBEDDED_CODE_ADD_COMMAND } from '../EmbeddedCodePlugin/command'
+import { OPEN_EMBEDDED_CODE_DIALOG_COMMAND } from './command'
 // types
 import type { EditorFeatureConfig, EditorTheme } from '../../../core'
 // css
@@ -321,6 +323,22 @@ export default function ToolbarPlugin({
     )
   }, [updateToolbar, activeEditor, editor])
 
+  // register command to open embedded code dialog
+  useEffect(() => {
+    if (!enableEmbeddedCode) {
+      return
+    }
+
+    return activeEditor.registerCommand(
+      OPEN_EMBEDDED_CODE_DIALOG_COMMAND,
+      () => {
+        setIsOpenEmbeddedCodeDialog(true)
+        return true
+      },
+      COMMAND_PRIORITY_EDITOR
+    )
+  }, [activeEditor, enableEmbeddedCode])
+
   const applyStyleText = useCallback(
     (styles: Record<string, string>, skipHistoryStack?: boolean) => {
       activeEditor.update(
@@ -573,7 +591,7 @@ export default function ToolbarPlugin({
               disabled={!isEditable}
               buttonClassName="toolbar-item spaced"
               buttonLabel=""
-              buttonAriaLabel="insert some cool compoents"
+              buttonAriaLabel="insert some cool components"
               buttonIconClassName="icon plus"
             >
               {enableEmbeddedCode && (

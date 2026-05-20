@@ -64,6 +64,7 @@ export default function Editor({
       ) : null}
       <ShortcutsPlugin
         editor={activeEditor}
+        {...(config.features ? { features: config.features } : {})}
         setIsLinkEditMode={setIsLinkEditMode}
       />
       <div className={`editor-container`}>

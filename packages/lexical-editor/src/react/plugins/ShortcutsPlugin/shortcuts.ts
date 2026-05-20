@@ -257,3 +257,10 @@ export function isInsertLink(event: KeyboardEvent): boolean {
     code === 'KeyK' && !shiftKey && !altKey && controlOrMeta(metaKey, ctrlKey)
   )
 }
+
+export function isInsertEmbeddedCode(event: KeyboardEvent): boolean {
+  const { code, shiftKey, altKey, metaKey, ctrlKey } = event
+  return (
+    code === 'KeyE' && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey)
+  )
+}
