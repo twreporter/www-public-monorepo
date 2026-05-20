@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.40](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.39...www-cms@0.1.0-beta.40) (2026-05-20)
+
+
+### Bug Fixes
+
+* **cms:** add migration files ([c4f7dfe](https://github.com/twreporter/www-public-monorepo/commit/c4f7dfeb0866754c7d9b6f52b75770d6042a7848))
+
+
+### Features
+
+* **lexical-editor:** add feature config ([c0ff0eb](https://github.com/twreporter/www-public-monorepo/commit/c0ff0eb687078d5328934460ba6632c46285a058))
+
+
+
+
+
 # [0.1.0-beta.39](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.38...www-cms@0.1.0-beta.39) (2026-05-14)
 
 **Note:** Version bump only for package www-cms

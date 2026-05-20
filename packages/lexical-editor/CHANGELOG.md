@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.15](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.14...@twreporter/lexical-editor@0.2.0-beta.15) (2026-05-20)
+
+
+### Bug Fixes
+
+* **cms:** add migration files ([c4f7dfe](https://github.com/twreporter/www-public-monorepo/commit/c4f7dfeb0866754c7d9b6f52b75770d6042a7848))
+* **lexical-editor:** add embedded code shortcut ([5f29049](https://github.com/twreporter/www-public-monorepo/commit/5f29049d5e9bea5018ad52b165ac71b7257c9f6d))
+* **lexical-editor:** address review comments ([d39f2ff](https://github.com/twreporter/www-public-monorepo/commit/d39f2ffae797d974ca5df3c4992b28c4a4d2fec2))
+* **lexical-editor:** decuple with dom id ([40257c6](https://github.com/twreporter/www-public-monorepo/commit/40257c6e13ed8ef18c7f7c88c047e3ebebce1124))
+* **lexical-editor:** implement image shortcut ([c5e2ff1](https://github.com/twreporter/www-public-monorepo/commit/c5e2ff1675608def4152a337425923a5cf02bbc8))
+
+
+### Features
+
+* **lexical-editor:** add feature config ([c0ff0eb](https://github.com/twreporter/www-public-monorepo/commit/c0ff0eb687078d5328934460ba6632c46285a058))
+
+
+
+
+
 # [0.2.0-beta.14](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.13...@twreporter/lexical-editor@0.2.0-beta.14) (2026-05-14)
 
 
