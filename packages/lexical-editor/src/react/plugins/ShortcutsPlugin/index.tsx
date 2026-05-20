@@ -44,6 +44,8 @@ import {
   isFormatQuote,
   isIndent,
   isInsertCodeBlock,
+  isInsertEmbeddedCode,
+  isInsertImageFromDb,
   isInsertLink,
   isJustifyAlign,
   isLeftAlign,
@@ -55,15 +57,27 @@ import {
   isSuperscript,
   isUppercase,
 } from './shortcuts'
+import type { EditorFeatureConfig } from '../../../core'
+import { useImageConfig } from '../../context/ImageConfigContext'
+import {
+  OPEN_EMBEDDED_CODE_DIALOG_COMMAND,
+  OPEN_IMAGE_FROM_DB_DIALOG_COMMAND,
+} from '../ToolbarPlugin/command'
 
 export default function ShortcutsPlugin({
   editor,
+  features,
   setIsLinkEditMode,
 }: {
   editor: LexicalEditor
+  features?: EditorFeatureConfig
   setIsLinkEditMode: Dispatch<boolean>
 }): null {
   const { toolbarState } = useToolbarState()
+  const imageConfig = useImageConfig()
+  const enableImage = features?.image !== false
+  const enableEmbeddedCode = features?.embeddedCode !== false
+  const enableImageFromDb = enableImage && imageConfig?.imageFromDb !== undefined
 
   useEffect(() => {
     const keyboardShortcutsHandler = (payload: KeyboardEvent) => {
@@ -140,6 +154,12 @@ export default function ShortcutsPlugin({
         setIsLinkEditMode(!toolbarState.isLink)
 
         editor.dispatchCommand(TOGGLE_LINK_COMMAND, url)
+      } else if (enableEmbeddedCode && isInsertEmbeddedCode(event)) {
+        event.preventDefault()
+        editor.dispatchCommand(OPEN_EMBEDDED_CODE_DIALOG_COMMAND, undefined)
+      } else if (enableImageFromDb && isInsertImageFromDb(event)) {
+        event.preventDefault()
+        editor.dispatchCommand(OPEN_IMAGE_FROM_DB_DIALOG_COMMAND, undefined)
       }
 
       return false
@@ -154,6 +174,8 @@ export default function ShortcutsPlugin({
     editor,
     toolbarState.isLink,
     toolbarState.blockType,
+    enableEmbeddedCode,
+    enableImageFromDb,
     setIsLinkEditMode,
   ])
 

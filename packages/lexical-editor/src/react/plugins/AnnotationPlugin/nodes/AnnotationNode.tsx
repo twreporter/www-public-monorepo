@@ -76,7 +76,6 @@ export class AnnotationNode extends ElementNode {
     const prevOpen = prevNode.__open
     if (prevOpen !== currentOpen) {
       dom.open = currentOpen
-      return true
     }
 
     return false
@@ -96,7 +95,9 @@ export class AnnotationNode extends ElementNode {
   override exportDOM(): DOMExportOutput {
     const element = document.createElement('details')
     element.classList.add('Annotation__container')
-    element.setAttribute('open', this.__open.toString())
+    if (this.__open) {
+      element.setAttribute('open', '')
+    }
     return { element }
   }
 

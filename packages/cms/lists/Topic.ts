@@ -1,5 +1,11 @@
 import { list } from '@keystone-6/core'
-import { relationship, select, text, timestamp } from '@keystone-6/core/fields'
+import {
+  json,
+  relationship,
+  select,
+  text,
+  timestamp,
+} from '@keystone-6/core/fields'
 import { get } from 'lodash'
 import { color } from '../fields/color-picker'
 import {
@@ -63,6 +69,24 @@ const listConfigurations = list({
     }),
     updatedDate: timestamp({
       label: '更新時間',
+    }),
+    description: json({
+      label: '簡介',
+      ui: {
+        views: './lists/views/wysiwyg-editor',
+        createView: { fieldMode: 'edit' },
+        listView: { fieldMode: 'hidden' },
+        itemView: { fieldMode: 'edit' },
+      },
+    }),
+    teamDescription: json({
+      label: '製作人員名單',
+      ui: {
+        views: './lists/views/wysiwyg-editor',
+        createView: { fieldMode: 'edit' },
+        listView: { fieldMode: 'hidden' },
+        itemView: { fieldMode: 'edit' },
+      },
     }),
     posts: relationship({
       ref: 'Post',

@@ -3,6 +3,9 @@ import {
   DecoratorNode,
   type NodeKey,
   $getNodeByKey,
+  type DOMConversionMap,
+  type DOMConversionOutput,
+  type DOMExportOutput,
 } from 'lexical'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import {
@@ -13,7 +16,7 @@ import {
   type MouseEvent,
   type ChangeEvent,
 } from 'react'
-import { $isAnnotationNode, AnnotationNode } from './AnnotationNode'
+import { $isAnnotationNode } from './AnnotationNode'
 
 // global var
 const annotationTextType = 'annotated-text'
@@ -51,9 +54,9 @@ const AnnotationText: FC<AnnotationTextProps> = ({ nodeKey, text }) => {
     }
 
     editor.update(() => {
-      const node = $getNodeByKey(nodeKey) as AnnotatedTextNode
-      if (node) {
-        node.getWritable().__text = value
+      const node = $getNodeByKey(nodeKey)
+      if ($isAnnotationTextNode(node)) {
+        node.setText(value)
       }
     })
 
@@ -77,9 +80,12 @@ const AnnotationText: FC<AnnotationTextProps> = ({ nodeKey, text }) => {
     e.preventDefault()
     e.stopPropagation()
     editor.update(() => {
-      const node = $getNodeByKey(nodeKey) as AnnotatedTextNode
+      const node = $getNodeByKey(nodeKey)
+      if (!$isAnnotationTextNode(node)) {
+        return
+      }
       const parent = node.getParent()
-      if (parent instanceof AnnotationNode) {
+      if ($isAnnotationNode(parent)) {
         parent.remove()
       }
     })
@@ -120,6 +126,20 @@ export type SerializedAnnotatedTextNode = {
   text: string
 }
 
+export function $convertSummaryElement(
+  domNode: HTMLElement
+): DOMConversionOutput | null {
+  if (domNode.parentElement?.tagName !== 'DETAILS') {
+    return null
+  }
+
+  const node = $createAnnotationTextNode(domNode.textContent ?? '')
+  return {
+    after: () => [],
+    node,
+  }
+}
+
 export class AnnotatedTextNode extends DecoratorNode<ReactNode> {
   __text: string
   __handleKeyDown?: (e: KeyboardEvent) => void
@@ -157,14 +177,31 @@ export class AnnotatedTextNode extends DecoratorNode<ReactNode> {
   }
 
   willDestroyDOM(dom: HTMLElement) {
-    const summary = dom.querySelector('summary')
-    if (summary && this.__handleKeyDown) {
-      summary.removeEventListener('keydown', this.__handleKeyDown)
+    if (this.__handleKeyDown) {
+      dom.removeEventListener('keydown', this.__handleKeyDown)
     }
   }
 
   override updateDOM() {
     return false
+  }
+
+  static override importDOM(): DOMConversionMap<HTMLElement> | null {
+    return {
+      summary: () => {
+        return {
+          conversion: $convertSummaryElement,
+          priority: 2,
+        }
+      },
+    }
+  }
+
+  override exportDOM(): DOMExportOutput {
+    const element = document.createElement('summary')
+    element.classList.add('Annotation__text')
+    element.textContent = this.__text
+    return { element }
   }
 
   override decorate(): ReactNode {
@@ -186,6 +223,10 @@ export class AnnotatedTextNode extends DecoratorNode<ReactNode> {
   getText(): string {
     const self = this.getLatest()
     return self.__text
+  }
+
+  override getTextContent(): string {
+    return this.getText()
   }
 
   setText(text: string) {

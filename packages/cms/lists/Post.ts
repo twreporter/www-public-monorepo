@@ -153,6 +153,15 @@ const listConfigurations = list({
       label: '首圖圖說',
       validation: { isRequired: false },
     }),
+    brief: json({
+      label: '前言',
+      ui: {
+        views: './lists/views/wysiwyg-editor',
+        createView: { fieldMode: 'edit' },
+        listView: { fieldMode: 'hidden' },
+        itemView: { fieldMode: 'edit' },
+      },
+    }),
     content: json({
       label: '內文',
       ui: {

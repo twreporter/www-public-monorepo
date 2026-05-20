@@ -12,6 +12,11 @@ export type EditorPluginFlags = {
   richText?: boolean
 }
 
+export type EditorFeatureConfig = {
+  image?: boolean
+  embeddedCode?: boolean
+}
+
 export type ImageFromDbItem = {
   title: string
   url: string
@@ -68,6 +73,7 @@ export type UploadImageConfig = {
 export type EditorConfig = {
   theme: EditorTheme
   plugins?: EditorPluginFlags
+  features?: EditorFeatureConfig
   ui?: EditorUiConfig
   image?: ImageConfig
   uploadImage?: UploadImageConfig

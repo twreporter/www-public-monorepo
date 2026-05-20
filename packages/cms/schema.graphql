@@ -135,6 +135,7 @@ type Post {
   heroImage: Photo
   heroSize: String
   heroCaption: String
+  brief: JSON
   content: JSON
   postFollowups(where: PostFollowupWhereInput! = {}, orderBy: [PostFollowupOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PostFollowupWhereUniqueInput): [PostFollowup!]
   postFollowupsCount(where: PostFollowupWhereInput! = {}): Int
@@ -315,6 +316,7 @@ input PostUpdateInput {
   heroImage: PhotoRelateToOneForUpdateInput
   heroSize: String
   heroCaption: String
+  brief: JSON
   content: JSON
   postFollowups: PostFollowupRelateToManyForUpdateInput
   subcategories: SubcategoryRelateToManyForUpdateInput
@@ -420,6 +422,7 @@ input PostCreateInput {
   heroImage: PhotoRelateToOneForCreateInput
   heroSize: String
   heroCaption: String
+  brief: JSON
   content: JSON
   postFollowups: PostFollowupRelateToManyForCreateInput
   subcategories: SubcategoryRelateToManyForCreateInput
@@ -687,6 +690,8 @@ type Topic {
   state: String
   publishedDate: DateTime
   updatedDate: DateTime
+  description: JSON
+  teamDescription: JSON
   posts(where: PostWhereInput! = {}, orderBy: [PostOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PostWhereUniqueInput): [Post!]
   postsCount(where: PostWhereInput! = {}): Int
   postLayout: TopicPostLayoutType
@@ -774,6 +779,8 @@ input TopicUpdateInput {
   state: String
   publishedDate: DateTime
   updatedDate: DateTime
+  description: JSON
+  teamDescription: JSON
   posts: PostRelateToManyForUpdateInput
   postLayout: TopicPostLayoutType
   postBackgroundColor: String
@@ -802,6 +809,8 @@ input TopicCreateInput {
   state: String
   publishedDate: DateTime
   updatedDate: DateTime
+  description: JSON
+  teamDescription: JSON
   posts: PostRelateToManyForCreateInput
   postLayout: TopicPostLayoutType
   postBackgroundColor: String
@@ -1081,6 +1090,7 @@ type PostFollowup {
   title: String
   publishedDate: DateTime
   summary: String
+  content: JSON
   posts(where: PostWhereInput! = {}, orderBy: [PostOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PostWhereUniqueInput): [Post!]
   postsCount(where: PostWhereInput! = {}): Int
   createdAt: DateTime
@@ -1117,6 +1127,7 @@ input PostFollowupUpdateInput {
   title: String
   publishedDate: DateTime
   summary: String
+  content: JSON
   posts: PostRelateToManyForUpdateInput
   createdAt: DateTime
   updatedAt: DateTime
@@ -1131,6 +1142,7 @@ input PostFollowupCreateInput {
   title: String
   publishedDate: DateTime
   summary: String
+  content: JSON
   posts: PostRelateToManyForCreateInput
   createdAt: DateTime
   updatedAt: DateTime

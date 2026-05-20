@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import { useImageConfig } from '../../../context/ImageConfigContext'
 // type
-import type { ImageLayout, ImageSource } from '../types'
+import type { ImageLayout, ImageSource } from '../constant'
 
 /* todo: fullscreen image & sensitive image */
 type ImageDisplayModeProps = {

@@ -1,32 +1,24 @@
-import { useState, type JSX } from 'react'
+import type { JSX } from 'react'
 
-const editorId = 'lexical-editor'
-const fullscreenClassname = 'fullscreen'
+type FullscreenProps = {
+  isFullscreen: boolean
+  onToggleFullscreen: () => void
+}
 
-function Fullscreen(): JSX.Element {
-  const [isFull, setIsFull] = useState(false)
-  const toggleFullscreen = () => {
-    if (!document) return
-    const editorElement = document.getElementById(editorId)
-    if (!editorElement) return
-
-    if (isFull) {
-      editorElement.classList.remove(fullscreenClassname)
-    } else {
-      editorElement.classList.add(fullscreenClassname)
-    }
-
-    setIsFull(!isFull)
-  }
-
+function Fullscreen({
+  isFullscreen,
+  onToggleFullscreen,
+}: FullscreenProps): JSX.Element {
   return (
     <button
       className="toolbar-item spaced"
       type="button"
-      onClick={toggleFullscreen}
-      aria-label={isFull ? 'Exit fullscreen' : 'Enter fullscreen'}
+      onClick={onToggleFullscreen}
+      aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
     >
-      <i className={`icon ${isFull ? 'exit-fullscreen' : 'fullscreen'}`} />
+      <i
+        className={`icon ${isFullscreen ? 'exit-fullscreen' : 'fullscreen'}`}
+      />
     </button>
   )
 }

@@ -1,6 +1,6 @@
-export type ImageLayout = 'default' | 'small' | 'right'
+export type { ImageLayout, ImageSource } from './constant'
 
-export type ImageSource = 'link' | 'drag-drop' | 'db'
+import type { ImageLayout, ImageSource } from './constant'
 
 export type ImageAddCommandPayload = {
   url: string

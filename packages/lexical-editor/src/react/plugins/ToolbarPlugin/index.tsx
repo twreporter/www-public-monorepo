@@ -1,4 +1,11 @@
-import { type Dispatch, useCallback, useEffect, useState, type JSX } from 'react'
+import {
+  type Dispatch,
+  type SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+  type JSX,
+} from 'react'
 // lexical
 import { $isHeadingNode } from '@lexical/rich-text'
 import {
@@ -20,6 +27,7 @@ import {
   $isRootOrShadowRoot,
   $isElementNode,
   COMMAND_PRIORITY_CRITICAL,
+  COMMAND_PRIORITY_EDITOR,
   FORMAT_TEXT_COMMAND,
   SELECTION_CHANGE_COMMAND,
   type LexicalEditor,
@@ -34,9 +42,7 @@ import { useImageConfig } from '../../context/ImageConfigContext'
 // hook
 import useModal from '../../hooks/useModal'
 // util
-import {
-  clearFormatting,
-} from './utils'
+import { clearFormatting } from './utils'
 import { getSelectedNode } from '../../utils/getSelectedNode'
 import { sanitizeUrl } from '../../utils/url'
 import { $isAnnotationNode } from '../AnnotationPlugin/nodes/AnnotationNode'
@@ -47,20 +53,22 @@ import ImageEditDialog from '../ImagePlugin/components/ImageEditDialog'
 import ImageFromDbDialog from '../ImagePlugin/components/ImageFromDbDialog'
 import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts'
 import Fullscreen from './components/Fullscreen'
-import BlockFormatDropDown, { dropDownActiveClass } from './components/BlockFormatDropdown'
+import BlockFormatDropDown, {
+  dropDownActiveClass,
+} from './components/BlockFormatDropdown'
 // custom command
 import {
   ANNOTATION_ADD_COMMAND,
   ANNOTATION_REMOVE_COMMAND,
 } from '../AnnotationPlugin/command'
+import { IMAGE_ADD_COMMAND } from '../ImagePlugin/command'
+import { EMBEDDED_CODE_ADD_COMMAND } from '../EmbeddedCodePlugin/command'
 import {
-  IMAGE_ADD_COMMAND,
-} from '../ImagePlugin/command'
-import {
-  EMBEDDED_CODE_ADD_COMMAND,
-} from '../EmbeddedCodePlugin/command'
+  OPEN_EMBEDDED_CODE_DIALOG_COMMAND,
+  OPEN_IMAGE_FROM_DB_DIALOG_COMMAND,
+} from './command'
 // types
-import type { EditorTheme } from '../../../core'
+import type { EditorFeatureConfig, EditorTheme } from '../../../core'
 // css
 import './Toolbar.scss'
 
@@ -83,30 +91,47 @@ function $findTopLevelElement(node: LexicalNode) {
   return topLevelElement
 }
 
+function $isWithinAnnotation(node: LexicalNode): boolean {
+  return (
+    $isAnnotationNode(node) ||
+    $findMatchingParent(node, (parentNode) => $isAnnotationNode(parentNode)) !==
+      null
+  )
+}
+
 export default function ToolbarPlugin({
   editor,
   activeEditor,
   config,
+  features,
+  isFullscreen,
   setActiveEditor,
+  setIsFullscreen,
   setIsLinkEditMode,
 }: {
   editor: LexicalEditor
   activeEditor: LexicalEditor
   config: EditorTheme
+  features?: EditorFeatureConfig
+  isFullscreen: boolean
   setActiveEditor: Dispatch<LexicalEditor>
+  setIsFullscreen: Dispatch<SetStateAction<boolean>>
   setIsLinkEditMode: Dispatch<boolean>
 }): JSX.Element {
   const [modal] = useModal()
   const [isEditable, setIsEditable] = useState(() => editor.isEditable())
   const { toolbarState, updateToolbarState } = useToolbarState()
   const imageConfig = useImageConfig()
+  const enableImage = features?.image !== false
+  const enableEmbeddedCode = features?.embeddedCode !== false
+  const enableImageFromDb = enableImage && imageConfig?.imageFromDb !== undefined
+  const showInsertDropdown = enableImage || enableEmbeddedCode
 
   // custom plugin state
   const [isOpenEmbeddedCodeDialog, setIsOpenEmbeddedCodeDialog] =
     useState(false)
   const [isOpenImageDialog, setIsOpenImageDialog] = useState(false)
-  const [isOpenImageFromDbDialog, setIsOpenImageFromDbDialog] =
-    useState(false)
+  const [isOpenImageFromDbDialog, setIsOpenImageFromDbDialog] = useState(false)
 
   const $handleHeadingNode = useCallback(
     (selectedElement: LexicalNode) => {
@@ -152,7 +177,7 @@ export default function ToolbarPlugin({
       updateToolbarState('isLink', isLink)
 
       // update annotation
-      const isAnnotated = $isAnnotationNode(parent) || $isAnnotationNode(node)
+      const isAnnotated = $isWithinAnnotation(node)
       updateToolbarState('isAnnotated', isAnnotated)
 
       if (elementDOM !== null) {
@@ -302,6 +327,36 @@ export default function ToolbarPlugin({
     )
   }, [updateToolbar, activeEditor, editor])
 
+  useEffect(() => {
+    if (!enableEmbeddedCode) {
+      return
+    }
+
+    return activeEditor.registerCommand(
+      OPEN_EMBEDDED_CODE_DIALOG_COMMAND,
+      () => {
+        setIsOpenEmbeddedCodeDialog(true)
+        return true
+      },
+      COMMAND_PRIORITY_EDITOR
+    )
+  }, [activeEditor, enableEmbeddedCode])
+
+  useEffect(() => {
+    if (!enableImageFromDb) {
+      return
+    }
+
+    return activeEditor.registerCommand(
+      OPEN_IMAGE_FROM_DB_DIALOG_COMMAND,
+      () => {
+        setIsOpenImageFromDbDialog(true)
+        return true
+      },
+      COMMAND_PRIORITY_EDITOR
+    )
+  }, [activeEditor, enableImageFromDb])
+
   const applyStyleText = useCallback(
     (styles: Record<string, string>, skipHistoryStack?: boolean) => {
       activeEditor.update(
@@ -409,7 +464,7 @@ export default function ToolbarPlugin({
         >
           <i className="format link" />
         </button>
-        { config.components?.ColorPicker && (
+        {config.components?.ColorPicker && (
           <>
             <config.components.ColorPicker
               disabled={!isEditable}
@@ -547,60 +602,72 @@ export default function ToolbarPlugin({
         >
           <i className="format annotation" />
         </button>
-        <Divider />
-        <DropDown
-          disabled={!isEditable}
-          buttonClassName="toolbar-item spaced"
-          buttonLabel=""
-          buttonAriaLabel="insert some cool compoents"
-          buttonIconClassName="icon plus"
-        >
-          <DropDownItem
-            onClick={() => {
-              setIsOpenEmbeddedCodeDialog(true)
-            }}
-            className={`item wide`}
-            title="Embedded Code"
-            aria-label="add embedded code"
-          >
-            <div className="icon-text-container">
-              <i className="icon embedded" />
-              <span className="text">Embed</span>
-            </div>
-          </DropDownItem>
-          {imageConfig?.imageFromDb && (
-            <DropDownItem
-              onClick={() => {
-                setIsOpenImageFromDbDialog(true)
-              }}
-              className={`item wide`}
-              title="Image from DB"
-              aria-label="add image from db"
+        {showInsertDropdown && (
+          <>
+            <Divider />
+            <DropDown
+              disabled={!isEditable}
+              buttonClassName="toolbar-item spaced"
+              buttonLabel=""
+              buttonAriaLabel="insert some cool components"
+              buttonIconClassName="icon plus"
             >
-              <div className="icon-text-container">
-                <i className="icon image-from-db" />
-                <span className="text">Image</span>
-              </div>
-              <span className="shortcut">{SHORTCUTS.IMAGE_FROM_DB}</span>
-            </DropDownItem>
-          )}
-          <DropDownItem
-            onClick={() => {
-              setIsOpenImageDialog(true)
-            }}
-            className={`item wide`}
-            title="Image Link"
-            aria-label="add image link"
-          >
-            <div className="icon-text-container">
-              <i className="icon image-link" />
-              <span className="text">ImgLink</span>
-            </div>
-            <span className="shortcut">{SHORTCUTS.IMAGE_LINK}</span>
-          </DropDownItem>
-        </DropDown>
+              {enableEmbeddedCode && (
+                <DropDownItem
+                  onClick={() => {
+                    setIsOpenEmbeddedCodeDialog(true)
+                  }}
+                  className={`item wide`}
+                  title="Embedded Code"
+                  aria-label="add embedded code"
+                >
+                  <div className="icon-text-container">
+                    <i className="icon embedded" />
+                    <span className="text">Embed</span>
+                  </div>
+                  <span className="shortcut">{SHORTCUTS.EMBEDDED_CODE}</span>
+                </DropDownItem>
+              )}
+              {enableImageFromDb && (
+                <DropDownItem
+                  onClick={() => {
+                    setIsOpenImageFromDbDialog(true)
+                  }}
+                  className={`item wide`}
+                  title="Image from DB"
+                  aria-label="add image from db"
+                >
+                  <div className="icon-text-container">
+                    <i className="icon image-from-db" />
+                    <span className="text">Image</span>
+                  </div>
+                  <span className="shortcut">{SHORTCUTS.IMAGE_FROM_DB}</span>
+                </DropDownItem>
+              )}
+              {enableImage && (
+                <DropDownItem
+                  onClick={() => {
+                    setIsOpenImageDialog(true)
+                  }}
+                  className={`item wide`}
+                  title="Image Link"
+                  aria-label="add image link"
+                >
+                  <div className="icon-text-container">
+                    <i className="icon image-link" />
+                    <span className="text">ImgLink</span>
+                  </div>
+                  <span className="shortcut">{SHORTCUTS.IMAGE_LINK}</span>
+                </DropDownItem>
+              )}
+            </DropDown>
+          </>
+        )}
         <Divider />
-        <Fullscreen />
+        <Fullscreen
+          isFullscreen={isFullscreen}
+          onToggleFullscreen={() => setIsFullscreen((current) => !current)}
+        />
         <button
           onClick={togglePreview}
           className={`toolbar-item spaced`}
@@ -611,7 +678,7 @@ export default function ToolbarPlugin({
         </button>
         {modal}
       </div>
-      {isOpenEmbeddedCodeDialog && (
+      {enableEmbeddedCode && isOpenEmbeddedCodeDialog && (
         <EmbeddedCodeEditDialog
           embeddedCode=""
           layout="default"
@@ -628,7 +695,7 @@ export default function ToolbarPlugin({
           }
         />
       )}
-      {isOpenImageDialog && (
+      {enableImage && isOpenImageDialog && (
         <ImageEditDialog
           imageLayout="default"
           imageUrl=""
@@ -643,7 +710,7 @@ export default function ToolbarPlugin({
           }
         />
       )}
-      {isOpenImageFromDbDialog && imageConfig?.imageFromDb && (
+      {enableImage && isOpenImageFromDbDialog && imageConfig?.imageFromDb && (
         <ImageFromDbDialog
           imageFromDb={imageConfig.imageFromDb}
           onClose={() => setIsOpenImageFromDbDialog(false)}

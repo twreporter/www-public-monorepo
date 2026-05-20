@@ -1,5 +1,5 @@
 import { list } from '@keystone-6/core'
-import { relationship, text, timestamp } from '@keystone-6/core/fields'
+import { json, relationship, text, timestamp } from '@keystone-6/core/fields'
 import {
   allowAllRoles,
   allowRoles,
@@ -21,6 +21,15 @@ const listConfigurations = list({
     }),
     summary: text({
       label: '摘要',
+    }),
+    content: json({
+      label: '內容',
+      ui: {
+        views: './lists/views/wysiwyg-editor',
+        createView: { fieldMode: 'edit' },
+        listView: { fieldMode: 'hidden' },
+        itemView: { fieldMode: 'edit' },
+      },
     }),
     posts: relationship({
       ref: 'Post.postFollowups',

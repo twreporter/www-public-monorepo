@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 import { PluginIconButton } from '../../../components/PluginUI'
-import type { ImageLayout } from '../types'
+import type { ImageLayout } from '../constant'
 
 type ImageLayoutOptionsProps = {
   layout: ImageLayout

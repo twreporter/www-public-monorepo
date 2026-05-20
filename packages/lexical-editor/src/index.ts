@@ -10,6 +10,7 @@ export type {
   LexicalEditorProps,
   LexicalEditorValue,
   EditorConfig,
+  EditorFeatureConfig,
   ImageConfig,
   ImageFromDbConfig,
   ImageFromDbItem,
