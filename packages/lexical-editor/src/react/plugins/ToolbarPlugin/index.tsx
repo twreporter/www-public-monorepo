@@ -63,7 +63,10 @@ import {
 } from '../AnnotationPlugin/command'
 import { IMAGE_ADD_COMMAND } from '../ImagePlugin/command'
 import { EMBEDDED_CODE_ADD_COMMAND } from '../EmbeddedCodePlugin/command'
-import { OPEN_EMBEDDED_CODE_DIALOG_COMMAND } from './command'
+import {
+  OPEN_EMBEDDED_CODE_DIALOG_COMMAND,
+  OPEN_IMAGE_FROM_DB_DIALOG_COMMAND,
+} from './command'
 // types
 import type { EditorFeatureConfig, EditorTheme } from '../../../core'
 // css
@@ -121,6 +124,7 @@ export default function ToolbarPlugin({
   const imageConfig = useImageConfig()
   const enableImage = features?.image !== false
   const enableEmbeddedCode = features?.embeddedCode !== false
+  const enableImageFromDb = enableImage && imageConfig?.imageFromDb !== undefined
   const showInsertDropdown = enableImage || enableEmbeddedCode
 
   // custom plugin state
@@ -323,7 +327,6 @@ export default function ToolbarPlugin({
     )
   }, [updateToolbar, activeEditor, editor])
 
-  // register command to open embedded code dialog
   useEffect(() => {
     if (!enableEmbeddedCode) {
       return
@@ -338,6 +341,21 @@ export default function ToolbarPlugin({
       COMMAND_PRIORITY_EDITOR
     )
   }, [activeEditor, enableEmbeddedCode])
+
+  useEffect(() => {
+    if (!enableImageFromDb) {
+      return
+    }
+
+    return activeEditor.registerCommand(
+      OPEN_IMAGE_FROM_DB_DIALOG_COMMAND,
+      () => {
+        setIsOpenImageFromDbDialog(true)
+        return true
+      },
+      COMMAND_PRIORITY_EDITOR
+    )
+  }, [activeEditor, enableImageFromDb])
 
   const applyStyleText = useCallback(
     (styles: Record<string, string>, skipHistoryStack?: boolean) => {
@@ -610,7 +628,7 @@ export default function ToolbarPlugin({
                   <span className="shortcut">{SHORTCUTS.EMBEDDED_CODE}</span>
                 </DropDownItem>
               )}
-              {enableImage && imageConfig?.imageFromDb && (
+              {enableImageFromDb && (
                 <DropDownItem
                   onClick={() => {
                     setIsOpenImageFromDbDialog(true)

@@ -264,3 +264,10 @@ export function isInsertEmbeddedCode(event: KeyboardEvent): boolean {
     code === 'KeyE' && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey)
   )
 }
+
+export function isInsertImageFromDb(event: KeyboardEvent): boolean {
+  const { code, shiftKey, altKey, metaKey, ctrlKey } = event
+  return (
+    code === 'KeyI' && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey)
+  )
+}
