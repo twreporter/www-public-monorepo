@@ -14,7 +14,12 @@ import type { Category } from '@/types/category'
 import { INTERNAL_ROUTES } from '@/constants/routes'
 import { POSTS_PER_PAGE } from '@/constants'
 // style
-import { rwdContainerClass } from '@/styles/layout'
+import {
+  rwdGridOuterClass,
+  rwdGridContainerClass,
+  rwdGridInnerClass,
+  rwdGridChildFullClass,
+} from '@/styles/layout'
 // @twreporter
 import { TitleTab } from '@twreporter/react-typescript-components/lib/title-bar'
 // lodash
@@ -25,8 +30,8 @@ const _ = {
 
 // style
 const listClass = clsx(
-  'mt-[45px]',
-  `grid grid-cols-1 tablet:grid-cols-2 gap-x-[20px] gap-y-[40px]`
+  `mt-[24px] flex flex-col gap-y-[40px]`,
+  'tablet:grid tablet:grid-cols-subgrid tablet:col-span-full'
 )
 
 type CategoryPageProps = Category & {
@@ -95,25 +100,42 @@ const CategoryPage: FC<CategoryPageProps> = ({
   )
 
   return (
-    <div className={clsx(rwdContainerClass)}>
-      <TitleTab title={name} tabs={tabs} activeTabIndex={activeTabIndex} />
-      {posts.length === 0 && isLoading ? (
-        <Loading />
-      ) : (
-        <div className={listClass}>
-          {posts.map(({ slug, ...rest }) => (
-            <ArticleCard key={`meta-a-${slug}`} slug={slug} {...rest} />
-          ))}
+    <div className={clsx(rwdGridOuterClass)}>
+      <div className={clsx(rwdGridContainerClass)}>
+        <div className={clsx(rwdGridInnerClass)}>
+          <div className={clsx(rwdGridChildFullClass)}>
+            <TitleTab
+              title={name}
+              tabs={tabs}
+              activeTabIndex={activeTabIndex}
+            />
+          </div>
+          {posts.length === 0 && isLoading ? (
+            <div className={clsx(rwdGridChildFullClass)}>
+              <Loading />
+            </div>
+          ) : (
+            <div className={listClass}>
+              {posts.map(({ slug, category: _category, ...rest }) => (
+                <div key={`meta-a-${slug}`} className="col-span-5">
+                  <ArticleCard slug={slug} {...rest} />
+                </div>
+              ))}
+            </div>
+          )}
+          <Pagination
+            className={clsx(
+              rwdGridChildFullClass,
+              'w-full flex justify-center items-center'
+            )}
+            currentPage={page}
+            totalPage={totalPage}
+            handleClickPage={handleClickPage}
+            handleClickPrev={handleClickPrev}
+            handleClickNext={handleClickNext}
+          />
         </div>
-      )}
-      <Pagination
-        className="w-full flex justify-center items-center"
-        currentPage={page}
-        totalPage={totalPage}
-        handleClickPage={handleClickPage}
-        handleClickPrev={handleClickPrev}
-        handleClickNext={handleClickNext}
-      />
+      </div>
     </div>
   )
 }

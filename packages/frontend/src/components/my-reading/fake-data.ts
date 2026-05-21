@@ -54,9 +54,11 @@ export const fakeTrackingArticles: TrackingArticle[] = [
 export const fakeSavedBookmarks: ReadingListItem[] = [
   {
     slug: 'saved-water-governance',
-    title: '水資源治理重啟：地方配水爭議下的透明化改革',
+    title:
+      '王墨林／紀錄片在乎「精神事實」嗎？評吳耀東《找不到路的歌》及《飄流的臉》',
     category: '環境',
-    description: '枯水期常態化後，跨區供水決策如何對民眾清楚說明。',
+    description:
+      '枯水期常態化後，跨區供水決策如何對民眾清楚說明。測試 english and 12321',
     publishedDate: '2026/03/18',
     image:
       'https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=1200&q=80',
@@ -64,7 +66,7 @@ export const fakeSavedBookmarks: ReadingListItem[] = [
   },
   {
     slug: 'saved-learning-portfolio',
-    title: '學習歷程檔案上路三年：城鄉資源差距是否擴大',
+    title: '【Boom．磅】宋承恩：不尊重民主，就是走向獨裁的開始, english & 123',
     category: '教育',
     description: '第一線教師與學生回看制度，最常出現的困境與修正建議。',
     publishedDate: '2026/03/02',

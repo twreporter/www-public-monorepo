@@ -29,14 +29,12 @@ export default async function Page({
           },
         }}
       >
-        <div className="px-[24px] w-[fill-available] w-[-webkit-fill-available] tablet:w-auto">
-          <CategoryPage
-            slug={category.slug}
-            name={category.name}
-            totalPosts={category.postsCount}
-            subcategories={category.subcategories}
-          />
-        </div>
+        <CategoryPage
+          slug={category.slug}
+          name={category.name}
+          totalPosts={category.postsCount}
+          subcategories={category.subcategories}
+        />
       </SWRConfig>
     )
   } catch (error) {

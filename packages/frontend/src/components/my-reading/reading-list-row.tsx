@@ -7,6 +7,8 @@ import ArticleCard from '@twreporter/react-typescript-components/lib/card/articl
 import type { ReadingListItem } from '@/components/my-reading/types'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
+// utils
+import { formatDate } from '@/utils/date-formatters'
 
 type ReadingListRowProps = {
   item: ReadingListItem
@@ -31,7 +33,7 @@ const ReadingListRow: FC<ReadingListRowProps> = ({
           title={item.title}
           description={item.description}
           categoryLabel={item.category}
-          publishedDate={item.publishedDate}
+          publishedDate={formatDate(item.publishedDate, 'YYYY/M/DD')}
           image={{ src: item.image, alt: item.title }}
           size={mobileSize}
           isBookmark={item.isBookmark}
@@ -44,7 +46,7 @@ const ReadingListRow: FC<ReadingListRowProps> = ({
           title={item.title}
           description={item.description}
           categoryLabel={item.category}
-          publishedDate={item.publishedDate}
+          publishedDate={formatDate(item.publishedDate, 'YYYY/M/DD')}
           image={{ src: item.image, alt: item.title }}
           size={desktopSize}
           isBookmark={item.isBookmark}

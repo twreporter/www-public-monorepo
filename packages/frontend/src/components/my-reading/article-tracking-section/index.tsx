@@ -27,6 +27,8 @@ import type { TrackingArticle } from '@/components/my-reading/types'
 import { INTERNAL_ROUTES } from '@/constants/routes'
 // context
 import { BaseContext } from '@/contexts'
+// utils
+import { formatDate } from '@/utils/date-formatters'
 // lodash
 import { throttle } from 'lodash'
 
@@ -56,7 +58,10 @@ const TrackingCard: FC<{ article: TrackingArticle }> = ({ article }) => {
       )}
     >
       <div className="flex flex-col">
-        <P3 className="text-gray-600" text={article.publishDate} />
+        <P3
+          className="text-gray-600"
+          text={formatDate(article.publishDate, 'YYYY/M/DD')}
+        />
         <div className="line-clamp-2 mb-[16px]">
           <H5 className="text-gray-800" text={article.trackingTitle} />
         </div>

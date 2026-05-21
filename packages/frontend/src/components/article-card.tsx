@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import { type FC, useContext } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 // constants
@@ -18,24 +18,26 @@ import {
   P1,
   P3,
 } from '@twreporter/react-typescript-components/lib/text/paragraph'
+import { TextButton } from '@twreporter/react-typescript-components/lib/button'
+import { Bookmark } from '@twreporter/react-typescript-components/lib/icons'
+import {
+  RELEASE_BRANCH,
+  type ReleaseBranch,
+} from '@twreporter/react-typescript-components/lib/constants/release-branch'
+// context
+import { BaseContext } from '@/contexts'
 
 // style
-const containerClass = clsx(
-  'hd:w-[555px] desktop:w-[451px] tablet:w-[339px] w-full',
-  'pb-[40px]'
-)
+const containerClass = 'w-full'
 
 const imageClass = clsx('w-full', 'object-cover')
 
 const textContainClass = clsx(
-  'flex flex-col justify-center items-start',
-  'my-[12px] hd:m-[12px] desktop:m-[12px] tablet:m-[12px]'
+  'flex flex-col justify-center items-start mt-[8px] gap-[10px]'
 )
 
 const tagContainerClass = clsx(
-  'flex flex-row flex-wrap justify-start items-center',
-  'gap-x-[8px] gap-y-[10px]',
-  'hd:ml-[12px] desktop:ml-[12px] tablet:ml-[12px]'
+  'flex flex-row flex-wrap justify-start items-center mt-[20px] gap-[10px]'
 )
 
 const getTagClass = (selected = false) => {
@@ -43,7 +45,6 @@ const getTagClass = (selected = false) => {
     'border-1 border-solid border-brand-heavy',
     'rounded-[68px]',
     'px-[10px] py-[2px]',
-    'mr-[8px] mb-[10px]',
     {
       'text-gray-white': selected,
       'text-brand-heavy': !selected,
@@ -55,12 +56,43 @@ const getTagClass = (selected = false) => {
   )
 }
 
+type BookmarkButtonProps = {
+  isBookmark?: boolean
+  onBookmarkClick?: () => void
+  releaseBranch?: ReleaseBranch
+}
+
+const BookmarkButton: FC<BookmarkButtonProps> = ({
+  isBookmark = false,
+  onBookmarkClick,
+  releaseBranch = RELEASE_BRANCH.master,
+}) => (
+  <div className="flex justify-end ml-auto">
+    <TextButton
+      theme={TextButton.Theme.normal}
+      style={TextButton.Style.light}
+      leftIconComponent={
+        <Bookmark
+          type={isBookmark ? Bookmark.Type.SAVED : Bookmark.Type.ADD}
+          releaseBranch={releaseBranch}
+        />
+      }
+      onClick={(e) => {
+        e.stopPropagation()
+        e.preventDefault()
+        onBookmarkClick?.()
+      }}
+      text={isBookmark ? '已收藏' : '收藏'}
+    />
+  </div>
+)
+
+// TODO: bookmark action
 type ArticleCardProps = {
   title: string
   subtitle?: string
   slug: string
   style?: Style
-  category: string
   publishedDate?: string
   image?: Image
   tags?: Tag[]
@@ -70,7 +102,6 @@ const ArticleCard: FC<ArticleCardProps> = ({
   subtitle,
   slug,
   style,
-  category,
   publishedDate,
   image,
   tags,
@@ -80,6 +111,7 @@ const ArticleCard: FC<ArticleCardProps> = ({
       ? INTERNAL_ROUTES.interactiveArticle
       : INTERNAL_ROUTES.article
   const link = `${path}/${encodeURIComponent(slug)}`
+  const { releaseBranch } = useContext(BaseContext)
 
   return (
     <div className={containerClass}>
@@ -95,21 +127,21 @@ const ArticleCard: FC<ArticleCardProps> = ({
           />
         ) : null}
         <div className={textContainClass}>
-          {category ? (
-            <P3 className="text-brand-heavy pb-[10px]" text={category} />
-          ) : null}
+          <div className="flex flex-row w-full justify-between">
+            {publishedDate ? (
+              <P3
+                className="text-gray-800"
+                text={formatDate(publishedDate, 'YYYY/M/DD')}
+              />
+            ) : null}
+            <BookmarkButton releaseBranch={releaseBranch} />
+          </div>
           <H4
             className="text-gray-800 pb-[10px]"
             text={title}
             type={H4.Type.article}
           />
           <P1 className="text-gray-800" text={subtitle} />
-          {publishedDate ? (
-            <P3
-              className="text-gray-800 self-end pt-[16px]"
-              text={formatDate(publishedDate, 'YYYY.MM.DD')}
-            />
-          ) : null}
         </div>
       </Link>
       {tags && tags.length > 0 ? (

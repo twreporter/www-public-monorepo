@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 // components
 import Header from '@/components/header'
 import Footer from '@/components/footer'
+import { robotoSlab, merriweather } from '@/utils/font'
 
 // These styles apply to every route in the application
 import './globals.css'
@@ -19,8 +20,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className="tracking-[0.4px] leading-[1.4]">
+    <html
+      lang="en"
+      className={`${robotoSlab.variable} ${merriweather.variable}`}
+    >
+      <body className="tracking-[0.4px] leading-[1.4] antialiased">
         <Header />
         <main
           className={clsx(
