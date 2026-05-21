@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.48](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.47...www-frontend@0.1.0-beta.48) (2026-05-21)
+
+
+### Bug Fixes
+
+* **frontend:** article card bookmark button ([eaa5892](https://github.com/twreporter/www-public-monorepo/commit/eaa5892b52ec8a3df839f76ea009d28aaf39f2f0))
+* **frontend:** update date format and integrate context in article card ([c87184c](https://github.com/twreporter/www-public-monorepo/commit/c87184c504db41523b1fa5c3c5d2b7fc20d724cd))
+* **frontend:** use formatDate ([6886092](https://github.com/twreporter/www-public-monorepo/commit/6886092c9ef5fc5fdb218d9fd8dd5fb33aed2baf))
+* **frontend:** use next font ([4e9204c](https://github.com/twreporter/www-public-monorepo/commit/4e9204cea62f5f0becad44d7457cda12f55c71b9))
+
+
+### Features
+
+* **frontend:** add grid layout for latest and category page ([e8a8481](https://github.com/twreporter/www-public-monorepo/commit/e8a8481613d47d5a0ac7d8c919d15de5ab96797f))
+* **frontend:** article card with bookmark button ([e08a5d8](https://github.com/twreporter/www-public-monorepo/commit/e08a5d8e832e3e9ed9cb7ea68f9bad8a532a12fc))
+
+
+
+
+
 # [0.1.0-beta.47](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.46...www-frontend@0.1.0-beta.47) (2026-05-18)
 
 

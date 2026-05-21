@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.11](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/tailwind-config@0.1.0-beta.10...@twreporter/tailwind-config@0.1.0-beta.11) (2026-05-21)
+
+
+### Bug Fixes
+
+* **tailwind-config:** import google font ([b77cda8](https://github.com/twreporter/www-public-monorepo/commit/b77cda888de4edb274364c12813650444e820bf9))
+
+
+### Features
+
+* **tailwind-config:** add font face for serif-tc ([ef73d95](https://github.com/twreporter/www-public-monorepo/commit/ef73d956619401033d3e32dd536542bb6fd8d0e7))
+
+
+
+
+
 # [0.1.0-beta.10](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/tailwind-config@0.1.0-beta.9...@twreporter/tailwind-config@0.1.0-beta.10) (2026-05-18)
 
 
