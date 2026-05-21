@@ -67,7 +67,7 @@ const BookmarkButton: FC<BookmarkButtonProps> = ({
   onBookmarkClick,
   releaseBranch = RELEASE_BRANCH.master,
 }) => (
-  <div className="flex justify-end">
+  <div className="flex justify-end ml-auto">
     <TextButton
       theme={TextButton.Theme.normal}
       style={TextButton.Style.light}
