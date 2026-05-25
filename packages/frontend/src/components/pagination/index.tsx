@@ -4,8 +4,6 @@ import clsx from 'clsx'
 import { PageUpIcon, PageDownIcon } from '@/components/pagination/icon'
 // hook
 import { useDesktopPages, useMobilePages } from './hook'
-// font
-import { robotoSlab } from '@/utils/font'
 
 type PaginationProps = {
   currentPage: number
@@ -28,7 +26,7 @@ const containerClass = (className?: string) =>
     'mx-auto text-center',
     'mt-[32px] mb-[64px] tablet:mt-[64px] tablet:mb-[120px]',
     'flex items-center justify-center',
-    robotoSlab.className,
+    'font-default',
     className
   )
 
