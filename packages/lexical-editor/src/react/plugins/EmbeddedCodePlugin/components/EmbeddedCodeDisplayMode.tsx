@@ -7,6 +7,12 @@ type ParsedEmbeddedCode = {
   scripts: HTMLScriptElement[]
 }
 
+type StorytellingEmbedData = {
+  namespace: string
+  pkg: string
+  uuid: string
+}
+
 function parseEmbeddedCode(embeddedCode: string): ParsedEmbeddedCode {
   const template = document.createElement('template')
   template.innerHTML = embeddedCode
@@ -28,12 +34,73 @@ function createExecutableScript(scriptElement: HTMLScriptElement): HTMLScriptEle
     executableScript.setAttribute(attribute.name, attribute.value)
   })
 
-  if (!scriptElement.src) {
+  if (scriptElement.src) {
+    executableScript.async = false
+  } else {
     executableScript.text = `${scriptElement.text}
 document.currentScript?.dispatchEvent(new Event('load'));`
   }
 
   return executableScript
+}
+
+function getMatchedString(
+  text: string,
+  pattern: RegExp
+): string | undefined {
+  const match = text.match(pattern)
+  return match?.[1]
+}
+
+function parseStorytellingEmbedData(
+  scriptText: string
+): StorytellingEmbedData | undefined {
+  const namespace = getMatchedString(
+    scriptText,
+    /(?:var|let|const)\s+namespace\s*=\s*['"]([^'"]+)['"]/
+  )
+  const pkg = getMatchedString(
+    scriptText,
+    /(?:var|let|const)\s+pkg\s*=\s*['"]([^'"]+)['"]/
+  )
+  const uuid = getMatchedString(scriptText, /["']uuid["']\s*:\s*["']([^"']+)["']/)
+
+  if (!namespace || !pkg || !uuid) {
+    return undefined
+  }
+
+  return {
+    namespace,
+    pkg,
+    uuid,
+  }
+}
+
+function removeStorytellingEmbedData({
+  namespace,
+  pkg,
+  uuid,
+}: StorytellingEmbedData): void {
+  const windowWithEmbeds = window as unknown as Record<string, unknown>
+  const namespaceValue = windowWithEmbeds[namespace]
+  if (!namespaceValue || typeof namespaceValue !== 'object') {
+    return
+  }
+
+  const packageData = (namespaceValue as Record<string, unknown>)[pkg]
+  if (!Array.isArray(packageData)) {
+    return
+  }
+
+  const filteredPackageData = packageData.filter((item) => {
+    if (!item || typeof item !== 'object') {
+      return true
+    }
+
+    return (item as { uuid?: unknown }).uuid !== uuid
+  })
+
+  ;(namespaceValue as Record<string, unknown>)[pkg] = filteredPackageData
 }
 
 type EmbeddedCodeDisplayModeProps = {
@@ -70,18 +137,32 @@ const EmbeddedCodeDisplayMode: FC<EmbeddedCodeDisplayModeProps> = ({
     const { htmlWithoutScripts, scripts } = parseEmbeddedCode(embeddedCode)
     contentElement.innerHTML = htmlWithoutScripts
     setIsScriptLoading(scripts.length > 0)
+    let isDisposed = false
+    const storytellingEmbedDataList = scripts
+      .map((scriptElement) => parseStorytellingEmbedData(scriptElement.text))
+      .filter(
+        (storytellingEmbedData): storytellingEmbedData is StorytellingEmbedData =>
+          Boolean(storytellingEmbedData)
+      )
 
     if (scripts.length > 0) {
       let finishedScriptsCount = 0
       const scriptsFragment = document.createDocumentFragment()
+
+      storytellingEmbedDataList.forEach(removeStorytellingEmbedData)
+
       const finishScript = (scriptElement: HTMLScriptElement) => {
+        scriptElement.removeEventListener('load', handleScriptLoad)
+        scriptElement.removeEventListener('error', handleScriptError)
+        if (isDisposed) {
+          return
+        }
+
         finishedScriptsCount += 1
         if (finishedScriptsCount === scripts.length) {
           contentElement.dataset.scriptsLoaded = 'true'
           setIsScriptLoading(false)
         }
-        scriptElement.removeEventListener('load', handleScriptLoad)
-        scriptElement.removeEventListener('error', handleScriptError)
       }
       const handleScriptLoad = (event: Event) => {
         finishScript(event.currentTarget as HTMLScriptElement)
@@ -108,10 +189,12 @@ const EmbeddedCodeDisplayMode: FC<EmbeddedCodeDisplayModeProps> = ({
     }
 
     return () => {
+      isDisposed = true
       contentElement.removeEventListener('load', handleLoad, true)
       contentElement.innerHTML = ''
       delete contentElement.dataset.loaded
       delete contentElement.dataset.scriptsLoaded
+      storytellingEmbedDataList.forEach(removeStorytellingEmbedData)
     }
   }, [embeddedCode])
 

@@ -63,10 +63,6 @@
   width: 100%;
 }
 
-.EmbeddedCode__content_body.is-loading .EmbeddedCode__html {
-  display: none;
-}
-
 .EmbeddedCode__loading {
   width: 100%;
 }
@@ -75,6 +71,10 @@
 .EmbeddedCode__html img,
 .EmbeddedCode__html video {
   max-width: 100%;
+}
+
+.EmbeddedCode__html [data-react-scrollable-image] img {
+  max-width: none;
 }
 
 .EmbeddedCode__snapshot {
