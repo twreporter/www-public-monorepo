@@ -55,7 +55,7 @@ function getMatchedString(
 function parseStorytellingEmbedData(
   scriptText: string
 ): StorytellingEmbedData | undefined {
-    const namespace = getMatchedString(
+  const namespace = getMatchedString(
     scriptText,
     /(?:var|let|const)\s+namespace\s*=\s*['"]([^'"]+)['"]/
   )
