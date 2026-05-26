@@ -37,25 +37,11 @@ function createExecutableScript(scriptElement: HTMLScriptElement): HTMLScriptEle
   if (scriptElement.src) {
     executableScript.async = false
   } else {
-    executableScript.text = `${normalizeInlineScriptText(scriptElement.text)}
+    executableScript.text = `${scriptElement.text}
 document.currentScript?.dispatchEvent(new Event('load'));`
   }
 
   return executableScript
-}
-
-function normalizeInlineScriptText(scriptText: string): string {
-  if (
-    !scriptText.includes('@story-telling-reporter') ||
-    !scriptText.includes('scrollable-three-model')
-  ) {
-    return scriptText
-  }
-
-  return scriptText.replace(
-    /(["']animationClip["']\s*:\s*)null/g,
-    '$1{"name":"","duration":0,"tracks":[]}'
-  )
 }
 
 function getMatchedString(
@@ -69,11 +55,14 @@ function getMatchedString(
 function parseStorytellingEmbedData(
   scriptText: string
 ): StorytellingEmbedData | undefined {
-  const namespace = getMatchedString(
+    const namespace = getMatchedString(
     scriptText,
-    /var\s+namespace\s*=\s*['"]([^'"]+)['"]/
+    /(?:var|let|const)\s+namespace\s*=\s*['"]([^'"]+)['"]/
   )
-  const pkg = getMatchedString(scriptText, /var\s+pkg\s*=\s*['"]([^'"]+)['"]/)
+  const pkg = getMatchedString(
+    scriptText,
+    /(?:var|let|const)\s+pkg\s*=\s*['"]([^'"]+)['"]/
+  )
   const uuid = getMatchedString(scriptText, /["']uuid["']\s*:\s*["']([^"']+)["']/)
 
   if (!namespace || !pkg || !uuid) {
@@ -149,16 +138,16 @@ const EmbeddedCodeDisplayMode: FC<EmbeddedCodeDisplayModeProps> = ({
     contentElement.innerHTML = htmlWithoutScripts
     setIsScriptLoading(scripts.length > 0)
     let isDisposed = false
+    const storytellingEmbedDataList = scripts
+      .map((scriptElement) => parseStorytellingEmbedData(scriptElement.text))
+      .filter(
+        (storytellingEmbedData): storytellingEmbedData is StorytellingEmbedData =>
+          Boolean(storytellingEmbedData)
+      )
 
     if (scripts.length > 0) {
       let finishedScriptsCount = 0
       const scriptsFragment = document.createDocumentFragment()
-      const storytellingEmbedDataList = scripts
-        .map((scriptElement) => parseStorytellingEmbedData(scriptElement.text))
-        .filter(
-          (storytellingEmbedData): storytellingEmbedData is StorytellingEmbedData =>
-            Boolean(storytellingEmbedData)
-        )
 
       storytellingEmbedDataList.forEach(removeStorytellingEmbedData)
 
@@ -205,13 +194,7 @@ const EmbeddedCodeDisplayMode: FC<EmbeddedCodeDisplayModeProps> = ({
       contentElement.innerHTML = ''
       delete contentElement.dataset.loaded
       delete contentElement.dataset.scriptsLoaded
-      scripts
-        .map((scriptElement) => parseStorytellingEmbedData(scriptElement.text))
-        .filter(
-          (storytellingEmbedData): storytellingEmbedData is StorytellingEmbedData =>
-            Boolean(storytellingEmbedData)
-        )
-        .forEach(removeStorytellingEmbedData)
+      storytellingEmbedDataList.forEach(removeStorytellingEmbedData)
     }
   }, [embeddedCode])
 
