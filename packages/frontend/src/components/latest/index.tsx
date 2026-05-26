@@ -33,7 +33,7 @@ type LatestTab = {
 type LatestProps = {
   tabs: LatestTab[]
 }
-
+// TODO: real bookmark action and state
 export const Latest: FC<LatestProps> = ({ tabs }) => {
   const searchParams = useSearchParams()
   const currentTagSlug = searchParams.get('tag')
@@ -139,6 +139,7 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
                     )}
                     image={article.image}
                     size={ArticleCard.Size.s}
+                    showIsBookmarked={true}
                   />
                 </Link>
               </div>
@@ -158,6 +159,7 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
                     )}
                     image={article.image}
                     size={ArticleCard.Size.l}
+                    showIsBookmarked={true}
                   />
                 </Link>
               </div>

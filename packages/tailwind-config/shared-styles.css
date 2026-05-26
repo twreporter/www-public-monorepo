@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Roboto+Slab:wght@100..900&display=swap');
 @import "tailwindcss";
 
 /* Self-hosted fonts */
@@ -28,14 +27,6 @@
   font-weight: 400;
   font-display: swap;
   src: url("https://www.twreporter.org/assets/font/TauhuOo/normal.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "source-han-serif-tc";
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("https://www.twreporter.org/assets/font/SourceHanSerifTC/SourceHanSerifTC-VF.woff2");
 }
 
 @theme {
@@ -109,9 +100,9 @@
   --color-pink-article-dark-pink: #ef7ede;
 
   /* Font families */
-  --font-title: var(--font-merriweather, "Merriweather"), "source-han-serif-tc", serif;
-  --font-default: var(--font-roboto-slab, "Roboto Slab"), "Noto Sans TC", "Tauhu Oo", sans-serif;
-  --font-default-fallback: var(--font-roboto-slab, "Roboto Slab"), sans-serif;
+  --font-title: "Merriweather", "source-han-serif-tc", serif;
+  --font-default: "Roboto Slab", "Noto Sans TC", "Tauhu Oo", sans-serif;
+  --font-default-fallback: "Roboto Slab", sans-serif;
   --font-serif: "source-han-serif-tc", serif;
 
   /* Font weights */
