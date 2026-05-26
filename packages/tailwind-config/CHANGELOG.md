@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.12](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/tailwind-config@0.1.0-beta.11...@twreporter/tailwind-config@0.1.0-beta.12) (2026-05-26)
+
+
+### Bug Fixes
+
+* **tailwind-config:** remove google fonts ([63057f2](https://github.com/twreporter/www-public-monorepo/commit/63057f25099c0141bfb483a210ad3ffa6530292d))
+
+
+
+
+
 # [0.1.0-beta.11](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/tailwind-config@0.1.0-beta.10...@twreporter/tailwind-config@0.1.0-beta.11) (2026-05-21)
 
 

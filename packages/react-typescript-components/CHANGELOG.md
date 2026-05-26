@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.30](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.29...@twreporter/react-typescript-components@0.1.0-beta.30) (2026-05-26)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** import adobe fonts for storybook ([a9df558](https://github.com/twreporter/www-public-monorepo/commit/a9df558acf499ea46715f788f11820be9147442f))
+* **react-typescript-components:** regex ([4f766f9](https://github.com/twreporter/www-public-monorepo/commit/4f766f98dbb49563faa4dc29d82a2056074b0ef0))
+
+
+
+
+
 # [0.1.0-beta.29](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.28...@twreporter/react-typescript-components@0.1.0-beta.29) (2026-05-21)
 
 **Note:** Version bump only for package @twreporter/react-typescript-components

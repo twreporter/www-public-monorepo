@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.49](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.48...www-frontend@0.1.0-beta.49) (2026-05-26)
+
+
+### Bug Fixes
+
+* **frontend:** import adobe fonts ([68f66e7](https://github.com/twreporter/www-public-monorepo/commit/68f66e7e3efb9b829d2dd184e3fc3856cfb32839))
+* **frontend:** use tailwind font ([a7cd2e1](https://github.com/twreporter/www-public-monorepo/commit/a7cd2e1878a231bc8bc633ab76cbe9ba73a81016))
+
+
+### Features
+
+* **frontend:** show bookmark icon for latest page ([30636bb](https://github.com/twreporter/www-public-monorepo/commit/30636bb8dc23bcedd10d41cba7b3e58ad13c84c2))
+* **frontend:** use head for script ([718ce23](https://github.com/twreporter/www-public-monorepo/commit/718ce23b68b3cd2326e65885d1a72e09daaedd4e))
+
+
+
+
+
 # [0.1.0-beta.48](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.47...www-frontend@0.1.0-beta.48) (2026-05-21)
 
 
