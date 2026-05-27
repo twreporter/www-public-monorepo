@@ -669,6 +669,7 @@ export default function ToolbarPlugin({
           onToggleFullscreen={() => setIsFullscreen((current) => !current)}
         />
         <button
+          disabled={!isFullscreen}
           onClick={togglePreview}
           className={`toolbar-item spaced`}
           type="button"
