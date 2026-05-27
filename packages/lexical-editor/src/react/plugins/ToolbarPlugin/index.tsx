@@ -300,6 +300,19 @@ export default function ToolbarPlugin({
     activeEditor.setEditable(!isEditable)
   }, [activeEditor, isEditable])
 
+  const leavePreviewMode = useCallback(() => {
+    if (!isEditable) {
+      activeEditor.setEditable(true)
+    }
+  }, [activeEditor, isEditable])
+
+  const onToggleFullscreen = useCallback(() => {
+    if (isFullscreen) {
+      leavePreviewMode()
+    }
+    setIsFullscreen((current) => !current)
+  }, [isFullscreen, leavePreviewMode, setIsFullscreen])
+
   useEffect(() => {
     return editor.registerCommand(
       SELECTION_CHANGE_COMMAND,
@@ -666,7 +679,7 @@ export default function ToolbarPlugin({
         <Divider />
         <Fullscreen
           isFullscreen={isFullscreen}
-          onToggleFullscreen={() => setIsFullscreen((current) => !current)}
+          onToggleFullscreen={onToggleFullscreen}
         />
         <button
           disabled={!isFullscreen}
