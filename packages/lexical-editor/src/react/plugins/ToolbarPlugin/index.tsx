@@ -296,15 +296,25 @@ export default function ToolbarPlugin({
     [activeEditor, $updateToolbarFromSelection]
   )
 
+  const setEditorEditable = useCallback(
+    (editable: boolean) => {
+      editor.setEditable(editable)
+      if (activeEditor !== editor) {
+        activeEditor.setEditable(editable)
+      }
+    },
+    [activeEditor, editor]
+  )
+
   const togglePreview = useCallback(() => {
-    activeEditor.setEditable(!isEditable)
-  }, [activeEditor, isEditable])
+    setEditorEditable(!isEditable)
+  }, [isEditable, setEditorEditable])
 
   const leavePreviewMode = useCallback(() => {
     if (!isEditable) {
-      activeEditor.setEditable(true)
+      setEditorEditable(true)
     }
-  }, [activeEditor, isEditable])
+  }, [isEditable, setEditorEditable])
 
   const onToggleFullscreen = useCallback(() => {
     if (isFullscreen) {
