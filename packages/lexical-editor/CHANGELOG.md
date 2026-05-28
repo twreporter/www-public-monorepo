@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.17](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.16...@twreporter/lexical-editor@0.2.0-beta.17) (2026-05-28)
+
+
+### Bug Fixes
+
+* **lexical-editor:** document fullscreen sticky overflow override ([cc98d9f](https://github.com/twreporter/www-public-monorepo/commit/cc98d9f82d18e11c2f366e52d0c8f38b0b11d9de))
+
+
+
+
+
 # [0.2.0-beta.16](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.15...@twreporter/lexical-editor@0.2.0-beta.16) (2026-05-26)
 
 
