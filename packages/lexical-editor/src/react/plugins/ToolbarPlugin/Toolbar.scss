@@ -23,6 +23,13 @@
       padding-top: 36px;
     }
 
+    /* In fullscreen mode, allow `position: sticky` inside embedded code to work.
+     * Editor.scss sets `overflow-x: hidden` on `.lexical-content-editable`, which
+     * per CSS spec forces `overflow-y` from `visible` to `auto`, making it an
+     * unintended scroll container. That breaks `position: sticky` because sticky
+     * elements find this container instead of `.editor-shell.fullscreen`.
+     * Overriding with `overflow-x: visible` restores the default so no intermediate
+     * scroll container is created, and sticky correctly targets the fullscreen shell. */
     .lexical-content-editable {
       overflow-x: visible;
     }
