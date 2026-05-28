@@ -88,10 +88,13 @@ export function hsv2rgb({ h, s, v }: HSV): RGB {
   const q = v * (1 - s * f)
   const t = v * (1 - s * (1 - f))
   const index = i % 6
+  const rChannel = [v, q, p, p, t, v][index] ?? v
+  const gChannel = [t, v, v, q, p, p][index] ?? t
+  const bChannel = [p, p, t, v, v, q][index] ?? p
 
-  const r = Math.round([v, q, p, p, t, v][index] * 255)
-  const g = Math.round([t, v, v, q, p, p][index] * 255)
-  const b = Math.round([p, p, t, v, v, q][index] * 255)
+  const r = Math.round(rChannel * 255)
+  const g = Math.round(gChannel * 255)
+  const b = Math.round(bChannel * 255)
 
   return { b, g, r }
 }

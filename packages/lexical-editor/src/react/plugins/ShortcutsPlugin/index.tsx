@@ -1,11 +1,3 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 import { TOGGLE_LINK_COMMAND } from '@lexical/link'
 import type { HeadingTagType } from '@lexical/rich-text'
 import {
@@ -25,11 +17,9 @@ import {
   clearFormatting,
   formatBulletList,
   formatCheckList,
-  formatCode,
   formatHeading,
   formatNumberedList,
   formatParagraph,
-  formatQuote,
 } from '../ToolbarPlugin/utils'
 import {
   isCapitalize,
@@ -37,16 +27,15 @@ import {
   isClearFormatting,
   isFormatBulletList,
   isFormatCheckList,
-  isFormatCode,
   isFormatHeading,
   isFormatNumberedList,
   isFormatParagraph,
-  isFormatQuote,
   isIndent,
   isInsertCodeBlock,
   isInsertEmbeddedCode,
   isInsertImageFromDb,
   isInsertLink,
+  isInsertQuote,
   isJustifyAlign,
   isLeftAlign,
   isLowercase,
@@ -63,6 +52,7 @@ import {
   OPEN_EMBEDDED_CODE_DIALOG_COMMAND,
   OPEN_IMAGE_FROM_DB_DIALOG_COMMAND,
 } from '../ToolbarPlugin/command'
+import { WWW_QUOTE_ADD_COMMAND } from '../QuotePlugin/command'
 
 export default function ShortcutsPlugin({
   editor,
@@ -78,6 +68,7 @@ export default function ShortcutsPlugin({
   const enableImage = features?.image !== false
   const enableEmbeddedCode = features?.embeddedCode !== false
   const enableImageFromDb = enableImage && imageConfig?.imageFromDb !== undefined
+  const enableWwwQuote = features?.quote !== false
 
   useEffect(() => {
     const keyboardShortcutsHandler = (payload: KeyboardEvent) => {
@@ -100,12 +91,6 @@ export default function ShortcutsPlugin({
       } else if (isFormatCheckList(event)) {
         event.preventDefault()
         formatCheckList(editor, toolbarState.blockType)
-      } else if (isFormatCode(event)) {
-        event.preventDefault()
-        formatCode(editor, toolbarState.blockType)
-      } else if (isFormatQuote(event)) {
-        event.preventDefault()
-        formatQuote(editor, toolbarState.blockType)
       } else if (isStrikeThrough(event)) {
         event.preventDefault()
         editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough')
@@ -160,6 +145,9 @@ export default function ShortcutsPlugin({
       } else if (enableImageFromDb && isInsertImageFromDb(event)) {
         event.preventDefault()
         editor.dispatchCommand(OPEN_IMAGE_FROM_DB_DIALOG_COMMAND, undefined)
+      } else if (enableWwwQuote && isInsertQuote(event)) {
+        event.preventDefault()
+        editor.dispatchCommand(WWW_QUOTE_ADD_COMMAND, undefined)
       }
 
       return false
@@ -176,6 +164,7 @@ export default function ShortcutsPlugin({
     toolbarState.blockType,
     enableEmbeddedCode,
     enableImageFromDb,
+    enableWwwQuote,
     setIsLinkEditMode,
   ])
 

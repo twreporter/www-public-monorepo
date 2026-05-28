@@ -84,6 +84,18 @@
     &.embedded-layout-fullscreen {
       background-image: url(../assets/icons/image-layout-default.svg);
     }
+
+    &.www-quote-layout-default {
+      background-image: url(../assets/icons/quote-layout-default.svg);
+    }
+
+    &.www-quote-layout-blockquote {
+      background-image: url(../assets/icons/quote-layout-blockquote.svg);
+    }
+  
+    &.www-quote-brush {
+      mask: url(../assets/icons/brush.svg);
+    }
   }
 
   .icon {
@@ -209,6 +221,10 @@
   &.embedded {
     background-image: url(../assets/icons/embedded.svg);
   }
+
+  &.quote {
+    background-image: url(../assets/icons/quote.svg);
+  }
 }
 
 .LexicalPluginDialog__overlay {
@@ -231,6 +247,14 @@
 
     &.embedded-layout-fullscreen {
       background-image: url(../assets/icons/image-layout-default.svg);
+    }
+
+    &.www-quote-layout-default {
+      background-image: url(../assets/icons/quote-layout-default.svg);
+    }
+
+    &.www-quote-layout-blockquote {
+      background-image: url(../assets/icons/quote-layout-blockquote.svg);
     }
   }
 }

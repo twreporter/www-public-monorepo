@@ -26,6 +26,7 @@ import {
 } from 'lexical'
 import { getSelectedNode } from '../../utils/getSelectedNode'
 import { $isAnnotationContentNode } from '../AnnotationPlugin/nodes/AnnotationContentNode'
+import { $iswwwQuoteContentNode } from '../QuotePlugin/nodes/wwwQuoteContentNode'
 
 const canIUse = (selection: BaseSelection | null): boolean => {
   if (!selection || !$isRangeSelection(selection)) {
@@ -34,9 +35,15 @@ const canIUse = (selection: BaseSelection | null): boolean => {
 
   const node = getSelectedNode(selection as RangeSelection)
   const parent = node.getParent()
+  const grandParent = parent?.getParent()
 
   if ($isAnnotationContentNode(node) || $isAnnotationContentNode(parent)) {
     alert('註解內不支援此功能')
+    return false
+  }
+
+  if ($iswwwQuoteContentNode(parent) || $iswwwQuoteContentNode(grandParent)) {
+    alert('Quote 內不支援此功能')
     return false
   }
 
@@ -119,37 +126,6 @@ export const formatNumberedList = (
       formatParagraph(editor)
     }
   })
-}
-
-export const formatQuote = (editor: LexicalEditor, blockType: string) => {
-  if (blockType !== 'quote') {
-    editor.update(() => {
-      const selection = $getSelection()
-      $setBlocksType(selection, () => $createQuoteNode())
-    })
-  }
-}
-
-export const formatCode = (editor: LexicalEditor, blockType: string) => {
-  if (blockType !== 'code') {
-    editor.update(() => {
-      let selection = $getSelection()
-
-      if (selection !== null) {
-        if (selection.isCollapsed()) {
-          $setBlocksType(selection, () => $createCodeNode())
-        } else {
-          const textContent = selection.getTextContent()
-          const codeNode = $createCodeNode()
-          selection.insertNodes([codeNode])
-          selection = $getSelection()
-          if ($isRangeSelection(selection)) {
-            selection.insertRawText(textContent)
-          }
-        }
-      }
-    })
-  }
 }
 
 export const clearFormatting = (editor: LexicalEditor) => {

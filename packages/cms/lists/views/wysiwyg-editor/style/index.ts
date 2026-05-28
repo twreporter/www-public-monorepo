@@ -93,13 +93,30 @@ export const StyleWrapper = styled.div`
   }
 
   .TwreporterTheme__paragraph {
-    ${normalWidthCSS}
-    ${paragraphTextCSS}
-    margin: ${mockup.margin.normal};
-    color: ${colorGrayscale.gray800};
+    &:not(.TwreporterTheme__wwwQuote .TwreporterTheme__paragraph) {
+      ${normalWidthCSS}
+      ${paragraphTextCSS}
+      margin: ${mockup.margin.normal};
+      color: ${colorGrayscale.gray800};
 
-    /* line break */
-    white-space: pre-wrap;
+      /* line break */
+      white-space: pre-wrap;
+    }
+  }
+
+  .TwreporterTheme__wwwQuote .TwreporterTheme__paragraph {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .TwreporterTheme__wwwQuote.default {
+    ${normalWidthCSS}
+    margin: ${mockup.margin.normal};
+  }
+
+  .twreporterTheme__wwwQuote.blockquote {
+    ${largeWidthCSS}
+    margin: ${mockup.margin.large};
   }
   
   .TwreporterTheme__link {

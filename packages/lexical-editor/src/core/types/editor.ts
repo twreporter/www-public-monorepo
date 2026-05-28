@@ -15,6 +15,7 @@ export type EditorPluginFlags = {
 export type EditorFeatureConfig = {
   image?: boolean
   embeddedCode?: boolean
+  quote?: boolean
 }
 
 export type ImageFromDbItem = {

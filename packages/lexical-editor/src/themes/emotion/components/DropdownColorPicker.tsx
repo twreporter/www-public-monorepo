@@ -28,7 +28,11 @@ export default function DropdownColorPicker({
       disabled={disabled}
       stopCloseOnClickSelf={stopCloseOnClickSelf}
     >
-      <ColorPicker color={color} type={type} onChange={onChange} />
+      <ColorPicker
+        color={color}
+        {...(type ? { type } : {})}
+        {...(onChange ? { onChange } : {})}
+      />
     </DropDown>
   )
 }

@@ -13,6 +13,11 @@ import {
 } from '../../react/plugins/AnnotationPlugin/nodes'
 import { EmbeddedCodeNode } from '../../react/plugins/EmbeddedCodePlugin/nodes'
 import { ImageNode } from '../../react/plugins/ImagePlugin/nodes'
+import {
+  wwwQuoteByNode,
+  wwwQuoteContentNode,
+  wwwQuoteNode,
+} from '../../react/plugins/QuotePlugin/nodes'
 
 export const basicEditorNodes: Array<Klass<LexicalNode>> = [
   HeadingNode,
@@ -27,4 +32,7 @@ export const basicEditorNodes: Array<Klass<LexicalNode>> = [
   AnnotationContentNode,
   EmbeddedCodeNode,
   ImageNode,
+  wwwQuoteNode,
+  wwwQuoteContentNode,
+  wwwQuoteByNode,
 ]

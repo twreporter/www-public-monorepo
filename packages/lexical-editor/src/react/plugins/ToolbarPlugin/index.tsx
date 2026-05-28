@@ -63,6 +63,7 @@ import {
 } from '../AnnotationPlugin/command'
 import { IMAGE_ADD_COMMAND } from '../ImagePlugin/command'
 import { EMBEDDED_CODE_ADD_COMMAND } from '../EmbeddedCodePlugin/command'
+import { WWW_QUOTE_ADD_COMMAND } from '../QuotePlugin/command'
 import {
   OPEN_EMBEDDED_CODE_DIALOG_COMMAND,
   OPEN_IMAGE_FROM_DB_DIALOG_COMMAND,
@@ -124,8 +125,9 @@ export default function ToolbarPlugin({
   const imageConfig = useImageConfig()
   const enableImage = features?.image !== false
   const enableEmbeddedCode = features?.embeddedCode !== false
+  const enableQuote = features?.quote !== false
   const enableImageFromDb = enableImage && imageConfig?.imageFromDb !== undefined
-  const showInsertDropdown = enableImage || enableEmbeddedCode
+  const showInsertDropdown = enableImage || enableEmbeddedCode || enableQuote
 
   // custom plugin state
   const [isOpenEmbeddedCodeDialog, setIsOpenEmbeddedCodeDialog] =
@@ -635,6 +637,25 @@ export default function ToolbarPlugin({
               buttonAriaLabel="insert some cool components"
               buttonIconClassName="icon plus"
             >
+              {enableQuote && (
+                <DropDownItem
+                  onClick={() => {
+                    activeEditor.dispatchCommand(
+                      WWW_QUOTE_ADD_COMMAND,
+                      undefined
+                    )
+                  }}
+                  className={`item wide`}
+                  title="Quote"
+                  aria-label="add quote"
+                >
+                  <div className="icon-text-container">
+                    <i className="icon quote" />
+                    <span className="text">Quote</span>
+                  </div>
+                  <span className="shortcut">{SHORTCUTS.QUOTE}</span>
+                </DropDownItem>
+              )}
               {enableEmbeddedCode && (
                 <DropDownItem
                   onClick={() => {

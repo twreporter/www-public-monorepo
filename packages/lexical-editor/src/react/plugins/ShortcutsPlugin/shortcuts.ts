@@ -107,20 +107,6 @@ export function isFormatCheckList(event: KeyboardEvent): boolean {
   )
 }
 
-export function isFormatCode(event: KeyboardEvent): boolean {
-  const { code, shiftKey, altKey, metaKey, ctrlKey } = event
-  return (
-    code === 'KeyC' && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey)
-  )
-}
-
-export function isFormatQuote(event: KeyboardEvent): boolean {
-  const { code, shiftKey, altKey, metaKey, ctrlKey } = event
-  return (
-    code === 'KeyQ' && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey)
-  )
-}
-
 export function isLowercase(event: KeyboardEvent): boolean {
   const { code, shiftKey, altKey, metaKey, ctrlKey } = event
   return (
@@ -269,5 +255,12 @@ export function isInsertImageFromDb(event: KeyboardEvent): boolean {
   const { code, shiftKey, altKey, metaKey, ctrlKey } = event
   return (
     code === 'KeyI' && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey)
+  )
+}
+
+export function isInsertQuote(event: KeyboardEvent): boolean {
+  const { code, shiftKey, altKey, metaKey, ctrlKey } = event
+  return (
+    code === 'KeyQ' && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey)
   )
 }

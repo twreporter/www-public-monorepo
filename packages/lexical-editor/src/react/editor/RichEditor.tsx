@@ -13,6 +13,7 @@ import AnnotationPlugin from '../plugins/AnnotationPlugin'
 import EmbeddedCodePlugin from '../plugins/EmbeddedCodePlugin'
 import ImagePlugin from '../plugins/ImagePlugin'
 import DragDropImagePlugin from '../plugins/ImagePlugin/DragDropImagePlugin'
+import QuotePlugin from '../plugins/QuotePlugin'
 // components
 import ContentEditable from './ContentEditable'
 // types
@@ -47,6 +48,7 @@ export default function Editor({
   // annotation, fullscreen, and preview. Config only gates advanced inserts.
   const enableImage = config.features?.image !== false
   const enableEmbeddedCode = config.features?.embeddedCode !== false
+  const enableQuote = config.features?.quote !== false
 
   // editor-fullscreen-scroller is for storytelling components
   return (
@@ -89,6 +91,7 @@ export default function Editor({
           />
         )}
         <AnnotationPlugin />
+        {enableQuote && <QuotePlugin />}
         {enableEmbeddedCode && <EmbeddedCodePlugin />}
         {enableImage && <ImagePlugin />}
         {enableImage && config.uploadImage && (
