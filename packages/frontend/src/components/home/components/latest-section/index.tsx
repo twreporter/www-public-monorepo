@@ -12,6 +12,7 @@ const MobileCardCount = 2
 const TabletCardCount = 4
 const DesktopCardCount = 6
 
+// TODO: replace with real data and remove fake data after API is ready
 export const LatestSection: FC = () => {
   return (
     <div
