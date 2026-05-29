@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.18](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.17...@twreporter/lexical-editor@0.2.0-beta.18) (2026-05-29)
+
+
+### Bug Fixes
+
+* **lexical-editor:** add class for storytelling ([7eaee81](https://github.com/twreporter/www-public-monorepo/commit/7eaee81ca7da8c1a417ade2f54cabc5167a3afe7))
+* **lexical-editor:** disable small screen preview ([c8e61b6](https://github.com/twreporter/www-public-monorepo/commit/c8e61b613d173d6b2605db87543797752112b5df))
+* **lexical-editor:** no fullscreen, no preview ([423c214](https://github.com/twreporter/www-public-monorepo/commit/423c214daf9928a59ca67d6d88edcf3ba6eb4baf))
+
+
+
+
+
 # [0.2.0-beta.17](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.16...@twreporter/lexical-editor@0.2.0-beta.17) (2026-05-28)
 
 
