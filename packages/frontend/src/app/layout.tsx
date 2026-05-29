@@ -1,8 +1,8 @@
-import clsx from 'clsx'
 import type { Metadata } from 'next'
 // components
 import Header from '@/components/header'
 import Footer from '@/components/footer'
+import MainContent from '@/components/main-content'
 
 // These styles apply to every route in the application
 import './globals.css'
@@ -38,16 +38,7 @@ export default function RootLayout({
       </head>
       <body className="tracking-[0.4px] leading-[1.4] antialiased">
         <Header />
-        <main
-          className={clsx(
-            'w-full h-full',
-            'flex justify-center',
-            'pt-[24px] tablet:pt-[32px] desktop:pt-[64px]',
-            'bg-gray-100'
-          )}
-        >
-          {children}
-        </main>
+        <MainContent>{children}</MainContent>
         <Footer />
       </body>
     </html>

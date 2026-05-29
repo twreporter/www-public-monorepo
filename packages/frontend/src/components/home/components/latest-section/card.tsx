@@ -1,0 +1,52 @@
+'use client'
+import type { FC } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+// react-typescript-components
+import { P3 } from '@twreporter/react-typescript-components/lib/text/paragraph'
+import { H6 } from '@twreporter/react-typescript-components/lib/text/heading'
+// constants
+import { INTERNAL_ROUTES } from '@/constants/routes'
+
+type LatestSectionCardProps = {
+  slug: string
+  categoryLabel?: string
+  title: string
+  image?: {
+    src: string
+    alt: string
+  }
+}
+
+export const LatestSectionCard: FC<LatestSectionCardProps> = ({
+  slug,
+  categoryLabel,
+  title,
+  image,
+}) => {
+  return (
+    <Link
+      className="flex flex-col gap-[12px] w-full transition-opacity duration-300 hover:opacity-70"
+      href={`${INTERNAL_ROUTES.article}/${slug}`}
+    >
+      <div className="w-full aspect-[3/2] relative">
+        {image ? (
+          <Image
+            fill={true}
+            src={image.src}
+            alt={image.alt}
+            className="object-cover"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-800" />
+        )}
+      </div>
+      <div className="flex flex-col w-full">
+        {categoryLabel ? (
+          <P3 className="text-supportive-heavy" text={categoryLabel} />
+        ) : null}
+        <H6 className="text-gray-800" type={H6.Type.article} text={title} />
+      </div>
+    </Link>
+  )
+}
