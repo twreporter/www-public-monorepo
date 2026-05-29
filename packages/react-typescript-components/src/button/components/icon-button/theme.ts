@@ -19,7 +19,10 @@ export const getPrimaryIconButtonTheme: ThemeFunc = (
   }
   return [
     // default theme
-    'text-gray-600 hover:text-gray-800 [&>svg]:bg-gray-600 desktop:[&>svg]:hover:bg-gray-800',
+    {
+      'text-gray-600 hover:text-gray-800 [&>svg]:bg-gray-600 desktop:[&>svg]:hover:bg-gray-800':
+        theme === THEME.normal && !active,
+    },
     {
       'text-brand-heavy hover:text-brand-heavy [&>svg]:bg-brand-heavy desktop:[&>svg]:hover:bg-brand-heavy':
         theme === THEME.normal && active,
@@ -51,7 +54,10 @@ export const getSecondaryIconButtonTheme: ThemeFunc = (
   }
   return [
     // default theme
-    'text-gray-400 hover:text-gray-600 [&>svg]:bg-gray-400 [&>svg]:hover:bg-gray-600',
+    {
+      'text-gray-400 hover:text-gray-600 [&>svg]:bg-gray-400 [&>svg]:hover:bg-gray-600':
+        theme === THEME.normal && !active,
+    },
     {
       'text-brand-heavy hover:text-brand-heavy [&>svg]:bg-brand-heavy [&>svg]:hover:bg-brand-heavy':
         theme === THEME.normal && active,
