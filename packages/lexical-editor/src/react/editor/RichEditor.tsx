@@ -48,8 +48,9 @@ export default function Editor({
   const enableImage = config.features?.image !== false
   const enableEmbeddedCode = config.features?.embeddedCode !== false
 
+  // editor-fullscreen-scroller is for storytelling components
   return (
-    <div className={`editor-shell ${isFullscreen ? 'fullscreen' : ''}`}>
+    <div className={`editor-shell ${isFullscreen ? 'fullscreen editor-fullscreen-scroller' : ''}`}>
       {showToolbar ? (
         <ToolbarPlugin
           editor={editor}

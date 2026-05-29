@@ -296,9 +296,32 @@ export default function ToolbarPlugin({
     [activeEditor, $updateToolbarFromSelection]
   )
 
+  const setEditorEditable = useCallback(
+    (editable: boolean) => {
+      editor.setEditable(editable)
+      if (activeEditor !== editor) {
+        activeEditor.setEditable(editable)
+      }
+    },
+    [activeEditor, editor]
+  )
+
   const togglePreview = useCallback(() => {
-    activeEditor.setEditable(!isEditable)
-  }, [activeEditor, isEditable])
+    setEditorEditable(!isEditable)
+  }, [isEditable, setEditorEditable])
+
+  const leavePreviewMode = useCallback(() => {
+    if (!isEditable) {
+      setEditorEditable(true)
+    }
+  }, [isEditable, setEditorEditable])
+
+  const onToggleFullscreen = useCallback(() => {
+    if (isFullscreen) {
+      leavePreviewMode()
+    }
+    setIsFullscreen((current) => !current)
+  }, [isFullscreen, leavePreviewMode, setIsFullscreen])
 
   useEffect(() => {
     return editor.registerCommand(
@@ -666,9 +689,10 @@ export default function ToolbarPlugin({
         <Divider />
         <Fullscreen
           isFullscreen={isFullscreen}
-          onToggleFullscreen={() => setIsFullscreen((current) => !current)}
+          onToggleFullscreen={onToggleFullscreen}
         />
         <button
+          disabled={!isFullscreen}
           onClick={togglePreview}
           className={`toolbar-item spaced`}
           type="button"
