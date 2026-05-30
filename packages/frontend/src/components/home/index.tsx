@@ -5,6 +5,9 @@ import { rwdGridOuterClass, rwdGridContainerClass } from '@/styles/layout'
 // components
 import { LatestSection } from '@/components/home/components/latest-section'
 import { EditorPicksSection } from '@/components/home/components/editor-picks-section'
+import { LatestTopicSection } from '@/components/home/components/latest-topic-section'
+// fake data
+import { fakeLatestTopicSectionData } from '@/components/home/fake-data'
 
 export const Home = () => {
   return (
@@ -12,6 +15,7 @@ export const Home = () => {
       <div className={clsx(rwdGridContainerClass)}>
         <LatestSection />
         <EditorPicksSection />
+        <LatestTopicSection {...fakeLatestTopicSectionData} />
       </div>
     </div>
   )
