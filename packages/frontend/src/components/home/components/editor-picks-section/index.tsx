@@ -24,11 +24,12 @@ import { Arrow } from '@twreporter/react-typescript-components/lib/icons'
 import { INTERNAL_ROUTES } from '@/constants/routes'
 // context
 import { BaseContext } from '@/contexts'
-// fake data
-import { fakeEditorPickSectionData } from '@/components/home/fake-data'
+// types
+import type { HomePageArticle } from '@/types/home'
 
-// TODO: replace with real data and remove fake data after API is ready
-export const EditorPicksSection: FC = () => {
+export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
+  articles,
+}) => {
   const [activeIndex, setActiveIndex] = useState(1)
   const [isVisible, setIsVisible] = useState(true)
   const { releaseBranch } = useContext(BaseContext)
@@ -41,12 +42,12 @@ export const EditorPicksSection: FC = () => {
   }, [])
   const handlePrevClick = () => {
     changeIndex((prevIndex) =>
-      prevIndex === 0 ? fakeEditorPickSectionData.length - 1 : prevIndex - 1
+      prevIndex === 0 ? articles.length - 1 : prevIndex - 1
     )
   }
   const handleNextClick = () => {
     changeIndex((prevIndex) =>
-      prevIndex === fakeEditorPickSectionData.length - 1 ? 0 : prevIndex + 1
+      prevIndex === articles.length - 1 ? 0 : prevIndex + 1
     )
   }
   return (
@@ -73,13 +74,13 @@ export const EditorPicksSection: FC = () => {
           spaceBetween={24}
           className="w-full"
         >
-          {fakeEditorPickSectionData.map((item) => (
+          {articles.map((item) => (
             <SwiperSlide key={item.slug} className="max-w-[280px]">
               <EditorPickCard
                 slug={item.slug}
                 categoryLabel={item.categoryLabel}
                 title={item.title}
-                description={item.description}
+                description={item.ogDescription}
                 image={item.image}
               />
             </SwiperSlide>
@@ -98,12 +99,12 @@ export const EditorPicksSection: FC = () => {
             >
               <P3
                 className="text-supportive-heavy"
-                text={fakeEditorPickSectionData[activeIndex - 1].categoryLabel}
+                text={articles[activeIndex - 1].categoryLabel}
               />
               <H6
                 className="text-gray-800"
                 type={H6.Type.article}
-                text={fakeEditorPickSectionData[activeIndex - 1].title}
+                text={articles[activeIndex - 1].title}
               />
             </button>
           ) : null}
@@ -116,7 +117,7 @@ export const EditorPicksSection: FC = () => {
             'transition-opacity duration-[300ms]',
             'hover:opacity-70 has-[button:hover]:opacity-100'
           )}
-          href={`${INTERNAL_ROUTES.article}/${fakeEditorPickSectionData[activeIndex].slug}`}
+          href={`${INTERNAL_ROUTES.article}/${articles[activeIndex].slug}`}
         >
           <div
             className={clsx(
@@ -128,17 +129,17 @@ export const EditorPicksSection: FC = () => {
             <div className="col-start-2 col-end-8">
               <P3
                 className="text-supportive-heavy text-center"
-                text={fakeEditorPickSectionData[activeIndex].categoryLabel}
+                text={articles[activeIndex].categoryLabel}
               />
               <H2
                 className="text-gray-800 line-clamp-2"
                 type={H2.Type.article}
-                text={fakeEditorPickSectionData[activeIndex].title}
+                text={articles[activeIndex].title}
               />
             </div>
             <P1
               className="col-span-full text-gray-800 line-clamp-2"
-              text={fakeEditorPickSectionData[activeIndex].description}
+              text={articles[activeIndex].ogDescription}
             />
           </div>
           <div className="col-span-full row-start-2 aspect-[3/2] relative">
@@ -149,11 +150,11 @@ export const EditorPicksSection: FC = () => {
                 isVisible ? 'opacity-100' : 'opacity-0'
               )}
             >
-              {fakeEditorPickSectionData[activeIndex].image ? (
+              {articles[activeIndex].image ? (
                 <Image
                   fill={true}
-                  src={fakeEditorPickSectionData[activeIndex].image.src}
-                  alt={fakeEditorPickSectionData[activeIndex].image.alt}
+                  src={articles[activeIndex].image.src}
+                  alt={articles[activeIndex].image.alt}
                   className="object-cover"
                 />
               ) : (
@@ -178,7 +179,7 @@ export const EditorPicksSection: FC = () => {
                 }
               />
             ) : null}
-            {activeIndex < fakeEditorPickSectionData.length - 1 ? (
+            {activeIndex < articles.length - 1 ? (
               <IconButton
                 // tablet grid gap is 24px, desktop grid gap is 32px, so the button needs to be offset by half of that from the edge of the image
                 className="absolute top-1/2 right-0 translate-x-[calc(50%+12px)] desktop:translate-x-[calc(50%+16px)] -translate-y-1/2"
@@ -199,7 +200,7 @@ export const EditorPicksSection: FC = () => {
           </div>
         </Link>
         <div className="col-start-11 col-end-13 row-start-2 flex items-center">
-          {activeIndex < fakeEditorPickSectionData.length - 1 ? (
+          {activeIndex < articles.length - 1 ? (
             <button
               className="flex flex-col text-center hover:cursor-pointer"
               onClick={handleNextClick}
@@ -207,12 +208,12 @@ export const EditorPicksSection: FC = () => {
             >
               <P3
                 className="text-supportive-heavy"
-                text={fakeEditorPickSectionData[activeIndex + 1].categoryLabel}
+                text={articles[activeIndex + 1].categoryLabel}
               />
               <H6
                 className="text-gray-800"
                 type={H6.Type.article}
-                text={fakeEditorPickSectionData[activeIndex + 1].title}
+                text={articles[activeIndex + 1].title}
               />
             </button>
           ) : null}

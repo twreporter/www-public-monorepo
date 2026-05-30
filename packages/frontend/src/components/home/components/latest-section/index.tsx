@@ -5,15 +5,16 @@ import clsx from 'clsx'
 import { LatestSectionCard } from '@/components/home/components/latest-section/card'
 // styles
 import { rwdGridChildFullClass, rwdGridColGapClass } from '@/styles/layout'
-// fake data
-import { fakeLatestSectionData } from '@/components/home/fake-data'
+// types
+import type { HomePageLatestSectionArticle } from '@/types/home'
 
 const MobileCardCount = 2
 const TabletCardCount = 4
 const DesktopCardCount = 6
 
-// TODO: replace with real data and remove fake data after API is ready
-export const LatestSection: FC = () => {
+export const LatestSection: FC<{
+  articles: HomePageLatestSectionArticle[]
+}> = ({ articles }) => {
   return (
     <div
       className={clsx(
@@ -24,7 +25,7 @@ export const LatestSection: FC = () => {
         ...rwdGridColGapClass
       )}
     >
-      {fakeLatestSectionData.map((data, index) => (
+      {articles.map((data, index) => (
         <div
           key={data.slug}
           className={clsx(
