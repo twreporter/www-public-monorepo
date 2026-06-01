@@ -17,9 +17,9 @@ export const getFilledPillButtonTheme = (
               hoverColor: 'hover:text-gray-white',
               hoverBgColor: 'hover:bg-gray-400',
               borderColor: 'border-gray-400',
-              svgBgColor: '[&>svg]:bg-gray-white',
+              svgBgColor: '[&_svg]:bg-gray-white',
               borderHoverColor: 'hover:border-gray-400',
-              svgHoverBgColor: 'hover:[&>svg]:bg-gray-white',
+              svgHoverBgColor: 'hover:[&_svg]:bg-gray-white',
             }
           default:
             return {
@@ -28,9 +28,9 @@ export const getFilledPillButtonTheme = (
               hoverColor: 'hover:text-gray-700',
               hoverBgColor: 'hover:bg-gray-500',
               borderColor: 'border-gray-500',
-              svgBgColor: '[&>svg]:bg-gray-700',
+              svgBgColor: '[&_svg]:bg-gray-700',
               borderHoverColor: 'hover:border-gray-500',
-              svgHoverBgColor: 'hover:[&>svg]:bg-gray-500',
+              svgHoverBgColor: 'hover:[&_svg]:bg-gray-500',
             }
         }
       case THEME.photography:
@@ -40,9 +40,9 @@ export const getFilledPillButtonTheme = (
           hoverColor: 'hover:text-gray-700',
           hoverBgColor: 'hover:bg-gray-500',
           borderColor: 'border-gray-500',
-          svgBgColor: '[&>svg]:bg-gray-700',
+          svgBgColor: '[&_svg]:bg-gray-700',
           borderHoverColor: 'hover:border-gray-500',
-          svgHoverBgColor: 'hover:[&>svg]:bg-gray-700',
+          svgHoverBgColor: 'hover:[&_svg]:bg-gray-700',
         }
       default:
         return {
@@ -51,9 +51,9 @@ export const getFilledPillButtonTheme = (
           hoverColor: 'hover:text-gray-white',
           hoverBgColor: 'hover:bg-gray-400',
           borderColor: 'border-gray-400',
-          svgBgColor: '[&>svg]:bg-gray-white',
+          svgBgColor: '[&_svg]:bg-gray-white',
           borderHoverColor: 'hover:border-gray-400',
-          svgHoverBgColor: 'hover:[&>svg]:bg-gray-white',
+          svgHoverBgColor: 'hover:[&_svg]:bg-gray-white',
         }
     }
   }
@@ -67,9 +67,9 @@ export const getFilledPillButtonTheme = (
             hoverColor: 'hover:text-photo-dark',
             hoverBgColor: 'hover:bg-gray-200',
             borderColor: 'border-gray-white',
-            svgBgColor: '[&>svg]:bg-photo-dark',
+            svgBgColor: '[&_svg]:bg-photo-dark',
             borderHoverColor: 'hover:border-gray-200',
-            svgHoverBgColor: 'hover:[&>svg]:bg-photo-dark',
+            svgHoverBgColor: 'hover:[&_svg]:bg-photo-dark',
           }
         case STYLE.light:
           return {
@@ -78,9 +78,9 @@ export const getFilledPillButtonTheme = (
             hoverColor: 'hover:text-photo-dark',
             hoverBgColor: 'hover:bg-gray-400',
             borderColor: 'border-gray-300',
-            svgBgColor: '[&>svg]:bg-photo-dark',
+            svgBgColor: '[&_svg]:bg-photo-dark',
             borderHoverColor: 'hover:border-gray-400',
-            svgHoverBgColor: 'hover:[&>svg]:bg-photo-dark',
+            svgHoverBgColor: 'hover:[&_svg]:bg-photo-dark',
           }
         default:
           return {
@@ -89,9 +89,9 @@ export const getFilledPillButtonTheme = (
             hoverColor: 'hover:text-photo-dark',
             hoverBgColor: 'hover:bg-supportive-pastel',
             borderColor: 'border-supportive-faded',
-            svgBgColor: '[&>svg]:bg-photo-dark',
+            svgBgColor: '[&_svg]:bg-photo-dark',
             borderHoverColor: 'hover:border-supportive-pastel',
-            svgHoverBgColor: 'hover:[&>svg]:bg-photo-dark',
+            svgHoverBgColor: 'hover:[&_svg]:bg-photo-dark',
           }
       }
     case THEME.transparent:
@@ -103,9 +103,9 @@ export const getFilledPillButtonTheme = (
             hoverColor: 'hover:text-gray-800',
             hoverBgColor: 'hover:bg-gray-400',
             borderColor: 'border-gray-300',
-            svgBgColor: '[&>svg]:bg-gray-800',
+            svgBgColor: '[&_svg]:bg-gray-800',
             borderHoverColor: 'hover:border-gray-400',
-            svgHoverBgColor: 'hover:[&>svg]:bg-gray-800',
+            svgHoverBgColor: 'hover:[&_svg]:bg-gray-800',
           }
         case STYLE.light:
           return {
@@ -114,9 +114,9 @@ export const getFilledPillButtonTheme = (
             hoverColor: 'hover:text-gray-white',
             hoverBgColor: 'hover:bg-gray-black',
             borderColor: 'border-gray-800',
-            svgBgColor: '[&>svg]:bg-gray-white',
+            svgBgColor: '[&_svg]:bg-gray-white',
             borderHoverColor: 'hover:border-gray-black',
-            svgHoverBgColor: 'hover:[&>svg]:bg-gray-white',
+            svgHoverBgColor: 'hover:[&_svg]:bg-gray-white',
           }
         default:
           return {
@@ -125,9 +125,9 @@ export const getFilledPillButtonTheme = (
             hoverColor: 'hover:text-gray-800',
             hoverBgColor: 'hover:bg-gray-200',
             borderColor: 'border-gray-white',
-            svgBgColor: '[&>svg]:bg-gray-800',
+            svgBgColor: '[&_svg]:bg-gray-800',
             borderHoverColor: 'hover:border-gray-200',
-            svgHoverBgColor: 'hover:[&>svg]:bg-gray-800',
+            svgHoverBgColor: 'hover:[&_svg]:bg-gray-800',
           }
       }
     default:
@@ -139,9 +139,9 @@ export const getFilledPillButtonTheme = (
             hoverColor: 'hover:text-gray-white',
             hoverBgColor: 'hover:bg-gray-black',
             borderColor: 'border-gray-800',
-            svgBgColor: '[&>svg]:bg-gray-white',
+            svgBgColor: '[&_svg]:bg-gray-white',
             borderHoverColor: 'hover:border-gray-black',
-            svgHoverBgColor: 'hover:[&>svg]:bg-gray-white',
+            svgHoverBgColor: 'hover:[&_svg]:bg-gray-white',
           }
         case STYLE.light:
           return {
@@ -150,9 +150,9 @@ export const getFilledPillButtonTheme = (
             hoverColor: 'hover:text-gray-800',
             hoverBgColor: 'hover:bg-gray-200',
             borderColor: 'border-gray-white',
-            svgBgColor: '[&>svg]:bg-gray-800',
+            svgBgColor: '[&_svg]:bg-gray-800',
             borderHoverColor: 'hover:border-gray-200',
-            svgHoverBgColor: 'hover:[&>svg]:bg-gray-800',
+            svgHoverBgColor: 'hover:[&_svg]:bg-gray-800',
           }
         default:
           return {
@@ -161,9 +161,9 @@ export const getFilledPillButtonTheme = (
             hoverColor: 'hover:text-gray-white',
             hoverBgColor: 'hover:bg-brand-dark',
             borderColor: 'border-brand-heavy',
-            svgBgColor: '[&>svg]:bg-gray-white',
+            svgBgColor: '[&_svg]:bg-gray-white',
             borderHoverColor: 'hover:border-brand-dark',
-            svgHoverBgColor: 'hover:[&>svg]:bg-gray-white',
+            svgHoverBgColor: 'hover:[&_svg]:bg-gray-white',
           }
       }
   }
@@ -185,9 +185,9 @@ export const getOutlinePillButtonTheme = (
               hoverColor: 'hover:text-gray-400',
               hoverBgColor: 'hover:bg-gray-400',
               borderColor: 'border-gray-400',
-              svgBgColor: '[&>svg]:bg-gray-400',
+              svgBgColor: '[&_svg]:bg-gray-400',
               borderHoverColor: 'hover:border-gray-400',
-              svgHoverBgColor: 'hover:[&>svg]:bg-gray-400',
+              svgHoverBgColor: 'hover:[&_svg]:bg-gray-400',
             }
           default:
             return {
@@ -196,9 +196,9 @@ export const getOutlinePillButtonTheme = (
               hoverColor: 'hover:text-gray-500',
               hoverBgColor: 'hover:bg-gray-500',
               borderColor: 'border-gray-500',
-              svgBgColor: '[&>svg]:bg-gray-500',
+              svgBgColor: '[&_svg]:bg-gray-500',
               borderHoverColor: 'hover:border-gray-500',
-              svgHoverBgColor: 'hover:[&>svg]:bg-gray-500',
+              svgHoverBgColor: 'hover:[&_svg]:bg-gray-500',
             }
         }
       case THEME.photography:
@@ -208,9 +208,9 @@ export const getOutlinePillButtonTheme = (
           hoverColor: 'hover:text-gray-500',
           hoverBgColor: 'hover:bg-gray-500',
           borderColor: 'border-gray-500',
-          svgBgColor: '[&>svg]:bg-gray-500',
+          svgBgColor: '[&_svg]:bg-gray-500',
           borderHoverColor: 'hover:border-gray-500',
-          svgHoverBgColor: 'hover:[&>svg]:bg-gray-500',
+          svgHoverBgColor: 'hover:[&_svg]:bg-gray-500',
         }
       default:
         return {
@@ -219,9 +219,9 @@ export const getOutlinePillButtonTheme = (
           hoverColor: 'hover:text-gray-400',
           hoverBgColor: 'hover:bg-gray-400',
           borderColor: 'border-gray-400',
-          svgBgColor: '[&>svg]:bg-gray-400',
+          svgBgColor: '[&_svg]:bg-gray-400',
           borderHoverColor: 'hover:border-gray-400',
-          svgHoverBgColor: 'hover:[&>svg]:bg-gray-400',
+          svgHoverBgColor: 'hover:[&_svg]:bg-gray-400',
         }
     }
   }
@@ -236,9 +236,9 @@ export const getOutlinePillButtonTheme = (
             hoverColor: 'hover:text-gray-200',
             hoverBgColor: 'hover:bg-gray-200',
             borderColor: 'border-gray-white',
-            svgBgColor: '[&>svg]:bg-gray-white',
+            svgBgColor: '[&_svg]:bg-gray-white',
             borderHoverColor: 'hover:border-gray-200',
-            svgHoverBgColor: 'hover:[&>svg]:bg-gray-200',
+            svgHoverBgColor: 'hover:[&_svg]:bg-gray-200',
           }
         case STYLE.light:
           return {
@@ -247,9 +247,9 @@ export const getOutlinePillButtonTheme = (
             hoverColor: 'hover:text-gray-400',
             hoverBgColor: 'hover:bg-gray-400',
             borderColor: 'border-gray-300',
-            svgBgColor: '[&>svg]:bg-gray-300',
+            svgBgColor: '[&_svg]:bg-gray-300',
             borderHoverColor: 'hover:border-gray-400',
-            svgHoverBgColor: 'hover:[&>svg]:bg-gray-400',
+            svgHoverBgColor: 'hover:[&_svg]:bg-gray-400',
           }
         default:
           return {
@@ -258,9 +258,9 @@ export const getOutlinePillButtonTheme = (
             hoverColor: 'hover:text-supportive-pastel',
             hoverBgColor: 'hover:bg-supportive-pastel',
             borderColor: 'border-supportive-faded',
-            svgBgColor: '[&>svg]:bg-supportive-faded',
+            svgBgColor: '[&_svg]:bg-supportive-faded',
             borderHoverColor: 'hover:border-supportive-pastel',
-            svgHoverBgColor: 'hover:[&>svg]:bg-supportive-pastel',
+            svgHoverBgColor: 'hover:[&_svg]:bg-supportive-pastel',
           }
       }
     case THEME.transparent:
@@ -272,9 +272,9 @@ export const getOutlinePillButtonTheme = (
             hoverColor: 'hover:text-gray-400',
             hoverBgColor: 'hover:bg-gray-400',
             borderColor: 'border-gray-300',
-            svgBgColor: '[&>svg]:bg-gray-300',
+            svgBgColor: '[&_svg]:bg-gray-300',
             borderHoverColor: 'hover:border-gray-400',
-            svgHoverBgColor: 'hover:[&>svg]:bg-gray-400',
+            svgHoverBgColor: 'hover:[&_svg]:bg-gray-400',
           }
         case STYLE.light:
           return {
@@ -283,9 +283,9 @@ export const getOutlinePillButtonTheme = (
             hoverColor: 'hover:text-gray-black',
             hoverBgColor: 'hover:bg-gray-black',
             borderColor: 'border-gray-800',
-            svgBgColor: '[&>svg]:bg-gray-800',
+            svgBgColor: '[&_svg]:bg-gray-800',
             borderHoverColor: 'hover:border-gray-black',
-            svgHoverBgColor: 'hover:[&>svg]:bg-gray-black',
+            svgHoverBgColor: 'hover:[&_svg]:bg-gray-black',
           }
         default:
           return {
@@ -294,9 +294,9 @@ export const getOutlinePillButtonTheme = (
             hoverColor: 'hover:text-gray-200',
             hoverBgColor: 'hover:bg-gray-200',
             borderColor: 'border-gray-white',
-            svgBgColor: '[&>svg]:bg-gray-white',
+            svgBgColor: '[&_svg]:bg-gray-white',
             borderHoverColor: 'hover:border-gray-200',
-            svgHoverBgColor: 'hover:[&>svg]:bg-gray-200',
+            svgHoverBgColor: 'hover:[&_svg]:bg-gray-200',
           }
       }
     default:
@@ -308,9 +308,9 @@ export const getOutlinePillButtonTheme = (
             hoverColor: 'hover:text-gray-black',
             hoverBgColor: 'hover:bg-gray-black',
             borderColor: 'border-gray-800',
-            svgBgColor: '[&>svg]:bg-gray-800',
+            svgBgColor: '[&_svg]:bg-gray-800',
             borderHoverColor: 'hover:border-gray-black',
-            svgHoverBgColor: 'hover:[&>svg]:bg-gray-black',
+            svgHoverBgColor: 'hover:[&_svg]:bg-gray-black',
           }
         case STYLE.light:
           return {
@@ -319,9 +319,9 @@ export const getOutlinePillButtonTheme = (
             hoverColor: 'hover:text-gray-800',
             hoverBgColor: 'hover:bg-gray-200',
             borderColor: 'border-gray-white',
-            svgBgColor: '[&>svg]:bg-gray-800',
+            svgBgColor: '[&_svg]:bg-gray-800',
             borderHoverColor: 'hover:border-gray-200',
-            svgHoverBgColor: 'hover:[&>svg]:bg-gray-800',
+            svgHoverBgColor: 'hover:[&_svg]:bg-gray-800',
           }
         default:
           return {
@@ -330,9 +330,9 @@ export const getOutlinePillButtonTheme = (
             hoverColor: 'hover:text-brand-dark',
             hoverBgColor: 'hover:bg-brand-dark',
             borderColor: 'border-brand-heavy',
-            svgBgColor: '[&>svg]:bg-brand-heavy',
+            svgBgColor: '[&_svg]:bg-brand-heavy',
             borderHoverColor: 'hover:border-brand-dark',
-            svgHoverBgColor: 'hover:[&>svg]:bg-brand-dark',
+            svgHoverBgColor: 'hover:[&_svg]:bg-brand-dark',
           }
       }
   }

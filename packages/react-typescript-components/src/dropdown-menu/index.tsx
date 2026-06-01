@@ -33,11 +33,11 @@ const DropdownMenu: FC<DropdownMenuProps> = ({
       <div
         className={clsx(
           'flex items-center justify-between cursor-pointer py-[8px] px-[32px]',
-          '[&>svg]:transition-all [&>svg]:duration-300',
+          '[&_svg]:transition-all [&_svg]:duration-300',
           svgBgColor,
           color,
           hoverBgColor,
-          isActive ? `[&>svg]:-rotate-[180deg]` : '[&>svg]:rotate-[0deg]',
+          isActive ? `[&_svg]:-rotate-[180deg]` : '[&_svg]:rotate-[0deg]',
           isActive ? activeBgColor : ''
         )}
       >

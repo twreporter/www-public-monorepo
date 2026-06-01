@@ -26,6 +26,7 @@ type PillButtonProps = {
   disabled?: boolean
   loading?: boolean
   className?: string
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 const PillButton: FC<PillButtonProps> & {
   Theme: typeof THEME
@@ -43,6 +44,7 @@ const PillButton: FC<PillButtonProps> & {
   disabled = false,
   loading = false,
   className = '',
+  onClick = () => {},
 }) => {
   const themeFunc =
     type === TYPE.primary ? getFilledPillButtonTheme : getOutlinePillButtonTheme
@@ -60,8 +62,8 @@ const PillButton: FC<PillButtonProps> & {
   const padding = size === SIZE.s ? 'py-[4px] px-[12px]' : 'py-[8px] px-[16px]'
   const iconSize =
     size === SIZE.s
-      ? '[&>svg]:h-[18px] [&>svg]:w-[18px]'
-      : '[&>svg]:h-[24px] [&>svg]:w-[24px]'
+      ? '[&_svg]:h-[18px] [&_svg]:w-[18px]'
+      : '[&_svg]:h-[24px] [&_svg]:w-[24px]'
 
   const TextJSX = useMemo(
     () =>
@@ -73,8 +75,19 @@ const PillButton: FC<PillButtonProps> & {
     [size, text]
   )
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (disabled) {
+      return
+    }
+    e.stopPropagation()
+    onClick(e)
+  }
+
   return (
-    <div
+    <button
+      type="button"
+      onClick={handleClick}
+      aria-label={text}
       className={clsx(
         'w-fit flex items-center rounded-[40px] border-solid border-[1.5px]',
         borderColor,
@@ -125,7 +138,7 @@ const PillButton: FC<PillButtonProps> & {
           )}
         />
       </div>
-    </div>
+    </button>
   )
 }
 PillButton.Theme = THEME

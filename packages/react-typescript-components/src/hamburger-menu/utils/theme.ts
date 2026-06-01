@@ -33,15 +33,15 @@ export const selectHamburgerItemTheme = (theme: Theme, active = false) => {
       return {
         color: active ? 'text-supportive-pastel' : 'text-gray-white',
         svgBgColor: active
-          ? '[&>svg]:bg-supportive-pastel'
-          : '[&>svg]:bg-gray-white',
+          ? '[&_svg]:bg-supportive-pastel'
+          : '[&_svg]:bg-gray-white',
         hoverBgColor: 'hover:bg-opacity-white-02',
         activeBgColor: 'active:bg-opacity-white-05',
       }
     default:
       return {
         color: active ? 'text-brand-heavy' : 'text-gray-800',
-        svgBgColor: active ? '[&>svg]:bg-brand-heavy' : '[&>svg]:bg-gray-800',
+        svgBgColor: active ? '[&_svg]:bg-brand-heavy' : '[&_svg]:bg-gray-800',
         hoverBgColor: 'hover:bg-gray-100',
         activeBgColor: 'active:bg-gray-200',
       }
@@ -55,22 +55,22 @@ export const selectHamburgerFooterTheme = (theme: Theme) => {
         color: 'text-gray-400',
         hoverColor: 'hover:text-gray-400',
         hoverBgColor: 'hover:bg-opacity-white-02',
-        svgHoverBgColor: 'hover:[&>svg]:bg-gray-400',
-        svgBgColor: '[&>svg]:bg-gray-400',
+        svgHoverBgColor: 'hover:[&_svg]:bg-gray-400',
+        svgBgColor: '[&_svg]:bg-gray-400',
         activeColor: 'active:text-gray-400',
         activeBgColor: 'active:bg-opacity-white-05',
-        svgActiveBgColor: 'active:[&>svg]:bg-gray-400',
+        svgActiveBgColor: 'active:[&_svg]:bg-gray-400',
       }
     default:
       return {
         color: 'text-gray-600',
         hoverColor: 'hover:text-gray-800',
         hoverBgColor: 'hover:bg-gray-100',
-        svgHoverBgColor: 'hover:[&>svg]:bg-gray-800',
-        svgBgColor: '[&>svg]:bg-gray-600',
+        svgHoverBgColor: 'hover:[&_svg]:bg-gray-800',
+        svgBgColor: '[&_svg]:bg-gray-600',
         activeColor: 'active:text-gray-800',
         activeBgColor: 'active:bg-gray-200',
-        svgActiveBgColor: 'active:[&>svg]:bg-gray-800',
+        svgActiveBgColor: 'active:[&_svg]:bg-gray-800',
       }
   }
 }
