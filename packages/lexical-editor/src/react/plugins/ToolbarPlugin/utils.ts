@@ -1,4 +1,3 @@
-import { $createCodeNode } from '@lexical/code'
 import {
   INSERT_CHECK_LIST_COMMAND,
   INSERT_ORDERED_LIST_COMMAND,
@@ -7,7 +6,6 @@ import {
 import { $isDecoratorBlockNode } from '@lexical/react/LexicalDecoratorBlockNode'
 import {
   $createHeadingNode,
-  $createQuoteNode,
   $isHeadingNode,
   $isQuoteNode,
   type HeadingTagType,
@@ -23,9 +21,28 @@ import {
   type RangeSelection,
   type LexicalEditor,
   type BaseSelection,
+  type LexicalNode,
 } from 'lexical'
 import { getSelectedNode } from '../../utils/getSelectedNode'
 import { $isAnnotationContentNode } from '../AnnotationPlugin/nodes/AnnotationContentNode'
+import { $isWwwQuoteContentNode } from '../QuotePlugin/nodes/WwwQuoteContentNode'
+
+function $hasSelfOrAncestor(
+  node: LexicalNode,
+  predicate: (node: LexicalNode) => boolean
+): boolean {
+  let currentNode: LexicalNode | null = node
+
+  while (currentNode) {
+    if (predicate(currentNode)) {
+      return true
+    }
+
+    currentNode = currentNode.getParent()
+  }
+
+  return false
+}
 
 const canIUse = (selection: BaseSelection | null): boolean => {
   if (!selection || !$isRangeSelection(selection)) {
@@ -33,10 +50,14 @@ const canIUse = (selection: BaseSelection | null): boolean => {
   }
 
   const node = getSelectedNode(selection as RangeSelection)
-  const parent = node.getParent()
 
-  if ($isAnnotationContentNode(node) || $isAnnotationContentNode(parent)) {
+  if ($hasSelfOrAncestor(node, $isAnnotationContentNode)) {
     alert('註解內不支援此功能')
+    return false
+  }
+
+  if ($hasSelfOrAncestor(node, $isWwwQuoteContentNode)) {
+    alert('Quote 內不支援此功能')
     return false
   }
 
@@ -119,37 +140,6 @@ export const formatNumberedList = (
       formatParagraph(editor)
     }
   })
-}
-
-export const formatQuote = (editor: LexicalEditor, blockType: string) => {
-  if (blockType !== 'quote') {
-    editor.update(() => {
-      const selection = $getSelection()
-      $setBlocksType(selection, () => $createQuoteNode())
-    })
-  }
-}
-
-export const formatCode = (editor: LexicalEditor, blockType: string) => {
-  if (blockType !== 'code') {
-    editor.update(() => {
-      let selection = $getSelection()
-
-      if (selection !== null) {
-        if (selection.isCollapsed()) {
-          $setBlocksType(selection, () => $createCodeNode())
-        } else {
-          const textContent = selection.getTextContent()
-          const codeNode = $createCodeNode()
-          selection.insertNodes([codeNode])
-          selection = $getSelection()
-          if ($isRangeSelection(selection)) {
-            selection.insertRawText(textContent)
-          }
-        }
-      }
-    })
-  }
 }
 
 export const clearFormatting = (editor: LexicalEditor) => {

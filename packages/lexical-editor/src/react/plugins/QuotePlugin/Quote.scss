@@ -1,0 +1,197 @@
+@use '../../style/media-query' as mq;
+
+.wwwQuote__container {
+  clear: both;
+  margin: 28px 0;
+}
+
+.wwwQuote__container .wwwQuote__content {
+  margin: 0;
+}
+
+.wwwQuote__container.default {
+  color: #808080;
+  font-size: 18px;
+
+  padding-left: 18px;
+  @include mq.mobile-only {
+    padding-left: 16px;
+  }
+  @include mq.hd-only {
+    padding-left: 20px;
+  }
+
+  .wwwQuote__content {
+    color: #808080;
+    line-height: 2.11;
+    letter-spacing: 0.6px;
+  }
+}
+
+.wwwQuote__container.blockquote {
+  color: #404040;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 80px;
+    margin: 0 auto 40px auto;
+    background-color: #c09662;
+  }
+
+  .wwwQuote__content {
+    line-height: 1.56;
+    letter-spacing: 1.1px;
+    font-size: 32px;
+  }
+}
+
+.wwwQuote__by {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.wwwQuote__quote_by {
+  display: block;
+  font-style: normal;
+  letter-spacing: 0.5px;
+}
+
+.wwwQuote__container.default .wwwQuote__quote_by {
+  color: #808080;
+  font-size: 14px;
+}
+
+.wwwQuote__container.blockquote .wwwQuote__quote_by {
+  color: #404040;
+  font-size: 16px;
+  line-height: 1.56;
+  text-align: center;
+  margin: 24px auto 0 auto;
+}
+
+.wwwQuote__controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  margin-top: 4px;
+}
+
+.wwwQuote__button {
+  margin: 0;
+  cursor: pointer;
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid #6b7280;
+  padding: 0;
+  background-color: white;
+}
+
+.wwwQuote__button i {
+  width: 18px;
+  height: 18px;
+  z-index: 2;
+  mask-size: auto;
+  mask-position: center !important;
+  mask-repeat: no-repeat !important;
+  background-color: #6b7280;
+}
+
+.wwwQuote__button:hover {
+  border-color: #9f7544;
+}
+
+.wwwQuote__button:hover i {
+  background-color: #9f7544;
+}
+
+.wwwQuote__dialog {
+  position: absolute;
+  left: 0;
+  top: 24px;
+  z-index: 3;
+  background-color: white;
+  border: 1px solid #cdcdcd;
+  padding: 8px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.wwwQuote__input {
+  min-width: 140px;
+  border: 0;
+  outline: 0;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.wwwQuote__dialog_button {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid #6b7280;
+  cursor: pointer;
+  padding: 0;
+  background-color: white;
+}
+
+.wwwQuote__dialog_button .icon {
+  width: 18px;
+  height: 18px;
+  mask-size: auto;
+  mask-position: center !important;
+  mask-repeat: no-repeat !important;
+  background-color: #6b7280 !important;
+}
+
+.wwwQuote__dialog_button:hover {
+  border-color: #9f7544;
+}
+
+.wwwQuote__dialog_button:hover .annotation-confirm,
+.wwwQuote__dialog_button:hover .annotation-cancel {
+  background-color: #9f7544 !important;
+}
+
+.wwwQuote__layout_dialog {
+  min-width: max-content;
+  gap: 6px;
+}
+
+.wwwQuote__layout_options {
+  display: flex;
+  gap: 4px;
+}
+
+.wwwQuote__layout_options .LexicalPluginIconButton {
+  min-width: 30px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 4px;
+}
+
+.wwwQuote__layout_options .LexicalPluginIconButton span {
+  display: none;
+}
+
+.wwwQuote__layout_options .LexicalPluginIconButton__icon {
+  width: 20px;
+  height: 20px;
+}
