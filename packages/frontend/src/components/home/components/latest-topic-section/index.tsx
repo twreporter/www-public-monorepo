@@ -12,7 +12,7 @@ import { H2 } from '@twreporter/react-typescript-components/lib/text/heading'
 import { TextButton } from '@twreporter/react-typescript-components/lib/button'
 import { Arrow } from '@twreporter/react-typescript-components/lib/icons'
 // styles
-import { rwdGridChildFullClass, rwdGridColGapClass } from '@/styles/layout'
+import { rwdGridColGapClass } from '@/styles/layout'
 // components
 import { LatestTopicCard } from '@/components/home/components/latest-topic-section/card'
 import { SectionBadge } from '@/components/home/components/section-badge'
@@ -51,7 +51,7 @@ export const LatestTopicSection: FC<LatestTopicSectionProps> = ({
   return (
     <div
       className={clsx(
-        rwdGridChildFullClass,
+        'col-span-full',
         'pt-[32px] pb-[48px] relative',
         'flex flex-col gap-[24px]',
         'tablet:grid tablet:grid-cols-subgrid',
@@ -106,7 +106,7 @@ export const LatestTopicSection: FC<LatestTopicSectionProps> = ({
       {/* Desktop: Grid */}
       <div
         className={clsx(
-          rwdGridChildFullClass,
+          'col-span-full',
           'hidden tablet:grid',
           'grid-cols-subgrid',
           'gap-y-[16px]'

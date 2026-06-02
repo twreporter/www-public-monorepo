@@ -4,7 +4,7 @@ import clsx from 'clsx'
 // components
 import { LatestSectionCard } from '@/components/home/components/latest-section/card'
 // styles
-import { rwdGridChildFullClass, rwdGridColGapClass } from '@/styles/layout'
+import { rwdGridColGapClass } from '@/styles/layout'
 // types
 import type { HomePageLatestSectionArticle } from '@/types/home'
 
@@ -18,7 +18,7 @@ export const LatestSection: FC<{
   return (
     <div
       className={clsx(
-        rwdGridChildFullClass,
+        'col-span-full',
         'pt-[16px] pb-[32px]',
         'grid grid-cols-2 gap-[24px]',
         'tablet:grid tablet:grid-cols-subgrid',

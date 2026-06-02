@@ -10,9 +10,7 @@ export const rwdContainerClass: ClassArray = [
  * <div className={rwdGridOuterClass}>
       <div className={rwdGridContainerClass}>
         <div className={rwdGridInnerClass}>
-          <div className={rwdGridChildFullClass}>
-            ...
-          </div>
+          ...
         </div>
       </div>
     </div>
@@ -40,6 +38,3 @@ export const rwdGridInnerClass: ClassArray = [
   'w-full flex flex-col',
   'tablet:grid tablet:grid-cols-subgrid tablet:col-start-2 tablet:col-end-12',
 ]
-
-/** Full-width child inside rwdGridInnerClass — spans all 10 inherited columns */
-export const rwdGridChildFullClass: ClassArray = ['tablet:col-span-full']

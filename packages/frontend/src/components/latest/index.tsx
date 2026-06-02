@@ -22,7 +22,6 @@ import {
   rwdGridOuterClass,
   rwdGridContainerClass,
   rwdGridInnerClass,
-  rwdGridChildFullClass,
 } from '@/styles/layout'
 
 type LatestTab = {
@@ -111,7 +110,7 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
     <div className={clsx(rwdGridOuterClass)}>
       <div className={clsx(rwdGridContainerClass)}>
         <div className={clsx(rwdGridInnerClass)}>
-          <div className={clsx(rwdGridChildFullClass)}>
+          <div className="col-span-full">
             <TitleTab
               title="最新"
               tabs={titleTabs}
@@ -121,7 +120,7 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
           {displayArticles.map((article) => (
             <div
               key={article.slug}
-              className={clsx(rwdGridChildFullClass, 'flex flex-col pt-[24px]')}
+              className="col-span-full flex flex-col pt-[24px]"
             >
               {/* Tablet and below: size S */}
               <div className="desktop:hidden">
@@ -167,7 +166,7 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
             </div>
           ))}
           {isLoading ? (
-            <div className={clsx(rwdGridChildFullClass, 'flex flex-col')}>
+            <div className="col-span-full flex flex-col">
               {Array.from({ length: 3 }).map((_, index) => (
                 <div key={index} className="flex flex-col pt-[24px]">
                   {/* Tablet and below: size S */}
@@ -186,7 +185,7 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
           {hasError ? (
             <div
               className={clsx(
-                rwdGridChildFullClass,
+                'col-span-full',
                 'w-full flex justify-center mt-[24px] pt-[24px] pb-[64px]',
                 'desktop:pt-[32px] desktop:pb-[120px]'
               )}
@@ -197,27 +196,24 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
           ) : hasMore && !isLoading ? (
             <div
               className={clsx(
-                rwdGridChildFullClass,
+                'col-span-full',
                 'w-full flex justify-center pt-[48px] pb-[64px]',
                 'desktop:pt-[64px] desktop:pb-[120px]'
               )}
             >
-              <button
-                onClick={handleLoadMore}
-                type="button"
-                className="w-full max-w-[480px]"
-              >
+              <div className="w-full max-w-[480px]">
                 <PillButton
                   text="載入更多"
                   style={PillButton.Style.dark}
                   type={PillButton.Type.primary}
                   size={PillButton.Size.l}
                   className="w-full flex justify-center"
+                  onClick={handleLoadMore}
                 />
-              </button>
+              </div>
             </div>
           ) : (
-            <div className={clsx(rwdGridChildFullClass, 'h-[120px]')} />
+            <div className="col-span-full h-[120px]" />
           )}
         </div>
       </div>

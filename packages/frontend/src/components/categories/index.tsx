@@ -18,7 +18,6 @@ import {
   rwdGridOuterClass,
   rwdGridContainerClass,
   rwdGridInnerClass,
-  rwdGridChildFullClass,
 } from '@/styles/layout'
 // @twreporter
 import { TitleTab } from '@twreporter/react-typescript-components/lib/title-bar'
@@ -103,7 +102,7 @@ const CategoryPage: FC<CategoryPageProps> = ({
     <div className={clsx(rwdGridOuterClass)}>
       <div className={clsx(rwdGridContainerClass)}>
         <div className={clsx(rwdGridInnerClass)}>
-          <div className={clsx(rwdGridChildFullClass)}>
+          <div className="col-span-full">
             <TitleTab
               title={name}
               tabs={tabs}
@@ -111,7 +110,7 @@ const CategoryPage: FC<CategoryPageProps> = ({
             />
           </div>
           {posts.length === 0 && isLoading ? (
-            <div className={clsx(rwdGridChildFullClass)}>
+            <div className="col-span-full">
               <Loading />
             </div>
           ) : (
@@ -125,7 +124,7 @@ const CategoryPage: FC<CategoryPageProps> = ({
           )}
           <Pagination
             className={clsx(
-              rwdGridChildFullClass,
+              'col-span-full',
               'w-full flex justify-center items-center'
             )}
             currentPage={page}
