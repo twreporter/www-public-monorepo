@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { CategorySectionCard } from '@/components/home/components/category-section/card'
 import { SectionBadge } from '@/components/home/components/section-badge'
 // styles
-import { rwdGridColGapClass } from '@/styles/layout'
+import { rwdGridContainerClass } from '@/styles/layout'
 // types
 import type { HomePageCategorySectionMeta } from '@/types/home'
 
@@ -16,12 +16,13 @@ export const CategorySection: FC<{ meta: HomePageCategorySectionMeta[] }> = ({
   return (
     <div
       className={clsx(
-        'col-span-full',
-        'pt-[32px] pb-[48px] relative',
-        'flex flex-col gap-[24px]',
-        'tablet:grid tablet:grid-cols-subgrid',
+        'w-screen h-full relative bg-gray-200',
+        'pt-[32px] pb-[48px]',
         'desktop:py-[56px]',
-        ...rwdGridColGapClass
+        '-mx-[24px]',
+        'tablet:col-span-12 tablet:-mx-[32px]',
+        'desktop:-mx-[48px]',
+        'hd:-mx-[calc((100vw-1280px)/2)]'
       )}
     >
       {/* Mobile: Swiper */}
@@ -51,13 +52,12 @@ export const CategorySection: FC<{ meta: HomePageCategorySectionMeta[] }> = ({
       {/* Tablet+: grid layout */}
       <div
         className={clsx(
-          'hidden col-span-full',
-          'tablet:grid tablet:grid-cols-subgrid tablet:gap-y-[32px]',
-          'desktop:gap-y-[40px]'
+          rwdGridContainerClass,
+          'hidden !pb-0 gap-y-[32px] desktop:gap-y-[40px]'
         )}
       >
         {meta.map((item) => (
-          <div key={item.slug} className="col-span-3 flex flex-col gap-[12px]">
+          <div key={item.slug} className="col-span-3">
             <CategorySectionCard
               slug={item.slug}
               title={item.title}

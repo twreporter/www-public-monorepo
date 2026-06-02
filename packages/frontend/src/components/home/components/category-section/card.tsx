@@ -3,6 +3,7 @@ import { useContext, type FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import clsx from 'clsx'
 // react-typescript-components
 import { H5 } from '@twreporter/react-typescript-components/lib/text/heading'
 import { TextButton } from '@twreporter/react-typescript-components/lib/button'
@@ -42,7 +43,16 @@ export const CategorySectionCard: FC<HomePageCategorySectionMeta> = ({
           )}
         </div>
         <div className="w-full p-[12px] bg-gray-white">
-          <H5 className="text-gray-800" type={H5.Type.article} text={title} />
+          <H5
+            className={clsx(
+              'text-gray-800 line-clamp-4 min-h-[6em]',
+              'tablet:line-clamp-5 tablet:min-h-[7.5em]',
+              'desktop:line-clamp-4 desktop:min-h-[6em]',
+              'hd:line-clamp-3 hd:min-h-[4.5em]'
+            )}
+            type={H5.Type.article}
+            text={title}
+          />
         </div>
       </Link>
       <div className="w-full flex justify-center">
