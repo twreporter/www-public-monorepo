@@ -4,7 +4,7 @@ export const fakeLatestSectionData = [
     categoryLabel: '政治',
     title: '這是最新消息區塊的範例文章標題，這是最新消息區塊的範例文章標題',
     image: {
-      src: 'https://picsum.photos/seed/picsum/400/300',
+      src: 'https://picsum.photos/id/237/400/300',
       alt: 'Example Image',
     },
   },
@@ -13,7 +13,7 @@ export const fakeLatestSectionData = [
     categoryLabel: '社會',
     title: '這是最新消息區塊的範例文章標題，這是最新消息區塊的範例文章標題',
     image: {
-      src: 'https://picsum.photos/seed/picsum/400/300',
+      src: 'https://picsum.photos/id/238/400/300',
       alt: 'Example Image',
     },
   },
@@ -22,7 +22,7 @@ export const fakeLatestSectionData = [
     categoryLabel: '國際',
     title: '這是最新消息區塊的範例文章標題，這是最新消息區塊的範例文章標題',
     image: {
-      src: 'https://picsum.photos/seed/picsum/400/300',
+      src: 'https://picsum.photos/id/239/400/300',
       alt: 'Example Image',
     },
   },
@@ -31,7 +31,7 @@ export const fakeLatestSectionData = [
     categoryLabel: '文化',
     title: '這是最新消息區塊的範例文章標題，這是最新消息區塊的範例文章標題',
     image: {
-      src: 'https://picsum.photos/seed/picsum/400/300',
+      src: 'https://picsum.photos/id/240/400/300',
       alt: 'Example Image',
     },
   },
@@ -40,7 +40,7 @@ export const fakeLatestSectionData = [
     categoryLabel: '生活',
     title: '這是最新消息區塊的範例文章標題，這是最新消息區塊的範例文章標題',
     image: {
-      src: 'https://picsum.photos/seed/picsum/400/300',
+      src: 'https://picsum.photos/id/241/400/300',
       alt: 'Example Image',
     },
   },
@@ -49,7 +49,7 @@ export const fakeLatestSectionData = [
     categoryLabel: '科技',
     title: '這是最新消息區塊的範例文章標題，這是最新消息區塊的範例文章標題',
     image: {
-      src: 'https://picsum.photos/seed/picsum/400/300',
+      src: 'https://picsum.photos/id/242/400/300',
       alt: 'Example Image',
     },
   },
@@ -63,7 +63,7 @@ export const fakeEditorPickSectionData = [
     ogDescription:
       '這是專題企劃的範例文章內文，這是專題企劃的範例文章內文，這是專題企劃的範例文章內文，這是專題企劃的範例文章內文',
     image: {
-      src: 'https://picsum.photos/seed/picsum/400/300',
+      src: 'https://picsum.photos/id/237/400/300',
       alt: 'Example Image',
     },
   },
@@ -74,7 +74,7 @@ export const fakeEditorPickSectionData = [
     ogDescription:
       '這是專題企劃的範例文章內文，這是專題企劃的範例文章內文，這是專題企劃的範例文章內文，這是專題企劃的範例文章內文',
     image: {
-      src: 'https://picsum.photos/seed/picsum/400/300',
+      src: 'https://picsum.photos/id/238/400/300',
       alt: 'Example Image',
     },
   },
@@ -85,7 +85,7 @@ export const fakeEditorPickSectionData = [
     ogDescription:
       '這是專題企劃的範例文章內文，這是專題企劃的範例文章內文，這是專題企劃的範例文章內文，這是專題企劃的範例文章內文',
     image: {
-      src: 'https://picsum.photos/seed/picsum/400/300',
+      src: 'https://picsum.photos/id/239/400/300',
       alt: 'Example Image',
     },
   },
@@ -96,7 +96,7 @@ export const fakeEditorPickSectionData = [
     ogDescription:
       '這是專題企劃的範例文章內文，這是專題企劃的範例文章內文，這是專題企劃的範例文章內文，這是專題企劃的範例文章內文',
     image: {
-      src: 'https://picsum.photos/seed/picsum/400/300',
+      src: 'https://picsum.photos/id/240/400/300',
       alt: 'Example Image',
     },
   },
@@ -107,7 +107,7 @@ export const fakeEditorPickSectionData = [
     ogDescription:
       '這是專題企劃的範例文章內文，這是專題企劃的範例文章內文，這是專題企劃的範例文章內文，這是專題企劃的範例文章內文',
     image: {
-      src: 'https://picsum.photos/seed/picsum/400/300',
+      src: 'https://picsum.photos/id/241/400/300',
       alt: 'Example Image',
     },
   },
@@ -127,7 +127,7 @@ export const fakeLatestTopicSectionData = {
       description:
         '檢方著重社工陳尚潔的個人責任，辯方則強調制度問題不應由個人承擔。歷經半年審理，最終一審法院認定陳尚潔過失致死罪成立。這是首起判例認定社工具「保證人地位」，可能影響社工未來服務與合作的界線，引發高度關注。',
       image: {
-        src: 'https://picsum.photos/seed/picsum/400/300',
+        src: 'https://picsum.photos/id/237/400/300',
         alt: 'Example Image',
       },
     },
@@ -138,7 +138,7 @@ export const fakeLatestTopicSectionData = {
       description:
         '檢方著重社工陳尚潔的個人責任，辯方則強調制度問題不應由個人承擔。歷經半年審理，最終一審法院認定陳尚潔過失致死罪成立。這是首起判例認定社工具「保證人地位」，可能影響社工未來服務與合作的界線，引發高度關注。',
       image: {
-        src: 'https://picsum.photos/seed/picsum/400/300',
+        src: 'https://picsum.photos/id/238/400/300',
         alt: 'Example Image',
       },
     },
@@ -149,9 +149,56 @@ export const fakeLatestTopicSectionData = {
       description:
         '檢方著重社工陳尚潔的個人責任，辯方則強調制度問題不應由個人承擔。歷經半年審理，最終一審法院認定陳尚潔過失致死罪成立。這是首起判例認定社工具「保證人地位」，可能影響社工未來服務與合作的界線，引發高度關注。',
       image: {
-        src: 'https://picsum.photos/seed/picsum/400/300',
+        src: 'https://picsum.photos/id/239/400/300',
         alt: 'Example Image',
       },
     },
   ],
 }
+
+export const fakeReviewSectionData = [
+  {
+    slug: 'example-slug-1',
+    categoryLabel: '政治',
+    title: '這是評論區塊的範例文章標題，這是評論區塊的範例文章標題',
+    ogDescription:
+      '這是評論區塊的範例文章內文，這是評論區塊的範例文章內文，這是評論區塊的範例文章內文，這是評論區塊的範例文章內文',
+    image: {
+      src: 'https://picsum.photos/id/238/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-2',
+    categoryLabel: '社會',
+    title: '這是評論區塊的範例文章標題，這是評論區塊的範例文章標題',
+    ogDescription:
+      '這是評論區塊的範例文章內文，這是評論區塊的範例文章內文，這是評論區塊的範例文章內文，這是評論區塊的範例文章內文',
+    image: {
+      src: 'https://picsum.photos/id/239/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-3',
+    categoryLabel: '國際',
+    title: '這是評論區塊的範例文章標題，這是評論區塊的範例文章標題',
+    ogDescription:
+      '這是評論區塊的範例文章內文，這是評論區塊的範例文章內文，這是評論區塊的範例文章內文，這是評論區塊的範例文章內文',
+    image: {
+      src: 'https://picsum.photos/id/240/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-4',
+    categoryLabel: '文化',
+    title: '這是評論區塊的範例文章標題，這是評論區塊的範例文章標題',
+    ogDescription:
+      '這是評論區塊的範例文章內文，這是評論區塊的範例文章內文，這是評論區塊的範例文章內文，這是評論區塊的範例文章內文',
+    image: {
+      src: 'https://picsum.photos/id/241/400/300',
+      alt: 'Example Image',
+    },
+  },
+]
