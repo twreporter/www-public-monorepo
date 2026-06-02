@@ -1,9 +1,9 @@
 import { $insertNodeToNearestRoot } from '@lexical/utils'
 import { $getSelection, $isRangeSelection } from 'lexical'
 
-import type { wwwQuoteNode } from './nodes/wwwQuoteNode'
+import type { WwwQuoteNode } from './nodes/WwwQuoteNode'
 
-export function $insertwwwQuoteNodes(nodes: wwwQuoteNode[]): void {
+export function $insertWwwQuoteNodes(nodes: WwwQuoteNode[]): void {
   const selection = $getSelection()
 
   if ($isRangeSelection(selection) && !selection.isCollapsed()) {

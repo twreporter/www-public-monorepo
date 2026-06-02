@@ -3,9 +3,9 @@ import { useEffect, type FC } from 'react'
 
 import { registerQuotePlugin } from './command'
 import {
-  wwwQuoteByNode,
-  wwwQuoteContentNode,
-  wwwQuoteNode,
+  WwwQuoteByNode,
+  WwwQuoteContentNode,
+  WwwQuoteNode,
 } from './nodes'
 
 import './Quote.scss'
@@ -14,9 +14,9 @@ const QuotePlugin: FC = () => {
   const [editor] = useLexicalComposerContext()
 
   useEffect(() => {
-    if (!editor.hasNodes([wwwQuoteNode, wwwQuoteContentNode, wwwQuoteByNode])) {
+    if (!editor.hasNodes([WwwQuoteNode, WwwQuoteContentNode, WwwQuoteByNode])) {
       throw new Error(
-        'QuotePlugin: wwwQuoteNode, wwwQuoteContentNode, wwwQuoteByNode not registered on editor'
+        'QuotePlugin: WwwQuoteNode, WwwQuoteContentNode, WwwQuoteByNode not registered on editor'
       )
     }
 

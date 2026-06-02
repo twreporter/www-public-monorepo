@@ -1,11 +1,11 @@
-import { wwwQuoteByNode } from './wwwQuoteByNode'
-import { wwwQuoteContentNode } from './wwwQuoteContentNode'
-import { wwwQuoteNode } from './wwwQuoteNode'
+import { WwwQuoteByNode } from './WwwQuoteByNode'
+import { WwwQuoteContentNode } from './WwwQuoteContentNode'
+import { WwwQuoteNode } from './WwwQuoteNode'
 
-export { wwwQuoteByNode, wwwQuoteContentNode, wwwQuoteNode }
+export { WwwQuoteByNode, WwwQuoteContentNode, WwwQuoteNode }
 
 export default {
-  wwwQuoteByNode,
-  wwwQuoteContentNode,
-  wwwQuoteNode,
+  WwwQuoteByNode,
+  WwwQuoteContentNode,
+  WwwQuoteNode,
 }

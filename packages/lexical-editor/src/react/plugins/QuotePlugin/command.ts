@@ -16,51 +16,51 @@ import {
 
 import {
   DEFAULT_QUOTE_CONTENT,
-  iswwwQuoteLayout,
-  type wwwQuoteLayout,
+  isWwwQuoteLayout,
+  type WwwQuoteLayout,
 } from './constant'
 import {
-  $createwwwQuoteByNode,
-  $iswwwQuoteByNode,
-} from './nodes/wwwQuoteByNode'
+  $createWwwQuoteByNode,
+  $isWwwQuoteByNode,
+} from './nodes/WwwQuoteByNode'
 import {
-  $createwwwQuoteContentNode,
-  $iswwwQuoteContentNode,
-} from './nodes/wwwQuoteContentNode'
+  $createWwwQuoteContentNode,
+  $isWwwQuoteContentNode,
+} from './nodes/WwwQuoteContentNode'
 import {
-  $createwwwQuoteNode,
-  $iswwwQuoteNode,
-  type wwwQuoteNode,
-} from './nodes/wwwQuoteNode'
-import { $insertwwwQuoteNodes } from './utils'
+  $createWwwQuoteNode,
+  $isWwwQuoteNode,
+  type WwwQuoteNode,
+} from './nodes/WwwQuoteNode'
+import { $insertWwwQuoteNodes } from './utils'
 
-export type wwwQuoteAddCommandPayload = {
-  layout?: wwwQuoteLayout
+export type WwwQuoteAddCommandPayload = {
+  layout?: WwwQuoteLayout
   quoteBy?: string
   content?: string
 }
 
 export const WWW_QUOTE_ADD_COMMAND: LexicalCommand<
-  wwwQuoteAddCommandPayload | undefined
+  WwwQuoteAddCommandPayload | undefined
 > = createCommand('ADD_WWW_QUOTE')
 export const WWW_QUOTE_REMOVE_COMMAND: LexicalCommand<void> =
   createCommand('REMOVE_WWW_QUOTE')
 
 function $isProtectedQuoteStructureNode(node: LexicalNode): boolean {
   return (
-    $iswwwQuoteNode(node) ||
-    $iswwwQuoteContentNode(node) ||
-    $iswwwQuoteByNode(node)
+    $isWwwQuoteNode(node) ||
+    $isWwwQuoteContentNode(node) ||
+    $isWwwQuoteByNode(node)
   )
 }
 
-function $findAncestorwwwQuoteNode(
+function $findAncestorWwwQuoteNode(
   node: LexicalNode
-): wwwQuoteNode | null {
+): WwwQuoteNode | null {
   let currentNode: LexicalNode | null = node
 
   while (currentNode) {
-    if ($iswwwQuoteNode(currentNode)) {
+    if ($isWwwQuoteNode(currentNode)) {
       return currentNode
     }
 
@@ -93,22 +93,22 @@ export function registerQuotePlugin(editor: LexicalEditor) {
         return false
       }
 
-      const layout = iswwwQuoteLayout(payload?.layout)
+      const layout = isWwwQuoteLayout(payload?.layout)
         ? payload.layout
         : 'default'
       const content = payload?.content ?? DEFAULT_QUOTE_CONTENT
       const quoteBy = payload?.quoteBy?.trim() || undefined
 
-      const quoteNode = $createwwwQuoteNode(layout)
-      const contentNode = $createwwwQuoteContentNode()
+      const quoteNode = $createWwwQuoteNode(layout)
+      const contentNode = $createWwwQuoteContentNode()
       const paragraphNode = $createParagraphNode()
       const textNode = $createTextNode(content)
-      const quoteByNode = $createwwwQuoteByNode(quoteBy)
+      const quoteByNode = $createWwwQuoteByNode(quoteBy)
 
       paragraphNode.append(textNode)
       contentNode.append(paragraphNode)
       quoteNode.append(contentNode, quoteByNode)
-      $insertwwwQuoteNodes([quoteNode])
+      $insertWwwQuoteNodes([quoteNode])
       textNode.select(0, content.length)
       return true
     },
@@ -120,10 +120,10 @@ export function registerQuotePlugin(editor: LexicalEditor) {
     () => {
       const selection = $getSelection()
       if ($isRangeSelection(selection) || $isNodeSelection(selection)) {
-        const quoteNodes = new Set<wwwQuoteNode>()
+        const quoteNodes = new Set<WwwQuoteNode>()
 
         selection.getNodes().forEach((node) => {
-          const quoteNode = $findAncestorwwwQuoteNode(node)
+          const quoteNode = $findAncestorWwwQuoteNode(node)
           if (quoteNode) {
             quoteNodes.add(quoteNode)
           }

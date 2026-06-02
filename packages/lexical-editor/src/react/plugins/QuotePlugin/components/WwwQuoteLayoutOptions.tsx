@@ -1,17 +1,17 @@
 import type { FC, MouseEvent } from 'react'
 
 import { PluginIconButton } from '../../../components/PluginUI'
-import type { wwwQuoteLayout } from '../constant'
+import type { WwwQuoteLayout } from '../constant'
 
-type wwwQuoteLayoutOptionsProps = {
-  layout: wwwQuoteLayout
-  onChange: (layout: wwwQuoteLayout) => void
+type WwwQuoteLayoutOptionsProps = {
+  layout: WwwQuoteLayout
+  onChange: (layout: WwwQuoteLayout) => void
 }
 
 const layoutOptions: Array<{
   iconClassName: string
   label: string
-  value: wwwQuoteLayout
+  value: WwwQuoteLayout
 }> = [
   {
     iconClassName: 'www-quote-layout-default',
@@ -25,13 +25,13 @@ const layoutOptions: Array<{
   },
 ]
 
-const WwwQuoteLayoutOptions: FC<wwwQuoteLayoutOptionsProps> = ({
+const WwwQuoteLayoutOptions: FC<WwwQuoteLayoutOptionsProps> = ({
   layout,
   onChange,
 }) => {
   const updateLayout = (
     event: MouseEvent<HTMLButtonElement>,
-    value: wwwQuoteLayout
+    value: WwwQuoteLayout
   ) => {
     event.preventDefault()
     event.stopPropagation()

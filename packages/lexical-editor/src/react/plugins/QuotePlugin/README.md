@@ -1,12 +1,12 @@
 ## Quote Nodes
 
-- `wwwQuoteNode`
+- `WwwQuoteNode`
   - block element node
   - stores `layout`, either `default` or `blockquote`
-- `wwwQuoteContentNode`
+- `WwwQuoteContentNode`
   - element node for rich editable quote content
   - contains normal Lexical paragraph/text children, so toolbar formatting works
-- `wwwQuoteByNode`
+- `WwwQuoteByNode`
   - decorator node for plain-text quoteBy and edit controls
   - stores `quoteBy?: string`
 
@@ -16,12 +16,12 @@ Inserting a default quote creates:
 
 ```txt
 RootNode
-├─ wwwQuoteNode
+├─ WwwQuoteNode
 │  ├─ layout: "default"
-│  ├─ wwwQuoteContentNode
+│  ├─ WwwQuoteContentNode
 │  │  └─ ParagraphNode
 │  │     └─ TextNode("請直接編輯 Quote 內容")
-│  └─ wwwQuoteByNode
+│  └─ WwwQuoteByNode
 │     └─ quoteBy: undefined
 └─ ParagraphNode
 ```

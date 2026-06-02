@@ -12,45 +12,45 @@ import {
 } from 'lexical'
 
 import {
-  iswwwQuoteLayout,
-  type wwwQuoteLayout,
+  isWwwQuoteLayout,
+  type WwwQuoteLayout,
 } from '../constant'
 
 const wwwQuoteNodeType = 'www-quote'
 const wwwQuoteAttribute = 'data-lexical-www-quote'
 
-export type SerializedwwwQuoteNode = Spread<
+export type SerializedWwwQuoteNode = Spread<
   {
-    layout: wwwQuoteLayout
+    layout: WwwQuoteLayout
   },
   SerializedElementNode
 >
 
-function getLayoutFromElement(element: HTMLElement): wwwQuoteLayout {
+function getLayoutFromElement(element: HTMLElement): WwwQuoteLayout {
   const layout = element.getAttribute('data-layout')
-  return iswwwQuoteLayout(layout) ? layout : 'default'
+  return isWwwQuoteLayout(layout) ? layout : 'default'
 }
 
-export function $convertwwwQuoteElement(
+export function $convertWwwQuoteElement(
   domNode: HTMLElement
 ): DOMConversionOutput | null {
   return {
-    node: $createwwwQuoteNode(getLayoutFromElement(domNode)),
+    node: $createWwwQuoteNode(getLayoutFromElement(domNode)),
   }
 }
 
-export class wwwQuoteNode extends ElementNode {
-  __layout: wwwQuoteLayout
+export class WwwQuoteNode extends ElementNode {
+  __layout: WwwQuoteLayout
 
   static override getType(): string {
     return wwwQuoteNodeType
   }
 
-  static override clone(node: wwwQuoteNode): wwwQuoteNode {
-    return new wwwQuoteNode(node.__layout, node.__key)
+  static override clone(node: WwwQuoteNode): WwwQuoteNode {
+    return new WwwQuoteNode(node.__layout, node.__key)
   }
 
-  constructor(layout: wwwQuoteLayout = 'default', key?: NodeKey) {
+  constructor(layout: WwwQuoteLayout = 'default', key?: NodeKey) {
     super(key)
     this.__layout = layout
   }
@@ -68,7 +68,7 @@ export class wwwQuoteNode extends ElementNode {
     return figure
   }
 
-  override updateDOM(prevNode: wwwQuoteNode, dom: HTMLElement): boolean {
+  override updateDOM(prevNode: WwwQuoteNode, dom: HTMLElement): boolean {
     if (prevNode.__layout !== this.__layout) {
       dom.classList.remove(prevNode.__layout)
       dom.classList.add(this.__layout)
@@ -85,7 +85,7 @@ export class wwwQuoteNode extends ElementNode {
           return null
         }
         return {
-          conversion: $convertwwwQuoteElement,
+          conversion: $convertWwwQuoteElement,
           priority: 2,
         }
       },
@@ -94,7 +94,7 @@ export class wwwQuoteNode extends ElementNode {
           return null
         }
         return {
-          conversion: $convertwwwQuoteElement,
+          conversion: $convertWwwQuoteElement,
           priority: 2,
         }
       },
@@ -110,38 +110,38 @@ export class wwwQuoteNode extends ElementNode {
   }
 
   static override importJSON(
-    serializedNode: SerializedwwwQuoteNode
-  ): wwwQuoteNode {
-    return $createwwwQuoteNode(serializedNode.layout).updateFromJSON(
+    serializedNode: SerializedWwwQuoteNode
+  ): WwwQuoteNode {
+    return $createWwwQuoteNode(serializedNode.layout).updateFromJSON(
       serializedNode
     )
   }
 
-  override exportJSON(): SerializedwwwQuoteNode {
+  override exportJSON(): SerializedWwwQuoteNode {
     return {
       ...super.exportJSON(),
       layout: this.__layout,
     }
   }
 
-  getLayout(): wwwQuoteLayout {
+  getLayout(): WwwQuoteLayout {
     return this.getLatest().__layout
   }
 
-  setLayout(layout: wwwQuoteLayout): void {
+  setLayout(layout: WwwQuoteLayout): void {
     const writable = this.getWritable()
     writable.__layout = layout
   }
 }
 
-export function $createwwwQuoteNode(
-  layout: wwwQuoteLayout = 'default'
-): wwwQuoteNode {
-  return $applyNodeReplacement(new wwwQuoteNode(layout))
+export function $createWwwQuoteNode(
+  layout: WwwQuoteLayout = 'default'
+): WwwQuoteNode {
+  return $applyNodeReplacement(new WwwQuoteNode(layout))
 }
 
-export function $iswwwQuoteNode(
+export function $isWwwQuoteNode(
   node: LexicalNode | null | undefined
-): node is wwwQuoteNode {
-  return node instanceof wwwQuoteNode
+): node is WwwQuoteNode {
+  return node instanceof WwwQuoteNode
 }

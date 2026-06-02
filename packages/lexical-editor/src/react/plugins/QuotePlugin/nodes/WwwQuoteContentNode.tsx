@@ -10,23 +10,23 @@ import {
 const wwwQuoteContentNodeType = 'www-quote-content'
 const wwwQuoteContentAttribute = 'data-lexical-www-quote-content'
 
-export type SerializedwwwQuoteContentNode = SerializedElementNode
+export type SerializedWwwQuoteContentNode = SerializedElementNode
 
-export function $convertwwwQuoteContentElement(
+export function $convertWwwQuoteContentElement(
   _domNode: HTMLElement
 ): DOMConversionOutput | null {
   return {
-    node: $createwwwQuoteContentNode(),
+    node: $createWwwQuoteContentNode(),
   }
 }
 
-export class wwwQuoteContentNode extends ElementNode {
+export class WwwQuoteContentNode extends ElementNode {
   static override getType(): string {
     return wwwQuoteContentNodeType
   }
 
-  static override clone(node: wwwQuoteContentNode): wwwQuoteContentNode {
-    return new wwwQuoteContentNode(node.__key)
+  static override clone(node: WwwQuoteContentNode): WwwQuoteContentNode {
+    return new WwwQuoteContentNode(node.__key)
   }
 
   override createDOM(): HTMLElement {
@@ -47,7 +47,7 @@ export class wwwQuoteContentNode extends ElementNode {
           return null
         }
         return {
-          conversion: $convertwwwQuoteContentElement,
+          conversion: $convertWwwQuoteContentElement,
           priority: 2,
         }
       },
@@ -56,7 +56,7 @@ export class wwwQuoteContentNode extends ElementNode {
           return null
         }
         return {
-          conversion: $convertwwwQuoteContentElement,
+          conversion: $convertWwwQuoteContentElement,
           priority: 2,
         }
       },
@@ -71,18 +71,18 @@ export class wwwQuoteContentNode extends ElementNode {
   }
 
   static override importJSON(
-    serializedNode: SerializedwwwQuoteContentNode
-  ): wwwQuoteContentNode {
-    return $createwwwQuoteContentNode().updateFromJSON(serializedNode)
+    serializedNode: SerializedWwwQuoteContentNode
+  ): WwwQuoteContentNode {
+    return $createWwwQuoteContentNode().updateFromJSON(serializedNode)
   }
 }
 
-export function $createwwwQuoteContentNode(): wwwQuoteContentNode {
-  return new wwwQuoteContentNode()
+export function $createWwwQuoteContentNode(): WwwQuoteContentNode {
+  return new WwwQuoteContentNode()
 }
 
-export function $iswwwQuoteContentNode(
+export function $isWwwQuoteContentNode(
   node: LexicalNode | null | undefined
-): node is wwwQuoteContentNode {
-  return node instanceof wwwQuoteContentNode
+): node is WwwQuoteContentNode {
+  return node instanceof WwwQuoteContentNode
 }

@@ -17,25 +17,25 @@ import {
   useState,
 } from 'react'
 
-import WwwQuoteLayoutOptions from '../components/wwwQuoteLayoutOptions'
-import { type wwwQuoteLayout } from '../constant'
-import { $iswwwQuoteNode } from './wwwQuoteNode'
+import WwwQuoteLayoutOptions from '../components/WwwQuoteLayoutOptions'
+import { type WwwQuoteLayout } from '../constant'
+import { $isWwwQuoteNode } from './WwwQuoteNode'
 
 const wwwQuoteByNodeType = 'www-quote-by'
 const wwwQuoteByAttribute = 'data-lexical-www-quote-by'
 
-type wwwQuoteByProps = {
+type WwwQuoteByProps = {
   nodeKey: string
   quoteBy?: string
 }
 
-const WwwQuoteBy: FC<wwwQuoteByProps> = ({ nodeKey, quoteBy }) => {
+const WwwQuoteBy: FC<WwwQuoteByProps> = ({ nodeKey, quoteBy }) => {
   const [editor] = useLexicalComposerContext()
   const [editable, setEditable] = useState(() => editor.isEditable())
   const [isEditingQuoteBy, setIsEditingQuoteBy] = useState(false)
   const [isEditingLayout, setIsEditingLayout] = useState(false)
   const [quoteByValue, setQuoteByValue] = useState(quoteBy ?? '')
-  const [layoutValue, setLayoutValue] = useState<wwwQuoteLayout>('default')
+  const [layoutValue, setLayoutValue] = useState<WwwQuoteLayout>('default')
 
   useEffect(() => {
     return editor.registerEditableListener((currentEditable) => {
@@ -47,12 +47,12 @@ const WwwQuoteBy: FC<wwwQuoteByProps> = ({ nodeKey, quoteBy }) => {
     setQuoteByValue(quoteBy ?? '')
   }, [quoteBy])
 
-  const getParentLayout = (): wwwQuoteLayout => {
-    let layout: wwwQuoteLayout = 'default'
+  const getParentLayout = (): WwwQuoteLayout => {
+    let layout: WwwQuoteLayout = 'default'
     editor.getEditorState().read(() => {
       const node = $getNodeByKey(nodeKey)
       const parent = node?.getParent()
-      if ($iswwwQuoteNode(parent)) {
+      if ($isWwwQuoteNode(parent)) {
         layout = parent.getLayout()
       }
     })
@@ -88,7 +88,7 @@ const WwwQuoteBy: FC<wwwQuoteByProps> = ({ nodeKey, quoteBy }) => {
 
     editor.update(() => {
       const node = $getNodeByKey(nodeKey)
-      if ($iswwwQuoteByNode(node)) {
+      if ($isWwwQuoteByNode(node)) {
         node.setQuoteBy(quoteByValue.trim() || undefined)
       }
     })
@@ -110,7 +110,7 @@ const WwwQuoteBy: FC<wwwQuoteByProps> = ({ nodeKey, quoteBy }) => {
     editor.update(() => {
       const node = $getNodeByKey(nodeKey)
       const parent = node?.getParent()
-      if ($iswwwQuoteNode(parent)) {
+      if ($isWwwQuoteNode(parent)) {
         parent.setLayout(layoutValue)
       }
     })
@@ -131,7 +131,7 @@ const WwwQuoteBy: FC<wwwQuoteByProps> = ({ nodeKey, quoteBy }) => {
     editor.update(() => {
       const node = $getNodeByKey(nodeKey)
       const parent = node?.getParent()
-      if ($iswwwQuoteNode(parent)) {
+      if ($isWwwQuoteNode(parent)) {
         parent.remove()
       }
     })
@@ -219,30 +219,30 @@ const WwwQuoteBy: FC<wwwQuoteByProps> = ({ nodeKey, quoteBy }) => {
   )
 }
 
-export type SerializedwwwQuoteByNode = {
+export type SerializedWwwQuoteByNode = {
   type: typeof wwwQuoteByNodeType
   version: 1
   quoteBy?: string
 }
 
-export function $convertwwwQuoteByElement(
+export function $convertWwwQuoteByElement(
   domNode: HTMLElement
 ): DOMConversionOutput | null {
   const quoteBy = domNode.textContent?.trim() || undefined
   return {
-    node: $createwwwQuoteByNode(quoteBy),
+    node: $createWwwQuoteByNode(quoteBy),
   }
 }
 
-export class wwwQuoteByNode extends DecoratorNode<ReactNode> {
+export class WwwQuoteByNode extends DecoratorNode<ReactNode> {
   __quoteBy: string | undefined
 
   static override getType(): string {
     return wwwQuoteByNodeType
   }
 
-  static override clone(node: wwwQuoteByNode): wwwQuoteByNode {
-    return new wwwQuoteByNode(node.__quoteBy, node.__key)
+  static override clone(node: WwwQuoteByNode): WwwQuoteByNode {
+    return new WwwQuoteByNode(node.__quoteBy, node.__key)
   }
 
   constructor(quoteBy: string | undefined, key?: NodeKey) {
@@ -280,7 +280,7 @@ export class wwwQuoteByNode extends DecoratorNode<ReactNode> {
           return null
         }
         return {
-          conversion: $convertwwwQuoteByElement,
+          conversion: $convertWwwQuoteByElement,
           priority: 2,
         }
       },
@@ -289,7 +289,7 @@ export class wwwQuoteByNode extends DecoratorNode<ReactNode> {
           return null
         }
         return {
-          conversion: $convertwwwQuoteByElement,
+          conversion: $convertWwwQuoteByElement,
           priority: 2,
         }
       },
@@ -314,12 +314,12 @@ export class wwwQuoteByNode extends DecoratorNode<ReactNode> {
   }
 
   static override importJSON(
-    serializedNode: SerializedwwwQuoteByNode
-  ): wwwQuoteByNode {
-    return $createwwwQuoteByNode(serializedNode.quoteBy)
+    serializedNode: SerializedWwwQuoteByNode
+  ): WwwQuoteByNode {
+    return $createWwwQuoteByNode(serializedNode.quoteBy)
   }
 
-  override exportJSON(): SerializedwwwQuoteByNode {
+  override exportJSON(): SerializedWwwQuoteByNode {
     return {
       type: wwwQuoteByNodeType,
       version: 1,
@@ -341,12 +341,12 @@ export class wwwQuoteByNode extends DecoratorNode<ReactNode> {
   }
 }
 
-export function $createwwwQuoteByNode(quoteBy?: string): wwwQuoteByNode {
-  return new wwwQuoteByNode(quoteBy)
+export function $createWwwQuoteByNode(quoteBy?: string): WwwQuoteByNode {
+  return new WwwQuoteByNode(quoteBy)
 }
 
-export function $iswwwQuoteByNode(
+export function $isWwwQuoteByNode(
   node: LexicalNode | null | undefined
-): node is wwwQuoteByNode {
-  return node instanceof wwwQuoteByNode
+): node is WwwQuoteByNode {
+  return node instanceof WwwQuoteByNode
 }

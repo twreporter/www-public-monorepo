@@ -1,4 +1,3 @@
-import { $createCodeNode } from '@lexical/code'
 import {
   INSERT_CHECK_LIST_COMMAND,
   INSERT_ORDERED_LIST_COMMAND,
@@ -7,7 +6,6 @@ import {
 import { $isDecoratorBlockNode } from '@lexical/react/LexicalDecoratorBlockNode'
 import {
   $createHeadingNode,
-  $createQuoteNode,
   $isHeadingNode,
   $isQuoteNode,
   type HeadingTagType,
@@ -27,7 +25,7 @@ import {
 } from 'lexical'
 import { getSelectedNode } from '../../utils/getSelectedNode'
 import { $isAnnotationContentNode } from '../AnnotationPlugin/nodes/AnnotationContentNode'
-import { $iswwwQuoteContentNode } from '../QuotePlugin/nodes/wwwQuoteContentNode'
+import { $isWwwQuoteContentNode } from '../QuotePlugin/nodes/WwwQuoteContentNode'
 
 function $hasSelfOrAncestor(
   node: LexicalNode,
@@ -58,7 +56,7 @@ const canIUse = (selection: BaseSelection | null): boolean => {
     return false
   }
 
-  if ($hasSelfOrAncestor(node, $iswwwQuoteContentNode)) {
+  if ($hasSelfOrAncestor(node, $isWwwQuoteContentNode)) {
     alert('Quote 內不支援此功能')
     return false
   }
