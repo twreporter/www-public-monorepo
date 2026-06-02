@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.44](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.43...www-cms@0.1.0-beta.44) (2026-06-02)
+
+
+### Bug Fixes
+
+* **lexical-editor:** address review comments ([567532b](https://github.com/twreporter/www-public-monorepo/commit/567532b6c4b8685dd83fa9b548d458c9cfa43b4a))
+
+
+### Features
+
+* **lexical-editor:** add quote plugin ([a39caf3](https://github.com/twreporter/www-public-monorepo/commit/a39caf3055f654ce17b9428ed33adb402d9de917))
+
+
+
+
+
 # [0.1.0-beta.43](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.42...www-cms@0.1.0-beta.43) (2026-05-29)
 
 **Note:** Version bump only for package www-cms
