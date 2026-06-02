@@ -9,6 +9,7 @@ import { EditorPicksSection } from '@/components/home/components/editor-picks-se
 import { LatestTopicSection } from '@/components/home/components/latest-topic-section'
 import { HomePageBanner } from '@/components/home/components/banner'
 import { ReviewSection } from '@/components/home/components/review-section'
+import { CategorySection } from '@/components/home/components/category-section'
 // context
 import { BaseContext } from '@/contexts'
 // banner config
@@ -22,6 +23,7 @@ import {
   fakeEditorPickSectionData,
   fakeLatestTopicSectionData,
   fakeReviewSectionData,
+  fakeCategorySectionData,
 } from '@/components/home/fake-data'
 
 // TODO: replace with real data and remove fake data after API is ready
@@ -37,6 +39,7 @@ export const Home = () => {
         <HomePageBanner {...configs[BannerConfigTypes.DONATION]} />
         <ReviewSection articles={fakeReviewSectionData} />
         <HomePageBanner {...configs[BannerConfigTypes.KIDS_REPORTER]} />
+        <CategorySection meta={fakeCategorySectionData} />
         <HomePageBanner {...configs[BannerConfigTypes.PODCAST]} />
       </div>
     </div>

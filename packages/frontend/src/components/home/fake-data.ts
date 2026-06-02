@@ -1,3 +1,6 @@
+// react-typescript-components
+import { INTERNAL_LINKS } from '@twreporter/react-typescript-components/lib/constants/internal-links'
+
 export const fakeLatestSectionData = [
   {
     slug: 'example-slug-1',
@@ -198,6 +201,106 @@ export const fakeReviewSectionData = [
       '這是評論區塊的範例文章內文，這是評論區塊的範例文章內文，這是評論區塊的範例文章內文，這是評論區塊的範例文章內文',
     image: {
       src: 'https://picsum.photos/id/241/400/300',
+      alt: 'Example Image',
+    },
+  },
+]
+
+export const fakeCategorySectionData = [
+  {
+    slug: 'example-slug-1',
+    category: {
+      label: '國際兩岸',
+      to: INTERNAL_LINKS.categories.world,
+    },
+    title: '這是議題區塊的範例文章短標題',
+    image: {
+      src: 'https://picsum.photos/id/237/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-2',
+    category: {
+      label: '人權司法',
+      to: INTERNAL_LINKS.categories.humanRights,
+    },
+    title:
+      '這是議題區塊的範例文章長標題，這是議題區塊的範例文章長標題，這是議題區塊的範例文章長標題',
+    image: {
+      src: 'https://picsum.photos/id/238/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-3',
+    category: {
+      label: '政治社會',
+      to: INTERNAL_LINKS.categories.politicsAndSociety,
+    },
+    title: '這是議題區塊的範例文章標題，這是議題區塊的範例文章標題',
+    image: {
+      src: 'https://picsum.photos/id/239/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-4',
+    category: {
+      label: '醫療健康',
+      to: INTERNAL_LINKS.categories.health,
+    },
+    title: '這是議題區塊的範例文章標題，這是議題區塊的範例文章標題',
+    image: {
+      src: 'https://picsum.photos/id/240/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-5',
+    category: {
+      label: '環境永續',
+      to: INTERNAL_LINKS.categories.environment,
+    },
+    title: '這是議題區塊的範例文章標題，這是議題區塊的範例文章標題',
+    image: {
+      src: 'https://picsum.photos/id/241/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-6',
+    category: {
+      label: '經濟產業',
+      to: INTERNAL_LINKS.categories.econ,
+    },
+    title: '這是議題區塊的範例文章標題，這是議題區塊的範例文章標題',
+    image: {
+      src: 'https://picsum.photos/id/242/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-7',
+    category: {
+      label: '文化生活',
+      to: INTERNAL_LINKS.categories.culture,
+    },
+    title: '這是議題區塊的範例文章標題，這是議題區塊的範例文章標題',
+    image: {
+      src: 'https://picsum.photos/id/243/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-8',
+    category: {
+      label: '教育校園',
+      to: INTERNAL_LINKS.categories.education,
+    },
+    title: '這是議題區塊的範例文章標題，這是議題區塊的範例文章標題',
+    image: {
+      src: 'https://picsum.photos/id/244/400/300',
       alt: 'Example Image',
     },
   },

@@ -2,8 +2,6 @@
 import { type FC, useContext } from 'react'
 import clsx from 'clsx'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import Image from 'next/image'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 // components
 import { ReviewSectionCard } from '@/components/home/components/review-section/card'
