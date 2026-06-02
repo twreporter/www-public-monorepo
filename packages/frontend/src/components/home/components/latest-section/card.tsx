@@ -7,18 +7,10 @@ import { P3 } from '@twreporter/react-typescript-components/lib/text/paragraph'
 import { H6 } from '@twreporter/react-typescript-components/lib/text/heading'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
+// types
+import type { HomePageLatestSectionArticle } from '@/types/home'
 
-type LatestSectionCardProps = {
-  slug: string
-  categoryLabel?: string
-  title: string
-  image?: {
-    src: string
-    alt: string
-  }
-}
-
-export const LatestSectionCard: FC<LatestSectionCardProps> = ({
+export const LatestSectionCard: FC<HomePageLatestSectionArticle> = ({
   slug,
   categoryLabel,
   title,

@@ -96,7 +96,7 @@ export const LatestTopicSection: FC<LatestTopicSectionProps> = ({
                 slug={item.slug}
                 categoryLabel={topicName}
                 title={item.title}
-                description={item.description}
+                ogDescription={item.description}
                 image={item.image}
               />
             </SwiperSlide>
@@ -119,7 +119,7 @@ export const LatestTopicSection: FC<LatestTopicSectionProps> = ({
               slug={item.slug}
               categoryLabel={topicName}
               title={item.title}
-              description={item.description}
+              ogDescription={item.description}
               image={item.image}
             />
           </div>

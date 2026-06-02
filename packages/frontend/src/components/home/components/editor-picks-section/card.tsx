@@ -11,23 +11,14 @@ import {
 import { H2 } from '@twreporter/react-typescript-components/lib/text/heading'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
+// types
+import type { HomePageArticle } from '@/types/home'
 
-type EditorPickCardProps = {
-  slug: string
-  categoryLabel?: string
-  title: string
-  description: string
-  image?: {
-    src: string
-    alt: string
-  }
-}
-
-export const EditorPickCard: FC<EditorPickCardProps> = ({
+export const EditorPickCard: FC<HomePageArticle> = ({
   slug,
   categoryLabel,
   title,
-  description,
+  ogDescription,
   image,
 }) => {
   return (
@@ -51,7 +42,7 @@ export const EditorPickCard: FC<EditorPickCardProps> = ({
         </div>
         <P1
           className="text-gray-800 line-clamp-3 tablet:line-clamp-2"
-          text={description}
+          text={ogDescription}
         />
       </div>
       <div className="w-full aspect-[3/2] relative">

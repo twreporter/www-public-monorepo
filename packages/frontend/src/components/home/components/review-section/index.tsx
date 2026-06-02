@@ -30,8 +30,7 @@ export const ReviewSection: FC<{ articles: HomePageArticle[] }> = ({
       className={clsx(
         'w-screen h-full bg-gray-white relative',
         'pt-[32px] pb-[48px]',
-        'tablet:pb-[64px]',
-        'desktop:pt-[56px] desktop:pb-[120px]',
+        'desktop:py-[56px]',
         '-mx-[24px]',
         'tablet:col-span-12 tablet:-mx-[32px]',
         'desktop:-mx-[48px]',
@@ -55,7 +54,7 @@ export const ReviewSection: FC<{ articles: HomePageArticle[] }> = ({
                 slug={item.slug}
                 categoryLabel={item.categoryLabel}
                 title={item.title}
-                description={item.ogDescription}
+                ogDescription={item.ogDescription}
                 image={item.image}
               />
             </SwiperSlide>
@@ -71,7 +70,7 @@ export const ReviewSection: FC<{ articles: HomePageArticle[] }> = ({
               slug={item.slug}
               categoryLabel={item.categoryLabel}
               title={item.title}
-              description={item.ogDescription}
+              ogDescription={item.ogDescription}
               image={item.image}
             />
           </div>

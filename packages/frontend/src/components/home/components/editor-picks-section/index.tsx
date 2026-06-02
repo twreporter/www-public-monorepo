@@ -80,7 +80,7 @@ export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
                 slug={item.slug}
                 categoryLabel={item.categoryLabel}
                 title={item.title}
-                description={item.ogDescription}
+                ogDescription={item.ogDescription}
                 image={item.image}
               />
             </SwiperSlide>

@@ -10,22 +10,14 @@ import {
 import { H5 } from '@twreporter/react-typescript-components/lib/text/heading'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
+// types
+import type { HomePageArticle } from '@/types/home'
 
-type LatestTopicCardProps = {
-  slug: string
-  categoryLabel?: string
-  title: string
-  description: string
-  image?: {
-    src: string
-    alt: string
-  }
-}
-export const LatestTopicCard: FC<LatestTopicCardProps> = ({
+export const LatestTopicCard: FC<HomePageArticle> = ({
   slug,
   categoryLabel,
   title,
-  description,
+  ogDescription,
   image,
 }) => {
   return (
@@ -49,7 +41,7 @@ export const LatestTopicCard: FC<LatestTopicCardProps> = ({
         <P3 className="text-supportive-heavy" text={categoryLabel} />
         <H5 className="text-gray-800" type={H5.Type.article} text={title} />
       </div>
-      <P1 className="text-gray-800 line-clamp-4" text={description} />
+      <P1 className="text-gray-800 line-clamp-4" text={ogDescription} />
     </Link>
   )
 }
