@@ -7,8 +7,6 @@ import {
   type SerializedElementNode,
 } from 'lexical'
 
-import { $iswwwQuoteNode } from './wwwQuoteNode'
-
 const wwwQuoteContentNodeType = 'www-quote-content'
 const wwwQuoteContentAttribute = 'data-lexical-www-quote-content'
 
@@ -32,11 +30,6 @@ export class wwwQuoteContentNode extends ElementNode {
   }
 
   override createDOM(): HTMLElement {
-    const parentNode = this.getLatest().getParentOrThrow()
-    if (!$iswwwQuoteNode(parentNode)) {
-      throw new Error('Expected parent node to be a wwwQuoteNode')
-    }
-
     const blockquote = document.createElement('blockquote')
     blockquote.classList.add('wwwQuote__content')
     blockquote.setAttribute(wwwQuoteContentAttribute, 'true')

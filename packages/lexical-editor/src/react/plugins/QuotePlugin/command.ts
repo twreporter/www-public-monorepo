@@ -30,6 +30,7 @@ import {
 import {
   $createwwwQuoteNode,
   $iswwwQuoteNode,
+  type wwwQuoteNode,
 } from './nodes/wwwQuoteNode'
 import { $insertwwwQuoteNodes } from './utils'
 
@@ -51,6 +52,22 @@ function $isProtectedQuoteStructureNode(node: LexicalNode): boolean {
     $iswwwQuoteContentNode(node) ||
     $iswwwQuoteByNode(node)
   )
+}
+
+function $findAncestorwwwQuoteNode(
+  node: LexicalNode
+): wwwQuoteNode | null {
+  let currentNode: LexicalNode | null = node
+
+  while (currentNode) {
+    if ($iswwwQuoteNode(currentNode)) {
+      return currentNode
+    }
+
+    currentNode = currentNode.getParent()
+  }
+
+  return null
 }
 
 function $shouldPreventKeyboardQuoteDeletion(): boolean {
@@ -103,18 +120,17 @@ export function registerQuotePlugin(editor: LexicalEditor) {
     () => {
       const selection = $getSelection()
       if ($isRangeSelection(selection) || $isNodeSelection(selection)) {
-        selection.getNodes().forEach((node) => {
-          if ($iswwwQuoteNode(node)) {
-            node.remove()
-            return
-          }
+        const quoteNodes = new Set<wwwQuoteNode>()
 
-          if ($iswwwQuoteByNode(node)) {
-            const parent = node.getParent()
-            if ($iswwwQuoteNode(parent)) {
-              parent.remove()
-            }
+        selection.getNodes().forEach((node) => {
+          const quoteNode = $findAncestorwwwQuoteNode(node)
+          if (quoteNode) {
+            quoteNodes.add(quoteNode)
           }
+        })
+
+        quoteNodes.forEach((quoteNode) => {
+          quoteNode.remove()
         })
       }
       return true

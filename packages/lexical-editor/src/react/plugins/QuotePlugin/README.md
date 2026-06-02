@@ -58,6 +58,6 @@ the same node tree.
   <blockquote class="wwwQuote__content" data-lexical-www-quote-content="true">
     <p>請直接編輯 Quote 內容</p>
   </blockquote>
-  <cite class="wwwQuote__quote_by" data-lexical-www-quote-by="true"></cite>
+  <figcaption class="wwwQuote__by" data-lexical-www-quote-by="true"></figcaption>
 </figure>
 ```

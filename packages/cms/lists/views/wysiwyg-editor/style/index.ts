@@ -114,7 +114,7 @@ export const StyleWrapper = styled.div`
     margin: ${mockup.margin.normal};
   }
 
-  .twreporterTheme__wwwQuote.blockquote {
+  .TwreporterTheme__wwwQuote.blockquote {
     ${largeWidthCSS}
     margin: ${mockup.margin.large};
   }

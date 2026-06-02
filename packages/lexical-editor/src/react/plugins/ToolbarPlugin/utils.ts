@@ -23,10 +23,28 @@ import {
   type RangeSelection,
   type LexicalEditor,
   type BaseSelection,
+  type LexicalNode,
 } from 'lexical'
 import { getSelectedNode } from '../../utils/getSelectedNode'
 import { $isAnnotationContentNode } from '../AnnotationPlugin/nodes/AnnotationContentNode'
 import { $iswwwQuoteContentNode } from '../QuotePlugin/nodes/wwwQuoteContentNode'
+
+function $hasSelfOrAncestor(
+  node: LexicalNode,
+  predicate: (node: LexicalNode) => boolean
+): boolean {
+  let currentNode: LexicalNode | null = node
+
+  while (currentNode) {
+    if (predicate(currentNode)) {
+      return true
+    }
+
+    currentNode = currentNode.getParent()
+  }
+
+  return false
+}
 
 const canIUse = (selection: BaseSelection | null): boolean => {
   if (!selection || !$isRangeSelection(selection)) {
@@ -34,15 +52,13 @@ const canIUse = (selection: BaseSelection | null): boolean => {
   }
 
   const node = getSelectedNode(selection as RangeSelection)
-  const parent = node.getParent()
-  const grandParent = parent?.getParent()
 
-  if ($isAnnotationContentNode(node) || $isAnnotationContentNode(parent)) {
+  if ($hasSelfOrAncestor(node, $isAnnotationContentNode)) {
     alert('註解內不支援此功能')
     return false
   }
 
-  if ($iswwwQuoteContentNode(parent) || $iswwwQuoteContentNode(grandParent)) {
+  if ($hasSelfOrAncestor(node, $iswwwQuoteContentNode)) {
     alert('Quote 內不支援此功能')
     return false
   }

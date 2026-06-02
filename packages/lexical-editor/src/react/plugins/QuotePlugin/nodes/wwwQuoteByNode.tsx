@@ -139,7 +139,7 @@ const WwwQuoteBy: FC<wwwQuoteByProps> = ({ nodeKey, quoteBy }) => {
 
   return (
     <>
-      {quoteBy ? <figcaption className="wwwQuote__quote_by">{quoteBy}</figcaption> : null}
+      {quoteBy ? <span className="wwwQuote__quote_by">{quoteBy}</span> : null}
       {editable ? (
         <div className="wwwQuote__controls">
           <button
@@ -251,15 +251,10 @@ export class wwwQuoteByNode extends DecoratorNode<ReactNode> {
   }
 
   override createDOM(): HTMLElement {
-    const parentNode = this.getLatest().getParentOrThrow()
-    if (!$iswwwQuoteNode(parentNode)) {
-      throw new Error('Expected parent node to be a wwwQuoteNode')
-    }
-
-    const div = document.createElement('div')
-    div.classList.add('wwwQuote__by')
-    div.setAttribute(wwwQuoteByAttribute, 'true')
-    return div
+    const figcaption = document.createElement('figcaption')
+    figcaption.classList.add('wwwQuote__by')
+    figcaption.setAttribute(wwwQuoteByAttribute, 'true')
+    return figcaption
   }
 
   override updateDOM(): boolean {
@@ -280,7 +275,7 @@ export class wwwQuoteByNode extends DecoratorNode<ReactNode> {
 
   static override importDOM(): DOMConversionMap<HTMLElement> | null {
     return {
-      cite: (domNode: HTMLElement) => {
+      figcaption: (domNode: HTMLElement) => {
         if (!domNode.hasAttribute(wwwQuoteByAttribute)) {
           return null
         }
@@ -302,11 +297,11 @@ export class wwwQuoteByNode extends DecoratorNode<ReactNode> {
   }
 
   override exportDOM(): DOMExportOutput {
-    const cite = document.createElement('cite')
-    cite.classList.add('wwwQuote__quote_by')
-    cite.setAttribute(wwwQuoteByAttribute, 'true')
-    cite.textContent = this.__quoteBy ?? ''
-    return { element: cite }
+    const figcaption = document.createElement('figcaption')
+    figcaption.classList.add('wwwQuote__by')
+    figcaption.setAttribute(wwwQuoteByAttribute, 'true')
+    figcaption.textContent = this.__quoteBy ?? ''
+    return { element: figcaption }
   }
 
   override decorate(): ReactNode {
