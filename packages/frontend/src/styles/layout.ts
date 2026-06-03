@@ -7,16 +7,13 @@ export const rwdContainerClass: ClassArray = [
 ]
 
 /**
- * <div className={rwdGridOuterClass}>
-      <div className={rwdGridContainerClass}>
-        <div className={rwdGridInnerClass}>
-          ...
-        </div>
+ * 12-col grid layout classes. Usage:
+    <div className={rwdGridContainerClass}>
+      <div className={rwdGridInnerClass}>
+        ...
       </div>
     </div>
  */
-/** Outermost shell — clips overflow for the 12-col grid pages */
-export const rwdGridOuterClass: ClassArray = ['w-full overflow-hidden']
 
 /** Responsive column gap matching the 12-col grid — use this in child subgrid components */
 export const rwdGridColGapClass: ClassArray = [
