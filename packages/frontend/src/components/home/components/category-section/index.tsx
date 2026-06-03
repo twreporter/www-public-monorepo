@@ -9,6 +9,8 @@ import { SectionBadge } from '@/components/home/components/section-badge'
 import { rwdGridContainerClass } from '@/styles/layout'
 // types
 import type { HomePageCategorySectionMeta } from '@/types/home'
+// constants
+import { SECTION_NAME } from '@/components/home/constants'
 
 export const CategorySection: FC<{ meta: HomePageCategorySectionMeta[] }> = ({
   meta,
@@ -28,7 +30,7 @@ export const CategorySection: FC<{ meta: HomePageCategorySectionMeta[] }> = ({
       {/* Mobile: Swiper */}
       <div className="tablet:hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <SectionBadge label="議題" />
+          <SectionBadge label={SECTION_NAME.category} />
         </div>
         <Swiper
           slidesPerView="auto"

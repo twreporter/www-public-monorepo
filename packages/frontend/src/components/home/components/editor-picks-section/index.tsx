@@ -22,6 +22,7 @@ import { IconButton } from '@twreporter/react-typescript-components/lib/button'
 import { Arrow } from '@twreporter/react-typescript-components/lib/icons'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
+import { SECTION_NAME } from '@/components/home/constants'
 // context
 import { BaseContext } from '@/contexts'
 // types
@@ -66,7 +67,7 @@ export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
       {/* Mobile: Swiper */}
       <div className="tablet:hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <SectionBadge label="編輯精選" />
+          <SectionBadge label={SECTION_NAME.editorPicks} />
         </div>
         <Swiper
           slidesPerView="auto"

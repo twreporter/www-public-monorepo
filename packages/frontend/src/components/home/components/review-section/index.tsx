@@ -16,6 +16,8 @@ import { INTERNAL_LINKS } from '@twreporter/react-typescript-components/lib/cons
 import { BaseContext } from '@/contexts'
 // types
 import type { HomePageArticle } from '@/types/home'
+// constants
+import { SECTION_NAME } from '@/components/home/constants'
 
 export const ReviewSection: FC<{ articles: HomePageArticle[] }> = ({
   articles,
@@ -40,7 +42,7 @@ export const ReviewSection: FC<{ articles: HomePageArticle[] }> = ({
       {/* Mobile: Swiper */}
       <div className="tablet:hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <SectionBadge label="評論" />
+          <SectionBadge label={SECTION_NAME.review} />
         </div>
         <Swiper
           slidesPerView="auto"

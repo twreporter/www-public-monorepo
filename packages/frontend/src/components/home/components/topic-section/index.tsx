@@ -15,6 +15,7 @@ import { SectionBadge } from '@/components/home/components/section-badge'
 import { BaseContext } from '@/contexts'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
+import { SECTION_NAME } from '@/components/home/constants'
 // types
 import type { HomePageTopicSectionMeta } from '@/types/home'
 
@@ -38,7 +39,7 @@ export const TopicSection: FC<{ topics: HomePageTopicSectionMeta[] }> = ({
       )}
     >
       <div className="tablet:hidden absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <SectionBadge label="專題" />
+        <SectionBadge label={SECTION_NAME.topic} />
       </div>
 
       {/* Mobile: Swiper */}

@@ -16,6 +16,7 @@ import type { HomePagePhotographySectionArticle } from '@/types/home'
 import { BaseContext } from '@/contexts'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
+import { SECTION_NAME } from '@/components/home/constants'
 
 export const PhotographySection: FC<{
   articles: HomePagePhotographySectionArticle[]
@@ -70,7 +71,7 @@ export const PhotographySection: FC<{
       {/* Mobile: Swiper */}
       <div className="tablet:hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <SectionBadge label="攝影" />
+          <SectionBadge label={SECTION_NAME.photography} />
         </div>
         <div className="w-full flex flex-col" ref={mobileListRef}>
           {articles.map((item) => (

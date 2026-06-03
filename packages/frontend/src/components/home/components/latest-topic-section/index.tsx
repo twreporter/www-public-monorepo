@@ -20,6 +20,7 @@ import { SectionBadge } from '@/components/home/components/section-badge'
 import { BaseContext } from '@/contexts'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
+import { SECTION_NAME } from '@/components/home/constants'
 // types
 import type { HomePageLatestTopicSectionArticle } from '@/types/home'
 
@@ -54,7 +55,7 @@ export const LatestTopicSection: FC<LatestTopicSectionProps> = ({
       )}
     >
       <div className="tablet:hidden absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <SectionBadge label="最新專題" />
+        <SectionBadge label={SECTION_NAME.latestTopic} />
       </div>
       <div
         className={clsx(
