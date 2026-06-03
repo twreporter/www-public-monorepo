@@ -17,6 +17,11 @@ export type HomePageLatestSectionArticle = Omit<
   'ogDescription'
 >
 
+export type HomePageLatestTopicSectionArticle = Omit<
+  HomePageArticle,
+  'categoryLabel'
+>
+
 export type HomePageCategorySectionArticle = {
   slug: string
   title: string
@@ -40,3 +45,13 @@ export type HomePageCategorySectionMeta = {
       | typeof INTERNAL_LINKS.categories.education
   }
 } & HomePageCategorySectionArticle
+
+export type HomePageTopicSectionMeta = {
+  slug: string
+  title: string
+  ogDescription: string
+  image?: {
+    src: string
+    alt: string
+  }
+}

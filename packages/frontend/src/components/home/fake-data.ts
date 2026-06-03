@@ -127,7 +127,7 @@ export const fakeLatestTopicSectionData = {
       slug: 'example-slug-1',
       title:
         '台灣首位社工遭判過失致死──剴剴案陳尚潔一審判刑2年，三大爭點總整理',
-      description:
+      ogDescription:
         '檢方著重社工陳尚潔的個人責任，辯方則強調制度問題不應由個人承擔。歷經半年審理，最終一審法院認定陳尚潔過失致死罪成立。這是首起判例認定社工具「保證人地位」，可能影響社工未來服務與合作的界線，引發高度關注。',
       image: {
         src: 'https://picsum.photos/id/237/400/300',
@@ -138,7 +138,7 @@ export const fakeLatestTopicSectionData = {
       slug: 'example-slug-2',
       title:
         '台灣首位社工遭判過失致死──剴剴案陳尚潔一審判刑2年，三大爭點總整理',
-      description:
+      ogDescription:
         '檢方著重社工陳尚潔的個人責任，辯方則強調制度問題不應由個人承擔。歷經半年審理，最終一審法院認定陳尚潔過失致死罪成立。這是首起判例認定社工具「保證人地位」，可能影響社工未來服務與合作的界線，引發高度關注。',
       image: {
         src: 'https://picsum.photos/id/238/400/300',
@@ -149,7 +149,7 @@ export const fakeLatestTopicSectionData = {
       slug: 'example-slug-3',
       title:
         '台灣首位社工遭判過失致死──剴剴案陳尚潔一審判刑2年，三大爭點總整理',
-      description:
+      ogDescription:
         '檢方著重社工陳尚潔的個人責任，辯方則強調制度問題不應由個人承擔。歷經半年審理，最終一審法院認定陳尚潔過失致死罪成立。這是首起判例認定社工具「保證人地位」，可能影響社工未來服務與合作的界線，引發高度關注。',
       image: {
         src: 'https://picsum.photos/id/239/400/300',
@@ -301,6 +301,49 @@ export const fakeCategorySectionData = [
     title: '這是議題區塊的範例文章標題，這是議題區塊的範例文章標題',
     image: {
       src: 'https://picsum.photos/id/244/400/300',
+      alt: 'Example Image',
+    },
+  },
+]
+
+export const fakeTopicSectionData = [
+  {
+    slug: 'example-topic-slug-1',
+    title: '剴剴案後，台灣社福體制困境迫在眉睫',
+    ogDescription:
+      '這是專題區塊的範例專題內文，這是專題區塊的範例專題內文，這是專題區塊的範例專題內文，這是專題區塊的範例專題內文',
+    image: {
+      src: 'https://picsum.photos/id/237/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-topic-slug-2',
+    title: '網紅流量下的統戰網絡',
+    ogDescription:
+      '這是專題區塊的範例專題內文，這是專題區塊的範例專題內文，這是專題區塊的範例專題內文，這是專題區塊的範例專題內文',
+    image: {
+      src: 'https://picsum.photos/id/238/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-topic-slug-3',
+    title: '這是專題區塊的範例專題標題，這是專題區塊的範例專題標題',
+    ogDescription:
+      '這是專題區塊的範例專題內文，這是專題區塊的範例專題內文，這是專題區塊的範例專題內文，這是專題區塊的範例專題內文',
+    image: {
+      src: 'https://picsum.photos/id/239/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-topic-slug-4',
+    title: '這是專題區塊的範例專題標題，這是專題區塊的範例專題標題',
+    ogDescription:
+      '這是專題區塊的範例專題內文，這是專題區塊的範例專題內文，這是專題區塊的範例專題內文，這是專題區塊的範例專題內文',
+    image: {
+      src: 'https://picsum.photos/id/240/400/300',
       alt: 'Example Image',
     },
   },

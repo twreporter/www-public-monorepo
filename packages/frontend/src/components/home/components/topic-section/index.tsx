@@ -4,43 +4,27 @@ import clsx from 'clsx'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useRouter } from 'next/navigation'
 // react-typescript-components
-import {
-  P1,
-  P3,
-} from '@twreporter/react-typescript-components/lib/text/paragraph'
-import { H2 } from '@twreporter/react-typescript-components/lib/text/heading'
 import { TextButton } from '@twreporter/react-typescript-components/lib/button'
 import { Arrow } from '@twreporter/react-typescript-components/lib/icons'
 // styles
 import { rwdGridColGapClass } from '@/styles/layout'
 // components
-import { LatestTopicCard } from '@/components/home/components/latest-topic-section/card'
+import { TopicSectionCard } from '@/components/home/components/topic-section/card'
 import { SectionBadge } from '@/components/home/components/section-badge'
 // context
 import { BaseContext } from '@/contexts'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
 // types
-import type { HomePageLatestTopicSectionArticle } from '@/types/home'
+import type { HomePageTopicSectionMeta } from '@/types/home'
 
-type LatestTopicSectionProps = {
-  slug: string
-  topicName: string
-  title: string
-  ogDescription: string
-  posts: HomePageLatestTopicSectionArticle[]
-}
-export const LatestTopicSection: FC<LatestTopicSectionProps> = ({
-  slug,
-  topicName,
-  title,
-  ogDescription,
-  posts,
+export const TopicSection: FC<{ topics: HomePageTopicSectionMeta[] }> = ({
+  topics,
 }) => {
   const router = useRouter()
   const { releaseBranch } = useContext(BaseContext)
   const handleMoreClick = () => {
-    router.push(`${INTERNAL_ROUTES.topics}/${slug}`)
+    router.push(`${INTERNAL_ROUTES.topics}`)
   }
   return (
     <div
@@ -54,26 +38,7 @@ export const LatestTopicSection: FC<LatestTopicSectionProps> = ({
       )}
     >
       <div className="tablet:hidden absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <SectionBadge label="最新專題" />
-      </div>
-      <div
-        className={clsx(
-          'w-full flex flex-col gap-[12px] text-center',
-          'tablet:col-start-4 tablet:col-end-10'
-        )}
-      >
-        <div>
-          <P3 className="text-supportive-heavy" text={`專題・${topicName}`} />
-          <H2
-            className={clsx(
-              'text-gray-800',
-              'desktop:col-start-5 desktop:col-end-9'
-            )}
-            type={H2.Type.article}
-            text={title}
-          />
-        </div>
-        <P1 className="text-gray-800" text={ogDescription} />
+        <SectionBadge label="專題" />
       </div>
 
       {/* Mobile: Swiper */}
@@ -84,11 +49,10 @@ export const LatestTopicSection: FC<LatestTopicSectionProps> = ({
           spaceBetween={24}
           className="w-screen mt-[24px] !-mx-[24px]" // Parent container has padding-x 24px, so need to offset that for mobile swiper
         >
-          {posts.map((item) => (
+          {topics.map((item) => (
             <SwiperSlide key={item.slug} className="max-w-[280px]">
-              <LatestTopicCard
+              <TopicSectionCard
                 slug={item.slug}
-                categoryLabel={topicName}
                 title={item.title}
                 ogDescription={item.ogDescription}
                 image={item.image}
@@ -103,15 +67,14 @@ export const LatestTopicSection: FC<LatestTopicSectionProps> = ({
           'col-span-full',
           'hidden tablet:grid',
           'grid-cols-subgrid',
-          'gap-y-[16px]'
+          'gap-y-[32px]',
+          'desktop:gap-y-[40px]'
         )}
       >
-        {posts.map((item) => (
-          <div className="col-span-4" key={item.slug}>
-            <LatestTopicCard
-              key={item.slug}
+        {topics.map((item) => (
+          <div className="col-span-6" key={item.slug}>
+            <TopicSectionCard
               slug={item.slug}
-              categoryLabel={topicName}
               title={item.title}
               ogDescription={item.ogDescription}
               image={item.image}
@@ -122,7 +85,7 @@ export const LatestTopicSection: FC<LatestTopicSectionProps> = ({
 
       <div className="col-span-full flex justify-center mt-[32px]">
         <TextButton
-          text={`更多${topicName}文章`}
+          text={'更多報導者專題'}
           rightIconComponent={
             <Arrow
               direction={Arrow.Direction.right}
