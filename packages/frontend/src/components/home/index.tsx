@@ -12,6 +12,7 @@ import { ReviewSection } from '@/components/home/components/review-section'
 import { CategorySection } from '@/components/home/components/category-section'
 import { TopicSection } from '@/components/home/components/topic-section'
 import { PhotographySection } from '@/components/home/components/photography-section'
+import { InfographicSection } from '@/components/home/components/infographic-section'
 // context
 import { BaseContext } from '@/contexts'
 // banner config
@@ -28,6 +29,7 @@ import {
   fakeCategorySectionData,
   fakeTopicSectionData,
   fakePhotographySectionData,
+  fakeInfographicSectionData,
 } from '@/components/home/fake-data'
 
 // TODO: replace with real data and remove fake data after API is ready
@@ -47,6 +49,7 @@ export const Home = () => {
         <TopicSection topics={fakeTopicSectionData} />
         <HomePageBanner {...configs[BannerConfigTypes.PODCAST]} />
         <PhotographySection articles={fakePhotographySectionData} />
+        <InfographicSection articles={fakeInfographicSectionData} />
       </div>
     </div>
   )

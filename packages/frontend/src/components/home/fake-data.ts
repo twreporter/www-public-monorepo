@@ -371,3 +371,60 @@ export const fakePhotographySectionData = [
     imageUrl: 'https://picsum.photos/id/240/400/300',
   },
 ]
+
+export const fakeInfographicSectionData = [
+  {
+    slug: 'example-slug-1',
+    title: '這是多媒體區塊的範例文章標題，這是多媒體區塊的範例文章標題',
+    categoryLabel: '多媒體',
+    image: {
+      src: 'https://picsum.photos/id/237/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-2',
+    title: '這是多媒體區塊的範例文章標題，這是多媒體區塊的範例文章標題',
+    categoryLabel: '多媒體',
+    image: {
+      src: 'https://picsum.photos/id/238/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-3',
+    title: '這是多媒體區塊的範例文章標題，這是多媒體區塊的範例文章標題',
+    categoryLabel: '多媒體',
+    image: {
+      src: 'https://picsum.photos/id/239/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-4',
+    title: '這是多媒體區塊的範例文章標題，這是多媒體區塊的範例文章標題',
+    categoryLabel: '多媒體',
+    image: {
+      src: 'https://picsum.photos/id/240/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-5',
+    title: '這是多媒體區塊的範例文章標題，這是多媒體區塊的範例文章標題',
+    categoryLabel: '多媒體',
+    image: {
+      src: 'https://picsum.photos/id/241/400/300',
+      alt: 'Example Image',
+    },
+  },
+  {
+    slug: 'example-slug-6',
+    title: '這是多媒體區塊的範例文章標題，這是多媒體區塊的範例文章標題',
+    categoryLabel: '多媒體',
+    image: {
+      src: 'https://picsum.photos/id/242/400/300',
+      alt: 'Example Image',
+    },
+  },
+]

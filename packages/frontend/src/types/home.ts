@@ -17,6 +17,11 @@ export type HomePageLatestSectionArticle = Omit<
   'ogDescription'
 >
 
+export type HomePageInfographicSectionArticle = Omit<
+  HomePageArticle,
+  'ogDescription'
+>
+
 export type HomePageLatestTopicSectionArticle = Omit<
   HomePageArticle,
   'categoryLabel'
