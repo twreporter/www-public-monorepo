@@ -68,6 +68,9 @@ export default withAuth(
       },
     },
     graphql: {
+      bodyParser: {
+        limit: '10mb',
+      },
       extendGraphqlSchema: (schema) =>
         mergeSchemas({
           schemas: [schema],

@@ -61,6 +61,7 @@
 
 .EmbeddedCode__html {
   width: 100%;
+  line-height: 0;
 }
 
 .EmbeddedCode__loading {
@@ -70,6 +71,7 @@
 .EmbeddedCode__html iframe,
 .EmbeddedCode__html img,
 .EmbeddedCode__html video {
+  display: block;
   max-width: 100%;
 }
 
