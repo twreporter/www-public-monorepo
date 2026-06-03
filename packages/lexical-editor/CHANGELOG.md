@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.20](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.19...@twreporter/lexical-editor@0.2.0-beta.20) (2026-06-03)
+
+
+### Bug Fixes
+
+* **lexical-editor:** remove extra embed lineheight ([b3a8741](https://github.com/twreporter/www-public-monorepo/commit/b3a87418088d33167729fc8178c235c2c98e2cb5))
+
+
+
+
+
 # [0.2.0-beta.19](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.18...@twreporter/lexical-editor@0.2.0-beta.19) (2026-06-02)
 
 

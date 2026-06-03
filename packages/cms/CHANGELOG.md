@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.45](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.44...www-cms@0.1.0-beta.45) (2026-06-03)
+
+
+### Bug Fixes
+
+* **cms:** config body limit via keystone ([1425f8f](https://github.com/twreporter/www-public-monorepo/commit/1425f8fbfc30188239bfd92f391a7a2d6fb241d5))
+* **cms:** remove basePath config ([e53bef2](https://github.com/twreporter/www-public-monorepo/commit/e53bef2c85e8371840e9245322250682163c7523))
+* **lexical-editor:** update express body limit ([25dfe3f](https://github.com/twreporter/www-public-monorepo/commit/25dfe3f4a13617a15d4d037e321b66565d01a3ba))
+
+
+
+
+
 # [0.1.0-beta.44](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.43...www-cms@0.1.0-beta.44) (2026-06-02)
 
 
