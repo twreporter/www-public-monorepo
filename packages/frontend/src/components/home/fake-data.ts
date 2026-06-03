@@ -348,3 +348,26 @@ export const fakeTopicSectionData = [
     },
   },
 ]
+
+export const fakePhotographySectionData = [
+  {
+    slug: 'example-slug-1',
+    title: '這是攝影區塊的範例文章標題，這是攝影區塊的範例文章標題',
+    imageUrl: 'https://picsum.photos/id/237/400/300',
+  },
+  {
+    slug: 'example-slug-2',
+    title: '這是攝影區塊的範例文章標題，這是攝影區塊的範例文章標題',
+    imageUrl: 'https://picsum.photos/id/238/400/300',
+  },
+  {
+    slug: 'example-slug-3',
+    title: '這是攝影區塊的範例文章標題，這是攝影區塊的範例文章標題',
+    imageUrl: 'https://picsum.photos/id/239/400/300',
+  },
+  {
+    slug: 'example-slug-4',
+    title: '這是攝影區塊的範例文章標題，這是攝影區塊的範例文章標題',
+    imageUrl: 'https://picsum.photos/id/240/400/300',
+  },
+]

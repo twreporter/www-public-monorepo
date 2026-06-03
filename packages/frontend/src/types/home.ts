@@ -55,3 +55,9 @@ export type HomePageTopicSectionMeta = {
     alt: string
   }
 }
+
+export type HomePagePhotographySectionArticle = {
+  slug: string
+  title: string
+  imageUrl: string
+}

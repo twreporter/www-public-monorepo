@@ -15,6 +15,7 @@ export const INTERNAL_ROUTES = {
   savedBookmark: `${myReadingPath}/saved`,
   browsingHistory: `${myReadingPath}/history`,
   podcast: `${articlePath}/podcast-list`,
+  photography: '/photography',
 } as const
 
 export type InternalRoutes = ValuesOf<typeof INTERNAL_ROUTES>
