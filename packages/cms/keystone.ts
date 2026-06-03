@@ -2,6 +2,7 @@ import type { Context } from '.keystone/types'
 import Path from 'node:path'
 import { mergeSchemas } from '@graphql-tools/schema'
 import { config } from '@keystone-6/core'
+import express from 'express'
 import { session, withAuth } from './auth'
 import envVars from './environment-variables'
 import { listDefinition as lists } from './lists'
@@ -41,6 +42,12 @@ export default withAuth(
         kind: 'autoincrement',
       },
     },
+    server: {
+      extendExpressApp: (app) => {
+        app.use(express.json({ limit: '10mb' }))
+        app.use(express.urlencoded({ extended: true, limit: '10mb' }))
+      }
+    },
     ui: {
       // For our starter, we check that someone has session data before letting them see the Admin UI.
       isAccessAllowed: (context) => !!context.session?.data,
@@ -53,6 +60,18 @@ export default withAuth(
           },
         ],
       ],
+      basePath: `',
+        webpack: (config) => {
+          config.resolve.alias = {
+            ...(config.resolve.alias || {}),
+            react: require('path').dirname(require.resolve('react/package.json')),
+            'react-dom': require('path').dirname(require.resolve('react-dom/package.json')),
+            'react/jsx-runtime': require.resolve('react/jsx-runtime'),
+            'react/jsx-dev-runtime': require.resolve('react/jsx-dev-runtime'),
+          }
+          return config
+        },
+      basePath:'`,
     },
     lists,
     session,
