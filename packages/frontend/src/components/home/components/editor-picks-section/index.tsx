@@ -27,6 +27,7 @@ import {
 } from '@twreporter/react-typescript-components/lib/text/heading'
 import { IconButton } from '@twreporter/react-typescript-components/lib/button'
 import { Arrow } from '@twreporter/react-typescript-components/lib/icons'
+import ImgPlaceholder from '@twreporter/react-typescript-components/lib/card/img-placeholder'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
 import { SECTION_NAME } from '@/components/home/constants'
@@ -187,7 +188,9 @@ export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
                   className="object-cover"
                 />
               ) : (
-                <div className="w-full h-full bg-gray-800" />
+                <div className="w-full h-full flex justify-center items-center bg-gray-100">
+                  <ImgPlaceholder />
+                </div>
               )}
             </div>
             {activeIndex > 0 ? (

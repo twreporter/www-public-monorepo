@@ -8,6 +8,7 @@ import clsx from 'clsx'
 import { H5 } from '@twreporter/react-typescript-components/lib/text/heading'
 import { TextButton } from '@twreporter/react-typescript-components/lib/button'
 import { Arrow } from '@twreporter/react-typescript-components/lib/icons'
+import ImgPlaceholder from '@twreporter/react-typescript-components/lib/card/img-placeholder'
 // constants
 import { INTERNAL_ROUTES } from '@/constants/routes'
 // context
@@ -39,7 +40,9 @@ export const CategorySectionCard: FC<HomePageCategorySectionMeta> = ({
               className="object-cover"
             />
           ) : (
-            <div className="w-full h-full bg-gray-800" />
+            <div className="w-full h-full flex justify-center items-center bg-gray-100">
+              <ImgPlaceholder />
+            </div>
           )}
         </div>
         <div className="w-full p-[12px] bg-gray-white">

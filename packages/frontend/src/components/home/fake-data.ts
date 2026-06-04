@@ -15,10 +15,10 @@ export const fakeLatestSectionData = [
     slug: 'example-slug-2',
     categoryLabel: '社會',
     title: '這是最新消息區塊的範例文章標題，這是最新消息區塊的範例文章標題',
-    image: {
-      src: 'https://picsum.photos/id/238/400/300',
-      alt: 'Example Image',
-    },
+    // image: {
+    //   src: 'https://picsum.photos/id/238/400/300',
+    //   alt: 'Example Image',
+    // },
   },
   {
     slug: 'example-slug-3',
@@ -87,10 +87,10 @@ export const fakeEditorPickSectionData = [
     title: '這是編輯精選區塊的範例文章標題，這是編輯精選區塊的範例文章標題',
     ogDescription:
       '這是專題企劃的範例文章內文，這是專題企劃的範例文章內文，這是專題企劃的範例文章內文，這是專題企劃的範例文章內文',
-    image: {
-      src: 'https://picsum.photos/id/239/400/300',
-      alt: 'Example Image',
-    },
+    // image: {
+    //   src: 'https://picsum.photos/id/239/400/300',
+    //   alt: 'Example Image',
+    // },
   },
   {
     slug: 'example-slug-4',
@@ -140,10 +140,10 @@ export const fakeLatestTopicSectionData = {
         '台灣首位社工遭判過失致死──剴剴案陳尚潔一審判刑2年，三大爭點總整理',
       ogDescription:
         '檢方著重社工陳尚潔的個人責任，辯方則強調制度問題不應由個人承擔。歷經半年審理，最終一審法院認定陳尚潔過失致死罪成立。這是首起判例認定社工具「保證人地位」，可能影響社工未來服務與合作的界線，引發高度關注。',
-      image: {
-        src: 'https://picsum.photos/id/238/400/300',
-        alt: 'Example Image',
-      },
+      // image: {
+      //   src: 'https://picsum.photos/id/238/400/300',
+      //   alt: 'Example Image',
+      // },
     },
     {
       slug: 'example-slug-3',
@@ -177,10 +177,10 @@ export const fakeReviewSectionData = [
     title: '這是評論區塊的範例文章標題，這是評論區塊的範例文章標題',
     ogDescription:
       '這是評論區塊的範例文章內文，這是評論區塊的範例文章內文，這是評論區塊的範例文章內文，這是評論區塊的範例文章內文',
-    image: {
-      src: 'https://picsum.photos/id/239/400/300',
-      alt: 'Example Image',
-    },
+    // image: {
+    //   src: 'https://picsum.photos/id/239/400/300',
+    //   alt: 'Example Image',
+    // },
   },
   {
     slug: 'example-slug-3',
@@ -214,10 +214,10 @@ export const fakeCategorySectionData = [
       to: INTERNAL_LINKS.categories.world,
     },
     title: '這是議題區塊的範例文章短標題',
-    image: {
-      src: 'https://picsum.photos/id/237/400/300',
-      alt: 'Example Image',
-    },
+    // image: {
+    //   src: 'https://picsum.photos/id/237/400/300',
+    //   alt: 'Example Image',
+    // },
   },
   {
     slug: 'example-slug-2',
@@ -322,10 +322,10 @@ export const fakeTopicSectionData = [
     title: '網紅流量下的統戰網絡',
     ogDescription:
       '這是專題區塊的範例專題內文，這是專題區塊的範例專題內文，這是專題區塊的範例專題內文，這是專題區塊的範例專題內文',
-    image: {
-      src: 'https://picsum.photos/id/238/400/300',
-      alt: 'Example Image',
-    },
+    // image: {
+    //   src: 'https://picsum.photos/id/238/400/300',
+    //   alt: 'Example Image',
+    // },
   },
   {
     slug: 'example-topic-slug-3',
@@ -386,10 +386,10 @@ export const fakeInfographicSectionData = [
     slug: 'example-slug-2',
     title: '這是多媒體區塊的範例文章標題，這是多媒體區塊的範例文章標題',
     categoryLabel: '多媒體',
-    image: {
-      src: 'https://picsum.photos/id/238/400/300',
-      alt: 'Example Image',
-    },
+    // image: {
+    //   src: 'https://picsum.photos/id/238/400/300',
+    //   alt: 'Example Image',
+    // },
   },
   {
     slug: 'example-slug-3',
