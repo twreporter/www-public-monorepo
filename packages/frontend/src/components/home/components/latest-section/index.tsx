@@ -25,7 +25,7 @@ export const LatestSection: FC<{
         ...rwdGridColGapClass
       )}
     >
-      {articles.map((data, index) => (
+      {articles.slice(0, DesktopCardCount).map((data, index) => (
         <div
           key={data.slug}
           className={clsx(

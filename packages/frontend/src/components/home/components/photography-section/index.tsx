@@ -27,6 +27,7 @@ export const PhotographySection: FC<{
   const mobileListRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    if (articles.length === 0) return
     const container = mobileListRef.current
     if (!container) return
 
@@ -49,7 +50,7 @@ export const PhotographySection: FC<{
     items.forEach((el) => observer.observe(el))
 
     return () => observer.disconnect()
-  }, [])
+  }, [articles])
 
   const handleMoreClick = () => {
     router.push(INTERNAL_ROUTES.photography)

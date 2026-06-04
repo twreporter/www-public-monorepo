@@ -13,7 +13,7 @@ export default function MainContent({
   return (
     <main
       className={clsx(
-        'w-full h-full',
+        'w-full h-full justify-center',
         !isHome && 'pt-[24px] tablet:pt-[32px] desktop:pt-[64px]',
         'bg-gray-100'
       )}

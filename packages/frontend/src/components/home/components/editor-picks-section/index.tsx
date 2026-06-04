@@ -1,5 +1,12 @@
 'use client'
-import { type FC, useState, useContext, useCallback } from 'react'
+import {
+  type FC,
+  useState,
+  useContext,
+  useCallback,
+  useRef,
+  useEffect,
+} from 'react'
 import clsx from 'clsx'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Image from 'next/image'
@@ -31,16 +38,32 @@ import type { HomePageArticle } from '@/types/home'
 export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
   articles,
 }) => {
-  const [activeIndex, setActiveIndex] = useState(1)
+  const [activeIndex, setActiveIndex] = useState(() => {
+    return articles && articles.length > 1 ? 1 : 0
+  })
   const [isVisible, setIsVisible] = useState(true)
   const { releaseBranch } = useContext(BaseContext)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
   const changeIndex = useCallback((updater: (prev: number) => number) => {
     setIsVisible(false)
-    setTimeout(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+    timeoutRef.current = setTimeout(() => {
       setActiveIndex(updater)
       setIsVisible(true)
     }, 150)
   }, [])
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [])
+
   const handlePrevClick = () => {
     changeIndex((prevIndex) =>
       prevIndex === 0 ? articles.length - 1 : prevIndex - 1
@@ -51,6 +74,11 @@ export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
       prevIndex === articles.length - 1 ? 0 : prevIndex + 1
     )
   }
+
+  if (!articles || articles.length === 0) {
+    return null
+  }
+
   return (
     <div
       className={clsx(
