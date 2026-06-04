@@ -76,7 +76,7 @@ const PillButton: FC<PillButtonProps> & {
   )
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (disabled) {
+    if (disabled || loading) {
       return
     }
     e.stopPropagation()
