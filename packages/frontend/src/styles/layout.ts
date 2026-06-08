@@ -7,24 +7,26 @@ export const rwdContainerClass: ClassArray = [
 ]
 
 /**
- * <div className={rwdGridOuterClass}>
-      <div className={rwdGridContainerClass}>
-        <div className={rwdGridInnerClass}>
-          <div className={rwdGridChildFullClass}>
-            ...
-          </div>
-        </div>
+ * 12-col grid layout classes. Usage:
+    <div className={rwdGridContainerClass}>
+      <div className={rwdGridInnerClass}>
+        ...
       </div>
     </div>
  */
-/** Outermost shell — clips overflow for the 12-col grid pages */
-export const rwdGridOuterClass: ClassArray = ['w-full overflow-hidden']
+
+/** Responsive column gap matching the 12-col grid — use this in child subgrid components */
+export const rwdGridColGapClass: ClassArray = [
+  'tablet:gap-x-[24px]',
+  'desktop:gap-x-[32px]',
+]
 
 /** 12-col grid container with responsive gutters and max-width at hd */
 export const rwdGridContainerClass: ClassArray = [
   'w-full px-[24px] pb-[120px]',
-  'tablet:grid tablet:grid-cols-12 tablet:gap-x-[24px] tablet:px-[32px]',
-  'desktop:gap-x-[32px] desktop:px-[48px]',
+  'tablet:grid tablet:grid-cols-12 tablet:px-[32px]',
+  ...rwdGridColGapClass,
+  'desktop:px-[48px]',
   'hd:w-[1280px] hd:mx-auto hd:px-0',
 ]
 
@@ -33,6 +35,3 @@ export const rwdGridInnerClass: ClassArray = [
   'w-full flex flex-col',
   'tablet:grid tablet:grid-cols-subgrid tablet:col-start-2 tablet:col-end-12',
 ]
-
-/** Full-width child inside rwdGridInnerClass — spans all 10 inherited columns */
-export const rwdGridChildFullClass: ClassArray = ['tablet:col-span-full']

@@ -66,7 +66,7 @@ const EmptyState: FC<EmptyStateProps> & { Style: typeof STYLE } = ({
             <div
               className={clsx(
                 'flex items-baseline text-center text-gray-600',
-                '[&>svg]:bg-gray-600 [&>svg]:w-[18px] [&>svg]:h-[18px] [&>svg]:mx-[4px] [&>svg]:translate-y-[3px]'
+                '[&_svg]:bg-gray-600 [&_svg]:w-[18px] [&_svg]:h-[18px] [&_svg]:mx-[4px] [&_svg]:translate-y-[3px]'
               )}
             >
               {typeof guide === 'string' ? <P2 text={guide} /> : guide}

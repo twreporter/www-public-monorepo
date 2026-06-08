@@ -25,8 +25,8 @@ const SocialMedia: FC<SocialMediaProps> = ({ mediaType }) => {
       iconComponent={Icon}
       theme={footerTheme}
       className={clsx(
-        '[&>svg]:h-[32px] [&>svg]:w-[32px]',
-        '[&>svg]:tablet:h-[24px] [&>svg]:tablet:w-[24px]'
+        '[&_svg]:h-[32px] [&_svg]:w-[32px]',
+        '[&_svg]:tablet:h-[24px] [&_svg]:tablet:w-[24px]'
       )}
     />
   )

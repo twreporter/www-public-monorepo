@@ -43,7 +43,7 @@ const IconButton: React.FC<IconButtonProps> & {
     <button
       className={clsx(
         'flex',
-        '[&>svg]:w-[24px] [&>svg]:h-[24px]',
+        '[&_svg]:w-[24px] [&_svg]:h-[24px]',
         disabled ? 'cursor-default' : 'cursor-pointer',
         themeClass,
         className

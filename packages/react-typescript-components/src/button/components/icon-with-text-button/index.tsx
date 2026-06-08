@@ -42,7 +42,7 @@ const IconWithTextButton: FC<IconWithTextButtonProps> & {
     <button
       className={clsx(
         'flex flex-col items-center',
-        '[&>svg]:w-[24px] [&>svg]:h-[24px]',
+        '[&_svg]:w-[24px] [&_svg]:h-[24px]',
         color,
         hoverColor,
         svgBgColor,

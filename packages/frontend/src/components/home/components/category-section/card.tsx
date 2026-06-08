@@ -1,0 +1,76 @@
+'use client'
+import { useContext, type FC } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import clsx from 'clsx'
+// react-typescript-components
+import { H5 } from '@twreporter/react-typescript-components/lib/text/heading'
+import { TextButton } from '@twreporter/react-typescript-components/lib/button'
+import { Arrow } from '@twreporter/react-typescript-components/lib/icons'
+import ImgPlaceholder from '@twreporter/react-typescript-components/lib/card/img-placeholder'
+// constants
+import { INTERNAL_ROUTES } from '@/constants/routes'
+// context
+import { BaseContext } from '@/contexts'
+// types
+import type { HomePageCategorySectionMeta } from '@/types/home'
+
+export const CategorySectionCard: FC<HomePageCategorySectionMeta> = ({
+  slug,
+  title,
+  image,
+  category,
+}) => {
+  const router = useRouter()
+  const { releaseBranch } = useContext(BaseContext)
+  return (
+    <div className="w-full flex flex-col gap-[12px]">
+      <H5 text={category.label} className="text-gray-800 text-center" />
+      <Link
+        href={`${INTERNAL_ROUTES.article}/${slug}`}
+        className="flex flex-col w-full transition-opacity duration-300 hover:opacity-70"
+      >
+        <div className="w-full aspect-[3/2] relative">
+          {image ? (
+            <Image
+              fill={true}
+              src={image.src}
+              alt={image.alt}
+              className="object-cover"
+            />
+          ) : (
+            <div className="w-full h-full flex justify-center items-center bg-gray-100">
+              <ImgPlaceholder />
+            </div>
+          )}
+        </div>
+        <div className="w-full p-[12px] bg-gray-white">
+          <H5
+            className={clsx(
+              'text-gray-800 line-clamp-4 min-h-[6em]',
+              'tablet:line-clamp-5 tablet:min-h-[7.5em]',
+              'desktop:line-clamp-4 desktop:min-h-[6em]',
+              'hd:line-clamp-3 hd:min-h-[4.5em]'
+            )}
+            type={H5.Type.article}
+            text={title}
+          />
+        </div>
+      </Link>
+      <div className="w-full flex justify-center">
+        <TextButton
+          text={`更多${category.label}`}
+          style={TextButton.Style.light}
+          rightIconComponent={
+            <Arrow
+              direction={Arrow.Direction.right}
+              releaseBranch={releaseBranch}
+            />
+          }
+          onClick={() => router.push(category.to)}
+        />
+      </div>
+    </div>
+  )
+}

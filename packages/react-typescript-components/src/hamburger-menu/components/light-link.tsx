@@ -28,7 +28,7 @@ const IconLink: FC<IconLinkProps> = ({ label, to, target }) => {
       <div
         className={clsx(
           'py-[8px] px-[32px] flex items-center',
-          '[&>svg]:h-[18px] [&>svg]:w-[18px] [&>svg]:mr-[4px]',
+          '[&_svg]:h-[18px] [&_svg]:w-[18px] [&_svg]:mr-[4px]',
           color,
           hoverColor,
           hoverBgColor,

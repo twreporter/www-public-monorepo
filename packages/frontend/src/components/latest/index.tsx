@@ -18,12 +18,7 @@ import ArticleCard from '@twreporter/react-typescript-components/lib/card/articl
 // utils
 import { formatDate } from '@/utils/date-formatters'
 // styles
-import {
-  rwdGridOuterClass,
-  rwdGridContainerClass,
-  rwdGridInnerClass,
-  rwdGridChildFullClass,
-} from '@/styles/layout'
+import { rwdGridContainerClass, rwdGridInnerClass } from '@/styles/layout'
 
 type LatestTab = {
   slug: string
@@ -108,118 +103,107 @@ export const Latest: FC<LatestProps> = ({ tabs }) => {
   }
 
   return (
-    <div className={clsx(rwdGridOuterClass)}>
-      <div className={clsx(rwdGridContainerClass)}>
-        <div className={clsx(rwdGridInnerClass)}>
-          <div className={clsx(rwdGridChildFullClass)}>
-            <TitleTab
-              title="最新"
-              tabs={titleTabs}
-              activeTabIndex={activeTabIndex}
-            />
-          </div>
-          {displayArticles.map((article) => (
-            <div
-              key={article.slug}
-              className={clsx(rwdGridChildFullClass, 'flex flex-col pt-[24px]')}
-            >
-              {/* Tablet and below: size S */}
-              <div className="desktop:hidden">
-                <Link
-                  href={`${INTERNAL_ROUTES.article}/${article.slug}`}
-                  className="no-underline"
-                >
-                  <ArticleCard
-                    title={article.title}
-                    description={article.subtitle ?? ''}
-                    categoryLabel={article.category}
-                    publishedDate={formatDate(
-                      article.publishedDate,
-                      'YYYY/M/DD'
-                    )}
-                    image={article.image}
-                    size={ArticleCard.Size.s}
-                    showIsBookmarked={true}
-                  />
-                </Link>
-              </div>
-              {/* Desktop and above: size L */}
-              <div className="hidden desktop:block">
-                <Link
-                  href={`${INTERNAL_ROUTES.article}/${article.slug}`}
-                  className="no-underline"
-                >
-                  <ArticleCard
-                    title={article.title}
-                    description={article.subtitle ?? ''}
-                    categoryLabel={article.category}
-                    publishedDate={formatDate(
-                      article.publishedDate,
-                      'YYYY/M/DD'
-                    )}
-                    image={article.image}
-                    size={ArticleCard.Size.l}
-                    showIsBookmarked={true}
-                  />
-                </Link>
-              </div>
-              <Divider className="mt-[24px]" />
-            </div>
-          ))}
-          {isLoading ? (
-            <div className={clsx(rwdGridChildFullClass, 'flex flex-col')}>
-              {Array.from({ length: 3 }).map((_, index) => (
-                <div key={index} className="flex flex-col pt-[24px]">
-                  {/* Tablet and below: size S */}
-                  <div className="desktop:hidden">
-                    <ArticleCard size={ArticleCard.Size.s} isLoading />
-                  </div>
-                  {/* Desktop and above: size L */}
-                  <div className="hidden desktop:block">
-                    <ArticleCard size={ArticleCard.Size.l} isLoading />
-                  </div>
-                  <Divider className="mt-[24px]" />
-                </div>
-              ))}
-            </div>
-          ) : null}
-          {hasError ? (
-            <div
-              className={clsx(
-                rwdGridChildFullClass,
-                'w-full flex justify-center mt-[24px] pt-[24px] pb-[64px]',
-                'desktop:pt-[32px] desktop:pb-[120px]'
-              )}
-            >
-              {/* TODO: error page not implemented */}
-              文章載入失敗，請稍後再試。
-            </div>
-          ) : hasMore && !isLoading ? (
-            <div
-              className={clsx(
-                rwdGridChildFullClass,
-                'w-full flex justify-center pt-[48px] pb-[64px]',
-                'desktop:pt-[64px] desktop:pb-[120px]'
-              )}
-            >
-              <button
-                onClick={handleLoadMore}
-                type="button"
-                className="w-full max-w-[480px]"
-              >
-                <PillButton
-                  text="載入更多"
-                  style={PillButton.Style.dark}
-                  type={PillButton.Type.primary}
-                  size={PillButton.Size.l}
-                  className="w-full flex justify-center"
-                />
-              </button>
-            </div>
-          ) : (
-            <div className={clsx(rwdGridChildFullClass, 'h-[120px]')} />
-          )}
+    <div className={clsx(rwdGridContainerClass)}>
+      <div className={clsx(rwdGridInnerClass)}>
+        <div className="col-span-full">
+          <TitleTab
+            title="最新"
+            tabs={titleTabs}
+            activeTabIndex={activeTabIndex}
+          />
         </div>
+        {displayArticles.map((article) => (
+          <div
+            key={article.slug}
+            className="col-span-full flex flex-col pt-[24px]"
+          >
+            {/* Tablet and below: size S */}
+            <div className="desktop:hidden">
+              <Link
+                href={`${INTERNAL_ROUTES.article}/${article.slug}`}
+                className="no-underline"
+              >
+                <ArticleCard
+                  title={article.title}
+                  description={article.subtitle ?? ''}
+                  categoryLabel={article.category}
+                  publishedDate={formatDate(article.publishedDate, 'YYYY/M/DD')}
+                  image={article.image}
+                  size={ArticleCard.Size.s}
+                  showIsBookmarked={true}
+                />
+              </Link>
+            </div>
+            {/* Desktop and above: size L */}
+            <div className="hidden desktop:block">
+              <Link
+                href={`${INTERNAL_ROUTES.article}/${article.slug}`}
+                className="no-underline"
+              >
+                <ArticleCard
+                  title={article.title}
+                  description={article.subtitle ?? ''}
+                  categoryLabel={article.category}
+                  publishedDate={formatDate(article.publishedDate, 'YYYY/M/DD')}
+                  image={article.image}
+                  size={ArticleCard.Size.l}
+                  showIsBookmarked={true}
+                />
+              </Link>
+            </div>
+            <Divider className="mt-[24px]" />
+          </div>
+        ))}
+        {isLoading ? (
+          <div className="col-span-full flex flex-col">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <div key={index} className="flex flex-col pt-[24px]">
+                {/* Tablet and below: size S */}
+                <div className="desktop:hidden">
+                  <ArticleCard size={ArticleCard.Size.s} isLoading />
+                </div>
+                {/* Desktop and above: size L */}
+                <div className="hidden desktop:block">
+                  <ArticleCard size={ArticleCard.Size.l} isLoading />
+                </div>
+                <Divider className="mt-[24px]" />
+              </div>
+            ))}
+          </div>
+        ) : null}
+        {hasError ? (
+          <div
+            className={clsx(
+              'col-span-full',
+              'w-full flex justify-center mt-[24px] pt-[24px] pb-[64px]',
+              'desktop:pt-[32px] desktop:pb-[120px]'
+            )}
+          >
+            {/* TODO: error page not implemented */}
+            文章載入失敗，請稍後再試。
+          </div>
+        ) : hasMore && !isLoading ? (
+          <div
+            className={clsx(
+              'col-span-full',
+              'w-full flex justify-center pt-[48px] pb-[64px]',
+              'desktop:pt-[64px] desktop:pb-[120px]'
+            )}
+          >
+            <div className="w-full max-w-[480px]">
+              <PillButton
+                text="載入更多"
+                style={PillButton.Style.dark}
+                type={PillButton.Type.primary}
+                size={PillButton.Size.l}
+                className="w-full flex justify-center"
+                onClick={handleLoadMore}
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="col-span-full h-[120px]" />
+        )}
       </div>
     </div>
   )
