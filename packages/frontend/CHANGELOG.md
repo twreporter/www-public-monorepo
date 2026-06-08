@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.50](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.49...www-frontend@0.1.0-beta.50) (2026-06-08)
+
+
+### Bug Fixes
+
+* **frontend:** address comments ([07ce833](https://github.com/twreporter/www-public-monorepo/commit/07ce833bba9ba567ad06647cdafe3851ced8d8fa))
+* **frontend:** fix some layout ([8f833ea](https://github.com/twreporter/www-public-monorepo/commit/8f833eafea7fdbbde6ff49a38817a6e44c46f7fa))
+* **frontend:** home page category section styles ([bcebfcb](https://github.com/twreporter/www-public-monorepo/commit/bcebfcb39e2e9108145d42f2d2153fb1228c2163))
+* **frontend:** props name and style ([9cd67b3](https://github.com/twreporter/www-public-monorepo/commit/9cd67b347ea670625212fb643ddf99cb9bfd966b))
+* **frontend:** remove some grid styles ([a24e591](https://github.com/twreporter/www-public-monorepo/commit/a24e5914090c27c8b2213d1dec9fbf56af895bea))
+
+
+### Features
+
+* **frontend:** add img placeholder ([dbafe6f](https://github.com/twreporter/www-public-monorepo/commit/dbafe6fafa5e35b69c7d523d8d87612885c09ac5))
+* **frontend:** better fake data ([94884e3](https://github.com/twreporter/www-public-monorepo/commit/94884e32019576875a8126c0728f49a224722662))
+* **frontend:** home page and latest section ([94be05c](https://github.com/twreporter/www-public-monorepo/commit/94be05cc6d8cb3a0eda204438defebabadb1aa9e))
+* **frontend:** home page banner ([839449d](https://github.com/twreporter/www-public-monorepo/commit/839449dc177c779682e69d0d34a59f3d89df41fb))
+* **frontend:** home page category section ([d3f9d6a](https://github.com/twreporter/www-public-monorepo/commit/d3f9d6a1b3fbfc8d4425538ceeed1a60202f22bb))
+* **frontend:** home page editor pick section ([39e2079](https://github.com/twreporter/www-public-monorepo/commit/39e20799edeaf0decc06e2a75707ee6de7e7af62))
+* **frontend:** home page infography section ([93da18d](https://github.com/twreporter/www-public-monorepo/commit/93da18d5ae3381fe563aca62f2e22316d9882f4c))
+* **frontend:** home page photography section ([f10595d](https://github.com/twreporter/www-public-monorepo/commit/f10595d0a41e5418cd77b8fdd19d9f5e595433b5))
+* **frontend:** home page review section ([6767116](https://github.com/twreporter/www-public-monorepo/commit/6767116d29249665520fc7e73b88710c408f1602))
+* **frontend:** home page sticky bar ([8625f93](https://github.com/twreporter/www-public-monorepo/commit/8625f9301db5e7b6e81e9c4074caa7e8da587414))
+* **frontend:** home page topic section ([ebc9037](https://github.com/twreporter/www-public-monorepo/commit/ebc90378ab08598b58f22dac286b0c85395f9aa0))
+* **frontend:** latest topic section ([873277c](https://github.com/twreporter/www-public-monorepo/commit/873277c7e40e188f4e8df68b58707eba97dba684))
+* **frontend:** use constants for home page ([1ec7f71](https://github.com/twreporter/www-public-monorepo/commit/1ec7f710c6c256be2e45b1efaa70eae3a6021661))
+
+
+
+
+
 # [0.1.0-beta.49](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.48...www-frontend@0.1.0-beta.49) (2026-05-26)
 
 

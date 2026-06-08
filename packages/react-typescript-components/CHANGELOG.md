@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.31](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.30...@twreporter/react-typescript-components@0.1.0-beta.31) (2026-06-08)
+
+
+### Bug Fixes
+
+* **react-typescript-components:** fix IconButton theme ([e8e8e3a](https://github.com/twreporter/www-public-monorepo/commit/e8e8e3a3fb22a0c74edb6afe441f0af366bf05cb))
+* **react-typescript-components:** fix pillButton loading disabled ([29120d4](https://github.com/twreporter/www-public-monorepo/commit/29120d48384eb2db393489fd2350b96ff88c1c3e))
+* **react-typescript-components:** fix svg selector ([1d6f65a](https://github.com/twreporter/www-public-monorepo/commit/1d6f65aa46a6e361606378af7a635032af92b91e))
+
+
+
+
+
 # [0.1.0-beta.30](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/react-typescript-components@0.1.0-beta.29...@twreporter/react-typescript-components@0.1.0-beta.30) (2026-05-26)
 
 
