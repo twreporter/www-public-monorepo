@@ -8,6 +8,7 @@ import {
   hdOnly,
   tabletAndBelow,
   tabletAndAbove,
+  desktopAndAbove,
 } from './media-query'
 // @twreporter
 import { colorGrayscale, colorSupportive } from '@twreporter/core/lib/constants/color'
@@ -93,7 +94,7 @@ export const StyleWrapper = styled.div`
   }
 
   .TwreporterTheme__paragraph {
-    &:not(.TwreporterTheme__wwwQuote .TwreporterTheme__paragraph) {
+    &:not(.TwreporterTheme__wwwQuote .TwreporterTheme__paragraph):not(.TwreporterTheme__infobox .TwreporterTheme__paragraph) {
       ${normalWidthCSS}
       ${paragraphTextCSS}
       margin: ${mockup.margin.normal};
@@ -123,7 +124,7 @@ export const StyleWrapper = styled.div`
     cursor: pointer;
     text-decoration: none;
     border-bottom: 1px solid ${colorGrayscale.gray300};
-    span {
+    span, em, strong {
       color: ${colorSupportive.heavy} !important;
     }
     &:hover {
@@ -132,8 +133,10 @@ export const StyleWrapper = styled.div`
   }
 
   .TwreporterTheme__h2, .TwreporterTheme__h3 {
-    ${normalWidthCSS}
-    margin: ${mockup.margin.normal};
+    &:not(.TwreporterTheme__infobox .TwreporterTheme__h2):not(.TwreporterTheme__infobox .TwreporterTheme__h3) {  
+      ${normalWidthCSS}
+      margin: ${mockup.margin.normal};
+    }
   }
   
   .TwreporterTheme__h2 {
@@ -155,20 +158,22 @@ export const StyleWrapper = styled.div`
   }
 
   .TwreporterTheme__ul, .TwreporterTheme__ol {
-    ${normalWidthCSS}
-    ${paragraphTextCSS}
-    margin: ${mockup.margin.normal};
-    font-size: 18px;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    ${tabletAndAbove`
-      padding: 0!important;  
-    `}
+    &:not(.TwreporterTheme__infobox .TwreporterTheme__ul):not(.TwreporterTheme__infobox .TwreporterTheme__ol) {
+      ${normalWidthCSS}
+      ${paragraphTextCSS}
+      margin: ${mockup.margin.normal};
+      font-size: 18px;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      ${tabletAndAbove`
+        padding: 0!important;  
+      `}
 
-    li {
-      margin: 0 0 1em 3em;
-      &:last-child {
-        margin-bottom: 0;
+      li {
+        margin: 0 0 1em 3em;
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }
@@ -194,6 +199,65 @@ export const StyleWrapper = styled.div`
       ${mobileOnly`
         width: 100%;
       `}
+    }
+  }
+
+  .TwreporterTheme__infobox {
+    ${largeWidthCSS};
+    margin: ${mockup.margin.large};
+  }
+
+  .TwreporterTheme__infobox .TwreporterTheme__paragraph {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 210%;
+    letter-spacing: 0.096px;
+  }
+
+  .TwreporterTheme__infobox .TwreporterTheme__h2, .TwreporterTheme__infobox .TwreporterTheme__h3 {
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    margin: 0;
+  }
+
+  .TwreporterTheme__infobox .TwreporterTheme__h2 {
+    ${desktopAndAbove`  
+      font-size: 28px;
+    `}
+    ${tabletAndBelow`  
+      font-size: 22px;
+    `}
+  }
+
+  .TwreporterTheme__infobox .TwreporterTheme__h3 {
+    ${desktopAndAbove`  
+      font-size: 22px;
+    `}
+    ${tabletAndBelow`  
+      font-size: 18px;
+    `}
+  }
+
+  .TwreporterTheme__infobox .TwreporterTheme__ul, .TwreporterTheme__infobox .TwreporterTheme__ol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    padding-left: 18px;
+    margin-left: 18px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    line-height: 210%;
+    letter-spacing: 0.096px;
+  }
+
+  .TwreporterTheme__infobox .TwreporterTheme__annotation {
+    .Annotation__content {
+      border-left: 1px solid ${colorGrayscale.gray100};
+      border-right: 1px solid ${colorGrayscale.gray100};
+      border-bottom: 1px solid ${colorGrayscale.gray100};
     }
   }
 

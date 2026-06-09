@@ -16,31 +16,37 @@ export const fieldFeatureOverrides = {
     image: false,
     embeddedCode: false,
     quote: false,
+    infobox: false,
   },
   'Post.brief': {
     image: false,
     embeddedCode: false,
     quote: false,
+    infobox: false,
   },
   'Post.content': {
     image: true,
     embeddedCode: true,
     quote: true,
+    infobox: true,
   },
   'PostFollowup.content': {
     image: true,
     embeddedCode: false,
     quote: true,
+    infobox: false,
   },
   'Topic.teamDescription': {
     image: true,
     embeddedCode: false,
     quote: false,
+    infobox: false,
   },
   'Topic.description': {
     image: true,
     embeddedCode: true,
     quote: false,
+    infobox: true,
   },
 } satisfies Record<string, EditorFeatureConfig>
 
