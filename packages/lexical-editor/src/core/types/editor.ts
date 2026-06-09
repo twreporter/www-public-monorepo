@@ -16,6 +16,7 @@ export type EditorFeatureConfig = {
   image?: boolean
   embeddedCode?: boolean
   quote?: boolean
+  infobox?: boolean
 }
 
 export type ImageFromDbItem = {
@@ -47,24 +48,27 @@ export type UploadImageConfig = {
   /**
    * Async handler to upload a file and return the image URL and optional title
    */
-  handler: (file: File, signal?: AbortSignal) => Promise<{ url: string; title?: string }>
-  
+  handler: (
+    file: File,
+    signal?: AbortSignal
+  ) => Promise<{ url: string; title?: string }>
+
   /**
    * Optional validation function to check if a file is allowed
    * Return { valid: true } if file is valid, or { valid: false, error: string } if invalid
    */
   validate?: (file: File) => { valid: boolean; error?: string }
-  
+
   /**
    * Maximum file size in bytes (default: 5MB)
    */
   maxFileSize?: number
-  
+
   /**
    * Allowed MIME types (default: common image types)
    */
   allowedMimeTypes?: string[]
-  
+
   /**
    * Optional error callback for handling upload errors
    */

@@ -58,6 +58,7 @@ export type EditorThemeClasses = {
   link?: string
   annotation?: string
   image?: string
+  infobox?: string
   wwwQuote?: string
 }
 

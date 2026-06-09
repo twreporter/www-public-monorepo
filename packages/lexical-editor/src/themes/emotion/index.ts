@@ -35,6 +35,7 @@ export const createEmotionEditorTheme = (): EditorTheme => {
       link: 'TwreporterTheme__link',
       annotation: 'TwreporterTheme__annotation',
       image: 'TwreporterTheme__image',
+      infobox: 'TwreporterTheme__infobox',
       wwwQuote: 'TwreporterTheme__wwwQuote',
     },
     tokens: {
@@ -52,7 +53,7 @@ export const createEmotionEditorTheme = (): EditorTheme => {
     },
     components: {
       ColorPicker,
-    }
+    },
   }
 }
 

@@ -35,13 +35,13 @@ export const blockTypeToBlockName = {
 }
 
 const INITIAL_TOOLBAR_STATE = {
-  bgColor: '#fff',
+  bgColor: 'transparent',
   blockType: 'paragraph' as keyof typeof blockTypeToBlockName,
   canRedo: false,
   canUndo: false,
   codeLanguage: '',
   elementFormat: 'left' as ElementFormatType,
-  fontColor: '#000',
+  fontColor: '#404040',
   fontFamily: 'Arial',
   // Current font size in px
   fontSize: `${DEFAULT_FONT_SIZE}px`,

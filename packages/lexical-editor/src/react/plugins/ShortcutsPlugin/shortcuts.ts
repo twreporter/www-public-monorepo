@@ -18,6 +18,7 @@ export const SHORTCUTS = Object.freeze({
   CHECK_LIST: IS_APPLE ? '⌘+Opt+6' : 'Ctrl+Alt+6',
   CODE_BLOCK: IS_APPLE ? '⌘+Opt+C' : 'Ctrl+Alt+C',
   QUOTE: IS_APPLE ? '⌘+Opt+Q' : 'Ctrl+Alt+Q',
+  INFOBOX: IS_APPLE ? '⌘+Opt+B' : 'Ctrl+Alt+B',
   ANNOTATION: IS_APPLE ? '⌘+Opt+A' : 'Ctrl+Alt+A',
   IMAGE_LINK: IS_APPLE ? '⌘+Opt+K' : 'Ctrl+Alt+K',
   IMAGE_FROM_DB: IS_APPLE ? '⌘+Opt+I' : 'Ctrl+Alt+I',
@@ -262,5 +263,12 @@ export function isInsertQuote(event: KeyboardEvent): boolean {
   const { code, shiftKey, altKey, metaKey, ctrlKey } = event
   return (
     code === 'KeyQ' && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey)
+  )
+}
+
+export function isInsertInfobox(event: KeyboardEvent): boolean {
+  const { code, shiftKey, altKey, metaKey, ctrlKey } = event
+  return (
+    code === 'KeyB' && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey)
   )
 }
