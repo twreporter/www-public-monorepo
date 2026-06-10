@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.51](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.50...www-frontend@0.1.0-beta.51) (2026-06-10)
+
+
+### Bug Fixes
+
+* **frontend:** address comments ([115e5c7](https://github.com/twreporter/www-public-monorepo/commit/115e5c780e3818a7555a3d13bc8fa764d04b4cc5))
+* **frontend:** format ([c7ddb0a](https://github.com/twreporter/www-public-monorepo/commit/c7ddb0a66ea02a2e35ccc715bab9207b8bb709bb))
+* **frontend:** home page padding bottom ([9549b91](https://github.com/twreporter/www-public-monorepo/commit/9549b91c0fe35f347aa46a8237438aa3a57a24c4))
+* **frontend:** useEffect for active index ([8bdd7e8](https://github.com/twreporter/www-public-monorepo/commit/8bdd7e825987d5dc7ed074122dfbeda4579e4b1a))
+
+
+
+
+
 # [0.1.0-beta.50](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.49...www-frontend@0.1.0-beta.50) (2026-06-08)
 
 
