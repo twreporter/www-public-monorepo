@@ -51,7 +51,10 @@ export const TopicSection: FC<{ topics: HomePageTopicSectionMeta[] }> = ({
           className="w-screen mt-[24px] !-mx-[24px]" // Parent container has padding-x 24px, so need to offset that for mobile swiper
         >
           {topics.map((item) => (
-            <SwiperSlide key={item.slug} className="max-w-[280px]">
+            <SwiperSlide
+              key={item.slug}
+              className="max-w-[calc(100vw-96px)]" // 24px padding and 24px gap
+            >
               <TopicSectionCard
                 slug={item.slug}
                 title={item.title}
@@ -62,18 +65,20 @@ export const TopicSection: FC<{ topics: HomePageTopicSectionMeta[] }> = ({
           ))}
         </Swiper>
       </div>
-      {/* Desktop: Grid */}
+      {/* Tablet: Grid */}
       <div
         className={clsx(
-          'col-span-full',
+          'col-start-2 col-end-12',
           'hidden tablet:grid',
           'grid-cols-subgrid',
           'gap-y-[32px]',
-          'desktop:gap-y-[40px]'
+          'hd:col-start-3',
+          'hd:col-end-11',
+          'hd:gap-y-[40px]'
         )}
       >
         {topics.map((item) => (
-          <div className="col-span-6" key={item.slug}>
+          <div className="col-span-5 hd:col-span-4" key={item.slug}>
             <TopicSectionCard
               slug={item.slug}
               title={item.title}

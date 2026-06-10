@@ -39,7 +39,10 @@ export const CategorySection: FC<{ meta: HomePageCategorySectionMeta[] }> = ({
           className="w-full"
         >
           {meta.map((item) => (
-            <SwiperSlide key={item.category.label} className="max-w-[280px]">
+            <SwiperSlide
+              key={item.category.label}
+              className="max-w-[calc(100vw-96px)]" // 24px padding and 24px gap
+            >
               <CategorySectionCard
                 slug={item.slug}
                 title={item.title}

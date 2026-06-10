@@ -65,6 +65,12 @@ export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
     }
   }, [])
 
+  useEffect(() => {
+    if (activeIndex >= articles.length) {
+      setActiveIndex(articles.length > 1 ? 1 : 0)
+    }
+  }, [articles, activeIndex])
+
   const handlePrevClick = () => {
     changeIndex((prevIndex) =>
       prevIndex === 0 ? articles.length - 1 : prevIndex - 1
@@ -86,7 +92,7 @@ export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
         'w-screen h-full bg-gray-white relative',
         'pt-[32px] pb-[48px]',
         'tablet:pb-[64px]',
-        'desktop:pt-[56px] desktop:pb-[120px]',
+        'desktop:pt-[56px] desktop:pb-[80px]',
         '-mx-[24px]',
         'tablet:col-span-12 tablet:-mx-[32px]',
         'desktop:-mx-[48px]',
@@ -105,7 +111,10 @@ export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
           className="w-full"
         >
           {articles.map((item) => (
-            <SwiperSlide key={item.slug} className="max-w-[280px]">
+            <SwiperSlide
+              key={item.slug}
+              className="max-w-[calc(100vw-96px)]" // 24px padding and 24px gap
+            >
               <EditorPickCard
                 slug={item.slug}
                 categoryLabel={item.categoryLabel}
@@ -123,7 +132,7 @@ export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
         <div className="col-start-1 col-end-3 row-start-2 flex items-center">
           {activeIndex > 0 ? (
             <button
-              className="flex flex-col text-center hover:cursor-pointer"
+              className="flex flex-col text-center hover:cursor-pointer hover:opacity-70 transition-opacity duration-[300ms]"
               onClick={handlePrevClick}
               type="button"
             >
@@ -147,7 +156,7 @@ export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
             'transition-opacity duration-[300ms]',
             'hover:opacity-70 has-[button:hover]:opacity-100'
           )}
-          href={`${INTERNAL_ROUTES.article}/${articles[activeIndex].slug}`}
+          href={`${INTERNAL_ROUTES.article}/${articles[activeIndex]?.slug}`}
         >
           <div
             className={clsx(
@@ -159,18 +168,18 @@ export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
             <div className="col-start-2 col-end-8">
               <P3
                 className="text-supportive-heavy text-center"
-                text={articles[activeIndex].categoryLabel}
+                text={articles[activeIndex]?.categoryLabel}
               />
               <H2
                 className="text-gray-800 line-clamp-2"
                 type={H2.Type.article}
-                text={articles[activeIndex].title}
+                text={articles[activeIndex]?.title}
+              />
+              <P1
+                className="text-gray-800 line-clamp-2"
+                text={articles[activeIndex]?.ogDescription}
               />
             </div>
-            <P1
-              className="col-span-full text-gray-800 line-clamp-2"
-              text={articles[activeIndex].ogDescription}
-            />
           </div>
           <div className="col-span-full row-start-2 aspect-[3/2] relative">
             <div
@@ -183,8 +192,8 @@ export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
               {articles[activeIndex].image ? (
                 <Image
                   fill={true}
-                  src={articles[activeIndex].image.src}
-                  alt={articles[activeIndex].image.alt}
+                  src={articles[activeIndex]?.image.src}
+                  alt={articles[activeIndex]?.image.alt}
                   className="object-cover"
                 />
               ) : (
@@ -234,13 +243,13 @@ export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
         <div className="col-start-11 col-end-13 row-start-2 flex items-center">
           {activeIndex < articles.length - 1 ? (
             <button
-              className="flex flex-col text-center hover:cursor-pointer"
+              className="flex flex-col text-center hover:cursor-pointer hover:opacity-70 transition-opacity duration-[300ms]"
               onClick={handleNextClick}
               type="button"
             >
               <P3
                 className="text-supportive-heavy"
-                text={articles[activeIndex + 1].categoryLabel}
+                text={articles[activeIndex + 1]?.categoryLabel}
               />
               <H6
                 className="text-gray-800"

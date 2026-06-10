@@ -37,12 +37,12 @@ export const PhotographySectionCard: FC<PhotographySectionCardProps> = ({
       >
         <div
           className={clsx(
-            'flex flex-col w-[240px] desktop:w-[328px] transition-opacity duration-300',
+            'flex flex-col w-[240px] tablet:w-[320px] transition-opacity duration-300',
             'opacity-0 group-hover:opacity-100',
             isActive && 'opacity-100'
           )}
         >
-          <P3 className="text-supportive-main" text="影像．聲音" />
+          <P3 className="text-supportive-main" text="影像" />
           <H5 className="text-gray-white" type={H5.Type.article} text={title} />
         </div>
       </div>

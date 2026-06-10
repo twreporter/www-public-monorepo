@@ -51,7 +51,10 @@ export const InfographicSection: FC<{
           className="w-screen mt-[24px] !-mx-[24px]" // Parent container has padding-x 24px, so need to offset that for mobile swiper
         >
           {articles.map((item) => (
-            <SwiperSlide key={item.slug} className="max-w-[280px]">
+            <SwiperSlide
+              key={item.slug}
+              className="max-w-[calc(100vw-96px)]" // 24px padding and 24px gap
+            >
               <InfographicSectionCard
                 slug={item.slug}
                 title={item.title}
