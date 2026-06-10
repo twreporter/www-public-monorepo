@@ -105,9 +105,10 @@ export const EditorPicksSection: FC<{ articles: HomePageArticle[] }> = ({
           className="w-full"
         >
           {articles.map((item) => (
-            <SwiperSlide key={item.slug} className="max-w-[calc(100vw-96px)]">
-              {' '}
-              {/* 24px padding and 24px gap */}
+            <SwiperSlide
+              key={item.slug}
+              className="max-w-[calc(100vw-96px)]" // 24px padding and 24px gap
+            >
               <EditorPickCard
                 slug={item.slug}
                 categoryLabel={item.categoryLabel}
