@@ -123,12 +123,17 @@ export const StyleWrapper = styled.div`
   .TwreporterTheme__link {
     cursor: pointer;
     text-decoration: none;
-    border-bottom: 1px solid ${colorGrayscale.gray300};
+    border-bottom: 1px solid rgba(102, 102, 102, 0.50);
     span, em, strong {
-      color: ${colorSupportive.heavy} !important;
+      color: ${colorGrayscale.gray700} !important;
     }
+
     &:hover {
+      color: ${colorSupportive.heavy};
       border-color: ${colorSupportive.heavy};
+      span, em, strong {
+        color: ${colorSupportive.heavy} !important;
+      }
     }
   }
 
@@ -281,6 +286,12 @@ export const StyleWrapper = styled.div`
 
   .TwreporterTheme__textUnderline {
     text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-color: rgba(192, 150, 98, 0.50);
+    text-decoration-thickness: 30%;
+    text-underline-offset: -4px;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
   }
 
   .TwreporterTheme__textStrikethrough {
