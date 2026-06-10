@@ -31,8 +31,10 @@ style infobox content.
 
 `INFOBOX_REMOVE_COMMAND` removes the selected infobox.
 
-Backspace/Delete guards prevent deleting the infobox structure from the
-keyboard. Use `INFOBOX_REMOVE_COMMAND` to remove the whole infobox.
+Backspace/Delete inside infobox content behaves like normal rich-text editing.
+When the caret is at an infobox boundary, or immediately outside an adjacent
+infobox, Backspace/Delete asks for confirmation before removing the whole
+infobox.
 
 ## HTML
 
