@@ -102,7 +102,7 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className={clsx(rwdGridContainerClass, '!pb-[60px] desktop:!pb-0')}>
+      <div className={clsx(rwdGridContainerClass, '!pb-0')}>
         <LatestSection articles={fakeLatestSectionData} />
         <div
           ref={(el) => {
