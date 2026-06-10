@@ -226,7 +226,7 @@ function ColorPicker({
 
   const onSetHex = (hex: string) => {
     setInputColor(hex)
-    if (/^#[0-9A-Fa-f]{6, 8}$/i.test(hex)) {
+    if (/^#[0-9A-Fa-f]{6,8}$/i.test(hex)) {
       const newColor = transformColor('hex', hex)
       setSelfColor(newColor)
       onChange?.(newColor.hex, skipAddingToHistoryStack)

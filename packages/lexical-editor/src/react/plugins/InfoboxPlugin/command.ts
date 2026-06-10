@@ -24,6 +24,7 @@ export const INFOBOX_REMOVE_COMMAND: LexicalCommand<void> =
   createCommand('REMOVE_INFOBOX')
 
 type InfoboxKeyboardAction = 'backspace' | 'delete'
+const deleteInfoboxConfirmMessage = '確定要刪除整個 Infobox 嗎？'
 
 function $findAncestorInfoboxNode(node: LexicalNode): InfoboxNode | null {
   let currentNode: LexicalNode | null = node
@@ -132,37 +133,35 @@ function $getAdjacentInfoboxFromKeyboardAction(
   return null
 }
 
-function $shouldPreventInfoboxBoundaryDeletion(
+function $getBoundaryInfoboxFromKeyboardAction(
   action: InfoboxKeyboardAction
-): boolean {
+): InfoboxNode | null {
   const selection = $getSelection()
   if (!$isRangeSelection(selection) || !selection.isCollapsed()) {
-    return false
+    return null
   }
 
   const anchorNode = selection.anchor.getNode()
   const infoboxNode = $findAncestorInfoboxNode(anchorNode)
   if (!infoboxNode) {
-    return false
+    return null
   }
 
   if (
     action === 'backspace' &&
     $isAtStartOfNodePath(anchorNode, selection.anchor.offset, infoboxNode)
   ) {
-    alert('請從 Infobox 外側刪除整個 Infobox')
-    return true
+    return infoboxNode
   }
 
   if (
     action === 'delete' &&
     $isAtEndOfNodePath(anchorNode, selection.anchor.offset, infoboxNode)
   ) {
-    alert('請從 Infobox 外側刪除整個 Infobox')
-    return true
+    return infoboxNode
   }
 
-  return false
+  return null
 }
 
 function $collectSelectedInfoboxNodes(): Set<InfoboxNode> {
@@ -192,10 +191,36 @@ function $removeSelectedInfoboxNodes(): boolean {
   }
 
   infoboxNodes.forEach((infoboxNode) => {
+    $moveSelectionAwayFromInfoboxNode(infoboxNode)
     infoboxNode.remove()
   })
 
   return true
+}
+
+function $moveSelectionAwayFromInfoboxNode(infoboxNode: InfoboxNode): void {
+  const nextSibling = infoboxNode.getNextSibling()
+  if (nextSibling) {
+    nextSibling.selectStart()
+    return
+  }
+
+  const previousSibling = infoboxNode.getPreviousSibling()
+  if (previousSibling) {
+    previousSibling.selectEnd()
+    return
+  }
+
+  const paragraphNode = $createParagraphNode()
+  infoboxNode.insertAfter(paragraphNode)
+  paragraphNode.select()
+}
+
+function $confirmAndRemoveInfoboxNode(infoboxNode: InfoboxNode): void {
+  if (confirm(deleteInfoboxConfirmMessage)) {
+    $moveSelectionAwayFromInfoboxNode(infoboxNode)
+    infoboxNode.remove()
+  }
 }
 
 export function registerInfoboxPlugin(editor: LexicalEditor) {
@@ -230,7 +255,10 @@ export function registerInfoboxPlugin(editor: LexicalEditor) {
   const unregisterBackspace = editor.registerCommand(
     KEY_BACKSPACE_COMMAND,
     (event) => {
-      if ($shouldPreventInfoboxBoundaryDeletion('backspace')) {
+      const boundaryInfoboxNode =
+        $getBoundaryInfoboxFromKeyboardAction('backspace')
+      if (boundaryInfoboxNode) {
+        $confirmAndRemoveInfoboxNode(boundaryInfoboxNode)
         event.preventDefault()
         return true
       }
@@ -240,7 +268,7 @@ export function registerInfoboxPlugin(editor: LexicalEditor) {
         return false
       }
 
-      infoboxNode.remove()
+      $confirmAndRemoveInfoboxNode(infoboxNode)
       event.preventDefault()
       return true
     },
@@ -250,7 +278,10 @@ export function registerInfoboxPlugin(editor: LexicalEditor) {
   const unregisterDelete = editor.registerCommand(
     KEY_DELETE_COMMAND,
     (event) => {
-      if ($shouldPreventInfoboxBoundaryDeletion('delete')) {
+      const boundaryInfoboxNode =
+        $getBoundaryInfoboxFromKeyboardAction('delete')
+      if (boundaryInfoboxNode) {
+        $confirmAndRemoveInfoboxNode(boundaryInfoboxNode)
         event.preventDefault()
         return true
       }
@@ -260,7 +291,7 @@ export function registerInfoboxPlugin(editor: LexicalEditor) {
         return false
       }
 
-      infoboxNode.remove()
+      $confirmAndRemoveInfoboxNode(infoboxNode)
       event.preventDefault()
       return true
     },

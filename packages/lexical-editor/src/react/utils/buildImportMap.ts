@@ -22,6 +22,7 @@ export const hexToRgb = (hex: string) => {
 
 export const parseAllowedColor = (input: string): string => {
   if (input === 'transparent') return 'transparent'
+  if (/^rgba\(0,\s*0,\s*0,\s*0\)$/.test(input)) return 'transparent'
 
   const rgbMatch = input.match(/^rgb\((\d+), (\d+), (\d+)\)$/)
   if (rgbMatch) {
