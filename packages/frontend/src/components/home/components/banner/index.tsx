@@ -145,6 +145,7 @@ export const HomePageBanner: FC<HomePageBannerProps> = ({
         <div
           className={clsx(
             'px-[48px] py-[32px] grid grid-cols-12 gap-y-[12px]',
+            'hd:w-[1280px] hd:mx-auto hd:px-0',
             rwdGridColGapClass
           )}
         >

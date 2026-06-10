@@ -82,7 +82,7 @@ export const Home = () => {
 
   return (
     <div className="relative">
-      <div className="absolute top-0 right-[12px] bottom-0 w-fit hidden tablet:block pointer-events-none">
+      <div className="absolute top-0 right-0 bottom-0 w-fit hidden tablet:block pointer-events-none desktop:right-[12px]">
         <div className="sticky top-1/2 -translate-y-1/2 z-10 pointer-events-auto">
           <div className="flex items-center [writing-mode:vertical-lr] [text-orientation:upright] gap-[20px]">
             {(Object.keys(SECTION_NAME) as SectionKey[]).map((key) => (
@@ -91,7 +91,7 @@ export const Home = () => {
                 text={SECTION_NAME[key]}
                 onClick={() => scrollToSection(key)}
                 className={clsx(
-                  'py-[4px]',
+                  'pt-[4px] pb-[4px]',
                   isSectionActive(key)
                     ? 'text-gray-white bg-brand-heavy'
                     : 'text-brand-heavy bg-transparent',
@@ -102,7 +102,7 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className={clsx(rwdGridContainerClass)}>
+      <div className={clsx(rwdGridContainerClass, '!pb-0')}>
         <LatestSection articles={fakeLatestSectionData} />
         <div
           ref={(el) => {

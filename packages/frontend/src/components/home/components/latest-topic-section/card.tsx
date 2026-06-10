@@ -42,7 +42,11 @@ export const LatestTopicCard: FC<HomePageArticle> = ({
       </div>
       <div className="flex flex-col text-center">
         <P3 className="text-supportive-heavy" text={categoryLabel} />
-        <H5 className="text-gray-800" type={H5.Type.article} text={title} />
+        <H5
+          className="text-gray-800 line-clamp-3 desktop:line-clamp-2"
+          type={H5.Type.article}
+          text={title}
+        />
       </div>
       <P1 className="text-gray-800 line-clamp-4" text={ogDescription} />
     </Link>
