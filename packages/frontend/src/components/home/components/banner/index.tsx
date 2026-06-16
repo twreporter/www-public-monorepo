@@ -49,9 +49,7 @@ export const HomePageBanner: FC<HomePageBannerProps> = ({
             : undefined,
         }}
       >
-        <div
-          className={clsx('w-[calc(100vw-96px)] gap flex flex-col gap-[12px]')}
-        >
+        <div className={clsx('w-[calc(100vw-96px)] flex flex-col gap-[12px]')}>
           <H2
             className={clsx('w-full text-center', textColor)}
             text={title}
@@ -59,7 +57,7 @@ export const HomePageBanner: FC<HomePageBannerProps> = ({
           />
           <P2 className={clsx('w-full', textColor)} text={description} />
         </div>
-        <div className="w-[calc(100vw-96px)] gap flex justify-center">
+        <div className="w-[calc(100vw-96px)] flex justify-center">
           {buttonComponent}
         </div>
       </div>
