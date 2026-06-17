@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.52](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.51...www-frontend@0.1.0-beta.52) (2026-06-17)
+
+
+### Bug Fixes
+
+* **frontend:** home page banner and topic layout ([585399b](https://github.com/twreporter/www-public-monorepo/commit/585399bd819039ed1ad6828880d928ddbdc086f7))
+* **frontend:** home page banner remove unused code ([a87dddb](https://github.com/twreporter/www-public-monorepo/commit/a87dddb0e311913053d85678b6f07bb319196f1f))
+
+
+
+
+
 # [0.1.0-beta.51](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.50...www-frontend@0.1.0-beta.51) (2026-06-10)
 
 
