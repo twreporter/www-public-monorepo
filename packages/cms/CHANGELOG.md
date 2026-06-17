@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.46](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.45...www-cms@0.1.0-beta.46) (2026-06-17)
+
+
+### Bug Fixes
+
+* **cms:** add corresponding setting for infobox ([7390e6a](https://github.com/twreporter/www-public-monorepo/commit/7390e6a67bccd56c5a53482a508847e1901d3cf2))
+* **cms:** update style of link & underline ([9e5d3de](https://github.com/twreporter/www-public-monorepo/commit/9e5d3de04e0541b12f9f9ea104793e861077685f))
+
+
+
+
+
 # [0.1.0-beta.45](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.44...www-cms@0.1.0-beta.45) (2026-06-03)
 
 

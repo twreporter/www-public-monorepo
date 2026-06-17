@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.21](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.20...@twreporter/lexical-editor@0.2.0-beta.21) (2026-06-17)
+
+
+### Bug Fixes
+
+* **lexical-editor:** address review comments ([aa169ae](https://github.com/twreporter/www-public-monorepo/commit/aa169ae43c4dd2411a47f64065a06bfdbd0e5d72))
+* **lexical-editor:** address review comments ([2299d76](https://github.com/twreporter/www-public-monorepo/commit/2299d7602cdbfdd72a703021e03ab3eff70648d0))
+* **lexical-editor:** adjust delete behavior ([235efdd](https://github.com/twreporter/www-public-monorepo/commit/235efdd5c3da82c0d8c6c8ab2ca34c83c424684c))
+
+
+### Features
+
+* **lexical-editor:** add infobox plugin ([5a1f955](https://github.com/twreporter/www-public-monorepo/commit/5a1f95535c14463fce5e9f5df6835aee4df57cd2))
+
+
+
+
+
 # [0.2.0-beta.20](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.19...@twreporter/lexical-editor@0.2.0-beta.20) (2026-06-03)
 
 
