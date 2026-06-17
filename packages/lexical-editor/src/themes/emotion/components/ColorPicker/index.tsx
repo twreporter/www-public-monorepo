@@ -226,9 +226,10 @@ function ColorPicker({
 
   const onSetHex = (hex: string) => {
     setInputColor(hex)
-    if (/^#[0-9A-Fa-f]{6, 8}$/i.test(hex)) {
+    if (/^#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/i.test(hex)) {
       const newColor = transformColor('hex', hex)
       setSelfColor(newColor)
+      onChange?.(newColor.hex, skipAddingToHistoryStack)
     }
   }
 
@@ -241,6 +242,7 @@ function ColorPicker({
     const newColor = transformColor('hsv', newHsv)
     setSelfColor(newColor)
     setInputColor(newColor.hex)
+    onChange?.(newColor.hex, skipAddingToHistoryStack)
   }
 
   const onMoveHue = ({ x }: Position) => {
@@ -249,15 +251,8 @@ function ColorPicker({
 
     setSelfColor(newColor)
     setInputColor(newColor.hex)
+    onChange?.(newColor.hex, skipAddingToHistoryStack)
   }
-
-  useEffect(() => {
-    // Check if the dropdown is actually active
-    if (innerDivRef.current !== null && onChange) {
-      onChange(selfColor.hex, skipAddingToHistoryStack)
-      setInputColor(selfColor.hex)
-    }
-  }, [selfColor, onChange])
 
   useEffect(() => {
     if (color === undefined) {
@@ -271,6 +266,7 @@ function ColorPicker({
   const resetColor = () => {
     setInputColor(resetColors[type])
     setSelfColor(transformColor('hex', resetColors[type]))
+    onChange?.(resetColors[type], skipAddingToHistoryStack)
   }
 
   return (
@@ -285,6 +281,7 @@ function ColorPicker({
             onClick={() => {
               setInputColor(basicColor)
               setSelfColor(transformColor('hex', basicColor))
+              onChange?.(basicColor, skipAddingToHistoryStack)
             }}
           />
         ))}

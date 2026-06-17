@@ -63,6 +63,7 @@ import {
 } from '../AnnotationPlugin/command'
 import { IMAGE_ADD_COMMAND } from '../ImagePlugin/command'
 import { EMBEDDED_CODE_ADD_COMMAND } from '../EmbeddedCodePlugin/command'
+import { INFOBOX_ADD_COMMAND } from '../InfoboxPlugin/command'
 import { WWW_QUOTE_ADD_COMMAND } from '../QuotePlugin/command'
 import {
   OPEN_EMBEDDED_CODE_DIALOG_COMMAND,
@@ -126,8 +127,11 @@ export default function ToolbarPlugin({
   const enableImage = features?.image !== false
   const enableEmbeddedCode = features?.embeddedCode !== false
   const enableQuote = features?.quote !== false
-  const enableImageFromDb = enableImage && imageConfig?.imageFromDb !== undefined
-  const showInsertDropdown = enableImage || enableEmbeddedCode || enableQuote
+  const enableInfobox = features?.infobox !== false
+  const enableImageFromDb =
+    enableImage && imageConfig?.imageFromDb !== undefined
+  const showInsertDropdown =
+    enableImage || enableEmbeddedCode || enableQuote || enableInfobox
 
   // custom plugin state
   const [isOpenEmbeddedCodeDialog, setIsOpenEmbeddedCodeDialog] =
@@ -654,6 +658,22 @@ export default function ToolbarPlugin({
                     <span className="text">Quote</span>
                   </div>
                   <span className="shortcut">{SHORTCUTS.QUOTE}</span>
+                </DropDownItem>
+              )}
+              {enableInfobox && (
+                <DropDownItem
+                  onClick={() => {
+                    activeEditor.dispatchCommand(INFOBOX_ADD_COMMAND, undefined)
+                  }}
+                  className={`item wide`}
+                  title="Infobox"
+                  aria-label="add infobox"
+                >
+                  <div className="icon-text-container">
+                    <i className="icon infobox" />
+                    <span className="text">Infobox</span>
+                  </div>
+                  <span className="shortcut">{SHORTCUTS.INFOBOX}</span>
                 </DropDownItem>
               )}
               {enableEmbeddedCode && (

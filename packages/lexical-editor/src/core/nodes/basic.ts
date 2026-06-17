@@ -13,6 +13,7 @@ import {
 } from '../../react/plugins/AnnotationPlugin/nodes'
 import { EmbeddedCodeNode } from '../../react/plugins/EmbeddedCodePlugin/nodes'
 import { ImageNode } from '../../react/plugins/ImagePlugin/nodes'
+import { InfoboxNode } from '../../react/plugins/InfoboxPlugin/nodes'
 import {
   WwwQuoteByNode,
   WwwQuoteContentNode,
@@ -32,6 +33,7 @@ export const basicEditorNodes: Array<Klass<LexicalNode>> = [
   AnnotationContentNode,
   EmbeddedCodeNode,
   ImageNode,
+  InfoboxNode,
   WwwQuoteNode,
   WwwQuoteContentNode,
   WwwQuoteByNode,

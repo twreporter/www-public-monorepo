@@ -33,6 +33,7 @@ import {
   isIndent,
   isInsertCodeBlock,
   isInsertEmbeddedCode,
+  isInsertInfobox,
   isInsertImageFromDb,
   isInsertLink,
   isInsertQuote,
@@ -53,6 +54,7 @@ import {
   OPEN_IMAGE_FROM_DB_DIALOG_COMMAND,
 } from '../ToolbarPlugin/command'
 import { WWW_QUOTE_ADD_COMMAND } from '../QuotePlugin/command'
+import { INFOBOX_ADD_COMMAND } from '../InfoboxPlugin/command'
 
 export default function ShortcutsPlugin({
   editor,
@@ -67,8 +69,10 @@ export default function ShortcutsPlugin({
   const imageConfig = useImageConfig()
   const enableImage = features?.image !== false
   const enableEmbeddedCode = features?.embeddedCode !== false
-  const enableImageFromDb = enableImage && imageConfig?.imageFromDb !== undefined
+  const enableImageFromDb =
+    enableImage && imageConfig?.imageFromDb !== undefined
   const enableWwwQuote = features?.quote !== false
+  const enableInfobox = features?.infobox !== false
 
   useEffect(() => {
     const keyboardShortcutsHandler = (payload: KeyboardEvent) => {
@@ -148,6 +152,9 @@ export default function ShortcutsPlugin({
       } else if (enableWwwQuote && isInsertQuote(event)) {
         event.preventDefault()
         editor.dispatchCommand(WWW_QUOTE_ADD_COMMAND, undefined)
+      } else if (enableInfobox && isInsertInfobox(event)) {
+        event.preventDefault()
+        editor.dispatchCommand(INFOBOX_ADD_COMMAND, undefined)
       }
 
       return false
@@ -165,6 +172,7 @@ export default function ShortcutsPlugin({
     enableEmbeddedCode,
     enableImageFromDb,
     enableWwwQuote,
+    enableInfobox,
     setIsLinkEditMode,
   ])
 

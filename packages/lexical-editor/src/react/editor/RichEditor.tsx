@@ -12,6 +12,7 @@ import FloatingLinkEditorPlugin from '../plugins/FloatingLinkEditorPlugin'
 import AnnotationPlugin from '../plugins/AnnotationPlugin'
 import EmbeddedCodePlugin from '../plugins/EmbeddedCodePlugin'
 import ImagePlugin from '../plugins/ImagePlugin'
+import InfoboxPlugin from '../plugins/InfoboxPlugin'
 import DragDropImagePlugin from '../plugins/ImagePlugin/DragDropImagePlugin'
 import QuotePlugin from '../plugins/QuotePlugin'
 // components
@@ -49,10 +50,13 @@ export default function Editor({
   const enableImage = config.features?.image !== false
   const enableEmbeddedCode = config.features?.embeddedCode !== false
   const enableQuote = config.features?.quote !== false
+  const enableInfobox = config.features?.infobox !== false
 
   // editor-fullscreen-scroller is for storytelling components
   return (
-    <div className={`editor-shell ${isFullscreen ? 'fullscreen editor-fullscreen-scroller' : ''}`}>
+    <div
+      className={`editor-shell ${isFullscreen ? 'fullscreen editor-fullscreen-scroller' : ''}`}
+    >
       {showToolbar ? (
         <ToolbarPlugin
           editor={editor}
@@ -92,6 +96,7 @@ export default function Editor({
         )}
         <AnnotationPlugin />
         {enableQuote && <QuotePlugin />}
+        {enableInfobox && <InfoboxPlugin />}
         {enableEmbeddedCode && <EmbeddedCodePlugin />}
         {enableImage && <ImagePlugin />}
         {enableImage && config.uploadImage && (

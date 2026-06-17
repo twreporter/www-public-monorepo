@@ -27,5 +27,5 @@ export const basicColors = {
 
 export const resetColors = {
   text: colorGrayscale.gray800,
-  background: colorGrayscale.gray100,
+  background: 'transparent',
 }
