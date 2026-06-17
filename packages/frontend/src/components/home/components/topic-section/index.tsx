@@ -72,13 +72,11 @@ export const TopicSection: FC<{ topics: HomePageTopicSectionMeta[] }> = ({
           'hidden tablet:grid',
           'grid-cols-subgrid',
           'gap-y-[32px]',
-          'hd:col-start-3',
-          'hd:col-end-11',
           'hd:gap-y-[40px]'
         )}
       >
         {topics.map((item) => (
-          <div className="col-span-5 hd:col-span-4" key={item.slug}>
+          <div className="col-span-5" key={item.slug}>
             <TopicSectionCard
               slug={item.slug}
               title={item.title}
