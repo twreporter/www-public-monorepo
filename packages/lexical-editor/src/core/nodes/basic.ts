@@ -19,6 +19,7 @@ import {
   WwwQuoteContentNode,
   WwwQuoteNode,
 } from '../../react/plugins/QuotePlugin/nodes'
+import { SlideShowNode } from '../../react/plugins/SlideShowPlugin/nodes'
 
 export const basicEditorNodes: Array<Klass<LexicalNode>> = [
   HeadingNode,
@@ -34,6 +35,7 @@ export const basicEditorNodes: Array<Klass<LexicalNode>> = [
   EmbeddedCodeNode,
   ImageNode,
   InfoboxNode,
+  SlideShowNode,
   WwwQuoteNode,
   WwwQuoteContentNode,
   WwwQuoteByNode,

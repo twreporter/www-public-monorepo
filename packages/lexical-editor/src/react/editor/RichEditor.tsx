@@ -15,6 +15,7 @@ import ImagePlugin from '../plugins/ImagePlugin'
 import InfoboxPlugin from '../plugins/InfoboxPlugin'
 import DragDropImagePlugin from '../plugins/ImagePlugin/DragDropImagePlugin'
 import QuotePlugin from '../plugins/QuotePlugin'
+import SlideShowPlugin from '../plugins/SlideShowPlugin'
 // components
 import ContentEditable from './ContentEditable'
 // types
@@ -51,6 +52,9 @@ export default function Editor({
   const enableEmbeddedCode = config.features?.embeddedCode !== false
   const enableQuote = config.features?.quote !== false
   const enableInfobox = config.features?.infobox !== false
+  const enableSlideShow =
+    config.features?.slideShow !== false &&
+    config.image?.imageFromDb !== undefined
 
   // editor-fullscreen-scroller is for storytelling components
   return (
@@ -99,6 +103,7 @@ export default function Editor({
         {enableInfobox && <InfoboxPlugin />}
         {enableEmbeddedCode && <EmbeddedCodePlugin />}
         {enableImage && <ImagePlugin />}
+        {enableSlideShow && <SlideShowPlugin />}
         {enableImage && config.uploadImage && (
           <DragDropImagePlugin uploadImage={config.uploadImage} />
         )}

@@ -23,6 +23,7 @@ export const SHORTCUTS = Object.freeze({
   IMAGE_LINK: IS_APPLE ? '⌘+Opt+K' : 'Ctrl+Alt+K',
   IMAGE_FROM_DB: IS_APPLE ? '⌘+Opt+I' : 'Ctrl+Alt+I',
   EMBEDDED_CODE: IS_APPLE ? '⌘+Opt+E' : 'Ctrl+Alt+E',
+  SLIDE_SHOW: IS_APPLE ? '⌘+Opt+S' : 'Ctrl+Alt+S',
 
   // (Ctrl|⌘) + Shift + <key> shortcuts
   INCREASE_FONT_SIZE: IS_APPLE ? '⌘+Shift+.' : 'Ctrl+Shift+.',
@@ -270,5 +271,12 @@ export function isInsertInfobox(event: KeyboardEvent): boolean {
   const { code, shiftKey, altKey, metaKey, ctrlKey } = event
   return (
     code === 'KeyB' && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey)
+  )
+}
+
+export function isInsertSlideShow(event: KeyboardEvent): boolean {
+  const { code, shiftKey, altKey, metaKey, ctrlKey } = event
+  return (
+    code === 'KeyS' && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey)
   )
 }

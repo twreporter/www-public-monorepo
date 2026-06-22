@@ -17,6 +17,7 @@ export type EditorFeatureConfig = {
   embeddedCode?: boolean
   quote?: boolean
   infobox?: boolean
+  slideShow?: boolean
 }
 
 export type ImageFromDbItem = {
