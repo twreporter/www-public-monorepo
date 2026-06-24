@@ -1,17 +1,12 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 // utils
-import {
-  mobileOnly,
-  tabletOnly,
-  desktopOnly,
-  hdOnly,
-  tabletAndBelow,
-  tabletAndAbove,
-  desktopAndAbove,
-} from './media-query'
+import { tabletOnly, desktopOnly, hdOnly, mobileOnly, tabletAndAbove, desktopAndAbove, tabletAndBelow, desktopAndBelow } from './media-query'
 // @twreporter
-import { colorGrayscale, colorSupportive } from '@twreporter/core/lib/constants/color'
+import {
+  colorGrayscale,
+  colorSupportive,
+} from '@twreporter/core/lib/constants/color'
 
 export const LexicalBox = styled.div`
   background-color: #fafbfc;
@@ -24,66 +19,94 @@ export const LexicalBox = styled.div`
   }
 `
 
-const extendWidthCSS = css`
+const articleLayoutCss = css`
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+
   ${mobileOnly`
-    width: 100%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
   `}
+
   ${tabletOnly`
-    width: 100%;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+    padding-left: 32px;
+    padding-right: 32px;
   `}
+
   ${desktopOnly`
-    width: 752px;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 32px;
+    padding-left: 48px;
+    padding-right: 48px;
   `}
+
   ${hdOnly`
-    width: 1033px;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 32px;
+    padding-left: 80px;
+    padding-right: 80px;
   `}
 `
 
-const largeWidthCSS = css`
+const normalItemCss = css`
   ${mobileOnly`
-    width: calc(300/375*100%);
+    grid-column: 1 / -1;
   `}
+
   ${tabletOnly`
-    width: 513px;
+    grid-column: 2 / 12;
   `}
-  ${desktopOnly`
-    width: 550px;
-  `}
-  ${hdOnly`
-    width: 730px;
+
+  ${desktopAndAbove`
+    grid-column: 4 / 10;
   `}
 `
 
-const normalWidthCSS = css`
+const largeItemCss = css`
+  display: grid;
+
+  ${tabletAndBelow`
+    grid-column: 1 / -1;
+  `}
+
+  ${desktopAndAbove`
+    grid-column: 4 / -1;
+  `}
+`
+
+const fullscreenItemCSS = css`
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+`
+
+const rightItemCss = css`
+  display: grid;
+
   ${mobileOnly`
-    padding-left: 34px;
-    padding-right: 34px;
+    grid-column: 1 / -1;
   `}
+
   ${tabletOnly`
-    width: 453px;
+    grid-column: 2 / 12;
   `}
-  ${desktopOnly`
-    width: 480px;
-  `}
-  ${hdOnly`
-    width: 580px;
+
+  ${desktopAndAbove`
+    grid-column: 8 / -1;
   `}
 `
 
 const paragraphTextCSS = css`
   font-size: 18px;
   position: relative;
-  line-height: 2.11;
-  letter-spacing: 0.6px;
+  line-height: 2.1;
+  letter-spacing: 0.108px;
 `
-
-const mockup = {
-  margin: {
-    extend: '60px auto',
-    large: '60px auto',
-    normal: '40px auto',
-  },
-}
 
 export const StyleWrapper = styled.div`
   .editor {
@@ -93,12 +116,23 @@ export const StyleWrapper = styled.div`
     font-family: "Roboto Slab", "Noto Sans TC", sans-serif;
   }
 
+  .lexical-content-editable {
+    ${articleLayoutCss}
+    row-gap: 40px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
   .TwreporterTheme__paragraph {
-    &:not(.TwreporterTheme__wwwQuote .TwreporterTheme__paragraph):not(.TwreporterTheme__infobox .TwreporterTheme__paragraph) {
-      ${normalWidthCSS}
+    &:not(.TwreporterTheme__wwwQuote .TwreporterTheme__annotation) {
+      ${normalItemCss}
       ${paragraphTextCSS}
-      margin: ${mockup.margin.normal};
       color: ${colorGrayscale.gray800};
+
+      ${tabletAndAbove`
+        padding-left: 32px;
+        padding-right: 32px;
+      `}
 
       /* line break */
       white-space: pre-wrap;
@@ -111,13 +145,11 @@ export const StyleWrapper = styled.div`
   }
 
   .TwreporterTheme__wwwQuote.default {
-    ${normalWidthCSS}
-    margin: ${mockup.margin.normal};
+    ${normalItemCss}
   }
 
   .TwreporterTheme__wwwQuote.blockquote {
-    ${largeWidthCSS}
-    margin: ${mockup.margin.large};
+    ${normalItemCss}
   }
   
   .TwreporterTheme__link {
@@ -138,54 +170,46 @@ export const StyleWrapper = styled.div`
   }
 
   .TwreporterTheme__h2, .TwreporterTheme__h3 {
-    &:not(.TwreporterTheme__infobox .TwreporterTheme__h2):not(.TwreporterTheme__infobox .TwreporterTheme__h3) {  
-      ${normalWidthCSS}
-      margin: ${mockup.margin.normal};
-    }
+    ${normalItemCss}
+    ${tabletAndAbove`  
+      padding-top: 20px;
+    `}
   }
   
   .TwreporterTheme__h2 {
     line-height: 125%;
-    font-size: 32px;
-  
-    ${tabletAndBelow`
-      font-size: 24px;  
+    font-size: 24px;
+    ${tabletAndAbove`
+      font-size: 32px;  
     `}
   }
   
   .TwreporterTheme__h3 {
     line-height: 150%;
-    font-size: 28px;
-
-    ${tabletAndBelow`
-      font-size: 22px;  
+    font-size: 22px;
+    ${tabletAndAbove`
+      font-size: 28px;  
     `}
   }
 
   .TwreporterTheme__ul, .TwreporterTheme__ol {
-    &:not(.TwreporterTheme__infobox .TwreporterTheme__ul):not(.TwreporterTheme__infobox .TwreporterTheme__ol) {
-      ${normalWidthCSS}
-      ${paragraphTextCSS}
-      margin: ${mockup.margin.normal};
-      font-size: 18px;
-      margin-block-start: 0;
-      margin-block-end: 0;
-      ${tabletAndAbove`
-        padding: 0!important;  
-      `}
+    ${normalItemCss}
+    ${paragraphTextCSS}
+    font-size: 18px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding: 0 32px 0 48px;
 
-      li {
-        margin: 0 0 1em 3em;
-        &:last-child {
-          margin-bottom: 0;
-        }
+    li {
+      margin: 0 0 0 27px;
+      &:last-child {
+        margin-bottom: 0;
       }
     }
   }
 
   .TwreporterTheme__annotation {
     .Annotation__content {
-      ${normalWidthCSS}
       margin: 0 auto 10px auto;
       span {
         color: ${colorGrayscale.gray700} !important;
@@ -195,21 +219,112 @@ export const StyleWrapper = styled.div`
   }
   
   .TwreporterTheme__image {
-    margin: 60px auto;
-    &.default, &.right {
-      ${extendWidthCSS}
+    .Image__image {
+      grid-column: 1 / -1;
     }
-    &.small {
-      ${largeWidthCSS}
+
+    &.default {
+      ${largeItemCss}
       ${mobileOnly`
-        width: 100%;
+        .Image__image {
+          width: 100vw;
+          transform: translateX(-24px;)
+        }
+        figure {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          column-gap: 24px;
+        }
+        .Image__caption {
+          grid-column: 2 / -1;
+        }
+      `}
+      ${tabletOnly`
+        .Image__image {
+          width: 100vw;
+          transform: translateX(-32px;)
+        }
+        figure {
+          display: grid;
+          grid-template-columns: repeat(12, minmax(0, 1fr));
+          column-gap: 24px;
+        }
+        .Image__caption {
+          grid-column: 4 / -1;
+          float: right;
+        }
+      `}
+      ${desktopAndAbove`
+        figure {
+          display: grid;
+          grid-template-columns: repeat(9, minmax(0, 1fr));
+          column-gap: 32px;
+        }
+        .Image__caption {
+          grid-column: 7 / -1;
+        }
+      `}
+    }
+    
+    &.right {
+      ${rightItemCss}
+      ${mobileOnly`
+        figure {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          column-gap: 24px;
+        }
+        .Image__caption {
+          grid-column: 2 / -1;
+        }
+      `}
+      ${desktopAndAbove`
+        float: right;
+        figure {
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          column-gap: 32px;
+        }
+        .Image__caption {
+          grid-column: 3 / -1;
+        }
+      `}
+    }
+
+    &.small {
+      ${normalItemCss}
+      ${mobileOnly`
+        .Image__image {
+          width: 100vw;
+          transform: translateX(-24px;)
+        }
+        figure {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          column-gap: 24px;
+        }
+        .Image__caption {
+          grid-column: 2 / -1;
+        }
+      `}
+      ${desktopAndAbove`
+        figure {
+          display: grid;
+          grid-template-columns: repeat(9, minmax(0, 1fr));
+          column-gap: 32px;
+        }
+        .Image__image {
+          grid-column: 1 / 7;
+        }
+        .Image__caption {
+          grid-column: 7 / -1;
+        }
       `}
     }
   }
 
   .TwreporterTheme__infobox {
-    ${largeWidthCSS};
-    margin: ${mockup.margin.large};
+    ${normalItemCss}
   }
 
   .TwreporterTheme__infobox .TwreporterTheme__paragraph {
@@ -268,13 +383,77 @@ export const StyleWrapper = styled.div`
   }
 
   .TwreporterTheme__audio {
-    ${largeWidthCSS}
-    margin: ${mockup.margin.large};
+    ${normalItemCss}
+  }
+
+  .EmbeddedCode__content {
+    ${normalItemCss}
+  }
+
+  .EmbeddedCode__content.fullscreen {
+    ${fullscreenItemCSS}
   }
 
   .TwreporterTheme__slideshow {
-    ${extendWidthCSS}
-    margin: ${mockup.margin.extend};
+    ${largeItemCss}
+
+    .SlideShow__container {
+      ${mobileOnly`
+        display: inline-grid;
+        padding: 0 24px;
+        column-gap: 24px;
+        align-self: stretch;
+        grid-template-columns: repeat(4,minmax(0,1fr));
+      `}
+      ${tabletOnly`
+        display: inline-grid;
+        padding: 0 32px;
+        column-gap: 24px;
+        align-self: stretch;
+        grid-template-columns: repeat(12,minmax(0,1fr));
+      `}
+      ${desktopAndAbove`
+        display: grid;
+        column-gap: 32px;
+        align-self: stretch;
+        grid-template-columns: repeat(9,minmax(0,1fr));
+      `}
+    }
+
+    .SlideShow__media {
+      grid-column: 1 / -1;
+    }
+
+    .SlideShow__body {
+      ${mobileOnly`
+        display: flex;
+        padding-top: 20px;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 20px;
+        grid-column: 1 / span 4;
+        justify-self: stretch;
+      `}
+      ${tabletOnly`
+        display: flex;
+        padding-top: 20px;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 20px;
+        grid-column: 4 / span 9;
+        justify-self: stretch;
+      `}
+
+      ${desktopAndAbove`
+        display: flex;
+        padding-top: 20px;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 20px;
+        grid-column: 7 / span 3;
+        justify-self: stretch;
+      `}
+    }
   }
 
   .TwreporterTheme__textBold {
