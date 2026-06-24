@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.47](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.46...www-cms@0.1.0-beta.47) (2026-06-24)
+
+
+### Bug Fixes
+
+* address infobox defect ([d1c9490](https://github.com/twreporter/www-public-monorepo/commit/d1c9490cc736f73dd78c6c228e2d3c90b61e4248))
+
+
+
+
+
 # [0.1.0-beta.46](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.45...www-cms@0.1.0-beta.46) (2026-06-17)
 
 
