@@ -217,6 +217,7 @@ export const StyleWrapper = styled.div`
     font-weight: 400;
     line-height: 210%;
     letter-spacing: 0.096px;
+    margin: 0;
   }
 
   .TwreporterTheme__infobox .TwreporterTheme__h2, .TwreporterTheme__infobox .TwreporterTheme__h3 {
@@ -289,7 +290,7 @@ export const StyleWrapper = styled.div`
     text-decoration-style: solid;
     text-decoration-color: rgba(192, 150, 98, 0.50);
     text-decoration-thickness: 30%;
-    text-underline-offset: -4px;
+    text-underline-offset: -3px;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
   }
