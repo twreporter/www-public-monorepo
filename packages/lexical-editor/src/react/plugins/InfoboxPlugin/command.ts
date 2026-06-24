@@ -238,6 +238,7 @@ export function registerInfoboxPlugin(editor: LexicalEditor) {
       infoboxNode.append(paragraphNode)
       $insertInfoboxNodes([infoboxNode])
       paragraphNode.select(0, 0)
+      editor.focus()
       return true
     },
     COMMAND_PRIORITY_EDITOR

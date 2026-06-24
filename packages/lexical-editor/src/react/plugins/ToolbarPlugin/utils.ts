@@ -25,6 +25,7 @@ import {
 } from 'lexical'
 import { getSelectedNode } from '../../utils/getSelectedNode'
 import { $isAnnotationContentNode } from '../AnnotationPlugin/nodes/AnnotationContentNode'
+import { $isInfoboxNode } from '../InfoboxPlugin/nodes'
 import { $isWwwQuoteContentNode } from '../QuotePlugin/nodes/WwwQuoteContentNode'
 
 function $hasSelfOrAncestor(
@@ -64,6 +65,17 @@ const canIUse = (selection: BaseSelection | null): boolean => {
   return true
 }
 
+const isNonCollapsedSelectionInInfobox = (
+  selection: BaseSelection | null
+): boolean => {
+  if (!selection || !$isRangeSelection(selection) || selection.isCollapsed()) {
+    return false
+  }
+
+  const node = getSelectedNode(selection as RangeSelection)
+  return $hasSelfOrAncestor(node, $isInfoboxNode)
+}
+
 export const formatParagraph = (editor: LexicalEditor) => {
   editor.update(() => {
     const selection = $getSelection()
@@ -100,6 +112,10 @@ export const formatBulletList = (editor: LexicalEditor, blockType: string) => {
     if (!canIUse(selection)) {
       return
     }
+    if (isNonCollapsedSelectionInInfobox(selection)) {
+      alert('請在未選取文字的情況下進行此操作')
+      return
+    }
 
     if (blockType !== 'bullet') {
       editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined)
@@ -113,6 +129,10 @@ export const formatCheckList = (editor: LexicalEditor, blockType: string) => {
   editor.update(() => {
     const selection = $getSelection()
     if (!canIUse(selection)) {
+      return
+    }
+    if (isNonCollapsedSelectionInInfobox(selection)) {
+      alert('請在未選取文字的情況下進行此操作')
       return
     }
 
@@ -131,6 +151,10 @@ export const formatNumberedList = (
   editor.update(() => {
     const selection = $getSelection()
     if (!canIUse(selection)) {
+      return
+    }
+    if (isNonCollapsedSelectionInInfobox(selection)) {
+      alert('請在未選取文字的情況下進行此操作')
       return
     }
 
