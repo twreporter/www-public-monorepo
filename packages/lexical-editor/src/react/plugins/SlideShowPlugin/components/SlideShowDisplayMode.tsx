@@ -14,7 +14,7 @@ type SlideShowDisplayModeProps = {
 const SlideShowDisplayMode: FC<SlideShowDisplayModeProps> = ({
   editable = false,
   onEdit,
-  slides,
+  slides = [],
 }) => {
   const imageConfig = useImageConfig()
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -36,17 +36,28 @@ const SlideShowDisplayMode: FC<SlideShowDisplayModeProps> = ({
     return null
   }
 
+  const hasMultipleSlides = slides.length > 1
   const previousSlide =
-    slides[(safeCurrentIndex - 1 + slides.length) % slides.length]
-  const nextSlide = slides[(safeCurrentIndex + 1) % slides.length]
+    slides[(safeCurrentIndex - 1 + slides.length) % slides.length] ??
+    currentSlide
+  const nextSlide =
+    slides[(safeCurrentIndex + 1) % slides.length] ?? currentSlide
 
   const previous = () => {
+    if (!hasMultipleSlides) {
+      return
+    }
+
     setSlideDirection('previous')
     setAnimationKey((key) => key + 1)
     setCurrentIndex((index) => (index - 1 + slides.length) % slides.length)
   }
 
   const next = () => {
+    if (!hasMultipleSlides) {
+      return
+    }
+
     setSlideDirection('next')
     setAnimationKey((key) => key + 1)
     setCurrentIndex((index) => (index + 1) % slides.length)
@@ -63,15 +74,15 @@ const SlideShowDisplayMode: FC<SlideShowDisplayModeProps> = ({
             onClick={onEdit}
           />
         ) : null}
-        <div className="SlideShow__peek" aria-hidden="true">
-          {previousSlide ? (
+        {hasMultipleSlides ? (
+          <div className="SlideShow__peek" aria-hidden="true">
             <img
               src={previousSlide.url}
               alt=""
               className="SlideShow__peek_image"
             />
-          ) : null}
-        </div>
+          </div>
+        ) : null}
         <figure
           key={`${animationKey}-${currentSlide.url}`}
           className={`SlideShow__current ${
@@ -88,11 +99,15 @@ const SlideShowDisplayMode: FC<SlideShowDisplayModeProps> = ({
             className="SlideShow__image"
           />
         </figure>
-        <div className="SlideShow__peek" aria-hidden="true">
-          {nextSlide ? (
-            <img src={nextSlide.url} alt="" className="SlideShow__peek_image" />
-          ) : null}
-        </div>
+        {hasMultipleSlides ? (
+          <div className="SlideShow__peek" aria-hidden="true">
+            <img
+              src={nextSlide.url}
+              alt=""
+              className="SlideShow__peek_image"
+            />
+          </div>
+        ) : null}
         {editable ? (
           <div className="SlideShow__edit_image">
             <button type="button" aria-label="Edit slideshow">
@@ -108,22 +123,20 @@ const SlideShowDisplayMode: FC<SlideShowDisplayModeProps> = ({
             <span aria-hidden="true">|</span>
             <span>{slides.length}</span>
           </p>
-          <div className="SlideShow__nav">
-            <button
-              type="button"
-              aria-label="Previous slide"
-              onClick={previous}
-            >
-              <i className="slide-prev" />
-            </button>
-            <button
-              type="button"
-              aria-label="Next slide"
-              onClick={next}
-            >
-              <i className="slide-next" />
-            </button>
-          </div>
+          {hasMultipleSlides ? (
+            <div className="SlideShow__nav">
+              <button
+                type="button"
+                aria-label="Previous slide"
+                onClick={previous}
+              >
+                <i className="slide-prev" />
+              </button>
+              <button type="button" aria-label="Next slide" onClick={next}>
+                <i className="slide-next" />
+              </button>
+            </div>
+          ) : null}
         </div>
         {currentSlide.caption && (
           <p className="SlideShow__caption">{currentSlide.caption}</p>

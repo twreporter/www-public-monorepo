@@ -228,7 +228,7 @@ export const StyleWrapper = styled.div`
       ${mobileOnly`
         .Image__image {
           width: 100vw;
-          transform: translateX(-24px;)
+          transform: translateX(-24px);
         }
         figure {
           display: grid;
@@ -242,7 +242,7 @@ export const StyleWrapper = styled.div`
       ${tabletOnly`
         .Image__image {
           width: 100vw;
-          transform: translateX(-32px;)
+          transform: translateX(-32px);
         }
         figure {
           display: grid;
@@ -296,7 +296,7 @@ export const StyleWrapper = styled.div`
       ${mobileOnly`
         .Image__image {
           width: 100vw;
-          transform: translateX(-24px;)
+          transform: translateX(-24px);
         }
         figure {
           display: grid;
