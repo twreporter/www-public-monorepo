@@ -96,6 +96,14 @@
     &.www-quote-brush {
       mask: url(../assets/icons/brush.svg);
     }
+
+    &.slide-prev {
+      background-image: url(../assets/icons/slide-prev.svg);
+    }
+
+    &.slide-next {
+      background-image: url(../assets/icons/slide-next.svg);
+    }
   }
 
   .icon {

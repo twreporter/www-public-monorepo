@@ -3,6 +3,8 @@ import { type FC, useState } from 'react'
 import { useImageConfig } from '../../../context/ImageConfigContext'
 import type { SlideShowSlide } from '../types'
 
+type SlideDirection = 'previous' | 'next'
+
 type SlideShowDisplayModeProps = {
   slides: SlideShowSlide[]
   editable?: boolean
@@ -16,7 +18,14 @@ const SlideShowDisplayMode: FC<SlideShowDisplayModeProps> = ({
 }) => {
   const imageConfig = useImageConfig()
   const [currentIndex, setCurrentIndex] = useState(0)
-  const safeCurrentIndex = Math.min(currentIndex, Math.max(slides.length - 1, 0))
+  const [slideDirection, setSlideDirection] = useState<SlideDirection | null>(
+    null
+  )
+  const [animationKey, setAnimationKey] = useState(0)
+  const safeCurrentIndex = Math.min(
+    currentIndex,
+    Math.max(slides.length - 1, 0)
+  )
   const currentSlide = slides[safeCurrentIndex]
   const rawSrcSet = currentSlide
     ? imageConfig?.getDbImageSrcSet?.(currentSlide.url)
@@ -27,21 +36,50 @@ const SlideShowDisplayMode: FC<SlideShowDisplayModeProps> = ({
     return null
   }
 
+  const previousSlide =
+    slides[(safeCurrentIndex - 1 + slides.length) % slides.length]
+  const nextSlide = slides[(safeCurrentIndex + 1) % slides.length]
+
   const previous = () => {
-    setCurrentIndex((index) => Math.max(0, index - 1))
+    setSlideDirection('previous')
+    setAnimationKey((key) => key + 1)
+    setCurrentIndex((index) => (index - 1 + slides.length) % slides.length)
   }
 
   const next = () => {
-    setCurrentIndex((index) => Math.min(slides.length - 1, index + 1))
+    setSlideDirection('next')
+    setAnimationKey((key) => key + 1)
+    setCurrentIndex((index) => (index + 1) % slides.length)
   }
 
   return (
     <div className="SlideShow__container">
-      <div
-        className={`SlideShow__media ${editable ? 'is-editable' : ''}`}
-        onClick={editable ? onEdit : undefined}
-      >
-        <figure itemScope itemType="http://schema.org/ImageObject">
+      <div className={`SlideShow__media ${editable ? 'is-editable' : ''}`}>
+        {editable ? (
+          <button
+            type="button"
+            className="SlideShow__edit_target"
+            aria-label="Edit slideshow"
+            onClick={onEdit}
+          />
+        ) : null}
+        <div className="SlideShow__peek" aria-hidden="true">
+          {previousSlide ? (
+            <img
+              src={previousSlide.url}
+              alt=""
+              className="SlideShow__peek_image"
+            />
+          ) : null}
+        </div>
+        <figure
+          key={`${animationKey}-${currentSlide.url}`}
+          className={`SlideShow__current ${
+            slideDirection ? `is-${slideDirection}` : ''
+          }`}
+          itemScope
+          itemType="http://schema.org/ImageObject"
+        >
           <img
             src={currentSlide.url}
             srcSet={srcSet}
@@ -50,6 +88,11 @@ const SlideShowDisplayMode: FC<SlideShowDisplayModeProps> = ({
             className="SlideShow__image"
           />
         </figure>
+        <div className="SlideShow__peek" aria-hidden="true">
+          {nextSlide ? (
+            <img src={nextSlide.url} alt="" className="SlideShow__peek_image" />
+          ) : null}
+        </div>
         {editable ? (
           <div className="SlideShow__edit_image">
             <button type="button" aria-label="Edit slideshow">
@@ -69,25 +112,21 @@ const SlideShowDisplayMode: FC<SlideShowDisplayModeProps> = ({
             <button
               type="button"
               aria-label="Previous slide"
-              disabled={safeCurrentIndex === 0}
               onClick={previous}
             >
-              &larr;
+              <i className="slide-prev" />
             </button>
             <button
               type="button"
               aria-label="Next slide"
-              disabled={safeCurrentIndex === slides.length - 1}
               onClick={next}
             >
-              &rarr;
+              <i className="slide-next" />
             </button>
           </div>
         </div>
         {currentSlide.caption && (
-          <p className="SlideShow__caption">
-            {currentSlide.caption}
-          </p>
+          <p className="SlideShow__caption">{currentSlide.caption}</p>
         )}
       </div>
     </div>
