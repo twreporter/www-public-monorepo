@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.48](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.47...www-cms@0.1.0-beta.48) (2026-06-26)
+
+
+### Bug Fixes
+
+* address review comments ([7226f4a](https://github.com/twreporter/www-public-monorepo/commit/7226f4a36b5ca39a0da0f658b74bb3b2f09ed745))
+* **cms:** update lexical layout,add slideshow conf ([7ec8ef4](https://github.com/twreporter/www-public-monorepo/commit/7ec8ef4d4e30728c799d49a4372b623f28e7630d))
+
+
+
+
+
 # [0.1.0-beta.47](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.46...www-cms@0.1.0-beta.47) (2026-06-24)
 
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.23](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.22...@twreporter/lexical-editor@0.2.0-beta.23) (2026-06-26)
+
+
+### Bug Fixes
+
+* address review comments ([7226f4a](https://github.com/twreporter/www-public-monorepo/commit/7226f4a36b5ca39a0da0f658b74bb3b2f09ed745))
+* **lexical-editor:** infobox break when add list ([45eec9b](https://github.com/twreporter/www-public-monorepo/commit/45eec9b564fbb198f1dc94d06e02af6a732be96a))
+* **lexical-editor:** update styles ([42a941b](https://github.com/twreporter/www-public-monorepo/commit/42a941b880e73cc44b20c2fa90f4c955cc274446))
+
+
+### Features
+
+* **lexical-editor:** add slideshow plugin ([14d0fc9](https://github.com/twreporter/www-public-monorepo/commit/14d0fc9ada1babf063030787aad4b7199d6d7421))
+
+
+
+
+
 # [0.2.0-beta.22](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.21...@twreporter/lexical-editor@0.2.0-beta.22) (2026-06-24)
 
 
