@@ -5,29 +5,9 @@
 }
 
 .EmbeddedCode__container {
+  width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
-
-  &.default {
-    width: 100%;
-
-    @include mq.mobile-only {
-      padding-left: 34px;
-      padding-right: 34px;
-    }
-
-    @include mq.tablet-only {
-      width: 453px;
-    }
-
-    @include mq.desktop-only {
-      width: 480px;
-    }
-
-    @include mq.hd-only {
-      width: 580px;
-    }
-  }
 
   &.fullscreen {
     width: 100vw;

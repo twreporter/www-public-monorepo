@@ -37,6 +37,7 @@ import {
   isInsertImageFromDb,
   isInsertLink,
   isInsertQuote,
+  isInsertSlideShow,
   isJustifyAlign,
   isLeftAlign,
   isLowercase,
@@ -52,6 +53,7 @@ import { useImageConfig } from '../../context/ImageConfigContext'
 import {
   OPEN_EMBEDDED_CODE_DIALOG_COMMAND,
   OPEN_IMAGE_FROM_DB_DIALOG_COMMAND,
+  OPEN_SLIDE_SHOW_DIALOG_COMMAND,
 } from '../ToolbarPlugin/command'
 import { WWW_QUOTE_ADD_COMMAND } from '../QuotePlugin/command'
 import { INFOBOX_ADD_COMMAND } from '../InfoboxPlugin/command'
@@ -73,6 +75,8 @@ export default function ShortcutsPlugin({
     enableImage && imageConfig?.imageFromDb !== undefined
   const enableWwwQuote = features?.quote !== false
   const enableInfobox = features?.infobox !== false
+  const enableSlideShow =
+    features?.slideShow !== false && imageConfig?.imageFromDb !== undefined
 
   useEffect(() => {
     const keyboardShortcutsHandler = (payload: KeyboardEvent) => {
@@ -149,6 +153,9 @@ export default function ShortcutsPlugin({
       } else if (enableImageFromDb && isInsertImageFromDb(event)) {
         event.preventDefault()
         editor.dispatchCommand(OPEN_IMAGE_FROM_DB_DIALOG_COMMAND, undefined)
+      } else if (enableSlideShow && isInsertSlideShow(event)) {
+        event.preventDefault()
+        editor.dispatchCommand(OPEN_SLIDE_SHOW_DIALOG_COMMAND, undefined)
       } else if (enableWwwQuote && isInsertQuote(event)) {
         event.preventDefault()
         editor.dispatchCommand(WWW_QUOTE_ADD_COMMAND, undefined)
@@ -173,6 +180,7 @@ export default function ShortcutsPlugin({
     enableImageFromDb,
     enableWwwQuote,
     enableInfobox,
+    enableSlideShow,
     setIsLinkEditMode,
   ])
 

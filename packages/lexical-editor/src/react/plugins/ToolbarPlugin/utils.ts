@@ -65,15 +65,42 @@ const canIUse = (selection: BaseSelection | null): boolean => {
   return true
 }
 
-const isNonCollapsedSelectionInInfobox = (
+function $getInfoboxChildBlock(node: LexicalNode): LexicalNode | null {
+  let currentNode: LexicalNode | null = node
+
+  while (currentNode) {
+    const parent: LexicalNode | null = currentNode.getParent()
+    if ($isInfoboxNode(parent)) {
+      return currentNode
+    }
+
+    currentNode = parent
+  }
+
+  return null
+}
+
+const shouldPreventListFormattingInInfobox = (
   selection: BaseSelection | null
 ): boolean => {
-  if (!selection || !$isRangeSelection(selection) || selection.isCollapsed()) {
+  if (!selection || !$isRangeSelection(selection)) {
     return false
   }
 
   const node = getSelectedNode(selection as RangeSelection)
-  return $hasSelfOrAncestor(node, $isInfoboxNode)
+  if (!$hasSelfOrAncestor(node, $isInfoboxNode)) {
+    return false
+  }
+
+  if (!selection.isCollapsed()) {
+    return true
+  }
+
+  const infoboxChildBlock = $getInfoboxChildBlock(node)
+  return (
+    infoboxChildBlock !== null &&
+    infoboxChildBlock.getTextContent().trim() !== ''
+  )
 }
 
 export const formatParagraph = (editor: LexicalEditor) => {
@@ -112,8 +139,8 @@ export const formatBulletList = (editor: LexicalEditor, blockType: string) => {
     if (!canIUse(selection)) {
       return
     }
-    if (isNonCollapsedSelectionInInfobox(selection)) {
-      alert('請在未選取文字的情況下進行此操作')
+    if (shouldPreventListFormattingInInfobox(selection)) {
+      alert('請先換行再進行此操作')
       return
     }
 
@@ -131,8 +158,8 @@ export const formatCheckList = (editor: LexicalEditor, blockType: string) => {
     if (!canIUse(selection)) {
       return
     }
-    if (isNonCollapsedSelectionInInfobox(selection)) {
-      alert('請在未選取文字的情況下進行此操作')
+    if (shouldPreventListFormattingInInfobox(selection)) {
+      alert('請先換行再進行此操作')
       return
     }
 
@@ -153,8 +180,8 @@ export const formatNumberedList = (
     if (!canIUse(selection)) {
       return
     }
-    if (isNonCollapsedSelectionInInfobox(selection)) {
-      alert('請在未選取文字的情況下進行此操作')
+    if (shouldPreventListFormattingInInfobox(selection)) {
+      alert('請先換行再進行此操作')
       return
     }
 

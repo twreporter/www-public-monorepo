@@ -51,6 +51,7 @@ import DropDown, { DropDownItem } from '../../components/DropDown'
 import EmbeddedCodeEditDialog from '../EmbeddedCodePlugin/components/EmbeddedCodeEditDialog'
 import ImageEditDialog from '../ImagePlugin/components/ImageEditDialog'
 import ImageFromDbDialog from '../ImagePlugin/components/ImageFromDbDialog'
+import SlideShowEditDialog from '../SlideShowPlugin/components/SlideShowEditDialog'
 import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts'
 import Fullscreen from './components/Fullscreen'
 import BlockFormatDropDown, {
@@ -65,9 +66,11 @@ import { IMAGE_ADD_COMMAND } from '../ImagePlugin/command'
 import { EMBEDDED_CODE_ADD_COMMAND } from '../EmbeddedCodePlugin/command'
 import { INFOBOX_ADD_COMMAND } from '../InfoboxPlugin/command'
 import { WWW_QUOTE_ADD_COMMAND } from '../QuotePlugin/command'
+import { SLIDE_SHOW_ADD_COMMAND } from '../SlideShowPlugin/command'
 import {
   OPEN_EMBEDDED_CODE_DIALOG_COMMAND,
   OPEN_IMAGE_FROM_DB_DIALOG_COMMAND,
+  OPEN_SLIDE_SHOW_DIALOG_COMMAND,
 } from './command'
 // types
 import type { EditorFeatureConfig, EditorTheme } from '../../../core'
@@ -130,14 +133,17 @@ export default function ToolbarPlugin({
   const enableInfobox = features?.infobox !== false
   const enableImageFromDb =
     enableImage && imageConfig?.imageFromDb !== undefined
+  const enableSlideShow =
+    features?.slideShow !== false && imageConfig?.imageFromDb !== undefined
   const showInsertDropdown =
-    enableImage || enableEmbeddedCode || enableQuote || enableInfobox
+    enableImage || enableEmbeddedCode || enableQuote || enableInfobox || enableSlideShow
 
   // custom plugin state
   const [isOpenEmbeddedCodeDialog, setIsOpenEmbeddedCodeDialog] =
     useState(false)
   const [isOpenImageDialog, setIsOpenImageDialog] = useState(false)
   const [isOpenImageFromDbDialog, setIsOpenImageFromDbDialog] = useState(false)
+  const [isOpenSlideShowDialog, setIsOpenSlideShowDialog] = useState(false)
 
   const $handleHeadingNode = useCallback(
     (selectedElement: LexicalNode) => {
@@ -385,6 +391,21 @@ export default function ToolbarPlugin({
       COMMAND_PRIORITY_EDITOR
     )
   }, [activeEditor, enableImageFromDb])
+
+  useEffect(() => {
+    if (!enableSlideShow) {
+      return
+    }
+
+    return activeEditor.registerCommand(
+      OPEN_SLIDE_SHOW_DIALOG_COMMAND,
+      () => {
+        setIsOpenSlideShowDialog(true)
+        return true
+      },
+      COMMAND_PRIORITY_EDITOR
+    )
+  }, [activeEditor, enableSlideShow])
 
   const applyStyleText = useCallback(
     (styles: Record<string, string>, skipHistoryStack?: boolean) => {
@@ -724,6 +745,22 @@ export default function ToolbarPlugin({
                   <span className="shortcut">{SHORTCUTS.IMAGE_LINK}</span>
                 </DropDownItem>
               )}
+              {enableSlideShow && (
+                <DropDownItem
+                  onClick={() => {
+                    setIsOpenSlideShowDialog(true)
+                  }}
+                  className={`item wide`}
+                  title="SlideShow"
+                  aria-label="add slide show"
+                >
+                  <div className="icon-text-container">
+                    <i className="icon slide-show" />
+                    <span className="text">Slideshow</span>
+                  </div>
+                  <span className="shortcut">{SHORTCUTS.SLIDE_SHOW}</span>
+                </DropDownItem>
+              )}
             </DropDown>
           </>
         )}
@@ -786,6 +823,17 @@ export default function ToolbarPlugin({
               caption,
               title,
               source: 'db',
+            })
+          }
+        />
+      )}
+      {enableSlideShow && isOpenSlideShowDialog && imageConfig?.imageFromDb && (
+        <SlideShowEditDialog
+          imageFromDb={imageConfig.imageFromDb}
+          onClose={() => setIsOpenSlideShowDialog(false)}
+          onConfirm={(slides) =>
+            activeEditor.dispatchCommand(SLIDE_SHOW_ADD_COMMAND, {
+              slides,
             })
           }
         />

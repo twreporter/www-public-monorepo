@@ -1,60 +1,12 @@
 @use '../../style/media-query' as mq;
 
-/* image block style */
 .Image__caption {
   line-height: 1.36;
   letter-spacing: 0.5px;
   font-weight: normal;
   font-size: 14px;
-  margin-bottom: 30px;
-
-  @include mq.tablet-and-below {
-    position: relative;
-    margin-left: auto;
-    padding: 15px 15px 15px 0;
-    &::after {
-      width: calc(100% - 15px);
-    }
-  }
-
-  @include mq.mobile-only {
-    width: 250px;
-  }
-
-  @include mq.tablet-only {
-    width: 512px;
-  }
-
-  @include mq.desktop-and-above {
-    position: relative;
-    float: right;
-
-    &:after {
-      width: 100%;
-    }
-  }
-
-  @include mq.desktop-only {
-    width: 180px;
-    padding: 15px 0 15px 0;
-  }
-
-  @include mq.hd-only {
-    width: 265px;
-    padding: 25px 0 20px 0;
-  }
-}
-
-/* border-bottom of caption */
-.Image__caption::after {
-  content: '';
-  height: 1px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  border-width: 0 0 1px 0;
-  border-style: solid;
-  border-color: #c09662;
+  padding: 16px 0;
+  border-bottom: 1px solid #c09662;
 }
 
 .Image__image_block {
@@ -62,47 +14,15 @@
   width: 100%;
   cursor: pointer;
 
-  & > figure, & > iframe {
-    padding: 0;
-    border: 0;
-    margin: 0;
-  }
-
-  @include mq.desktop-and-above {
-    float: none;
-    margin: 0;
-  }
-
   &:hover {
     .Image__edit_image button {
       background-color: rgba(0, 0, 0, 0.35);
     }
   }
-}
 
-.Image__image_block.right {
-  @include mq.desktop-only {
-    width: 403px;
-  }
-  @include mq.hd-only {
-    width: 532px;
-  }
-  @include mq.desktop-and-above {
-    float: right;
-    margin: 0 0 20px 25px;
-    z-index: 2;
-
-    .Image__caption {
-      /* overwrite Caption styles */
-      float: none;
-      margin-bottom:0;
-      position: absolute;
-
-      /* give new styles */
-      inset-inline-end: 0;
-      inset-block-end: 0;
-      transform: translateY(100%);
-    }
+  figure {
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -227,68 +147,6 @@
     margin: 0;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-  }
-}
-
-/* container style */
-.Image__container {
-  margin: 0 auto;
-
-  &.default {
-    width: 100%;
-    @include mq.desktop-only {
-      width: 752px;
-      transform: translateX(100px);
-    }
-    @include mq.hd-only {
-      width: 1033px;
-      transform: translateX(151px);
-    }
-  }
-
-  &.right {
-    width: 100%;
-    @include mq.desktop-only {
-      width: 850px;
-    }
-    @include mq.hd-only {
-      width: 1160px;
-    }
-  }
-
-  &.small {
-    @include mq.mobile-only {
-      width: 100%;
-    }
-    @include mq.tablet-only {
-      width: 513px;
-    }
-    @include mq.desktop-only {
-      width: 550px;
-    }
-    @include mq.hd-only {
-      width: 730px;
-    }
-
-    .Image__caption {
-      margin-bottom: 0px;
-
-      @include mq.desktop-and-above {
-        position: absolute;
-        inset-block-end: 0;
-        transform: translateX(100%);
-        &::after {
-          width: 100%;
-        }
-      }
-
-      @include mq.desktop-only {
-        inset-inline-end: -21px;
-      }
-      @include mq.hd-only {
-        inset-inline-end: -38px;
-      }
-    }
   }
 }
 
