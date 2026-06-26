@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 // utils
-import { tabletOnly, desktopOnly, hdOnly, mobileOnly, tabletAndAbove, desktopAndAbove, tabletAndBelow, desktopAndBelow } from './media-query'
+import { tabletOnly, desktopOnly, hdOnly, mobileOnly, tabletAndAbove, desktopAndAbove, tabletAndBelow } from './media-query'
 // @twreporter
 import {
   colorGrayscale,
@@ -124,7 +124,8 @@ export const StyleWrapper = styled.div`
   }
 
   .TwreporterTheme__paragraph {
-    &:not(.TwreporterTheme__wwwQuote .TwreporterTheme__annotation) {
+    margin: 0;
+    &:not(.TwreporterTheme__wwwQuote .TwreporterTheme__paragraph):not(.TwreporterTheme__annotation .TwreporterTheme__paragraph):not(.TwreporterTheme__infobox .TwreporterTheme__paragraph) {
       ${normalItemCss}
       ${paragraphTextCSS}
       color: ${colorGrayscale.gray800};
