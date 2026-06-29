@@ -140,7 +140,7 @@ export const formatBulletList = (editor: LexicalEditor, blockType: string) => {
       return
     }
     if (shouldPreventListFormattingInInfobox(selection)) {
-      alert('請先換行再進行此操作')
+      alert('請於新段落進行此操作')
       return
     }
 
@@ -159,7 +159,7 @@ export const formatCheckList = (editor: LexicalEditor, blockType: string) => {
       return
     }
     if (shouldPreventListFormattingInInfobox(selection)) {
-      alert('請先換行再進行此操作')
+      alert('請於新段落進行此操作')
       return
     }
 
@@ -181,7 +181,7 @@ export const formatNumberedList = (
       return
     }
     if (shouldPreventListFormattingInInfobox(selection)) {
-      alert('請先換行再進行此操作')
+      alert('請於新段落進行此操作')
       return
     }
 
