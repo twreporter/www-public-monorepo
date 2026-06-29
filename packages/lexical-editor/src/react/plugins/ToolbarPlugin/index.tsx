@@ -131,12 +131,17 @@ export default function ToolbarPlugin({
   const enableEmbeddedCode = features?.embeddedCode !== false
   const enableQuote = features?.quote !== false
   const enableInfobox = features?.infobox !== false
+  const enableH4 = features?.h4 !== false
   const enableImageFromDb =
     enableImage && imageConfig?.imageFromDb !== undefined
   const enableSlideShow =
     features?.slideShow !== false && imageConfig?.imageFromDb !== undefined
   const showInsertDropdown =
-    enableImage || enableEmbeddedCode || enableQuote || enableInfobox || enableSlideShow
+    enableImage ||
+    enableEmbeddedCode ||
+    enableQuote ||
+    enableInfobox ||
+    enableSlideShow
 
   // custom plugin state
   const [isOpenEmbeddedCodeDialog, setIsOpenEmbeddedCodeDialog] =
@@ -464,6 +469,7 @@ export default function ToolbarPlugin({
                 disabled={!isEditable}
                 blockType={toolbarState.blockType}
                 editor={activeEditor}
+                enableH4={enableH4}
               />
               <Divider />
             </>

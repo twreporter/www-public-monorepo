@@ -47,7 +47,7 @@ export default function Editor({
   const listStrictIndent = false
   // Basic CMS features are intentionally always enabled in v1: h2/h3,
   // ordered/unordered lists, inline text formatting, link, colors,
-  // annotation, fullscreen, and preview. Config only gates advanced inserts.
+  // annotation, fullscreen, and preview.
   const enableImage = config.features?.image !== false
   const enableEmbeddedCode = config.features?.embeddedCode !== false
   const enableQuote = config.features?.quote !== false

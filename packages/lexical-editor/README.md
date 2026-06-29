@@ -102,6 +102,21 @@ const config = createLexicalEditorConfig()
 <LexicalEditor value={valueJSON} onChange={onChange} config={config} />
 ```
 
+### Feature Flags
+
+Editor features are enabled by default unless a feature flag is set to `false`.
+
+```ts
+const config: EditorConfig = {
+  theme: createEmotionEditorTheme(),
+  nodes: cmsEditorNodes,
+  ui: { toolbar: true },
+  features: {
+    h4: false
+  }
+}
+```
+
 ## Build
 
 ```bash

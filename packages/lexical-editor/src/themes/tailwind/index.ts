@@ -8,6 +8,7 @@ export const createTailwindEditorTheme = (): EditorTheme => {
         h1: 'text-3xl font-bold mb-4',
         h2: 'text-2xl font-bold mb-3',
         h3: 'text-xl font-semibold mb-2',
+        h4: 'text-lg font-semibold mb-2',
       },
       text: {
         bold: 'font-bold',
