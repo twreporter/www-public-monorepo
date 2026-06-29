@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.24](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.23...@twreporter/lexical-editor@0.2.0-beta.24) (2026-06-29)
+
+
+### Bug Fixes
+
+* update alert text & fix paragraph margin ([1c61804](https://github.com/twreporter/www-public-monorepo/commit/1c61804159937d3688d9e0db82bd31dee5d4bb90))
+
+
+
+
+
 # [0.2.0-beta.23](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.22...@twreporter/lexical-editor@0.2.0-beta.23) (2026-06-26)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.49](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.48...www-cms@0.1.0-beta.49) (2026-06-29)
+
+
+### Bug Fixes
+
+* update alert text & fix paragraph margin ([1c61804](https://github.com/twreporter/www-public-monorepo/commit/1c61804159937d3688d9e0db82bd31dee5d4bb90))
+
+
+
+
+
 # [0.1.0-beta.48](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.47...www-cms@0.1.0-beta.48) (2026-06-26)
 
 
