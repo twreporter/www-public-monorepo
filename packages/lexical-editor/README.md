@@ -118,6 +118,7 @@ const config: EditorConfig = {
   nodes: cmsEditorNodes,
   ui: { toolbar: true },
   features: {
+    annotation: false,
     h4: false
   }
 }
