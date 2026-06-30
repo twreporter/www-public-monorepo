@@ -20,6 +20,7 @@ export const fieldFeatureOverrides = {
     infobox: false,
     slideShow: false,
     h4: false,
+    annotation: false,
   },
   'Post.brief': {
     image: false,
@@ -28,6 +29,7 @@ export const fieldFeatureOverrides = {
     infobox: false,
     slideShow: false,
     h4: false,
+    annotation: true,
   },
   'Post.content': {
     image: true,
@@ -36,6 +38,7 @@ export const fieldFeatureOverrides = {
     infobox: true,
     slideShow: true,
     h4: false,
+    annotation: true,
   },
   'PostFollowup.content': {
     image: true,
@@ -44,6 +47,7 @@ export const fieldFeatureOverrides = {
     infobox: false,
     slideShow: false,
     h4: false,
+    annotation: true,
   },
   'Topic.teamDescription': {
     image: true,
@@ -52,6 +56,7 @@ export const fieldFeatureOverrides = {
     infobox: false,
     slideShow: false,
     h4: false,
+    annotation: true,
   },
   'Topic.description': {
     image: true,
@@ -60,6 +65,7 @@ export const fieldFeatureOverrides = {
     infobox: true,
     slideShow: true,
     h4: false,
+    annotation: true,
   },
 } satisfies Record<string, EditorFeatureConfig>
 
