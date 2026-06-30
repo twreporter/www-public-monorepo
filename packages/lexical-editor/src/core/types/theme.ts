@@ -64,17 +64,14 @@ export type EditorThemeClasses = {
 }
 
 export type EditorThemeTokens = {
-  colorTextPrimary?: string
-  colorTextMuted?: string
+  colorText?: string
+  colorLinkHover?: string
+  colorLinkBottom?: string
+  colorInfoboxText?: string
+  colorBgInfobox?: string
+  colorInfoboxDressing?: string
   colorBgCanvas?: string
   colorBgToolbar?: string
-  colorBorderSubtle?: string
-  colorAccent?: string
-  radiusSm?: string
-  radiusMd?: string
-  shadowPopover?: string
-  fontBody?: string
-  fontMono?: string
 }
 
 export type EditorThemeComponents = {

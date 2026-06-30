@@ -22,19 +22,6 @@ export const createTailwindEditorTheme = (): EditorTheme => {
       },
       link: 'text-blue-600 underline',
     },
-    tokens: {
-      colorTextPrimary: 'text-gray-900',
-      colorTextMuted: 'text-gray-500',
-      colorBgCanvas: 'bg-white',
-      colorBgToolbar: 'bg-gray-50',
-      colorBorderSubtle: 'border-gray-200',
-      colorAccent: 'text-blue-600',
-      radiusSm: 'rounded',
-      radiusMd: 'rounded-md',
-      shadowPopover: 'shadow-md',
-      fontBody: 'font-sans',
-      fontMono: 'font-mono',
-    },
   }
 }
 
