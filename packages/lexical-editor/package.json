@@ -12,6 +12,7 @@
       "import": "./dist/index.mjs"
     },
     "./style": {
+      "types": "./dist/style.d.ts",
       "import": "./dist/style.css"
     },
     "./core": {

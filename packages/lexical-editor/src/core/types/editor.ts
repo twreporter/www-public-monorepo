@@ -13,11 +13,13 @@ export type EditorPluginFlags = {
 }
 
 export type EditorFeatureConfig = {
+  annotation?: boolean
   image?: boolean
   embeddedCode?: boolean
   quote?: boolean
   infobox?: boolean
   slideShow?: boolean
+  h4?: boolean
 }
 
 export type ImageFromDbItem = {

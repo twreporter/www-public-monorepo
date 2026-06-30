@@ -13,9 +13,10 @@ export const SHORTCUTS = Object.freeze({
   HEADING1: IS_APPLE ? '⌘+Opt+1' : 'Ctrl+Alt+1',
   HEADING2: IS_APPLE ? '⌘+Opt+2' : 'Ctrl+Alt+2',
   HEADING3: IS_APPLE ? '⌘+Opt+3' : 'Ctrl+Alt+3',
-  BULLET_LIST: IS_APPLE ? '⌘+Opt+4' : 'Ctrl+Alt+4',
-  NUMBERED_LIST: IS_APPLE ? '⌘+Opt+5' : 'Ctrl+Alt+5',
-  CHECK_LIST: IS_APPLE ? '⌘+Opt+6' : 'Ctrl+Alt+6',
+  HEADING4: IS_APPLE ? '⌘+Opt+4' : 'Ctrl+Alt+4',
+  BULLET_LIST: IS_APPLE ? '⌘+Opt+5' : 'Ctrl+Alt+5',
+  NUMBERED_LIST: IS_APPLE ? '⌘+Opt+6' : 'Ctrl+Alt+6',
+  CHECK_LIST: IS_APPLE ? '⌘+Opt+7' : 'Ctrl+Alt+7',
   CODE_BLOCK: IS_APPLE ? '⌘+Opt+C' : 'Ctrl+Alt+C',
   QUOTE: IS_APPLE ? '⌘+Opt+Q' : 'Ctrl+Alt+Q',
   INFOBOX: IS_APPLE ? '⌘+Opt+B' : 'Ctrl+Alt+B',
@@ -72,7 +73,7 @@ export function isFormatHeading(event: KeyboardEvent): boolean {
   const keyNumber = code[code.length - 1]
 
   return (
-    ['1', '2', '3'].includes(keyNumber ?? '') &&
+    ['1', '2', '3', '4'].includes(keyNumber ?? '') &&
     !shiftKey &&
     altKey &&
     controlOrMeta(metaKey, ctrlKey)
@@ -82,7 +83,7 @@ export function isFormatHeading(event: KeyboardEvent): boolean {
 export function isFormatBulletList(event: KeyboardEvent): boolean {
   const { code, shiftKey, altKey, metaKey, ctrlKey } = event
   return (
-    (code === 'Numpad4' || code === 'Digit4') &&
+    (code === 'Numpad5' || code === 'Digit5') &&
     !shiftKey &&
     altKey &&
     controlOrMeta(metaKey, ctrlKey)
@@ -92,7 +93,7 @@ export function isFormatBulletList(event: KeyboardEvent): boolean {
 export function isFormatNumberedList(event: KeyboardEvent): boolean {
   const { code, shiftKey, altKey, metaKey, ctrlKey } = event
   return (
-    (code === 'Numpad5' || code === 'Digit5') &&
+    (code === 'Numpad6' || code === 'Digit6') &&
     !shiftKey &&
     altKey &&
     controlOrMeta(metaKey, ctrlKey)
@@ -102,7 +103,7 @@ export function isFormatNumberedList(event: KeyboardEvent): boolean {
 export function isFormatCheckList(event: KeyboardEvent): boolean {
   const { code, shiftKey, altKey, metaKey, ctrlKey } = event
   return (
-    (code === 'Numpad6' || code === 'Digit6') &&
+    (code === 'Numpad7' || code === 'Digit7') &&
     !shiftKey &&
     altKey &&
     controlOrMeta(metaKey, ctrlKey)

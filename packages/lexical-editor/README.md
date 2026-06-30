@@ -102,6 +102,28 @@ const config = createLexicalEditorConfig()
 <LexicalEditor value={valueJSON} onChange={onChange} config={config} />
 ```
 
+### Theme Tokens
+
+Theme tokens are exposed as CSS custom properties on the `.lexical-editor` root so editor CSS and plugin node CSS can share the same theme values. Set token values to CSS values, such as `#ffffff` or `rgb(250, 251, 252)`.
+
+`theme.tokens.colorBgCanvas` controls the editable editor canvas background.
+
+### Feature Flags
+
+Editor features are enabled by default unless a feature flag is set to `false`.
+
+```ts
+const config: EditorConfig = {
+  theme: createEmotionEditorTheme(),
+  nodes: cmsEditorNodes,
+  ui: { toolbar: true },
+  features: {
+    annotation: false,
+    h4: false
+  }
+}
+```
+
 ## Build
 
 ```bash

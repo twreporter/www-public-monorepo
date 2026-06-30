@@ -1,9 +1,8 @@
 import type { JSX } from 'react'
 // lexical
-import type { LexicalEditor } from 'lexical'// context
-import {
-  blockTypeToBlockName,
-} from '../../../context/ToolbarContext'
+import type { LexicalEditor } from 'lexical'
+// context
+import { blockTypeToBlockName } from '../../../context/ToolbarContext'
 // util
 import {
   formatHeading,
@@ -27,10 +26,12 @@ function BlockFormatDropDown({
   editor,
   blockType,
   disabled = false,
+  enableH4,
 }: {
   blockType: keyof typeof blockTypeToBlockName
   editor: LexicalEditor
   disabled?: boolean
+  enableH4: boolean
 }): JSX.Element {
   return (
     <DropDown
@@ -70,6 +71,18 @@ function BlockFormatDropDown({
         </div>
         <span className="shortcut">{SHORTCUTS.HEADING3}</span>
       </DropDownItem>
+      {enableH4 ? (
+        <DropDownItem
+          className={`item wide ${dropDownActiveClass(blockType === 'h4')}`}
+          onClick={() => formatHeading(editor, blockType, 'h4')}
+        >
+          <div className="icon-text-container">
+            <i className="icon h4" />
+            <span className="text">Heading 4</span>
+          </div>
+          <span className="shortcut">{SHORTCUTS.HEADING4}</span>
+        </DropDownItem>
+      ) : null}
       <DropDownItem
         className={`item wide ${dropDownActiveClass(blockType === 'bullet')}`}
         onClick={() => formatBulletList(editor, blockType)}

@@ -75,6 +75,7 @@ export default function ShortcutsPlugin({
     enableImage && imageConfig?.imageFromDb !== undefined
   const enableWwwQuote = features?.quote !== false
   const enableInfobox = features?.infobox !== false
+  const enableH4 = features?.h4 !== false
   const enableSlideShow =
     features?.slideShow !== false && imageConfig?.imageFromDb !== undefined
 
@@ -86,9 +87,13 @@ export default function ShortcutsPlugin({
         event.preventDefault()
         formatParagraph(editor)
       } else if (isFormatHeading(event)) {
-        event.preventDefault()
         const { code } = event
         const headingSize = `h${code[code.length - 1]}` as HeadingTagType
+        if (headingSize === 'h4' && !enableH4) {
+          return false
+        }
+
+        event.preventDefault()
         formatHeading(editor, toolbarState.blockType, headingSize)
       } else if (isFormatBulletList(event)) {
         event.preventDefault()
@@ -180,6 +185,7 @@ export default function ShortcutsPlugin({
     enableImageFromDb,
     enableWwwQuote,
     enableInfobox,
+    enableH4,
     enableSlideShow,
     setIsLinkEditMode,
   ])

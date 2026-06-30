@@ -31,6 +31,7 @@ body {
   outline: 0;
   z-index: 0;
   resize: vertical;
+  background-color: var(--twreporter-lexical-color-bg-canvas, #f1f1f1);
 }
 
 .editor {
@@ -387,7 +388,7 @@ pre::-webkit-scrollbar-thumb {
 .toolbar {
   display: flex;
   margin-bottom: 1px;
-  background: #fff;
+  background: var(--twreporter-lexical-color-bg-toolbar, #ffffff);
   padding: 4px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -899,4 +900,29 @@ button.item.dropdown-item-active i {
   margin-top: 8px;
   padding: 4px 0;
   color: #6b7280;
+}
+
+/* token styles */
+.lexical-editor {
+  p, ul, ol, li {
+    color: var(--twreporter-lexical-color-text, #404040);
+  }
+
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--twreporter-lexical-color-text, #404040);
+    border-bottom: 1px solid var(--twreporter-lexical-color-link-bottom, rgba(102, 102, 102, 0.50));
+    span, em, strong {
+      color: var(--twreporter-lexical-color-text, #404040) !important;
+    }
+
+    &:hover {
+      color: var(--twreporter-lexical-color-link-hover, #9F7544);
+      border-color: var(--twreporter-lexical-color-link-hover, #9F7544);
+      span, em, strong {
+        color: var(--twreporter-lexical-color-link-hover, #9F7544) !important;
+      }
+    }
+  }
 }
