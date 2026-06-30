@@ -119,8 +119,6 @@ const paragraphTextCSS = css`
 export const StyleWrapper = styled.div`
   .editor {
     /* twreporter style */
-    background-color: ${colorGrayscale.gray100};
-    color: ${colorGrayscale.gray800};
     font-family: "Roboto Slab", "Noto Sans TC", sans-serif;
   }
 
@@ -136,7 +134,6 @@ export const StyleWrapper = styled.div`
     &:not(.TwreporterTheme__wwwQuote .TwreporterTheme__paragraph):not(.TwreporterTheme__annotation .TwreporterTheme__paragraph):not(.TwreporterTheme__infobox .TwreporterTheme__paragraph) {
       ${normalItemCss}
       ${paragraphTextCSS}
-      color: ${colorGrayscale.gray800};
 
       ${tabletAndAbove`
         padding-left: 32px;
@@ -162,20 +159,6 @@ export const StyleWrapper = styled.div`
   }
   
   .TwreporterTheme__link {
-    cursor: pointer;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(102, 102, 102, 0.50);
-    span, em, strong {
-      color: ${colorGrayscale.gray700} !important;
-    }
-
-    &:hover {
-      color: ${colorSupportive.heavy};
-      border-color: ${colorSupportive.heavy};
-      span, em, strong {
-        color: ${colorSupportive.heavy} !important;
-      }
-    }
   }
 
   .TwreporterTheme__h2, .TwreporterTheme__h3 {

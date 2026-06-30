@@ -1,4 +1,5 @@
 import { createEmotionEditorTheme } from '@twreporter/lexical-editor/theme-emotion'
+import { colorGrayscale, colorSupportive } from '@twreporter/core/lib/constants/color'
 import {
   cmsEditorNodes,
   type EditorConfig,
@@ -76,7 +77,7 @@ export const getFieldFeatureOverride = (
 const createCmsEditorConfig = ({
   features,
 }: CreateCmsEditorConfigOptions = {}): EditorConfig => ({
-  theme: createEmotionEditorTheme(),
+  theme: createCmsEditorTheme(),
   nodes: cmsEditorNodes,
   ...(features ? { features } : {}),
   ui: { toolbar: true },
@@ -104,3 +105,19 @@ const createCmsEditorConfig = ({
 })
 
 export default createCmsEditorConfig
+
+const createCmsEditorTheme = () => {
+  const theme = createEmotionEditorTheme()
+
+  return {
+    ...theme,
+    tokens: {
+      ...theme.tokens,
+      colorBgCanvas: colorGrayscale.gray100,
+      colorBgToolbar: colorGrayscale.white,
+      colorText: colorGrayscale.gray800,
+      colorLinkHover: colorSupportive.heavy,
+      colorLinkBottom: 'rgba(102, 102, 102, 0.50)',
+    },
+  }
+}
