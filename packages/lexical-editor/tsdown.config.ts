@@ -12,6 +12,10 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   clean: true,
+  copy: {
+    from: 'src/style.d.ts',
+    to: 'dist',
+  },
   treeshake: true,
   target: 'es2022',
   deps: {
