@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.50](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.49...www-cms@0.1.0-beta.50) (2026-07-02)
+
+
+### Bug Fixes
+
+* **cms:** add config for lexical h4 feature ([2075f30](https://github.com/twreporter/www-public-monorepo/commit/2075f30162a83b7adc0cfc8dbb685e89e60af68f))
+* **cms:** update lexical config ([b69199a](https://github.com/twreporter/www-public-monorepo/commit/b69199ada14f24a2e6f8ca425b54c2069c4a90ff))
+* **cms:** update lexical theme token config ([1e3d9fa](https://github.com/twreporter/www-public-monorepo/commit/1e3d9fa82343141e7a72f2bd7a4d3b7698a2aa5a))
+
+
+
+
+
 # [0.1.0-beta.49](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.48...www-cms@0.1.0-beta.49) (2026-06-29)
 
 

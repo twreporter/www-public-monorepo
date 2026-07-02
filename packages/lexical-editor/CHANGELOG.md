@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.25](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.24...@twreporter/lexical-editor@0.2.0-beta.25) (2026-07-02)
+
+
+### Bug Fixes
+
+* **lexical-editor:** add config for annotation ([037964b](https://github.com/twreporter/www-public-monorepo/commit/037964b153a30677698f733a763494d483c9dc11))
+* **lexical-editor:** add type def for style ([aece34b](https://github.com/twreporter/www-public-monorepo/commit/aece34b9c215f533b580a8f614d153aa200c0b72))
+* **lexical-editor:** address review comment ([5fc2488](https://github.com/twreporter/www-public-monorepo/commit/5fc24883812b839dc7dec435022bfe7e0b55ce6a))
+* **lexical-editor:** update token style scope ([574b1c6](https://github.com/twreporter/www-public-monorepo/commit/574b1c6f1a5aa8de354e366b212fef5b4421512b))
+
+
+### Features
+
+* **lexical-editor:** add `h4` ([68cfda1](https://github.com/twreporter/www-public-monorepo/commit/68cfda1877f738f004ea932fca4f51e41d6f46a0))
+* **lexical-editor:** add divider plugin ([381ecaa](https://github.com/twreporter/www-public-monorepo/commit/381ecaa6b5f67adac6e10642f16d98aa816bf2ee))
+* **lexical-editor:** inject theme token to style ([b1a0aca](https://github.com/twreporter/www-public-monorepo/commit/b1a0acafc5952d23b9b13f69291d40d2a6a37b69))
+
+
+
+
+
 # [0.2.0-beta.24](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.23...@twreporter/lexical-editor@0.2.0-beta.24) (2026-06-29)
 
 
