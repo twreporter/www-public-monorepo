@@ -20,6 +20,7 @@ import {
 } from '@lexical/utils'
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link'
 import { $isListNode, ListNode } from '@lexical/list'
+import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/extension'
 import {
   $getSelection,
   $isRangeSelection,
@@ -127,16 +128,24 @@ export default function ToolbarPlugin({
   const [isEditable, setIsEditable] = useState(() => editor.isEditable())
   const { toolbarState, updateToolbarState } = useToolbarState()
   const imageConfig = useImageConfig()
+  const enableAnnotation = features?.annotation !== false
   const enableImage = features?.image !== false
   const enableEmbeddedCode = features?.embeddedCode !== false
   const enableQuote = features?.quote !== false
   const enableInfobox = features?.infobox !== false
+  const enableDivider = features?.divider !== false
+  const enableH4 = features?.h4 !== false
   const enableImageFromDb =
     enableImage && imageConfig?.imageFromDb !== undefined
   const enableSlideShow =
     features?.slideShow !== false && imageConfig?.imageFromDb !== undefined
   const showInsertDropdown =
-    enableImage || enableEmbeddedCode || enableQuote || enableInfobox || enableSlideShow
+    enableImage ||
+    enableEmbeddedCode ||
+    enableQuote ||
+    enableInfobox ||
+    enableDivider ||
+    enableSlideShow
 
   // custom plugin state
   const [isOpenEmbeddedCodeDialog, setIsOpenEmbeddedCodeDialog] =
@@ -464,6 +473,7 @@ export default function ToolbarPlugin({
                 disabled={!isEditable}
                 blockType={toolbarState.blockType}
                 editor={activeEditor}
+                enableH4={enableH4}
               />
               <Divider />
             </>
@@ -642,16 +652,18 @@ export default function ToolbarPlugin({
             <span className="shortcut">{SHORTCUTS.CLEAR_FORMATTING}</span>
           </DropDownItem>
         </DropDown>
-        <button
-          disabled={!isEditable}
-          onClick={toggleAnnotation}
-          className={`toolbar-item spaced ${toolbarState.isAnnotated ? 'active' : ''}`}
-          aria-label="Add annotation"
-          title={`Add annotation (${SHORTCUTS.ANNOTATION})`}
-          type="button"
-        >
-          <i className="format annotation" />
-        </button>
+        {enableAnnotation && (
+          <button
+            disabled={!isEditable}
+            onClick={toggleAnnotation}
+            className={`toolbar-item spaced ${toolbarState.isAnnotated ? 'active' : ''}`}
+            aria-label="Add annotation"
+            title={`Add annotation (${SHORTCUTS.ANNOTATION})`}
+            type="button"
+          >
+            <i className="format annotation" />
+          </button>
+        )}
         {showInsertDropdown && (
           <>
             <Divider />
@@ -759,6 +771,25 @@ export default function ToolbarPlugin({
                     <span className="text">Slideshow</span>
                   </div>
                   <span className="shortcut">{SHORTCUTS.SLIDE_SHOW}</span>
+                </DropDownItem>
+              )}
+              {enableDivider && (
+                <DropDownItem
+                  onClick={() => {
+                    activeEditor.dispatchCommand(
+                      INSERT_HORIZONTAL_RULE_COMMAND,
+                      undefined
+                    )
+                  }}
+                  className={`item wide`}
+                  title="Divider"
+                  aria-label="add divider"
+                >
+                  <div className="icon-text-container">
+                    <i className="icon divider-button" />
+                    <span className="text">Divider</span>
+                  </div>
+                  <span className="shortcut">{SHORTCUTS.DIVIDER}</span>
                 </DropDownItem>
               )}
             </DropDown>

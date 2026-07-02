@@ -1,4 +1,5 @@
 import { TOGGLE_LINK_COMMAND } from '@lexical/link'
+import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/extension'
 import type { HeadingTagType } from '@lexical/rich-text'
 import {
   COMMAND_PRIORITY_NORMAL,
@@ -32,6 +33,7 @@ import {
   isFormatParagraph,
   isIndent,
   isInsertCodeBlock,
+  isInsertDivider,
   isInsertEmbeddedCode,
   isInsertInfobox,
   isInsertImageFromDb,
@@ -75,6 +77,8 @@ export default function ShortcutsPlugin({
     enableImage && imageConfig?.imageFromDb !== undefined
   const enableWwwQuote = features?.quote !== false
   const enableInfobox = features?.infobox !== false
+  const enableDivider = features?.divider !== false
+  const enableH4 = features?.h4 !== false
   const enableSlideShow =
     features?.slideShow !== false && imageConfig?.imageFromDb !== undefined
 
@@ -86,9 +90,13 @@ export default function ShortcutsPlugin({
         event.preventDefault()
         formatParagraph(editor)
       } else if (isFormatHeading(event)) {
-        event.preventDefault()
         const { code } = event
         const headingSize = `h${code[code.length - 1]}` as HeadingTagType
+        if (headingSize === 'h4' && !enableH4) {
+          return false
+        }
+
+        event.preventDefault()
         formatHeading(editor, toolbarState.blockType, headingSize)
       } else if (isFormatBulletList(event)) {
         event.preventDefault()
@@ -162,6 +170,9 @@ export default function ShortcutsPlugin({
       } else if (enableInfobox && isInsertInfobox(event)) {
         event.preventDefault()
         editor.dispatchCommand(INFOBOX_ADD_COMMAND, undefined)
+      } else if (enableDivider && isInsertDivider(event)) {
+        event.preventDefault()
+        editor.dispatchCommand(INSERT_HORIZONTAL_RULE_COMMAND, undefined)
       }
 
       return false
@@ -180,6 +191,8 @@ export default function ShortcutsPlugin({
     enableImageFromDb,
     enableWwwQuote,
     enableInfobox,
+    enableDivider,
+    enableH4,
     enableSlideShow,
     setIsLinkEditMode,
   ])

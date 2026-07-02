@@ -16,6 +16,7 @@ import InfoboxPlugin from '../plugins/InfoboxPlugin'
 import DragDropImagePlugin from '../plugins/ImagePlugin/DragDropImagePlugin'
 import QuotePlugin from '../plugins/QuotePlugin'
 import SlideShowPlugin from '../plugins/SlideShowPlugin'
+import DividerPlugin from '../plugins/DividerPlugin'
 // components
 import ContentEditable from './ContentEditable'
 // types
@@ -47,11 +48,13 @@ export default function Editor({
   const listStrictIndent = false
   // Basic CMS features are intentionally always enabled in v1: h2/h3,
   // ordered/unordered lists, inline text formatting, link, colors,
-  // annotation, fullscreen, and preview. Config only gates advanced inserts.
+  // fullscreen, and preview.
+  const enableAnnotation = config.features?.annotation !== false
   const enableImage = config.features?.image !== false
   const enableEmbeddedCode = config.features?.embeddedCode !== false
   const enableQuote = config.features?.quote !== false
   const enableInfobox = config.features?.infobox !== false
+  const enableDivider = config.features?.divider !== false
   const enableSlideShow =
     config.features?.slideShow !== false &&
     config.image?.imageFromDb !== undefined
@@ -98,9 +101,10 @@ export default function Editor({
             setIsLinkEditMode={setIsLinkEditMode}
           />
         )}
-        <AnnotationPlugin />
+        {enableAnnotation && <AnnotationPlugin />}
         {enableQuote && <QuotePlugin />}
         {enableInfobox && <InfoboxPlugin />}
+        {enableDivider && <DividerPlugin />}
         {enableEmbeddedCode && <EmbeddedCodePlugin />}
         {enableImage && <ImagePlugin />}
         {enableSlideShow && <SlideShowPlugin />}

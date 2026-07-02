@@ -1,4 +1,5 @@
 import { createEmotionEditorTheme } from '@twreporter/lexical-editor/theme-emotion'
+import { colorGrayscale, colorSupportive } from '@twreporter/core/lib/constants/color'
 import {
   cmsEditorNodes,
   type EditorConfig,
@@ -18,6 +19,8 @@ export const fieldFeatureOverrides = {
     quote: false,
     infobox: false,
     slideShow: false,
+    h4: false,
+    annotation: false,
   },
   'Post.brief': {
     image: false,
@@ -25,6 +28,8 @@ export const fieldFeatureOverrides = {
     quote: false,
     infobox: false,
     slideShow: false,
+    h4: false,
+    annotation: true,
   },
   'Post.content': {
     image: true,
@@ -32,6 +37,8 @@ export const fieldFeatureOverrides = {
     quote: true,
     infobox: true,
     slideShow: true,
+    h4: false,
+    annotation: true,
   },
   'PostFollowup.content': {
     image: true,
@@ -39,6 +46,8 @@ export const fieldFeatureOverrides = {
     quote: true,
     infobox: false,
     slideShow: false,
+    h4: false,
+    annotation: true,
   },
   'Topic.teamDescription': {
     image: true,
@@ -46,6 +55,8 @@ export const fieldFeatureOverrides = {
     quote: false,
     infobox: false,
     slideShow: false,
+    h4: false,
+    annotation: true,
   },
   'Topic.description': {
     image: true,
@@ -53,6 +64,8 @@ export const fieldFeatureOverrides = {
     quote: false,
     infobox: true,
     slideShow: true,
+    h4: false,
+    annotation: true,
   },
 } satisfies Record<string, EditorFeatureConfig>
 
@@ -70,7 +83,7 @@ export const getFieldFeatureOverride = (
 const createCmsEditorConfig = ({
   features,
 }: CreateCmsEditorConfigOptions = {}): EditorConfig => ({
-  theme: createEmotionEditorTheme(),
+  theme: createCmsEditorTheme(),
   nodes: cmsEditorNodes,
   ...(features ? { features } : {}),
   ui: { toolbar: true },
@@ -98,3 +111,19 @@ const createCmsEditorConfig = ({
 })
 
 export default createCmsEditorConfig
+
+const createCmsEditorTheme = () => {
+  const theme = createEmotionEditorTheme()
+
+  return {
+    ...theme,
+    tokens: {
+      ...theme.tokens,
+      colorBgCanvas: colorGrayscale.gray100,
+      colorBgToolbar: colorGrayscale.white,
+      colorText: colorGrayscale.gray800,
+      colorLinkHover: colorSupportive.heavy,
+      colorLinkBottom: 'rgba(102, 102, 102, 0.50)',
+    },
+  }
+}

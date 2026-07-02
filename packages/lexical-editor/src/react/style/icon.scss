@@ -190,6 +190,10 @@
     background-image: url(../assets/icons/type-h3.svg);
   }
 
+  &.h4 {
+    background-image: url(../assets/icons/type-h4.svg);
+  }
+
   &.uppercase {
     background-image: url(../assets/icons/type-uppercase.svg);
   }
@@ -240,6 +244,10 @@
 
   &.slide-show {
     background-image: url(../assets/icons/slideshow.svg);
+  }
+
+  &.divider-button {
+    background-image: url(../assets/icons/divider.svg);
   }
 }
 
