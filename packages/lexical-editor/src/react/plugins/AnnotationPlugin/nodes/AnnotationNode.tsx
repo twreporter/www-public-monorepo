@@ -10,6 +10,7 @@ import {
   type Spread,
   type DOMExportOutput,
 } from 'lexical'
+import { addClassNamesToElement } from '@lexical/utils'
 
 // type
 
@@ -65,8 +66,13 @@ export class AnnotationNode extends ElementNode {
         detailsDom.classList.remove('open')
       }
     })
-    const annotationClass = config.theme.annotation ?? 'TwreporterTheme__annotation'
-    detailsDom.classList.add(annotationClass, 'Annotation__container')
+    const annotationClass =
+      config.theme.annotation ?? 'TwreporterTheme__annotation'
+    addClassNamesToElement(
+      detailsDom,
+      annotationClass,
+      'Annotation__container'
+    )
 
     return detailsDom
   }

@@ -10,6 +10,7 @@ import {
   type LexicalNode,
   type NodeKey,
 } from 'lexical'
+import { addClassNamesToElement } from '@lexical/utils'
 import { type FC, type ReactNode, useEffect, useState } from 'react'
 
 import SlideShowDisplayMode from '../components/SlideShowDisplayMode'
@@ -119,7 +120,7 @@ export class SlideShowNode extends DecoratorNode<ReactNode> {
   override createDOM(config: EditorConfig): HTMLElement {
     const themeClass = config.theme.slideshow ?? 'TwreporterTheme__slideshow'
     const div = document.createElement('div')
-    div.classList.add(themeClass, 'SlideShow__content')
+    addClassNamesToElement(div, themeClass, 'SlideShow__content')
     return div
   }
 

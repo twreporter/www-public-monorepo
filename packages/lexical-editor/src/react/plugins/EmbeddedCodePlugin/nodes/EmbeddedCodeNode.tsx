@@ -7,6 +7,7 @@ import {
   type NodeKey,
 } from 'lexical'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import { addClassNamesToElement } from '@lexical/utils'
 import { type FC, type ReactNode, useEffect, useState } from 'react'
 
 import EmbeddedCodeDisplayMode from '../components/EmbeddedCodeDisplayMode'
@@ -133,9 +134,16 @@ export class EmbeddedCodeNode extends DecoratorNode<ReactNode> {
     return false
   }
 
-  override createDOM(_config: EditorConfig): HTMLElement {
+  override createDOM(config: EditorConfig): HTMLElement {
+    const themeClass =
+      config.theme.embeddedCode ?? 'TwreporterTheme__embeddedCode'
     const div = document.createElement('div')
-    div.classList.add('EmbeddedCode__content', this.__layout)
+    addClassNamesToElement(
+      div,
+      themeClass,
+      'EmbeddedCode__content',
+      this.__layout
+    )
 
     return div
   }

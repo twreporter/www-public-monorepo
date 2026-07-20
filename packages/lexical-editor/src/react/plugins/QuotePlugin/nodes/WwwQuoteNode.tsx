@@ -10,6 +10,7 @@ import {
   type SerializedElementNode,
   type Spread,
 } from 'lexical'
+import { addClassNamesToElement } from '@lexical/utils'
 
 import {
   isWwwQuoteLayout,
@@ -62,7 +63,12 @@ export class WwwQuoteNode extends ElementNode {
   override createDOM(config: EditorConfig): HTMLElement {
     const themeClass = config.theme.wwwQuote ?? 'TwreporterTheme__wwwQuote'
     const figure = document.createElement('figure')
-    figure.classList.add(themeClass, 'wwwQuote__container', this.__layout)
+    addClassNamesToElement(
+      figure,
+      themeClass,
+      'wwwQuote__container',
+      this.__layout
+    )
     figure.setAttribute(wwwQuoteAttribute, 'true')
     figure.setAttribute('data-layout', this.__layout)
     return figure
