@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.26](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.25...@twreporter/lexical-editor@0.2.0-beta.26) (2026-07-20)
+
+
+### Bug Fixes
+
+* **lexical-editor:** address defects ([41bf4c8](https://github.com/twreporter/www-public-monorepo/commit/41bf4c800ab31cf3df853eb03948e35c4748235d))
+* **lexical-editor:** address review comments ([2821c33](https://github.com/twreporter/www-public-monorepo/commit/2821c335d4dfcfc6e6911660405e37189f9919f5))
+* **lexical-editor:** can't add divider in infobox ([beafd42](https://github.com/twreporter/www-public-monorepo/commit/beafd425f58a067a176b028566d0117117e6df59))
+* **lexical-editor:** support multi-class config ([7cdb6e5](https://github.com/twreporter/www-public-monorepo/commit/7cdb6e57066cf81f4a52a9cc9050c5a77cfd62a6))
+
+
+
+
+
 # [0.2.0-beta.25](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.24...@twreporter/lexical-editor@0.2.0-beta.25) (2026-07-02)
 
 
