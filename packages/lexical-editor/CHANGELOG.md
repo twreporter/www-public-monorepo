@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.27](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.26...@twreporter/lexical-editor@0.2.0-beta.27) (2026-10-20)
+
+
+### Bug Fixes
+
+* **cms:** update post conent styles ([bb8318c](https://github.com/twreporter/www-public-monorepo/commit/bb8318ca3a9ccd8fbf44c950a88941b48140a342))
+
+
+
+
+
 # [0.2.0-beta.26](https://github.com/twreporter/www-public-monorepo/compare/@twreporter/lexical-editor@0.2.0-beta.25...@twreporter/lexical-editor@0.2.0-beta.26) (2026-07-20)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "www-cms",
-  "version": "0.1.0-beta.51",
+  "version": "0.1.0-beta.52",
   "private": true,
   "scripts": {
     "dev": "keystone dev",
@@ -27,7 +27,7 @@
     "@prisma/adapter-mariadb": "^7.9.0",
     "@prisma/client": "^7.9.0",
     "@twreporter/core": "^1.28.0",
-    "@twreporter/lexical-editor": "^0.2.0-beta.26",
+    "@twreporter/lexical-editor": "^0.2.0-beta.27",
     "exifreader": "^4.23.3",
     "express": "^5.2.1",
     "graphql": "^16.14.2",

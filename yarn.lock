@@ -6152,7 +6152,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@twreporter/lexical-editor@npm:^0.2.0-beta.26, @twreporter/lexical-editor@workspace:packages/lexical-editor":
+"@twreporter/lexical-editor@npm:^0.2.0-beta.27, @twreporter/lexical-editor@workspace:packages/lexical-editor":
   version: 0.0.0-use.local
   resolution: "@twreporter/lexical-editor@workspace:packages/lexical-editor"
   dependencies:
@@ -17811,7 +17811,7 @@ __metadata:
     "@prisma/adapter-mariadb": "npm:^7.9.0"
     "@prisma/client": "npm:^7.9.0"
     "@twreporter/core": "npm:^1.28.0"
-    "@twreporter/lexical-editor": "npm:^0.2.0-beta.26"
+    "@twreporter/lexical-editor": "npm:^0.2.0-beta.27"
     "@types/express": "npm:^5"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"

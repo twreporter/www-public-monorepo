@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.52](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.51...www-cms@0.1.0-beta.52) (2026-10-20)
+
+
+### Bug Fixes
+
+* **cms:** address review comments ([cf207a1](https://github.com/twreporter/www-public-monorepo/commit/cf207a1e2c31043ad23e5774e3a2681d1daf5b3a))
+* **cms:** update keystone6 to v8 ([f776632](https://github.com/twreporter/www-public-monorepo/commit/f77663241f71063426907b13529a6958f220981a))
+* **cms:** update post conent styles ([bb8318c](https://github.com/twreporter/www-public-monorepo/commit/bb8318ca3a9ccd8fbf44c950a88941b48140a342))
+
+
+
+
+
 # [0.1.0-beta.51](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.50...www-cms@0.1.0-beta.51) (2026-07-20)
 
 **Note:** Version bump only for package www-cms
