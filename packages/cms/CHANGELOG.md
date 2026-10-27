@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.53](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.52...www-cms@0.1.0-beta.53) (2026-10-27)
+
+
+### Bug Fixes
+
+* build error when apply yarn patch ([03ad994](https://github.com/twreporter/www-public-monorepo/commit/03ad99453f5bc03abfd5a3b658a6bb4b9594181e))
+
+
+
+
+
 # [0.1.0-beta.52](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.51...www-cms@0.1.0-beta.52) (2026-10-20)
 
 
