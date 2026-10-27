@@ -1,6 +1,6 @@
 {
   "name": "www-cms",
-  "version": "0.1.0-beta.53",
+  "version": "0.1.0-beta.54",
   "private": true,
   "packageManager": "yarn@4.6.0",
   "scripts": {

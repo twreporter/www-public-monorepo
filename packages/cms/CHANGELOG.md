@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.54](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.53...www-cms@0.1.0-beta.54) (2026-10-27)
+
+
+### Bug Fixes
+
+* include rxjs dependency ([f918112](https://github.com/twreporter/www-public-monorepo/commit/f9181127b2ea3df5bde91d45d530ff161adddbca))
+
+
+
+
+
 # [0.1.0-beta.53](https://github.com/twreporter/www-public-monorepo/compare/www-cms@0.1.0-beta.52...www-cms@0.1.0-beta.53) (2026-10-27)
 
 
