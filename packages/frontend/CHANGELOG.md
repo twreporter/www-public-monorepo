@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.54](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.53...www-frontend@0.1.0-beta.54) (2026-10-27)
+
+
+### Bug Fixes
+
+* address build failed ([4b8bba2](https://github.com/twreporter/www-public-monorepo/commit/4b8bba2d585907fc8fcbdaa3448ebbf89d722528))
+
+
+
+
+
 # [0.1.0-beta.53](https://github.com/twreporter/www-public-monorepo/compare/www-frontend@0.1.0-beta.52...www-frontend@0.1.0-beta.53) (2026-10-27)
 
 **Note:** Version bump only for package www-frontend
