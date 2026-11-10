@@ -5,13 +5,13 @@ import type {
   JSONValue,
 } from '@keystone-6/core/types'
 import { FieldContainer, FieldLabel } from '../../../admin/components/controls'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 // lexical
 import { LexicalEditor } from '@twreporter/lexical-editor'
-import { LexicalBox, StyleWrapper } from './style'
-import { PostContentStyleWrapper } from './style/post-content'
+import { LexicalBox } from './style'
 // config
-import createLexicalEditorConfig, { getFieldFeatureOverride } from './config'
+import createLexicalEditorConfig from './config'
+import { getFieldConfig } from './field-config'
 
 type WysiwygFieldController = FieldController<string, string> & {
   listKey: string
@@ -23,17 +23,15 @@ export const Field = ({
   onChange,
 }: FieldProps<typeof controller>) => {
   const valueJSON = useMemo(() => (value ? JSON.parse(value) : null), [value])
-  const lexicalEditorConfig = useMemo(() => {
-    const features = getFieldFeatureOverride(field.listKey, field.fieldKey)
-
-    return createLexicalEditorConfig({
-      ...(features ? { features } : {}),
-    })
-  }, [field.listKey, field.fieldKey])
-  const ContentStyle =
-     field.listKey === 'Post' && field.fieldKey === 'content'
-       ? PostContentStyleWrapper
-       : StyleWrapper
+  const { ContentStyle, mode, features } = getFieldConfig(
+    field.listKey,
+    field.fieldKey
+  )
+  const lexicalEditorConfig = useMemo(
+    () =>
+      createLexicalEditorConfig({ mode, ...(features ? { features } : {}) }),
+    [mode, features]
+  )
 
   return (
     <FieldContainer>
@@ -43,7 +41,10 @@ export const Field = ({
           <LexicalEditor
             value={valueJSON}
             onChange={onChange}
-            config={lexicalEditorConfig}
+            config={{
+              ...lexicalEditorConfig,
+              readOnly: !onChange,
+            }}
           />
         </ContentStyle>
       </LexicalBox>
