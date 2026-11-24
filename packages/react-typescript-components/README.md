@@ -59,7 +59,7 @@ We replaced tsup with tsdown for building this package due to intermittent memor
 
 What changed
 
-- Components are built with tsdown (see `tsdown.config.ts`).
+- Components are built with tsdown (see `tsdown.config.mts`).
 - Scripts:
   - `yarn build:components` runs tsdown.
   - `yarn build` cleans, builds components, then builds Tailwind CSS to `lib/styles.css`.
