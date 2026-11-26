@@ -12,6 +12,11 @@ import { LexicalBox } from './style'
 // config
 import createLexicalEditorConfig from './config'
 import { getFieldConfig } from './field-config'
+import type { controller as selectController } from '@keystone-6/core/fields/types/select/views'
+
+type SelectValue = ReturnType<
+  ReturnType<typeof selectController>['deserialize']
+>
 
 type WysiwygFieldController = FieldController<string, string> & {
   listKey: string
@@ -21,7 +26,15 @@ export const Field = ({
   value,
   field,
   onChange,
+  itemValue,
 }: FieldProps<typeof controller>) => {
+  const postStyle = itemValue?.style as SelectValue | undefined
+  const articleTheme =
+    field.listKey === 'Post'
+      ? postStyle?.value?.value === 'photography'
+        ? 'photography'
+        : 'default'
+      : undefined
   const valueJSON = useMemo(() => (value ? JSON.parse(value) : null), [value])
   const { ContentStyle, mode, features } = getFieldConfig(
     field.listKey,
@@ -36,7 +49,11 @@ export const Field = ({
   return (
     <FieldContainer>
       <FieldLabel>{field.label}</FieldLabel>
-      <LexicalBox id="www-lexical-editor">
+      <LexicalBox
+        id="www-lexical-editor"
+        data-article-theme={articleTheme}
+        data-article-field={field.fieldKey}
+      >
         <ContentStyle>
           <LexicalEditor
             value={valueJSON}
