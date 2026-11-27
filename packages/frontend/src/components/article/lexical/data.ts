@@ -1,11 +1,19 @@
 import type { ArticlePhoto } from '@/types/article-detail'
 
 export function articleImageUrl(photo?: ArticlePhoto): string | undefined {
-  const url = photo?.imageFile?.url
+  return articleMediaUrl(photo?.imageFile?.url)
+}
+
+export function articleMediaUrl(value?: string): string | undefined {
+  const url = safeContentUrl(value)
   if (!url) return undefined
   if (/^https?:\/\//i.test(url)) return url
+  // Media accepts root-relative CMS paths, not link-only schemes or anchors.
+  if (!url.startsWith('/')) return undefined
   const host = process.env.NEXT_PUBLIC_IMAGE_HOST
-  return host ? `${host.replace(/\/$/, '')}/${url.replace(/^\//, '')}` : url
+  return host
+    ? safeContentUrl(`${host.replace(/\/$/, '')}/${url.replace(/^\//, '')}`)
+    : url
 }
 
 export function articleDate(value?: string): string {

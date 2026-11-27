@@ -2,6 +2,11 @@ import { cache } from 'react'
 import { keystoneFetch } from '@/app/api/graphql/keystone'
 import type { ArticleDetail } from '@/types/article-detail'
 
+type ArticleResponse = Omit<ArticleDetail, 'relatedTopics'> & {
+  relatedPostsOrderJson?: { id: string }[]
+  relatedTopics: (ArticleDetail['relatedTopics'][number] & { state?: string })[]
+}
+
 // Filter at the query boundary: the frontend service account can read drafts.
 export const fetchArticle = cache(async (slug: string): Promise<ArticleDetail | null> => {
   const query = `
@@ -17,7 +22,7 @@ export const fetchArticle = cache(async (slug: string): Promise<ArticleDetail | 
         subcategories: subcategoriesOrdered {
           name slug category { name slug }
         }
-        relatedTopics: relatedTopicsOrdered { title slug }
+        relatedTopics: relatedTopicsOrdered { title slug state }
         relatedPosts(where: { state: { equals: "published" } }) {
           id slug title style publishedDate
           ogImage { name imageFile { url } }
@@ -25,7 +30,7 @@ export const fetchArticle = cache(async (slug: string): Promise<ArticleDetail | 
       }
     }
   `
-  const response = await keystoneFetch<{ posts: (ArticleDetail & { relatedPostsOrderJson?: { id: string }[] })[] }>(
+  const response = await keystoneFetch<{ posts: ArticleResponse[] }>(
     JSON.stringify({
       query,
       variables: { where: { slug: { equals: slug }, state: { equals: 'published' } } },
@@ -37,8 +42,13 @@ export const fetchArticle = cache(async (slug: string): Promise<ArticleDetail | 
   }
   const post = response.data.posts[0]
   if (!post) return null
-  const { relatedPostsOrderJson, ...article } = post
+  const { relatedPostsOrderJson, relatedTopics, ...article } = post
   const order = new Map((relatedPostsOrderJson ?? []).map(({ id }, index) => [String(id), index]))
   article.relatedPosts.sort((a, b) => (order.get(a.id) ?? Infinity) - (order.get(b.id) ?? Infinity))
-  return article
+  return {
+    ...article,
+    relatedTopics: relatedTopics
+      .filter((topic) => topic.state === 'published')
+      .map(({ title, slug }) => ({ title, slug })),
+  }
 })

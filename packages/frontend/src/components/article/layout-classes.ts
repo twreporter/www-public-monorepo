@@ -47,7 +47,15 @@ export const articleLayout = {
     '[&_img]:block [&_img]:max-w-full [&_iframe]:block [&_iframe]:max-w-full',
     '[&_:is(.article-image,.article-slideshow,.article-embed)]:py-5',
     'tablet:[&>:is(.article-image,.article-slideshow,.article-embed)]:col-span-full tablet:[&>:is(.article-image,.article-slideshow,.article-embed)]:max-w-none tablet:[&>:is(.article-image,.article-slideshow,.article-embed)]:px-0',
-    '[&_:is(.article-image,.article-slideshow)>img]:w-full [&_:is(.article-image,.article-slideshow)>img]:h-auto',
+    '[&_.article-slideshow>img]:w-full [&_:is(.article-image,.article-slideshow)>img]:h-auto',
+    // The reading grid starts at page column 4 on desktop: page columns 8–12
+    // therefore correspond to columns 5–9 here for right-aligned images.
+    '[&_.article-image]:grid [&_.article-image]:grid-cols-4 [&_.article-image]:gap-x-6 [&_.article-image]:items-end tablet:[&_.article-image]:grid-cols-12 desktop:[&_.article-image]:grid-cols-9 desktop:[&_.article-image]:gap-x-8',
+    '[&_.article-image>img]:col-span-full [&_.article-image>img]:w-[calc(100%+48px)] [&_.article-image>img]:max-w-none [&_.article-image>img]:-translate-x-6 tablet:[&_.article-image>img]:w-[calc(100%+64px)] tablet:[&_.article-image>img]:-translate-x-8 desktop:[&_.article-image>img]:w-full desktop:[&_.article-image>img]:translate-x-0',
+    '[&_.article-image>figcaption]:col-[2/-1] tablet:[&_.article-image>figcaption]:col-[4/-1] desktop:[&_.article-image>figcaption]:col-[7/-1]',
+    'desktop:[&_.article-image.small>img]:col-[1/7] desktop:[&_.article-image.small>img]:row-start-1 desktop:[&_.article-image.small>figcaption]:row-start-1 desktop:[&_.article-image.small>figcaption]:pt-0',
+    'tablet:[&>.article-image.right]:col-[2/12] desktop:[&>.article-image.right]:col-[5/-1] desktop:[&_.article-image.right]:grid-cols-5',
+    '[&_.article-image.right>img]:w-full [&_.article-image.right>img]:translate-x-0 tablet:[&_.article-image.right>figcaption]:col-span-full desktop:[&_.article-image.right>figcaption]:col-[3/-1]',
     '[&_iframe]:w-full [&_iframe]:aspect-[3/2] [&_iframe]:h-auto [&_iframe]:border-0',
     '[&_figcaption]:py-4 [&_figcaption]:border-b [&_figcaption]:border-[var(--article-gold)] [&_figcaption]:text-[var(--article-secondary)] [&_figcaption]:text-sm [&_figcaption]:leading-normal [&_figcaption]:tracking-normal',
     '[&_.article-slide-controls]:flex [&_.article-slide-controls]:items-center [&_.article-slide-controls]:justify-end [&_.article-slide-controls]:gap-4 [&_.article-slide-controls]:mb-5',

@@ -1,5 +1,5 @@
 import { Fragment, type CSSProperties, type ReactNode } from 'react'
-import { safeContentUrl } from './data'
+import { articleMediaUrl, safeContentUrl } from './data'
 import { ArticleSlideshow } from './slideshow'
 
 type Node = {
@@ -69,7 +69,7 @@ function renderNode(node: Node): ReactNode {
     case 'linebreak': return <br />
     case 'tab': return '\t'
     // Annotation nodes are block-level details within Lexical paragraphs.
-    case 'paragraph': return <div className="article-paragraph" style={align}>{children}</div>
+    case 'paragraph': return <div className="article-paragraph whitespace-pre-wrap" style={align}>{children}</div>
     case 'heading': {
       const Heading = node.tag === 'h3' ? 'h3' : node.tag === 'h4' ? 'h4' : 'h2'
       return <Heading style={align}>{children}</Heading>
@@ -91,14 +91,17 @@ function renderNode(node: Node): ReactNode {
     case 'infobox': return <aside className="article-infobox">{children}</aside>
     case 'horizontalrule': return <hr />
     case 'image': {
-      const src = safeContentUrl(node.imageUrl)
+      const src = articleMediaUrl(node.imageUrl)
       return src ? <figure className={`article-image ${node.imageLayout === 'small' || node.imageLayout === 'right' ? node.imageLayout : ''}`}>
         {/* biome-ignore lint/performance/noImgElement: CMS media can originate from external hosts. */}
         <img src={src} alt={node.caption || node.imageTitle || ''} loading="lazy" />
         {node.caption && <figcaption>{node.caption}</figcaption>}
       </figure> : null
     }
-    case 'slide-show': return <ArticleSlideshow slides={(node.slides ?? []).filter((slide) => safeContentUrl(slide.url))} />
+    case 'slide-show': return <ArticleSlideshow slides={(node.slides ?? []).flatMap((slide) => {
+      const url = articleMediaUrl(slide.url)
+      return url ? [{ ...slide, url }] : []
+    })} />
     case 'embedded-code': return node.embeddedCode ? <figure className={`article-embed ${node.layout === 'fullscreen' ? 'fullscreen' : ''}`}>
       <iframe title={node.caption || '嵌入內容'} srcDoc={node.embeddedCode} sandbox="allow-scripts allow-popups allow-presentation" loading="lazy" />
       {node.caption && <figcaption>{node.caption}</figcaption>}

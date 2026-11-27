@@ -3,7 +3,7 @@ import { Style } from '@/enums/article'
 
 export type ArticleTheme = 'normal' | 'photography'
 export const getArticleTheme = (style?: string): ArticleTheme =>
-  (style === Style.PHOTO) || (style === Style.PHOTOGRAPHY) ? 'photography' : 'normal'
+  style === Style.PHOTOGRAPHY ? 'photography' : 'normal'
 
 const normal = {
   page: '#f1f1f1',

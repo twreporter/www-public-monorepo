@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { fetchArticle } from '@/fetchers/server/article'
 import ArticlePage from '@/components/article'
-import { articleImageUrl } from '@/components/article/data'
+import { articleImageUrl } from '@/components/article/lexical/data'
 
 type Props = { params: Promise<{ slug: string }> }
 
