@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
+import { articleThemeCss } from './article-theme'
 // utils
 import {
   tabletOnly,
@@ -17,6 +18,7 @@ import {
 } from '@twreporter/core/lib/constants/color'
 
 export const LexicalBox = styled.div`
+  ${articleThemeCss}
   background-color: #fafbfc;
   border: 1px solid #e1e5e9;
   border-radius: 6px;

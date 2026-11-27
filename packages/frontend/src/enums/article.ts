@@ -1,7 +1,7 @@
 export enum Style {
-  PINK = 'article:v2:pink',
-  DEFAULT = 'article',
-  PHOTO = 'article:v2:photo',
+  PINK = 'pink',
+  DEFAULT = 'default',
+  PHOTOGRAPHY = 'photography',
   INTERACTIVE = 'interactive',
-  EMBEDDED = 'article:v2:embedded',
+  EMBEDDED = 'embedded:full',
 }

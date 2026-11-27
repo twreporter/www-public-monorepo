@@ -98,7 +98,15 @@ const TopRow: FC<TopRowProps> = ({ topRowBgColor, logoType }) => {
         >
           {HEADER_ACTION_LINKS.map((link) => (
             <LinkComponent to={link.to} target={link.target} key={link.label}>
-              <PillButton text={link.label} theme={theme} type={link.type} />
+              <PillButton
+                text={link.label}
+                theme={
+                  theme === PillButton.Theme.photography
+                    ? PillButton.Theme.normal
+                    : theme
+                }
+                type={link.type}
+              />
             </LinkComponent>
           ))}
         </div>

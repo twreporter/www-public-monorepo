@@ -32,9 +32,9 @@ model Post {
   authorsJSON                    Json?                  @default("[]")
   heroImage                      Photo?                 @relation("Post_heroImage", fields: [heroImageId], references: [id])
   heroImageId                    Int?                   @map("heroImage")
+  heroEmbedded                   Json?
   heroSize                       String?                @default("medium")
   heroCaption                    String                 @default("")
-  heroEmbedded                   Json?
   brief                          Json?
   content                        Json?
   postFollowups                  PostFollowup[]         @relation("Post_postFollowups")
