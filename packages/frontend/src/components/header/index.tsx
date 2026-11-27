@@ -5,10 +5,12 @@ import { usePathname } from 'next/navigation'
 import Header from '@twreporter/react-typescript-components/lib/header'
 // contexts
 import { BaseContext } from '@/contexts'
+import { useSiteArticleTheme } from '@/contexts/article-theme'
 
 const UniversalHeader = () => {
   const { releaseBranch } = useContext(BaseContext)
   const pathname = usePathname()
+  const theme = useSiteArticleTheme()
   const [referrer, setReferrer] = useState('')
   useEffect(() => {
     setReferrer(document.referrer)
@@ -29,7 +31,7 @@ const UniversalHeader = () => {
     <Header
       hamburgerContext={hamburgerContext}
       releaseBranch={releaseBranch}
-      theme="normal"
+      theme={theme}
       isLinkExternal={false}
       pathname={pathname}
       referrerPath={referrer}

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 // components
 import Header from '@/components/header'
 import Footer from '@/components/footer'
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script
+        <Script
+          id="adobe-fonts"
+          strategy="afterInteractive"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: add adobe fonts
           dangerouslySetInnerHTML={{
             __html: `(function(d) {

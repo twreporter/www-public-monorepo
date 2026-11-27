@@ -12,6 +12,7 @@ export const ImageWithSkeleton: FC<ImageProps> = ({
   alt = '',
   width = 500,
   height = 400,
+  onError,
   ...props
 }) => {
   const [hasError, setHasError] = useState(false)
@@ -19,6 +20,7 @@ export const ImageWithSkeleton: FC<ImageProps> = ({
     e.preventDefault()
     e.stopPropagation()
     setHasError(true)
+    onError?.(e)
   }
 
   return (

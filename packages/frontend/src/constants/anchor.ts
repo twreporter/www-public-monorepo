@@ -1,0 +1,1 @@
+export const ARTICLE_RELATED_POST_ANCHOR_ID = 'related-post-anchor'
